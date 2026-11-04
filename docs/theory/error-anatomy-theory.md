@@ -16,6 +16,9 @@ Status: statements and proofs for the PRA draft. Every statement is checked nume
 | Thm B2 (charged observables) | covariant $\mathcal L$ + $\gamma_c$ | $\lvert\Delta(t)\rvert\le\lVert\delta H\rVert\sum_{q\ne0}\lVert O_q\rVert(1-e^{-2\gamma_cq^2t})/(\gamma_cq^2)$: time-uniform |
 | Thm B3 (Zeno, all orders) | covariant $\mathcal L$ + $\gamma_c$, charge-0 $O,\rho_0$, purely charged $\delta H$ | $\lvert\Delta(t)\rvert\le4\lVert\delta H\rVert\mathrm{osc}(O)\sum_{q\neq0}\lVert\delta H_q\rVert\,\varphi(2\gamma_cq^2,t)\approx 2\lVert\delta H\rVert\mathrm{osc}(O)\,t\sum_{q\ne0}\lVert\delta H_q\rVert/(\gamma_cq^2)$ |
 | Thm B4 (anatomy) | as B3, general $\delta H=\delta H_0+\delta H_{\rm ch}$ | error = symmetric part (Thm A, not suppressed) + breaking part (B3, Zeno-suppressed) |
+| Lemma B.2 (support) | any $\sigma^z$-dephasing matrix $\Gamma$, on-site terms | charge projections, all $\mathcal D_\Gamma$ (collective included) and on-site terms preserve operator support, so they leave Lieb–Robinson constants unchanged |
+| Thm B3′ (commutator form) | as B3 | $\lvert\Delta(t)\rvert\le\sum_{p>0}\int_{a+b\le t}e^{-2\gamma_cp^2b}\lVert[\delta H,e^{b\mathcal L_0^\dagger}([\delta H_{\pm p},O_a])]\rVert$: reference dynamics only, light-cone limited, exactly computable for free fermions |
+| Cor B3-loc | (LR) bound, local $\delta H=\sum_xh_x$ | $N$-independent: $4\,\mathrm{osc}(O)\,\varepsilon\sum_p\varepsilon_p\int\!\!\int e^{-2\gamma_cp^2b}\,\Xi_A(a,b)$; in 1D this is $\lesssim(\lvert A\rvert+vt)^2\varphi(2\gamma_cp^2,t)$ |
 | Prop C | Gaussian rate uncertainty | $\mathbb E[P_{\rm exc}(t)]=e^{-\mu t+s^2t^2/2}$, which exceeds 1 for $t>2\mu/s^2$ |
 
 ## 1. Setting and notation
@@ -158,6 +161,123 @@ $$\lvert\Delta(t)\rvert\le\underbrace{\int_0^t\lVert[\delta H_0,O_u]\rVert\,du}_
 
 *Proof.* Let $\mathcal L'_0=\mathcal L-i[\delta H_0,\cdot]$, which is covariant and still contains $\mathcal D_c$. Split $\Delta=(\langle O\rangle_{\mathcal L'_0}-\langle O\rangle_{\mathcal L})+(\langle O\rangle_{\mathcal L'}-\langle O\rangle_{\mathcal L'_0})$. Apply Theorem A to the first difference and Theorem B3 (with base $\mathcal L'_0$) to the second. $\square$
 
+### Locality: system-size independent versions
+
+Theorems B3 and B4 use the global norms $\lVert\delta H\rVert$ and $\lVert\delta H_q\rVert$. Both are extensive, so the bounds grow as $N^2$ even when the observable is local and the actual error is not (E5). This section removes that growth.
+
+**Notation.**
+- Let $\Lambda$ be the set of sites with a distance $d$, and write $S_r=\{x:d(x,S)\le r\}$.
+- $\mathfrak A_S$ denotes the operators supported in $S$, i.e. acting as the identity outside $S$.
+- For a generator $\mathcal L_0=\sum_Z\mathcal L_Z+\mathcal L_{\rm sp}$ and a region $T$, the restriction $\mathcal L_0^{(T)}$ consists of:
+  - the local terms with $Z\subseteq T$;
+  - the dephasing matrix restricted to $\Gamma|_{T\times T}$;
+  - the on-site terms inside $T$.
+
+  This restriction is again a valid GKSL generator. Its Heisenberg flow $e^{u\mathcal L_0^{(T)\dagger}}$ is a unital CP contraction and maps $\mathfrak A_T$ into itself.
+
+#### Lemma B.2 (support preservation; collective noise does not widen light cones)
+
+1. $P_q(\mathfrak A_S)\subseteq\mathfrak A_S$ for every $q$, because $\mathrm{Ad}_\phi=\bigotimes_x\mathrm{Ad}(e^{i\phi\sigma^z_x/2})$ is a product of on-site conjugations.
+2. Take any real symmetric $\Gamma\succeq0$. Then $\mathcal D_\Gamma(X)=-\tfrac12\sum_{ij}\Gamma_{ij}[\sigma^z_i,[\sigma^z_j,X]]$ satisfies $\mathcal D_\Gamma(X)=\mathcal D_{\Gamma|_{S\times S}}(X)\in\mathfrak A_S$ for $X\in\mathfrak A_S$, since $[\sigma^z_j,X]=0$ for $j\notin S$.
+   - In particular this holds for collective dephasing ($\Gamma=\gamma_c\mathbf 1\mathbf 1^T$), even though its jump operator $\sum_x\sigma^z_x$ is extensive.
+   - It also holds for the long-range correlated $\Gamma$ that BEQS learn.
+3. An on-site generator $\mathcal L_x$ satisfies $\mathcal L_x^\dagger(X)=0$ for $X\in\mathfrak A_S$ with $x\notin S$, because $\mathcal L_x^\dagger(\mathbb 1)=0$. It maps $\mathfrak A_S$ into itself when $x\in S$.
+
+Consequently, every Lieb–Robinson (LR) bound obtained by the standard Duhamel iteration holds for $\mathcal L_0=\sum_Z\mathcal L_Z+\mathcal L_{\rm sp}$ with the *same constants* as for its finite-range part $\sum_Z\mathcal L_Z$. This applies to the bounds of Poulin, PRL 104, 190401 (2010); Nachtergaele, Vershynina and Zagrebnov (2011); and Barthel and Kliesch, PRL 108, 230504 (2012). Here $\mathcal L_{\rm sp}$ is any $\mathcal D_\Gamma$ plus on-site terms.
+
+*Proof.*
+- Items 1–3 are immediate.
+- For the consequence, the iteration compares $e^{u\mathcal L_0^\dagger}$ with $e^{u\mathcal L_0^{(T)\dagger}}$ through
+$$e^{u\mathcal L_0^\dagger}Y-e^{u\mathcal L_0^{(T)\dagger}}Y=\int_0^ue^{(u-s)\mathcal L_0^\dagger}\big(\mathcal L_0^\dagger-\mathcal L_0^{(T)\dagger}\big)e^{s\mathcal L_0^{(T)\dagger}}Y\,ds .$$
+- By items 2–3, $(\mathcal L_0^\dagger-\mathcal L_0^{(T)\dagger})X=\sum_{Z\cap T\ne\emptyset,\,Z\not\subseteq T}\mathcal L_Z^\dagger X$ for $X\in\mathfrak A_T$. Only boundary-crossing local terms appear, at every level of the iteration.
+
+$\square$
+
+The physical content is that the Zeno-protecting noise ($\mathcal D_c$) and the learned correlated dephasing damp operators without moving them. The light cone is set by the Hamiltonian alone.
+
+#### Theorem B3′ (commutator form, reference dynamics only)
+
+Under the assumptions of Theorem B3, define for $p>0$
+$$\delta H_{\pm p}:=\delta H_p+\delta H_{-p}=\delta H_{\pm p}^\dagger .$$
+Then
+$$\lvert\Delta(t)\rvert\le\sum_{p>0}\int_{a,b\ge0,\;a+b\le t}e^{-2\gamma_cp^2b}\,\big\lVert\big[\delta H,\;e^{b\mathcal L_0^\dagger}\big([\delta H_{\pm p},O_a]\big)\big]\big\rVert\,da\,db,\qquad O_a=e^{a\mathcal L_0^\dagger}(O).$$
+
+*Proof.* Follow the proof of B3 up to
+$$\Delta(t)=\int_0^tds\int_0^sdu\,\mathrm{Tr}\big[\mathcal V^\dagger\big(e^{(s-u)\mathcal L^\dagger}\mathcal V^\dagger(O_{t-s})\big)\rho'_u\big].$$
+- $O\in\mathcal B_0$ and $\mathcal D_c|_{\mathcal B_0}=0$. Hence $O_{t-s}=e^{(t-s)\mathcal L_0^\dagger}O$.
+- Lemma B.0 gives $e^{b\mathcal L^\dagger}\mathcal V^\dagger(O_a)=\sum_{q\ne0}e^{-2\gamma_cq^2b}e^{b\mathcal L_0^\dagger}(i[\delta H_q,O_a])$. The damping is the same for $\pm q$, so the terms with $q=\pm p$ combine into $\delta H_{\pm p}$.
+- Change variables to $a=t-s$, $b=s-u$; the Jacobian is 1.
+- Finally use $\lvert\mathrm{Tr}[X\rho'_u]\rvert\le\lVert X\rVert$.
+
+$\square$
+
+*Remarks.*
+- B3 follows from B3′ by three elementary estimates: $\lVert[\delta H,Y]\rVert\le2\lVert\delta H\rVert\lVert Y\rVert$, contractivity of $e^{b\mathcal L_0^\dagger}$, and $\lVert[\delta H_{\pm p},O_a]\rVert\le2\lVert\delta H_{\pm p}\rVert\,\mathrm{osc}(O)$. Every loss relative to B3′ comes from these three steps.
+- The integrand of B3′ involves only the reference dynamics and commutators with $\delta H$. Terms of $\delta H$ outside the light cone of $\mathrm{supp}\,O$ do not contribute, so B3′ is local.
+- For quadratic fermions, every operator in the integrand is quadratic. The integrand is then an exact single-particle computation (`qerr.quadratic`), which E7 evaluates at $N=200$.
+
+#### Corollary B3-loc (Zeno bound independent of system size)
+
+**Assumption (LR).** There are $c,v,\xi>0$ such that for all $S\subseteq\Lambda$, $r,u\ge0$ and $Y\in\mathfrak A_S$,
+$$\big\lVert e^{u\mathcal L_0^\dagger}Y-e^{u\mathcal L_0^{(S_r)\dagger}}Y\big\rVert\le c\,\lvert S\rvert\,\lVert Y\rVert\,e^{(vu-r)/\xi}.$$
+For finite-range $\sum_Z\mathcal L_Z$ on a lattice this holds by the references above. By Lemma B.2 it does not matter what dephasing matrix or on-site terms are added.
+
+**Hypotheses on the perturbation and observable.**
+- $\delta H=\sum_{x\in\Lambda}h_x$, where $h_x$ is Hermitian and supported in the ball $\{x\}_\ell$.
+- $\varepsilon:=\max_x\lVert h_x\rVert$ and $\varepsilon_p:=\max_x\lVert(P_p+P_{-p})h_x\rVert$. The charge parts of $h_x$ live in $\{x\}_\ell$ by Lemma B.2.
+- $O\in\mathcal B_0$ is supported in $A$.
+
+**Light-cone quantities.**
+- Light-cone radius: $r_a:=\max\{0,\lceil va+\xi\ln(c\lvert A\rvert)\rceil\}$.
+- Shell weights: $\omega_0:=1$ and $\omega_k:=2e^{-(k-1)/\xi}$ for $k\ge1$.
+- Reach of a region:
+$$\mathcal N_S(b):=\sum_{y\in\Lambda}m_S(y,b),\qquad m_S(y,b)=\begin{cases}1,& d(y,S)\le\ell,\\ \min\{1,\;c\lvert S\rvert e^{(vb-d(y,S)+\ell+1)/\xi}\},&\text{otherwise.}\end{cases}$$
+  This is the number of perturbation terms an operator in $\mathfrak A_S$ can reach within time $b$.
+
+**Statement.** Then, for every system size,
+$$\lvert\Delta(t)\rvert\le4\,\mathrm{osc}(O)\,\varepsilon\sum_{p>0}\varepsilon_p\int_{a+b\le t}e^{-2\gamma_cp^2b}\,\Xi_A(a,b)\,da\,db,\qquad \Xi_A(a,b):=\sum_{k\ge0}\omega_k\,\lvert A_{r_a+k+\ell}\rvert\;\mathcal N_{A_{r_a+k+2\ell}}(b).$$
+$\Xi_A$ does not depend on $N$.
+
+**One dimension.** For an interval $A$ in $D=1$, $\lvert A_r\rvert\le\lvert A\rvert+2r$ and
+$$\mathcal N_S(b)\le\lvert S\rvert+2\ell+2+2\max\{0,vb+\xi\ln(c\lvert S\rvert)\}+2/(e^{1/\xi}-1).$$
+Hence
+$$\Xi_A(a,b)\le C\,(\lvert A\rvert+2v(a+b)+\kappa)^2,$$
+where $C$ and $\kappa$ depend only on $c,\xi,\ell$, up to logarithms of $\lvert A\rvert+v(a+b)$. This gives
+$$\lvert\Delta(t)\rvert\le4C\,\mathrm{osc}(O)\,\varepsilon\sum_{p>0}\varepsilon_p\,(\lvert A\rvert+2vt+\kappa)^2\,\varphi(2\gamma_cp^2,t).$$
+Compare B3, where the squared light-cone volume is replaced by $\lVert\delta H\rVert\lVert\delta H_{\pm p}\rVert/(\varepsilon\varepsilon_p)\sim N^2$.
+
+*Proof.* Insert the following estimate of the integrand of B3′.
+
+1. **Shift.** Replace $O$ by $O-c\mathbb 1$ with $\lVert O-c\mathbb 1\rVert=\mathrm{osc}(O)$. Commutators are unchanged, and $\mathcal L_0^\dagger(\mathbb 1)=0$, so we may assume $\lVert O\rVert=\mathrm{osc}(O)$.
+2. **Shells.** Let $T_k=A_{r_a+k}$, and set
+   - $\Omega_0=e^{a\mathcal L_0^{(T_0)\dagger}}O$,
+   - $\Omega_k=e^{a\mathcal L_0^{(T_k)\dagger}}O-e^{a\mathcal L_0^{(T_{k-1})\dagger}}O$ for $k\ge1$.
+
+   Then:
+   - $\Omega_k\in\mathfrak A_{T_k}$.
+   - The sum telescopes to $O_a$, because $T_k=\Lambda$ for large $k$.
+   - $\lVert\Omega_0\rVert\le\lVert O\rVert$.
+   - Applying (LR) to both terms gives $\lVert\Omega_k\rVert\le2c\lvert A\rvert\lVert O\rVert e^{(va-r_a-k+1)/\xi}\le\omega_k\lVert O\rVert$.
+3. **Inner commutator.** By Lemma B.2, $\delta H_{\pm p}=\sum_xh_{x,\pm p}$ with $h_{x,\pm p}\in\mathfrak A_{\{x\}_\ell}$.
+   - $[h_{x,\pm p},\Omega_k]=0$ unless $x\in A_{r_a+k+\ell}$.
+   - Otherwise it lies in $\mathfrak A_{S_k}$ with $S_k:=A_{r_a+k+2\ell}$, and its norm is at most $2\varepsilon_p\lVert\Omega_k\rVert$.
+4. **Outer commutator.** For $Y\in\mathfrak A_{S_k}$ and $d(y,S_k)>\ell$, set $r=d(y,S_k)-\ell-1$.
+   - $h_y$ commutes with $e^{b\mathcal L_0^{(S_{k,r})\dagger}}Y\in\mathfrak A_{S_{k,r}}$.
+   - By (LR), $\lVert[h_y,e^{b\mathcal L_0^\dagger}Y]\rVert\le2\varepsilon\lVert Y\rVert\,c\lvert S_k\rvert e^{(vb-r)/\xi}$. The bound is also at most $2\varepsilon\lVert Y\rVert$.
+   - Summing over $y$ gives $\lVert[\delta H,e^{b\mathcal L_0^\dagger}Y]\rVert\le2\varepsilon\lVert Y\rVert\,\mathcal N_{S_k}(b)$.
+5. **Combine.** Steps 2–4 give
+$$\big\lVert[\delta H,e^{b\mathcal L_0^\dagger}([\delta H_{\pm p},O_a])]\big\rVert\le\sum_k\lvert A_{r_a+k+\ell}\rvert\cdot2\varepsilon\cdot2\varepsilon_p\,\omega_k\lVert O\rVert\,\mathcal N_{S_k}(b)=4\varepsilon\varepsilon_p\,\mathrm{osc}(O)\,\Xi_A(a,b).$$
+6. **One-dimensional form.** It follows from $\sum_k\omega_kk^m<\infty$ and the counting above.
+
+$\square$
+
+*Scope.*
+- **What is new.** System-size independent error bounds for local observables under local generator errors, growing polynomially in $t$, are known for closed and open analogue simulators (Trivedi, Franco Rubio and Cirac, Nat. Commun. 2024; Kashyap et al. 2025). Applied to $\delta H_{\rm ch}$ at first order, they give $\lvert\Delta\rvert\lesssim\varepsilon\,(vt)^D\,t$. B3-loc adds the two symmetry-resolved ingredients inside the light cone:
+  - the first-order term vanishes (B1);
+  - the second-order term carries the Zeno factor $\varphi(2\gamma_cp^2,t)\le t/(2\gamma_cp^2)$.
+- **Not time-uniform.** The bound is free of $N$ but grows polynomially in $t$. A time-uniform local bound needs forgetting inside the light cone. Rapid-mixing stability results (Cubitt, Lucia, Michalakis and Pérez-García, CMP 337, 1275 (2015); Kashyap et al., PRX 15, 021017 (2025)) provide such forgetting for generators with a unique, rapidly mixing fixed point. U(1)-conserving dynamics has a degenerate fixed-point space, so those results do not apply, while B3-loc does.
+- **Power-law interactions.** For $J_{ij}\propto\lvert i-j\rvert^{-\alpha}$, LR bounds are algebraic and require $\alpha>D$. The BEQS ion chains ($\alpha\approx1$, $D=1$) lie at the boundary of that regime, so for them B3′ (evaluated numerically) is the appropriate statement.
+
 ### Remark B5 (non-abelian generalization)
 
 Suppose $\mathcal L_0$ is SU(2)-covariant and the collective noise is isotropic, $\mathcal D_{\rm iso}=-\tfrac\gamma2\sum_{a}[Z_a,[Z_a,\cdot]]$ with $Z_a=2S^a$. Then $\mathcal D_{\rm iso}=-2\gamma\,C_{\rm adj}$, where $C_{\rm adj}=\sum_a\mathrm{ad}_{S^a}^2$ acts on spin-$k$ irreducible tensor operators as $k(k+1)$. Theorems B1–B4 hold with the following replacements:
@@ -191,9 +311,10 @@ Consider a single two-level system with emission jump $\sqrt\gamma\sigma^-$ and 
 | Thm B3/B4 | E1, E3, E5 | charged errors shrink with γ_c, symmetric errors are exactly γ_c-independent; free fermions at N = 20–200 are N-independent |
 | Thm A2 vs BEQS | E3b | A2 leading term (nested Heisenberg commutators) ≥ observed ensemble bias, and below BEQS Eq. (12) by 1.8–24× |
 | Prop C | E4 | Gaussian vs log-normal rate ensembles |
+| Thm B3′, Cor B3-loc | E7 | free fermions, $N=20$–$200$: the B3′ certificate is $N$-independent and lies above the observed error; global B3 grows as $N^2$ |
 
 ## 7. Open items
 
-1. Local (Lieb–Robinson) refinement of B3. The bound uses the global $\lVert\delta H\rVert$; a version that only counts terms within the dissipation-limited light cone would make it system-size independent. E5 checks numerically whether the actual error is.
+1. ~~Local (Lieb–Robinson) refinement of B3~~. Done: Lemma B.2, Theorem B3′ and Corollary B3-loc, checked by E7. What remains open is a local bound that is also *time-uniform* for U(1)-conserving dynamics. It would need forgetting inside the light cone for the non-conserved part of $O$, while diffusive transport of the conserved charge keeps the commutator with $O_\infty$ alive (Remark A.3).
 2. Steady-state version (t → ∞), connected to the BQP-hardness of fixed points (Kashyap et al. 2025).
 3. Non-Markovian / quasi-static noise (BEQS footnote 73): the dephasing-by-a-random-static-field ensemble versus Lindblad dephasing.
