@@ -63,6 +63,29 @@ def save_json(path, data):
     path.write_text(json.dumps(data, indent=2, default=float))
 
 
+def save_figure(fig, stem):
+    """Write results/<stem>.png and results/<stem>.pdf; return the PNG path."""
+    png = RESULTS / f"{stem}.png"
+    fig.savefig(png, bbox_inches="tight")
+    fig.savefig(RESULTS / f"{stem}.pdf", bbox_inches="tight")
+    return png
+
+
+def triangle_integral(f, dt):
+    """int_{a+b<=t_K} f(a, b) da db for every K, f sampled at (i dt, j dt), i + j <= K_max.
+
+    Exact for the piecewise-linear interpolant: weight 1 inside, 1/2 on edges, 1/6 at the corners.
+    """
+    K = f.shape[0] - 1
+    out = np.zeros(K + 1)
+    for Kp in range(1, K + 1):
+        k, j = np.meshgrid(np.arange(Kp + 1), np.arange(Kp + 1), indexing="ij")
+        w = np.where(k + j <= Kp, 1.0, 0.0) * np.where((k == 0) | (j == 0) | (k + j == Kp), 0.5, 1.0)
+        w[0, 0], w[Kp, 0], w[0, Kp] = 1 / 6, 1 / 6, 1 / 6
+        out[Kp] = np.sum(np.where(w > 0, w * np.nan_to_num(f[: Kp + 1, : Kp + 1]), 0.0)) * dt**2
+    return out
+
+
 def style():
     import matplotlib
     matplotlib.use("Agg")

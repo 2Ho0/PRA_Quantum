@@ -1,0 +1,29 @@
+{
+  "acceptance": {
+    "certificate >= observed at every grid time (all N, gamma_c)": true,
+    "certificate(t=10) rel. spread N=100 vs 200 (max over gamma_c)": 3.316128795838663e-09,
+    "certificate N-independent within 5%": true,
+    "global B3 ratio N=200 / N=50 (expect ~16)": 13.844768874660291,
+    "global ratio within 16 +- 25%": true,
+    "certificate(t=10), N=100, gamma_c = 0, 1, 4": [
+      0.644056341458868,
+      0.0795542770720391,
+      0.02867345888595438
+    ],
+    "certificate decreases with gamma_c": true,
+    "grid convergence |cert(dt/2) - cert(dt)| / cert, N=50, gamma_c=1, t=10": 0.01714323809760953,
+    "certificate grid convergence < 2%": true,
+    "N=100, gamma_c=0: certificate / observed at t=10": 33.60728675415785,
+    "N=100, gamma_c=0: global / certificate at t=10": 1311.713379957957,
+    "N=100, gamma_c=1: certificate / observed at t=10": 33.34908307866605,
+    "N=100, gamma_c=1: global / certificate at t=10": 1008.8413648354243,
+    "N=100, gamma_c=4: certificate / observed at t=10": 53.357323819405245,
+    "N=100, gamma_c=4: global / certificate at t=10": 727.3774567534796,
+    "integrand table seconds per N": {
+      "20": 6.9,
+      "50": 12.0,
+      "100": 30.9,
+      "200": 147.7
+    }
+  }
+}
