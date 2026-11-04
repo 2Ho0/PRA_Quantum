@@ -8,6 +8,11 @@
 - 51-ion 데이터의 자화 분포는 자발 붕괴 외에 추가로 전하를 바꾸는 과정이 있음을 보여 준다.
 - PRA 원고 초안은 로컬 `paper/`에만 있다. 저장소가 public이라 git에는 올리지 않는다.
 
+**3단계 한 줄 결론 (2026-11-04, 브랜치 `phase3-symmetry-classes`).**
+- Collective dephasing이 막아 주는지는 불완전함이 coherent인지 dissipative인지가 아니라 **초연산자 charge**가 정한다(정리 B6). 공변인 flip은 약한 대칭은 지키지만 강한 대칭을 깨고, 1차로 작용하며 γ_c와 무관하다.
+- 보존 전하가 있으면 Heisenberg forgetting bound의 증가가 관측량의 다중극 차수로 정해진다. 밀도는 √t, 사중극부터는 시간 균일하다(정리 E). 실제 오차는 bound와 달리 유계일 수 있다.
+- 실데이터에서는 구조화 모델 조건부로 γ_c ≥ 20.7 rad/s(bias 보정 95% 하한)를 인증했다. Dissipator 수준의 약한 대칭 시험은 model mismatch 때문에 판정할 수 없었다(합 flip rate가 음수로 나옴).
+
 ## 1. 산출물
 
 | 파일 | 내용 |
@@ -15,11 +20,11 @@
 | `docs/superpowers/specs/2026-11-04-dissipative-error-anatomy-design.md` | 연구 설계 (목표, 정리, 실험 계획) |
 | `docs/literature/novelty-check.md` | 선행연구 대비 새로움과 데이터 판정 |
 | `docs/theory/error-anatomy-theory.md` | 정리와 증명 (영문, 논문용) |
-| `src/qerr/` | 수치 라이브러리 (Lindblad, charge, bound, free fermion, 2단계: quadratic 연산자 엔진, Pauli 대수, Lindbladian 학습, 이온 데이터 I/O) |
-| `tests/` | pytest (2단계 후 35개, 실데이터가 있을 때만 도는 테스트 1개 포함) |
-| `experiments/e1`–`e7`, `e3b` | 그림 생성 스크립트 (E6 = BEQS 실데이터, E7 = 국소 Zeno bound) |
+| `src/qerr/` | 수치 라이브러리 (Lindblad, charge, bound, free fermion, 2단계: quadratic 연산자 엔진, Pauli 대수, Lindbladian 학습, 이온 데이터 I/O, 3단계: 초연산자 charge, 단일 이온 noise 파라미터, 구조화/PSD 제약 fit) |
+| `tests/` | pytest (3단계 후 43개, 실데이터가 있을 때만 도는 테스트 1개 포함) |
+| `experiments/e1`–`e10`, `e3b`, `e6c` | 그림 생성 스크립트 (E6, E6c, E9 = BEQS 실데이터, E7 = 국소 Zeno bound, E8 = 세 분류, E10 = 다중극 forgetting) |
 | `results/*.png`, `*.pdf`, `*.json` | 그림(PNG은 팀용, PDF는 원고용)과 판정 결과 |
-| `paper/main.tex`, `paper/refs.bib` | PRA 원고 초안 (revtex4-2). **로컬 전용, git 제외** |
+| `paper/main.tex`, `paper/refs.bib`, `paper/notes/phase3-theory.md` | PRA 원고 초안 (revtex4-2)과 3단계 이론 노트. **로컬 전용, git 제외** |
 | `docs/data/beqs-data-notes.md` | BEQS 데이터 구조, 추론한 규약, 저자 확인 메일 초안 |
 | `data/fetch_beqs.py` | Zenodo 데이터 다운로드와 md5 검증 (원시 데이터는 git에 올리지 않음) |
 
@@ -158,12 +163,74 @@ python e5_free_fermion.py                # 약 1.5분
 1. ~~저자 확인~~ **메일은 보내지 않기로 결정했다(사용자).** 원고에는 기저를 "추론"으로 쓰고, 원저자와 무관한 독립 분석임을 밝힌다.
    - 원고는 이전 논문 템플릿(REVTeX `reprint`, 로컬 전용)으로 옮겼다.
    - Table I(관측량 charge × 섭동 charge, slashbox)을 추가했다.
-2. **인증된 $\gamma_c^*$.** PSD 제약 학습(Cholesky 파라미터화)과 신뢰영역을 쓰면 Lemma B.1을 실데이터에서도 엄밀하게 적용할 수 있다.
-3. **51-ion 자화 분산 증가의 원인.** 비가간섭 spin flip인지, 공명에서 벗어난 가간섭 과정인지 모델을 비교한다. 진단 자체는 z-기저 데이터만으로 되므로 다른 U(1) 시뮬레이터에도 쓸 수 있다.
-4. **시간에 무관한 국소 bound.** U(1) 보존 동역학에서 보존 전하의 확산 수송을 다뤄야 한다.
+2. ~~인증된 $\gamma_c^*$~~ **3단계에서 함(§7.2).** 구조화 모델 조건부로 γ_c ≥ 20.7 rad/s를 인증했다. 엄격한 γ_c*는 noise 때문에 0으로 무너진다(오목 함수의 Jensen bias).
+3. ~~51-ion 자화 분산 증가의 원인~~ **3단계에서 정리함(§7.2).** 강한 대칭은 깨져 있다(균형 섹터 변화율 2.10 ± 0.22 s⁻¹/ion). 이것이 class I/III인지 II인지는 z-기저 데이터만으로는 가릴 수 없고, γ_c scan으로 가린다(따름정리 B6′).
+4. ~~시간에 무관한 국소 bound~~ **3단계에서 부분 해결(§7.4).** Heisenberg forgetting형 bound로는 불가능함을 보였다(밀도는 √t). Hydrodynamic 구조를 쓰는 시간 균일 bound는 열린 문제로 남아 있다(PRX 방향).
 5. **원고 마무리.**
    - 저자와 소속을 넣는다.
    - 그림 일부를 Supplemental로 옮긴다(현재 10쪽).
    - 공동 저자 검토 → arXiv → PRA 순서로 진행한다.
 6. **확장(PRX).** 정상상태 인증, 비마르코프(준정적) 노이즈, 의도적으로 설계한 집단 dephasing을 인증 자원으로 쓰는 방향, 실험 협업.
 7. **후속 논문(QNO).** 감쇠가 있는 trunk를 갖는 QuanONet. 이 논문의 bound를 물리 기반 기준선으로 쓴다.
+
+## 7. 3단계 결과 (2026-11-04, 브랜치 `phase3-symmetry-classes`)
+
+이론 노트는 로컬 `paper/notes/phase3-theory.md`에만 둔다(git 제외). 공개 여부는 사용자가 정한다.
+
+### 7.1 약한/강한 대칭과 소산 불완전함 (이론: 정리 B6, 따름정리 B6′ / 수치: E8)
+
+- **초연산자 charge.** 초연산자 𝒮의 charge-Q 부분 𝒮_Q는 B_p를 B_{p+Q}로 보낸다. Hamiltonian 오차와 dissipator 오차를 같은 틀로 분해할 수 있다.
+- **세 분류.**
+  - I: 대칭을 깨는 Hamiltonian 오차. 2차이고 Zeno로 억제된다.
+  - II: 공변 불완전함. 1차이고 γ_c와 무관하다. σ± flip은 강한 대칭만 깬다.
+  - III: dissipator의 charged 부분. 2차이고 Zeno로 억제된다. 예: x dephasing = 공변 flip + V_{±2}.
+- **E8 (N=6).**
+  - Leakage의 κ 배증 비율: I은 4.00, II와 III는 1.91.
+  - II의 leakage는 γ_c와 무관하다(상대 차이 10⁻¹⁵).
+  - III와 II의 leakage는 정확히 같다(차이 3×10⁻¹⁶). 균일한 flip에서는 dP(M)/dt의 flip 부분이 배치에 M을 통해서만 의존하고, charged 부분은 대각 연산자를 없앤다. 그래서 P(M)이 닫힌 birth–death 방정식을 따르고, charged dissipation은 어떤 차수에서도 P(M)을 바꾸지 못한다. 새로 얻은 정확한 결과다.
+  - Staggered magnetization에서 x dephasing의 charged 부분은 flip rate를 고정하고 세기만 바꾸면 배증 비율이 4.000이다. γ_c를 0에서 4로 올리면 2.0×10⁻⁷에서 7.7×10⁻¹¹로 줄어든다.
+  - κ와 flip rate를 함께 바꾸면 γ_c ≥ 2에서 비율이 4에서 벗어난다(5.07). Zeno로 억제된 κ² 항에 Zeno로 억제되지 않는 flip × charged 교차 κ³ 항이 경쟁하기 때문이다(ledger ruling).
+  - 정리 B6 bound는 모든 시간에서 성립한다.
+
+### 7.2 실데이터: 약한/강한 대칭과 인증된 γ_c (E9)
+
+- **확장 ansatz.** 이온당 noise 파라미터 8개를 넣어 모두 345개 파라미터로 학습했다(full rank).
+  - 합 flip rate S_xx+S_yy가 음수로 나온다: 사이트 평균 −50 ± 13 rad/s, bias 보정 후 −31 rad/s. 물리적인 생성자에서는 불가능한 값이다.
+  - Charged 조합이 이온마다 같은 부호로 치우쳐 있다(S_xx−S_yy ≈ −160 rad/s, S_xz ≈ +75 rad/s). 60개 중 10개가 3σ를 넘는다.
+  - t=0 contrast로 보정해도 남는다(S_xx−S_yy = −139 rad/s).
+  - 결론: model mismatch(상태 준비 오차, 비마르코프 noise 등)로 해석하고, 약한 대칭 위반으로 보고하지 않는다. 분해능 한계는 이온당 약 10² rad/s다.
+- **Hamiltonian의 U(1) 깨는 결합.** 확장 fit에서도 0과 양립한다. K, L, Bx의 최대 |z|는 2.0–2.3이다. By는 세 이온에서 3.0–3.2σ인데, charge ±1 noise와 서로 상쇄하는 관계다.
+- **구조화 γ_c.**
+  - 29.9 ± 4.1 rad/s.
+  - Bootstrap 평균이 2.1 rad/s 높다(errors-in-variables bias). 그래서 percentile 하한 26.0은 보수적이지 않다.
+  - Basic bootstrap 하한 **20.7 rad/s를 인증값**으로 쓴다(확장 ansatz에서는 22.1).
+  - 10 ms에서 Zeno 인수는 |q|=1에서 0.88 이하, |q|=2에서 0.62 이하다.
+- **엄격한 γ_c\*.** Lemma B.1을 PSD 제약 full Γ에 적용하면 bootstrap 100개 중 100개에서 0이다. γ_c*가 오목 함수라 noise가 있으면 아래로 편향된다(Jensen).
+- **Shadow 판정.** 10 qubit 순도 추정의 표준오차가 0.16(state 1), 0.31(state 2)이다. Charge 분해 신호는 0.16이라 판정할 수 없다. 10⁴개 정도의 설정이 필요하다.
+- **51 ion.**
+  - ⟨M⟩ drift는 D5/2 붕괴와 일치한다(class II).
+  - Var M의 초과분은 균형 섹터 변화율 2.10 ± 0.22 s⁻¹/ion에 해당한다. 강한 대칭은 깨져 있지만, 약한 대칭 위반은 이 데이터로 보이지 않는다.
+
+### 7.3 검증 편차 (E6c)
+
+- **설정.** 학습 창(1.5, 3, 5 ms)과 dephasing 모델(full Γ, 구조화 Γ)을 조합해 6개 모델을 만들고, 모두 t > 5 ms에서 검증했다. 균일 z장 제약은 데이터가 기각하므로(z 최대 8.5) 돌리지 않았다.
+- **전체 오차.** rms가 0.117(창 1.5 ms, full Γ)에서 0.067(창 5 ms, 구조화 Γ)로 줄었다. 긴 창과 구조화 Γ가 각각 도움이 된다.
+- **Charge별 오차.**
+  - 2-site charged 상관(q=±1 XZ형, q=±2): 통계오차의 1.5–2.6배.
+  - 단일 사이트 가로 자화(q=±1): 5–8배.
+  - 가장 큰 오차는 charge-0이다. σ^z는 0.160에서 0.074로 줄었고(SEM 0.008), flip-flop은 0.166에서 0.088로 줄었다(SEM 0.010).
+- **⟨X5X6⟩ 문제의 정체.**
+  - 이온 5–6의 charge-0 flip-flop 상관 C0가 데이터에서는 10 ms 동안 0.495 ± 0.009로 유지된다.
+  - 모든 모델이 이 상관을 dephase한다. 학습된 charge-0 rate는 79–189 rad/s다.
+  - 가장 좋은 모델도 10 ms에서 0.30을 예측한다.
+- **창에 따른 표류.** 학습된 결합이 창에 따라 바뀐다(J_nn 617 → 573 → 504 rad/s). 시간에 무관한 Markovian 생성자 하나로는 모든 시간을 맞출 수 없다. E9의 model mismatch와 일치하고, 준정적이거나 시간 상관이 있는 noise일 가능성을 시사한다.
+- **의미.** Mismatch가 charge-0 섹터에 있으므로 1차로 작용하고 collective dephasing의 보호도 받지 못한다(정리 B6). 인증에서 가장 중요한 부분이다.
+
+### 7.4 보존 전하와 hydrodynamic forgetting (정리 E / 수치: E10)
+
+- **정리 E.** 관측량의 밀도 성분이 다중극 차수 m을 가지면 integrand가 u^{−(m+1)/2}로 줄어든다. 그래서 정리 A의 bound는 m=0에서 √t, m=1에서 log t로 자라고, m≥2에서는 시간 균일하다. 보조정리 E.1(summation by parts, C_ℓ = 2ℓ(ℓ+1))은 엄밀하다. 확산 가정은 조건으로 명시했다.
+- **E10 (free fermion, N=400, g=1, ε=0.01).**
+  - 지수: monopole −0.506, dipole −1.022, quadrupole −1.527, bond current −1.029.
+  - Monopole bound: u=10, 100, 1000에서 0.031, 0.067, 0.176.
+  - 밀도파의 peak 오차는 λ=20–160에서 2.96–3.26×10⁻³이다. 확산계수 재규격화로 예측한 2.94×10⁻³과 맞는다. 실제 오차는 시간에 대해 균일하지만, bound는 peak 시각에서 0.027에서 0.107로 자란다.
+- **의미.** 보존 밀도에 대해서는 Heisenberg forgetting형 시간 균일 bound가 존재할 수 없다. Hydrodynamic 구조를 쓰는 bound는 열린 문제다(PRX 방향). 공변 flip이 보존을 깨면 forgetting이 회복된다.

@@ -1,12 +1,13 @@
-# Which Hamiltonian errors does dissipation erase?
+# Which imperfections does dissipation erase?
 
-This repository holds theory, numerics and a manuscript draft (target: Physical Review A) on certified open-system quantum simulation under imperfect Hamiltonians. It builds on the bounded-error quantum simulation (BEQS) framework of Kraft et al., [PRX 16, 031037 (2026)](https://doi.org/10.1103/s96t-n8tx).
+This repository holds theory, numerics and a manuscript draft (target: Physical Review A) on certified open-system quantum simulation under imperfect Hamiltonians and noise models. It builds on the bounded-error quantum simulation (BEQS) framework of Kraft et al., [PRX 16, 031037 (2026)](https://doi.org/10.1103/s96t-n8tx).
 
 **Core idea.** Use dissipation and symmetry to sharpen error bounds.
 - **Heisenberg forgetting.** The error is bounded by ∫‖[δH, O_u]‖du.
-- **U(1) charge anatomy.** Symmetry-breaking imperfections vanish from the linear response of charge-conserving observables. Collective dephasing then suppresses them at rate 2γ_c q².
+- **U(1) charge anatomy.** Imperfections, Hamiltonian or dissipative, split by their superoperator charge Q. Charged ones vanish from the linear response of charge-conserving observables, and collective dephasing then suppresses them at rate 2γ_c Q². Covariant ones (for example incoherent spin flips, which break only the strong symmetry) are unprotected.
 - **Size-independent commutator-form certificates.**
-- **Application to the public BEQS trapped-ion data.**
+- **Conserved charges.** The forgetting of an observable follows its multipole order: bounds grow as √t for densities and are time-uniform from quadrupoles on.
+- **Application to the public BEQS trapped-ion data.** Re-learned 10-ion generator, a certified collective dephasing rate within a structured model, a charge-resolved validation, and strong-symmetry diagnostics of a 51-ion quench.
 
 ## Layout
 
@@ -19,9 +20,9 @@ This repository holds theory, numerics and a manuscript draft (target: Physical 
 | `docs/superpowers/` | Design specs and execution plans |
 | `src/qerr/` | Library: Lindblad solver, charge sectors, bounds, free fermions, quadratic-operator engine, Pauli algebra, Lindbladian learning, ion-data I/O |
 | `tests/` | pytest suite |
-| `experiments/` | E1–E7 figure scripts |
+| `experiments/` | E1–E10 figure scripts (E6, E6c, E9 use the BEQS data) |
 | `results/` | Figures (PNG and PDF) and JSON acceptance checks |
-| `paper/` | Manuscript draft, kept locally only and not committed (this repository is public) |
+| `paper/` | Manuscript draft and phase-3 theory notes, kept locally only and not committed (this repository is public) |
 | `data/fetch_beqs.py` | Downloads the BEQS raw data (Zenodo, CC BY 4.0) into `data/raw/` and checks the md5 checksums |
 
 ## Reproduce
@@ -42,7 +43,13 @@ python e5_free_fermion.py
 python e7_local_zeno.py              # about 3 min (N up to 200)
 python e6_ion_learning.py            # about 25 min (10-qubit learning, bootstrap, validation)
 python e6_symmetry.py                # run after e6_ion_learning
+python e8_symmetry_classes.py        # about 20 min (N = 6, dense superoperators)
+python e9_symmetry_data.py           # about 5 min on 12 cores; run after e6_ion_learning and e6_symmetry
+python e6c_validation.py             # several hours on 3 cores (learning windows up to 5 ms); run after e9
+python e10_hydro_forgetting.py       # about 1 h on 12 cores (N = 400 to t = 1500)
 ```
+
+E8, E9, E6c and E10 cache their results in `results/*.npz`; `--replot` redraws the figure from the cache.
 
 ## Data and attribution
 

@@ -53,10 +53,21 @@
    - 10-ion 측정 기저를 t=0 통계로 복원해 integral method로 재학습했다. 이산화 편향은 defect correction으로 제거했다.
    - 학습된 생성자를 charge별로 분해했다.
    - 51-ion 자화 분포로 U(1)을 진단했다.
+7. **(3단계) 약한/강한 대칭에 따른 불완전함의 분류 (정리 B6, 따름정리 B6′).**
+   - 초연산자 charge로 Hamiltonian 오차와 dissipator 오차를 하나의 틀로 분해한다. "Zeno 보호 여부는 coherent냐 dissipative냐가 아니라 초연산자 charge가 정한다."
+   - 약한/강한 대칭이라는 개념 자체는 Buča–Prosen 2012와 Albert–Jiang 2014에 있다. 그 연구들은 이 구분을 정상상태 구조에 썼다. 우리는 오차 예산과 인증 bound에 쓴다. 이 점을 원고에 명시했다.
+   - 새로 얻은 정확한 결과: 균일한 flip rate에서는 P(M)이 닫힌 birth–death 방정식을 따르므로, charged dissipation이 P(M)을 바꾸지 못한다. 이것을 바탕으로 γ_c scan 진단을 제안했다.
+8. **(3단계) 보존 전하 아래 다중극 forgetting (정리 E).**
+   - Heisenberg forgetting의 시간 거동이 관측량의 다중극 차수로 정해진다(√t, log t, 균일).
+   - 그 결과 Heisenberg형 bound로는 시간 균일한 국소 bound를 얻을 수 없다. 실제 오차는 확산계수 재규격화 때문에 유계일 수 있다(E10).
+   - Rapid-mixing 안정성(Cubitt 2015, Kashyap 2025)은 유일 고정점을 가정해서 이 경우를 다루지 않는다. Dephasing에 의한 확산 자체는 잘 알려져 있다(Haken–Strobl, Eisler 2011).
+9. **(3단계) 인증된 collective rate.** 엄격한 γ_c*가 오목 함수라서 noise에 의해 아래로 편향됨(Jensen)을 보였다. 그래서 구조화 모델에 조건부로 bias를 보정한 하한을 쓴다.
 
 ## 4. 리스크
 
 - Zeno 억제 자체는 잘 알려진 물리다. 도입부에서 Stannigel 2014, PRA 62 062305, Tran 2021을 먼저 인용해서 새로움이 "certification용 엄밀 bound와 선택 규칙"에 있다는 점을 분명히 해야 한다.
+- (3단계) 정리 E는 확산 가정(커널의 기울기 bound)을 조건으로 둔다. 수치로는 E10에서 확인했지만 일반적인 증명은 아니다. 원고에서도 조건부 정리로 썼다.
+- (3단계) 확장 ansatz에서 dissipator 파라미터가 비물리적 값을 낸다. 이것을 대칭 위반으로 읽으면 안 된다. 원고에는 model mismatch로 썼다.
 - BEQS 실험 영역(10 ions, $\gamma_c\approx0.08J_0$, 측정 시간 ≲ 6 $J_0^{-1}$)에서는 Zeno 억제가 |q|=2 오차에서만 O(1) 수준이다. 선택 규칙(B1)은 $\gamma_c$와 무관하게 성립하므로 이 영역에서도 쓸모가 있다. 수치로 확인해야 한다(E3).
 
 ## 5. 데이터 판정 (E6)
