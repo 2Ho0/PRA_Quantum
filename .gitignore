@@ -17,3 +17,6 @@ data/raw/
 
 # Manuscript drafts stay local: this repository is public
 paper/
+
+# Local Claude Code settings and hooks (e.g. LaTeX auto-compile); not shared
+.claude/
