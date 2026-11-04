@@ -1,0 +1,76 @@
+{
+  "acceptance": {
+    "monopole n_c: fitted exponent of f(u), fit window [u_min, u_max]": [
+      -0.5063862152389483,
+      11.389362225562474,
+      782.4903888334585
+    ],
+    "dipole n_c - n_c+1: fitted exponent of f(u), fit window [u_min, u_max]": [
+      -1.0219810646317826,
+      11.389362225562474,
+      1500.0
+    ],
+    "quadrupole n_c-1 - 2n_c + n_c+1: fitted exponent of f(u), fit window [u_min, u_max]": [
+      -1.5271054197098572,
+      11.389362225562474,
+      1500.0
+    ],
+    "bond current j_c: fitted exponent of f(u), fit window [u_min, u_max]": [
+      -1.0294697565352886,
+      11.389362225562474,
+      1500.0
+    ],
+    "kernel edge weight < 1e-3 in fit window": true,
+    "monopole exponent in [-0.6, -0.4]": true,
+    "dipole exponent in [-1.15, -0.85]": true,
+    "quadrupole exponent <= -1.3": true,
+    "monopole n_c: Theorem-A bound at u = 10, 100, 1000": [
+      0.031419642333902736,
+      0.06659240802413402,
+      0.17645147975049214
+    ],
+    "dipole n_c - n_c+1: Theorem-A bound at u = 10, 100, 1000": [
+      0.044863138902834006,
+      0.048528118395731124,
+      0.05208971040899158
+    ],
+    "quadrupole n_c-1 - 2n_c + n_c+1: Theorem-A bound at u = 10, 100, 1000": [
+      0.08018304518715548,
+      0.08073516585520245,
+      0.08090215166392038
+    ],
+    "bond current j_c: Theorem-A bound at u = 10, 100, 1000": [
+      0.04603134362452981,
+      0.05352329368872511,
+      0.060660952663697074
+    ],
+    "density waves: lambda -> (peak |error|, peak time, Theorem-A bound at peak time)": {
+      "20": [
+        0.0032593951727715176,
+        5.825968059434422,
+        0.027402332367831343
+      ],
+      "40": [
+        0.0030313883611957637,
+        21.277448564890932,
+        0.038990247771070505
+      ],
+      "80": [
+        0.002975865579994519,
+        83.08337058671698,
+        0.06208405947861245
+      ],
+      "160": [
+        0.0029621176556542395,
+        324.2277876554809,
+        0.10737700567300394
+      ]
+    },
+    "Theorem-A bound >= true error at all times (all lambda)": true,
+    "peak true error spread across lambda (max/min) within 2": [
+      1.1003597937947602,
+      true
+    ],
+    "predicted peak ~ 0.4 * (2 eps) / e (diffusion-constant change)": 0.002943035529371539
+  }
+}
