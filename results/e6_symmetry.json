@@ -1,0 +1,40 @@
+{
+  "acceptance": {
+    "51 ions: staggered magnetization at 0, 5, 10 ms": [
+      0.9780000000000011,
+      -0.14603921568627445,
+      -0.007999999999999991
+    ],
+    "51 ions: P(initial sector) at 0 and 10 ms": [
+      0.7,
+      0.356
+    ],
+    "51 ions: slope of M per ms (+- 1 se)": [
+      -0.021807637578263796,
+      0.003588401052722737
+    ],
+    "51 ions: slope of varM per ms (+- 1 se)": [
+      0.1288709976922656,
+      0.01073610348920513
+    ],
+    "expected |d<M>/dt| from D5/2 decay alone, 25.5 / tau (per ms)": 0.02183219178082192,
+    "10 ions: collective rate gamma_c used (rad/s)": 30.478279538973588,
+    "10 ions: ||dH_ch||, ||dH_+-1||, ||dH_+-2|| (rad/s)": [
+      1257.9770131762843,
+      802.8563657025996,
+      802.2174051377475
+    ],
+    "10 ions, t = 10 ms: actual": 0.003457904915412993,
+    "10 ions, t = 2 ms: actual": 0.015761833047883533,
+    "10 ions, t = 10 ms: cert": 5.318732473903213,
+    "10 ions, t = 2 ms: cert": 0.3900175473643003,
+    "10 ions, t = 10 ms: thmA": 2.231813364696272,
+    "10 ions, t = 2 ms: thmA": 0.5838418935492429,
+    "10 ions, t = 10 ms: glob": 270.10033225490264,
+    "10 ions, t = 2 ms: glob": 14.66782991033241,
+    "10 ions, t = 10 ms: beqs": 76.07732383083138,
+    "10 ions, t = 2 ms: beqs": 15.215464766166274,
+    "certificate >= actual at common grid times": true,
+    "first-order variance share of symmetric combinations (Thm B1')": 0.673175813659869
+  }
+}

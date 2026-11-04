@@ -1,0 +1,75 @@
+{
+  "acceptance": {
+    "bases X/Y/Z": [
+      675,
+      669,
+      656
+    ],
+    "basis margin min (SEM)": 3.0954358167328624,
+    "settings-qubits with margin < 5": 87,
+    "defect rounds max|dtheta| (rad/s)": [
+      58.22124178569248,
+      10.325651178252377,
+      2.872633167703947
+    ],
+    "J0 fit (rad/s) [BEQS App. B estimate 576]": 861.5681473720599,
+    "J0 fit bootstrap sd (rad/s)": 184.82393098822598,
+    "alpha fit [BEQS App. B 1.19; BEQS learned power-law fits 0.64(7), 0.7(1)]": 1.4693488900901084,
+    "alpha fit bootstrap sd": 0.2811234535067474,
+    "nearest-neighbour J mean (rad/s)": 617.2120934730953,
+    "Gamma dominant eigenvalue (rad/s) [BEQS 460]": 321.5928135725981,
+    "Gamma dominant eigenvalue sd (rad/s)": 54.0370997836403,
+    "dominant eigenvector overlap with uniform": 0.9784701594769416,
+    "Gamma PSD-projected weight (rel. Frobenius)": 0.17583403339992068,
+    "gamma_c* (rad/s), strict Lemma B.1 on PSD projection": 0.0,
+    "gamma_c* bootstrap sd (rad/s)": 0.0,
+    "gamma_c structured (mean off-diagonal Gamma, rad/s)": 30.478279538973588,
+    "gamma_c structured bootstrap sd (rad/s)": 5.208973087180064,
+    "gamma_c structured / J_nn": 0.04938056117382632,
+    "local rates g_i = Gamma_ii - gamma_c (rad/s): min, mean, max": [
+      -41.90408265994535,
+      3.2782297632652515,
+      44.85211559344568
+    ],
+    "local rates g_i: min z-score (g_i / sd)": -2.590515897734046,
+    "off-diagonal Gamma minus gamma_c: rms z-score (1 = consistent with collective+local)": 0.5851946914205338,
+    "emission rates mean (rad/s) [BEQS expects ~2]": 10.94136616472348,
+    "emission rates bootstrap sd per site, mean (rad/s)": 60.73380282402997,
+    "K: rms (rad/s), max |z|, #|z|>3 of 45": [
+      15.591662874458212,
+      1.5932517107700137,
+      0
+    ],
+    "L: rms (rad/s), max |z|, #|z|>3 of 45": [
+      25.46039015009096,
+      2.5750763746348153,
+      0
+    ],
+    "D: rms (rad/s), max |z|, #|z|>3 of 45": [
+      43.71987344845112,
+      2.2013714293914757,
+      0
+    ],
+    "Bx: rms (rad/s), max |z|, #|z|>3 of 10": [
+      76.87423206168238,
+      2.748243547227915,
+      0
+    ],
+    "By: rms (rad/s), max |z|, #|z|>3 of 10": [
+      34.307466198407944,
+      1.6969829569767758,
+      0
+    ],
+    "Bz: mean (rad/s), spread (rad/s)": [
+      96.13597108127676,
+      202.1815331105698
+    ],
+    "J_sym rms (rad/s)": 337.58929529082707,
+    "rms(model - data), learning t<=1.5, full model": 0.04190128344401809,
+    "rms(model - data), learning t<=1.5, sym model": 0.0499912824148182,
+    "rms SEM, learning t<=1.5": 0.014577636491706047,
+    "rms(model - data), validation t>1.5, full model": 0.10391532860525592,
+    "rms(model - data), validation t>1.5, sym model": 0.09357828758636598,
+    "rms SEM, validation t>1.5": 0.014751159438836288
+  }
+}
