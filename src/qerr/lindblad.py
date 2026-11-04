@@ -9,6 +9,7 @@ Dephasing and the emission anticommutators act elementwise in the z basis,
 which keeps the right-hand side cheap.
 """
 
+import gc
 from dataclasses import dataclass
 from functools import cached_property
 
@@ -87,7 +88,11 @@ def evolve(model: OpenModel, X0: np.ndarray, times, heisenberg: bool = False,
                     t_eval=times, method="DOP853", rtol=rtol, atol=atol)
     if not sol.success:
         raise RuntimeError(sol.message)
-    return sol.y.T.reshape(len(times), D, D)
+    out = sol.y.T.reshape(len(times), D, D).copy()
+    del sol
+    if D >= 128:
+        gc.collect()  # the solver's stage arrays sit in reference cycles; free them now, not at the next GC pass
+    return out
 
 
 def expect(Xs: np.ndarray, O: np.ndarray) -> np.ndarray:

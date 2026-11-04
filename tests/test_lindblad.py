@@ -83,3 +83,25 @@ def test_evolve_nonhermitian_linear():
     a = evolve(model, X + 1j * Y, t)
     b = evolve(model, X, t) + 1j * evolve(model, Y, t)
     assert np.max(np.abs(a - b)) < 1e-9
+
+
+def test_evolve_releases_solver_memory():
+    # solve_ivp keeps its stage arrays in reference cycles; repeated short calls on large states must not
+    # accumulate them (observed: +300 MB per call for 10 qubits before the fix)
+    import tracemalloc
+
+    n = 8
+    rng = np.random.default_rng(0)
+    A = rng.normal(size=(2**n, 2**n)) + 1j * rng.normal(size=(2**n, 2**n))
+    model = OpenModel(H=(A + A.conj().T) / 50, Gamma=0.1 * np.eye(n), emission=0.05 * np.ones(n))
+    rho = np.eye(2**n, dtype=complex) / 2**n
+    tracemalloc.start()
+    try:
+        rho = evolve(model, rho, [0.0, 0.05], rtol=1e-7, atol=1e-9)[-1]
+        first = tracemalloc.get_traced_memory()[0]
+        for _ in range(4):
+            rho = evolve(model, rho, [0.0, 0.05], rtol=1e-7, atol=1e-9)[-1]
+        growth = tracemalloc.get_traced_memory()[0] - first
+    finally:
+        tracemalloc.stop()
+    assert growth < 5 * 2**20
