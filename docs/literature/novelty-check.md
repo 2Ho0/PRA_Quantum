@@ -22,6 +22,18 @@
 | 1802.05293 (PRA 97, 052106) · 2603.10654 | Liouvillian의 대칭 섹터별 gap, correlated dephasing의 선택 규칙 | 스펙트럼 구조만 다룬다. 우리는 그 구조를 오차 bound로 연결한다 |
 | 2601.05952 · 2602.21879 | 아날로그 열린계의 연속시간 error cancellation/mitigation | 오차 완화 프로토콜이고, 오차 예측(certification)이 아니다 |
 
+### 2단계 추가 (2026-11-04): 국소화와 실데이터 관련 선행연구
+
+| 선행연구 | 내용 | 우리 결과와의 차이 |
+|---|---|---|
+| Trivedi, Franco Rubio, Cirac, Nat. Commun. 15, 6507 (2024) (2212.04924) | 국소 오차가 있는 아날로그 시뮬레이터에서 국소 관측량 오차가 N과 무관하다. Gaussian fermion과 일부 스핀계 | 대칭을 쓰지 않는다. 우리 B3-loc은 같은 광원뿔 안에서 선택 규칙(1차 소거)과 Zeno 인자 φ(2γ_c p², t)를 더한다 |
+| Kashyap et al., PRX 15, 021017 (2025) (2404.11081) | 열린계 아날로그 시뮬레이션에서 N과 무관한 정확도. rapid mixing이면 시간에도 무관하다 | 유일한 고정점(rapid mixing)이 필요하다. U(1) 보존 동역학은 고정점이 여러 개라 적용되지 않는다. 우리 결과는 바로 이 경우를 다룬다 |
+| Cubitt, Lucia, Michalakis, Pérez-García, CMP 337, 1275 (2015) | 국소 dissipative 계의 안정성 (rapid mixing) | 위와 같은 차이 |
+| Poulin PRL 2010 · Nachtergaele–Vershynina–Zagrebnov 2011 · Barthel–Kliesch PRL 2012 | Lindbladian의 Lieb–Robinson bound | 우리 Lemma B.2를 보탠다: 임의의 상관 dephasing Γ(집단 포함)와 on-site 항은 지지집합을 보존하므로 LR 상수를 바꾸지 않는다. 짧은 관찰이지만 문헌에서 명시적으로 쓰인 것은 찾지 못했다(표본 검색) |
+| Angrisani, Puig, Teng, Holmes, arXiv:2609.40174 (2026) | "Dissipation accelerates quantum and classical simulation of open-system dynamics" | 알고리즘(시뮬레이션 가능성) 관점이다. 모든 Pauli 방향의 감쇠가 필요해서 보존량이 있는 계는 제외된다 |
+
+**실데이터 재분석.** BEQS 데이터에서 측정 기저를 t=0 통계로 복원해 재학습한 연구는 검색 범위에서 보이지 않았다. 51-ion Néel 데이터의 자화 분포 모멘트를 대칭 진단에 쓴 사례도 보이지 않았다. 다만 무작위 측정 데이터의 대칭 분해 일반론은 있다(Elben et al. toolbox, Nat. Rev. Phys. 5, 9 (2023)). 원고에서는 "독립적 재분석"으로만 표현하고, 저자 확인 메일 초안을 `docs/data/beqs-data-notes.md`에 두었다.
+
 ## 3. 새로움 주장 (방어 가능한 형태)
 
 1. **Heisenberg forgetting bound (정리 A).** 기술적으로는 단순하다. Duhamel 공식에 Heisenberg 그림을 쓴 것이다. 주장의 초점은 "BEQS의 Duhamel bound를 항상 개선하고, dissipation이 있으면 포화한다"는 것이다. 이것 자체를 핵심 새로움으로 내세우지는 않는다.
@@ -32,7 +44,15 @@
 
    검색 범위에서 이 조합을 다룬 연구는 보이지 않았다. 핵심 새로움이다.
 3. **학습된 ensemble에서의 실효 파라미터 수 감소.** 2-local 기준으로 Hamiltonian 파라미터의 약 2/3가 U(1)을 깬다. 이 성분들은 BEQS 유형의 1차 요동 예산에서 빠진다. 실용적 새로움이다.
-4. **보호 collective rate $\gamma_c^*=1/(\mathbf 1^T\Gamma^+\mathbf 1)$.** 학습된 dephasing 행렬을 정리 B에 연결하는 조작적 정의다.
+4. **보호 collective rate $\gamma_c^*=1/(\mathbf 1^T\Gamma^+\mathbf 1)$.** 학습된 dephasing 행렬을 정리 B에 연결하는 조작적 정의다. 실데이터에서는 이 rate가 Γ의 작은 고유값에 민감하다. 그래서 E6에서는 구조화 추정(Γ ≈ γ_c11ᵀ + diag(g))을 함께 쓴다.
+5. **N과 무관한 Zeno bound (B3′, B3-loc).**
+   - 교환자 형태의 증명서는 기준 동역학만 쓰고, free fermion에서는 정확히 계산된다.
+   - Lemma B.2(dephasing은 지지집합을 보존)로 광원뿔이 Hamiltonian만으로 정해진다.
+   - 국소성 자체는 Trivedi 2024와 Kashyap 2025에 있다. 우리 몫은 대칭 분해된 부분(선택 규칙, Zeno 인자)이다.
+6. **공개 데이터의 독립 재분석.**
+   - 10-ion 측정 기저를 t=0 통계로 복원해 integral method로 재학습했다. 이산화 편향은 defect correction으로 제거했다.
+   - 학습된 생성자를 charge별로 분해했다.
+   - 51-ion 자화 분포로 U(1)을 진단했다.
 
 ## 4. 리스크
 

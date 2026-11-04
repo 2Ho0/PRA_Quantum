@@ -121,6 +121,12 @@ Then $\mathcal D_\Gamma=\mathcal D_c(\gamma_c^*)+\mathcal D_{\Gamma-\gamma_c^*\m
 
 *Proof.* This is the standard criterion for $A-cvv^T\succeq0$ with $A\succeq0$: it requires $v\in\mathrm{range}A$ and $c\,v^TA^+v\le1$. Linearity of $\mathcal D_\Gamma$ in $\Gamma$ gives the split. $\square$
 
+*Robustness (learned from data, E6a).* $\gamma_c^*$ is set by the *smallest* eigenvalues of $\Gamma$ that overlap with $\mathbf 1$. Statistical noise makes some of those eigenvalues zero or negative, and then $\gamma_c^*$ collapses to 0.
+- **Observed.** On the re-learned 10-ion $\Gamma$, the negative eigenvalues carry 18% of the Frobenius weight, and $\gamma_c^*=0$ after PSD projection.
+- **Robust alternative.** Use the structured estimate $\Gamma\approx\gamma_c\mathbf 1\mathbf 1^T+\mathrm{diag}(g)$, with $\gamma_c$ the mean off-diagonal entry. It is valid for Theorems B2–B4 whenever $g\ge0$ within errors.
+- **Data value.** $30.5\pm5.2$ rad/s. The off-diagonal residuals are consistent with noise (rms $z=0.59$), and the most negative $g_i$ is $-2.6\sigma$.
+- **Open item.** A certified version would need a PSD-constrained fit with confidence regions.
+
 *Example.* If the learned $\Gamma$ is dominated by one eigenvector $a\approx\mathbf 1/\sqrt n$ with rate $\vartheta_0$, then $\gamma_c^*\approx\vartheta_0/n$. For the BEQS 10-ion data ($\vartheta_0=460$ rad/s) this gives $\gamma_c^*\approx46$ rad/s, assuming their rate convention matches ours. That is $\approx0.08\,J_0$ with $J_0=576$ rad/s.
 
 ### Theorem B1 (first-order selection rule)
@@ -287,7 +293,7 @@ Suppose $\mathcal L_0$ is SU(2)-covariant and the collective noise is isotropic,
 
 ### Remark B6 (where this matters, honestly)
 
-- **Inside the BEQS 10-ion window.** Take $\gamma_c^*\approx0.08J_0$ and $t\lesssim5.8J_0^{-1}$ (10 ms). Then $2\gamma_cq^2t\lesssim0.9$ for $|q|=1$ and $\lesssim3.7$ for $|q|=2$. The Zeno factor $\varphi(a,t)/(t^2/2)$ is then ≈0.75 and ≈0.40 respectively, so the suppression is modest.
+- **Inside the BEQS 10-ion window.** With the rate implied by BEQS's dominant dephasing eigenvalue, $\gamma_c\approx46$ rad/s $\approx0.08J_0$, the Zeno factor $\varphi(a,t)/(t^2/2)$ at 10 ms is ≈0.75 for $|q|=1$ and ≈0.40 for $|q|=2$. With our re-learned $\gamma_c=30.5$ rad/s (E6a) it is ≈0.82 and ≈0.51. Either way the suppression is modest.
 - **Theorem B1 is independent of $\gamma_c$.** It already removes about two thirds of the parameters from the first-order error budget.
 - **Where the Zeno effect is strong.** Platforms or targets with stronger global noise, longer times, or deliberately engineered collective dephasing.
 
@@ -311,6 +317,7 @@ Consider a single two-level system with emission jump $\sqrt\gamma\sigma^-$ and 
 | Thm B3/B4 | E1, E3, E5 | charged errors shrink with γ_c, symmetric errors are exactly γ_c-independent; free fermions at N = 20–200 are N-independent |
 | Thm A2 vs BEQS | E3b | A2 leading term (nested Heisenberg commutators) ≥ observed ensemble bias, and below BEQS Eq. (12) by 1.8–24× |
 | Prop C | E4 | Gaussian vs log-normal rate ensembles |
+| Lemma B.1, Thm B1′/B4/B3′ on real data | E6a, E6b | Re-learned BEQS 10-ion generator: U(1)-breaking couplings consistent with zero; structured collective rate; first-order variance share of the symmetric combinations; Néel-quench error budget (B3′ vs Thm A vs B3 vs BEQS bias bound). The 51-ion magnetization moments are a model-free U(1) diagnostic |
 | Thm B3′, Cor B3-loc | E7 | free fermions, $N=20$–$200$: the B3′ certificate is $N$-independent and lies above the observed error; global B3 grows as $N^2$ |
 
 ## 7. Open items
