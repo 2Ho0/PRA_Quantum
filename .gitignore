@@ -15,16 +15,5 @@ Ref/*.pdf
 # Downloaded datasets (fetched by scripts, never committed)
 data/raw/
 
-# LaTeX build artefacts
-paper/*.aux
-paper/*.bbl
-paper/*.blg
-paper/*.fdb_latexmk
-paper/*.fls
-paper/*.log
-paper/*.out
-paper/*.synctex.gz
-paper/*Notes.bib
-
-# slashbox.sty: no licence statement and not in TeX Live; kept locally (see paper/README.md)
-paper/slashbox.sty
+# Manuscript drafts stay local: this repository is public
+paper/

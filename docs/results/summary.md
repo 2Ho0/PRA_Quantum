@@ -6,7 +6,7 @@
 - Zeno bound를 계 크기와 무관한 형태로 만들었다(정리 B3′, 따름정리 B3-loc, E7: 전역 bound보다 약 1000배 촘촘함).
 - BEQS 공개 데이터에서 측정 기저를 복원해 10-ion 생성자를 다시 학습했다. U(1)을 깨는 결합은 모두 통계적으로 0과 구별되지 않고, 대칭을 강제하면 표본 밖 예측이 좋아진다.
 - 51-ion 데이터의 자화 분포는 자발 붕괴 외에 추가로 전하를 바꾸는 과정이 있음을 보여 준다.
-- PRA 원고 초안은 `paper/`에 있다.
+- PRA 원고 초안은 로컬 `paper/`에만 있다. 저장소가 public이라 git에는 올리지 않는다.
 
 ## 1. 산출물
 
@@ -19,7 +19,7 @@
 | `tests/` | pytest (2단계 후 35개, 실데이터가 있을 때만 도는 테스트 1개 포함) |
 | `experiments/e1`–`e7`, `e3b` | 그림 생성 스크립트 (E6 = BEQS 실데이터, E7 = 국소 Zeno bound) |
 | `results/*.png`, `*.pdf`, `*.json` | 그림(PNG은 팀용, PDF는 원고용)과 판정 결과 |
-| `paper/main.tex`, `paper/refs.bib` | PRA 원고 초안 (revtex4-2) |
+| `paper/main.tex`, `paper/refs.bib` | PRA 원고 초안 (revtex4-2). **로컬 전용, git 제외** |
 | `docs/data/beqs-data-notes.md` | BEQS 데이터 구조, 추론한 규약, 저자 확인 메일 초안 |
 | `data/fetch_beqs.py` | Zenodo 데이터 다운로드와 md5 검증 (원시 데이터는 git에 올리지 않음) |
 

@@ -21,12 +21,12 @@ This repository holds theory, numerics and a manuscript draft (target: Physical 
 | `tests/` | pytest suite |
 | `experiments/` | E1–E7 figure scripts |
 | `results/` | Figures (PNG and PDF) and JSON acceptance checks |
-| `paper/` | revtex manuscript draft (`main.tex`, `refs.bib`) |
+| `paper/` | Manuscript draft, kept locally only and not committed (this repository is public) |
 | `data/fetch_beqs.py` | Downloads the BEQS raw data (Zenodo, CC BY 4.0) into `data/raw/` and checks the md5 checksums |
 
 ## Reproduce
 
-Requirements: Python ≥ 3.11 with numpy, scipy, matplotlib and pytest. Building the paper needs a TeX installation with revtex4-2.
+Requirements: Python ≥ 3.11 with numpy, scipy, matplotlib and pytest.
 
 ```
 pip install numpy scipy matplotlib pytest
@@ -42,7 +42,6 @@ python e5_free_fermion.py
 python e7_local_zeno.py              # about 3 min (N up to 200)
 python e6_ion_learning.py            # about 25 min (10-qubit learning, bootstrap, validation)
 python e6_symmetry.py                # run after e6_ion_learning
-cd ../paper && latexmk -pdf main.tex
 ```
 
 ## Data and attribution
