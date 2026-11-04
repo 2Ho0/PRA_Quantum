@@ -25,3 +25,6 @@ paper/*.log
 paper/*.out
 paper/*.synctex.gz
 paper/*Notes.bib
+
+# slashbox.sty: no licence statement and not in TeX Live; kept locally (see paper/README.md)
+paper/slashbox.sty

@@ -34,6 +34,8 @@ BEQS 부록 B 3에 따르면 10-ion 학습 데이터의 설정은 무작위 Paul
 
 ## 3. 저자에게 보낼 확인 메일 초안 (보내지 않음)
 
+**결정 (2026-11-04, 사용자): 메일은 보내지 않는다.** 원고에는 기저를 "추론했다"고만 쓰고, 분석이 원저자와 무관한 독립 분석임을 밝힌다. 초안은 기록으로만 남긴다.
+
 > **To:** manoj.joshi@uibk.ac.at
 > **Subject:** Question on the measurement settings in the BEQS Zenodo dataset (10.5281/zenodo.17750419)
 >
