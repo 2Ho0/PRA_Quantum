@@ -1,0 +1,123 @@
+{
+  "acceptance": {
+    "superoperator charges of D[X] (Frobenius norms)": {
+      "-2": 78.38367176906169,
+      "0": 399.6798718974975,
+      "2": 78.38367176906169
+    },
+    "D[X]_0 equals D[sigma+] + D[sigma-] (max abs diff)": 0.0,
+    "leakage: doubling ratio at t=10 per gamma_c [0.0, 0.25, 0.5, 1.0, 2.0, 4.0]": {
+      "I": [
+        3.998,
+        3.999,
+        3.999,
+        3.999,
+        4.0,
+        4.0
+      ],
+      "II": [
+        1.906,
+        1.906,
+        1.906,
+        1.906,
+        1.906,
+        1.906
+      ],
+      "III": [
+        1.906,
+        1.906,
+        1.906,
+        1.906,
+        1.906,
+        1.906
+      ]
+    },
+    "leakage: |Delta| at t=10, kappa=0.001, per gamma_c": {
+      "I": [
+        8.394378078480962e-05,
+        0.00010308098398578534,
+        8.127800342292575e-05,
+        5.255260120153615e-05,
+        2.9701563550665215e-05,
+        1.5641584303602974e-05
+      ],
+      "II": [
+        0.05710502873733345,
+        0.05710502873733345,
+        0.057105028737333474,
+        0.057105028737333446,
+        0.05710502873733349,
+        0.057105028737333474
+      ],
+      "III": [
+        0.05710502873733346,
+        0.05710502873733347,
+        0.057105028737333495,
+        0.057105028737333474,
+        0.05710502873733349,
+        0.05710502873733345
+      ]
+    },
+    "leakage: class I second order (ratio in [3.5, 4.5], gamma_c >= 0.5)": true,
+    "leakage: class I decreases with gamma_c (gamma_c >= 0.5)": true,
+    "leakage: classes II and III first order (ratio in [1.8, 2.2])": true,
+    "leakage: class II gamma_c-independent (max rel. spread over gamma_c < 1e-9)": [
+      1.147793962978132e-15,
+      true
+    ],
+    "leakage: III and II identical (closed birth-death equation for P(M)), max |diff| < 1e-12": [
+      2.7755575615628914e-16,
+      true
+    ],
+    "m_s: doubling ratio at t=10 per gamma_c [0.0, 0.25, 0.5, 1.0, 2.0, 4.0]": {
+      "II": [
+        1.933,
+        1.933,
+        1.933,
+        1.933,
+        1.933,
+        1.933
+      ],
+      "III": [
+        1.932,
+        1.933,
+        1.933,
+        1.933,
+        1.933,
+        1.933
+      ]
+    },
+    "m_s: remainder III-II ratio when flips and charged part are doubled together (informational)": [
+      3.743,
+      3.888,
+      3.963,
+      4.179,
+      5.073,
+      -2.223
+    ],
+    "m_s: charged remainder ratio R(k)/R(k/2) at fixed flip rate, per gamma_c, kappa=0.002": [
+      4.0011,
+      4.0001,
+      4.0001,
+      4.0001,
+      4.0,
+      4.0003
+    ],
+    "m_s: charged remainder second order in its own strength (ratio in [3.9, 4.1], all gamma_c, kappa)": true,
+    "m_s: |remainder III-II| at t=10, kappa=0.001, per gamma_c": [
+      1.951900668335088e-07,
+      4.813948425736597e-08,
+      1.8909534692419794e-08,
+      4.789239910034382e-09,
+      7.370412839075025e-10,
+      7.744938978343496e-11
+    ],
+    "m_s: remainder decreases with gamma_c (gamma_c >= 0.25)": true,
+    "m_s: class II gamma_c-independent (max rel. spread over gamma_c < 1e-9)": [
+      3.4466500935202396e-13,
+      true
+    ],
+    "leakage: Theorem B6 bound >= |Delta_III| at all times": true,
+    "m_s: Theorem B6 bound >= |Delta_III| at all times": true
+  }
+}
