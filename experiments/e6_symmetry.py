@@ -205,8 +205,7 @@ def plot(times, st, eb):
         t = AB_GRID if key == "cert" else T_GRID
         y = eb[key]
         ax.semilogy(t[1:], np.where(y[1:] > 0, y[1:], np.nan), color=col, ls=ls, label=lab)
-    ax.axhline(2.0, color=MUTED, lw=0.8, ls=":")
-    ax.text(0.6, 2.4, "trivial bound 2 osc(O)", fontsize=6.5, color=MUTED)
+    ax.axhline(2.0, color=MUTED, lw=0.8, ls=":", label="trivial bound 2 osc(O)")
     ax.set_xlabel("time  [ms]")
     ax.set_title("learned 10-ion model, Néel quench: effect of U(1)-breaking terms", fontsize=9)
     ax.legend(fontsize=6.5, loc="upper left", bbox_to_anchor=(1.01, 1.0))
