@@ -7,7 +7,7 @@ probed with observables of charge 0, |q| = 1 and |q| = 2.
 
 import numpy as np
 
-from common import (CAT, MUTED, ORDINAL, RESULTS, base_model, charge_norms, neel, ops,
+from common import (CAT, MUTED, ORDINAL, RESULTS, save_figure, base_model, charge_norms, neel, ops,
                     random_perturbation, save_json, style)
 from qerr.bounds import charged_observable_bound, forgetting_bound, opnorm, osc, zeno_bound
 from qerr.charge import protective_collective_rate
@@ -132,9 +132,7 @@ def plot(data):
     fig.legend(handles, labels, loc="upper center", ncol=5, fontsize=8, bbox_to_anchor=(0.5, 1.0))
     fig.suptitle(f"E1  error anatomy, N={N}, ‖δH‖ = {EPS[1]}, Néel state", y=1.04, fontsize=10)
     fig.tight_layout()
-    path = RESULTS / "e1_charge_anatomy.png"
-    fig.savefig(path, bbox_inches="tight")
-    return path
+    return save_figure(fig, "e1_charge_anatomy")
 
 
 if __name__ == "__main__":

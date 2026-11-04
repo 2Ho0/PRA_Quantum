@@ -9,7 +9,7 @@ Both are compared with the BEQS Duhamel bound 2 t ||dH|| ||O||, which grows line
 
 import numpy as np
 
-from common import CAT, INK, MUTED, RESULTS, base_model, neel, ops, random_perturbation, save_json, style
+from common import CAT, INK, MUTED, RESULTS, save_figure, base_model, neel, ops, random_perturbation, save_json, style
 from qerr.bounds import beqs_bias_bound, forgetting_bound, opnorm, osc
 from qerr.lindblad import OpenModel, evolve, expect
 
@@ -73,9 +73,7 @@ def plot(out):
                  transform=axes[2].transAxes, color=MUTED, fontsize=7.5)
     fig.suptitle(f"E2  Heisenberg forgetting bound, N={N}, ‖δH‖={EPS} (all charges), γ_c = 0", fontsize=10, y=1.03)
     fig.tight_layout()
-    path = RESULTS / "e2_forgetting.png"
-    fig.savefig(path, bbox_inches="tight")
-    return path
+    return save_figure(fig, "e2_forgetting")
 
 
 if __name__ == "__main__":

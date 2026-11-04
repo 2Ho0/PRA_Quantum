@@ -3,32 +3,32 @@
   "M_sym": 33,
   "acceptance": {
     "Z2 Z3": {
-      "ch/sym width ratio at t=1.05, sigma=0.03": 0.21426824337782277,
-      "ch/sym width ratio at t=1.05, sigma=0.01": 0.07526377732216875,
+      "ch/sym width ratio at t=1.05, sigma=0.03": 0.21426824337782413,
+      "ch/sym width ratio at t=1.05, sigma=0.01": 0.07526377732217675,
       "B1': ratio(0.01)/ratio(0.03) in [0.2, 0.5] (expect 1/3)": true,
       "BEQS Eq.(11) with M_sym covers observed all-terms band wherever bound < 1": true,
-      "late-time (t=20) ch/sym width ratio, sigma=0.03": 2.257866133707758,
+      "late-time (t=20) ch/sym width ratio, sigma=0.03": 2.257866133707789,
       "Zeno: charged mean shift at t=20 decreases gc 0 -> 0.1 -> 1": true,
       "charged mean shift at t=20 for gc = 0, 0.1, 1": [
-        0.09522788775081052,
-        0.0942579013459335,
-        0.05883430768400845
+        0.09522788775081045,
+        0.09425790134593326,
+        0.05883430768345023
       ],
-      "symmetric ensemble independent of gamma_c (max diff)": 1.609823385706477e-15
+      "symmetric ensemble independent of gamma_c (max diff)": 1.9984014443252818e-15
     },
     "staggered magnetization": {
-      "ch/sym width ratio at t=1.05, sigma=0.03": 0.18098903231051344,
-      "ch/sym width ratio at t=1.05, sigma=0.01": 0.060010049782036425,
+      "ch/sym width ratio at t=1.05, sigma=0.03": 0.18098903231050628,
+      "ch/sym width ratio at t=1.05, sigma=0.01": 0.06001004978204045,
       "B1': ratio(0.01)/ratio(0.03) in [0.2, 0.5] (expect 1/3)": true,
       "BEQS Eq.(11) with M_sym covers observed all-terms band wherever bound < 1": true,
-      "late-time (t=20) ch/sym width ratio, sigma=0.03": 0.2604041038593972,
+      "late-time (t=20) ch/sym width ratio, sigma=0.03": 0.26040410385939605,
       "Zeno: charged mean shift at t=20 decreases gc 0 -> 0.1 -> 1": true,
       "charged mean shift at t=20 for gc = 0, 0.1, 1": [
-        0.0021929668092147483,
-        0.0014943126563464904,
-        0.0001958239971175054
+        0.002192966809214723,
+        0.0014943126563464622,
+        0.0001958239970317846
       ],
-      "symmetric ensemble independent of gamma_c (max diff)": 1.4432899320127035e-15
+      "symmetric ensemble independent of gamma_c (max diff)": 1.942890293094024e-15
     }
   }
 }

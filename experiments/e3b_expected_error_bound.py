@@ -11,7 +11,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
 
-from common import CAT, INK, ORDINAL, RESULTS, base_model, ops, save_json, style
+from common import CAT, INK, ORDINAL, RESULTS, save_figure, triangle_integral, base_model, ops, save_json, style
 from qerr.bounds import beqs_expected_bound
 from qerr.lindblad import evolve
 from qerr.models import charge_basis_terms
@@ -43,20 +43,6 @@ def f_table(args):
     return f
 
 
-def triangle_integral(f):
-    """int_{a+b<=t_K'} f da db for every K' (trapezoid weights on the grid triangle)."""
-    K = f.shape[0] - 1
-    out = np.zeros(K + 1)
-    for Kp in range(1, K + 1):
-        k, j = np.meshgrid(np.arange(Kp + 1), np.arange(Kp + 1), indexing="ij")
-        inside = k + j <= Kp
-        w = np.where(inside, 1.0, 0.0)
-        w = w * np.where((k == 0) | (j == 0) | (k + j == Kp), 0.5, 1.0)
-        w[0, 0], w[Kp, 0], w[0, Kp] = 1 / 6, 1 / 6, 1 / 6     # triangle corners
-        out[Kp] = np.sum(w * f[: Kp + 1, : Kp + 1]) * DT**2
-    return out
-
-
 def run():
     terms = charge_basis_terms(N, max_range=2)
     charges = np.array([t.abs_charge for t in terms])
@@ -65,7 +51,7 @@ def run():
         tables = dict(zip(jobs, pool.map(f_table, jobs)))
     res = {}
     for gc in GAMMA_CS:
-        I = np.array([triangle_integral(tables[(gc, m)]) for m in range(len(terms))])
+        I = np.array([triangle_integral(tables[(gc, m)], DT) for m in range(len(terms))])
         res[gc] = {"A2_sym": SIGMA**2 * I[charges == 0].sum(axis=0),
                    "A2_ch": SIGMA**2 * I[charges > 0].sum(axis=0)}
     data = np.load(RESULTS / "e3_mean_shift.npz")
@@ -109,9 +95,7 @@ def plot(res, M):
     ax.legend(fontsize=6.8, loc="lower right", ncol=1)
     ax.set_title(f"E3b  Theorem A2 vs BEQS Eq.(12), N={N}, σ={SIGMA}, 99 terms", fontsize=9.5)
     fig.tight_layout()
-    path = RESULTS / "e3b_expected_error_bound.png"
-    fig.savefig(path, bbox_inches="tight")
-    return path
+    return save_figure(fig, "e3b_expected_error_bound")
 
 
 if __name__ == "__main__":

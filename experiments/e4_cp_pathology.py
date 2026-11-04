@@ -9,7 +9,7 @@ emission estimate (mu ~ 2 rad/s, error bar of the same size), with time in secon
 import numpy as np
 from scipy import integrate, stats
 
-from common import CAT, INK, MUTED, RESULTS, save_json, style
+from common import CAT, INK, MUTED, RESULTS, save_figure, save_json, style
 
 MU, S = 2.0, 2.0
 T = np.linspace(0.0, 2.0, 201)
@@ -56,9 +56,7 @@ def plot(res):
     ax.legend(fontsize=7.5, loc="upper left")
     ax.set_title("E4  Gaussian rate uncertainty is unphysical at long times", fontsize=9.5)
     fig.tight_layout()
-    path = RESULTS / "e4_cp_pathology.png"
-    fig.savefig(path, bbox_inches="tight")
-    return path
+    return save_figure(fig, "e4_cp_pathology")
 
 
 if __name__ == "__main__":

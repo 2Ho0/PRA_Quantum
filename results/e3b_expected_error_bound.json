@@ -5,12 +5,12 @@
     "gc=0.1: BEQS/A2 at t=1": 1.7868548728972313,
     "gc=0.1: A2 charged share at t=1": 0.6735758870492553,
     "gc=0.1: BEQS/A2 at t=4": 13.405201410491934,
-    "gc=0.1: A2 charged share at t=4": 0.6259571727071491,
+    "gc=0.1: A2 charged share at t=4": 0.6259571727071492,
     "gc=1.0: A2 leading >= observed bias for 0 < t <= 1": true,
     "gc=1.0: A2 leading < BEQS Eq.(12) for all t > 0": true,
     "gc=1.0: BEQS/A2 at t=1": 2.54433909080623,
     "gc=1.0: A2 charged share at t=1": 0.5351980491758187,
-    "gc=1.0: BEQS/A2 at t=4": 23.868267292040034,
+    "gc=1.0: BEQS/A2 at t=4": 23.86826729204003,
     "gc=1.0: A2 charged share at t=4": 0.33400820270342474,
     "Zeno in A2: charged part at t=4 smaller for gc=1 than gc=0.1": true
   }

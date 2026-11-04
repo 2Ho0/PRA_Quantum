@@ -1,23 +1,23 @@
 {
   "acceptance": {
-    "N-independence: |d n_c|(t=10), pairing, N>=50, max rel spread": 0.007216464009717809,
+    "N-independence: |d n_c|(t=10), pairing, N>=50, max rel spread": 0.007216464011880124,
     "N-independence within 5%": true,
     "|d n_c|(t=10), pairing, N=100, gamma_c = 0, 1, 4": [
-      0.01916418740287612,
-      0.002385501181078553,
-      0.0005373856264422883
+      0.019164187402875843,
+      0.0023855011810783866,
+      0.0005373856264418997
     ],
     "Zeno: decreases monotonically with gamma_c": true,
     "on-site (charge-0) error independent of gamma_c (max diff)": 0.0,
     "eps-doubling ratio of |d n_c|(t=2), pairing, N=50, gamma_c=0,1,4 (leading order: 4)": [
-      3.7563034160393407,
-      3.7873902392979857,
-      3.8847643614717815
+      3.756303416039506,
+      3.787390239297559,
+      3.884764361472736
     ],
     "eps-doubling ratio of |d n_c|(t=10), pairing, N=50, gamma_c=0,1,4 (leading order: 4)": [
-      2.507741854512189,
-      3.198415792996771,
-      3.7004423327665257
+      2.507741854512174,
+      3.1984157929970403,
+      3.7004423327612126
     ]
   }
 }

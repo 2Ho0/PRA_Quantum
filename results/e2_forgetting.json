@@ -2,11 +2,11 @@
   "acceptance": {
     "observed <= ThmA <= BEQS everywhere": true,
     "(b) saturation: FB(40)-FB(30) < 5% of FB(40)": true,
-    "(b) relative late growth": 0.0001398347316957571,
+    "(b) relative late growth": 0.0001398347316977391,
     "(a) late slope matches ||[dH,O_inf]|| within 10%": true,
-    "(a) late slope": 0.01933509889186169,
-    "(a) ||[dH, O_inf]||": 0.019335098888164415,
-    "BEQS/ThmA at t=40, (a)": 4.96464653294532,
-    "BEQS/ThmA at t=40, (b)": 40.81189943312511
+    "(a) late slope": 0.01933509889186158,
+    "(a) ||[dH, O_inf]||": 0.01933509888816439,
+    "BEQS/ThmA at t=40, (a)": 4.9646465329453315,
+    "BEQS/ThmA at t=40, (b)": 40.81189943312502
   }
 }

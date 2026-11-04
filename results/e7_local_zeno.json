@@ -20,10 +20,10 @@
     "N=100, gamma_c=4: certificate / observed at t=10": 53.357323819405245,
     "N=100, gamma_c=4: global / certificate at t=10": 727.3774567534796,
     "integrand table seconds per N": {
-      "20": 6.9,
-      "50": 12.0,
-      "100": 30.9,
-      "200": 147.7
+      "20": 17.3,
+      "50": 33.6,
+      "100": 94.9,
+      "200": 513.6
     }
   }
 }

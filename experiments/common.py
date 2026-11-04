@@ -64,10 +64,16 @@ def save_json(path, data):
 
 
 def save_figure(fig, stem):
-    """Write results/<stem>.png and results/<stem>.pdf; return the PNG path."""
+    """Write results/<stem>.png (with its suptitle) and results/<stem>.pdf (for the paper: caption replaces the
+    suptitle, so it is hidden); return the PNG path."""
     png = RESULTS / f"{stem}.png"
     fig.savefig(png, bbox_inches="tight")
+    title = fig._suptitle
+    if title is not None:
+        title.set_visible(False)
     fig.savefig(RESULTS / f"{stem}.pdf", bbox_inches="tight")
+    if title is not None:
+        title.set_visible(True)
     return png
 
 

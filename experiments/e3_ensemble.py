@@ -20,7 +20,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
 
-from common import CAT, INK, MUTED, RESULTS, base_model, neel, ops, save_json, style
+from common import CAT, INK, MUTED, RESULTS, save_figure, base_model, neel, ops, save_json, style
 from qerr.bounds import beqs_concentration_bound
 from qerr.lindblad import OpenModel, evolve, expect
 from qerr.models import charge_basis_terms, delta_h, sample_coeffs
@@ -143,9 +143,7 @@ def plot(out):
     fig.suptitle(f"E3  learned-uncertainty ensemble, N={N}, M={M} 2-local terms, {2 * N_PAIRS} antithetic samples",
                  fontsize=10, y=1.01)
     fig.tight_layout()
-    path = RESULTS / "e3_ensemble.png"
-    fig.savefig(path, bbox_inches="tight")
-    return path
+    return save_figure(fig, "e3_ensemble")
 
 
 if __name__ == "__main__":

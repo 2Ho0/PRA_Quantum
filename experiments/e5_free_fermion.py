@@ -13,7 +13,7 @@ from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
 
-from common import CAT, MUTED, ORDINAL, RESULTS, save_json, style
+from common import CAT, MUTED, ORDINAL, RESULTS, save_figure, save_json, style
 from qerr.fermions import evolve_covariance, occupation, pairing, product_covariance
 
 NS = [20, 50, 100, 200]
@@ -116,9 +116,7 @@ def plot(res):
     fig.suptitle(f"E5  free fermions with number dephasing, local rate {GAMMA_LOC}, imperfection size {EPS}",
                  fontsize=10, y=1.03)
     fig.tight_layout()
-    path = RESULTS / "e5_free_fermion.png"
-    fig.savefig(path, bbox_inches="tight")
-    return path
+    return save_figure(fig, "e5_free_fermion")
 
 
 if __name__ == "__main__":
