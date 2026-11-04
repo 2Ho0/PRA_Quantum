@@ -294,7 +294,11 @@ def fit_psd(A, y, ans: Ansatz, n_iter=20000, tol=1e-12):
     gcols = np.arange(k0, k0 + nd)
     ocols = np.r_[0:k0, k0 + nd:ans.n_params]
     Ao = A[:, ocols]
-    Q, _ = np.linalg.qr(Ao)
+    Q, R = np.linalg.qr(Ao)
+    r = np.abs(np.diag(R))
+    if r.min() <= 1e-10 * r.max():
+        raise ValueError("fit_psd: the non-dephasing columns are rank deficient (e.g. emission and noise sites "
+                         "together), so they cannot be profiled out")
     B = A[:, gcols] - Q @ (Q.T @ A[:, gcols])
     c = y - Q @ (Q.T @ y)
     s = np.array([1.0 if i == j else np.sqrt(0.5) for i, j in ans.deph_pairs])

@@ -316,3 +316,17 @@ def test_psd_fit_is_feasible_and_optimal():
     assert np.abs(grad[other]).max() < 1e-8 * scale
     assert np.linalg.eigvalsh(Z).min() > -1e-6 * scale
     assert abs(np.sum(Z * gamma_matrix(est, ans))) < 1e-6 * scale
+
+
+def test_fit_psd_rejects_rank_deficient_profile():
+    """Collinear non-dephasing columns (e.g. emission and noise sites together) would corrupt the profiling."""
+    import pytest
+    from qerr.learning import fit_psd
+
+    n = 3
+    rng = np.random.default_rng(12)
+    ans = xy_ansatz(n)
+    A = rng.normal(size=(200, ans.n_params))
+    A[:, 1] = A[:, 0]  # two Hamiltonian columns made identical
+    with pytest.raises(ValueError, match="rank"):
+        fit_psd(A, A @ random_theta(ans, rng), ans)
