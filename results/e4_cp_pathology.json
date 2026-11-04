@@ -1,0 +1,9 @@
+{
+  "acceptance": {
+    "t* = 2 mu / s^2": 1.0,
+    "P(gamma < 0) (non-CP samples)": 0.15865525393145707,
+    "Gaussian mean exceeds 1 for t > t*": true,
+    "log-normal mean <= 1 everywhere": true,
+    "MC matches analytic Gaussian mean for t <= 1.2 (max rel err)": 0.017192331785293558
+  }
+}
