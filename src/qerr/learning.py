@@ -2,7 +2,9 @@
 
 Model: H = sum_k theta_k P_k; dephasing D_Gamma(X) = sum_ij Gamma_ij (Z_i X Z_j - 1/2 {Z_j Z_i, X}) with
 symmetric Gamma (parameters Gamma_ii and Gamma_ij, i < j, each of the latter entering twice); emission
-with jump sqrt(gamma_e) sigma^-_e, sigma^- = |1><0| (the qerr.lindblad convention). For every observable O,
+with jump sqrt(gamma_e) sigma^-_e, sigma^- = |1><0| (the qerr.lindblad convention); optional single-site noise
+D(rho) = sum_{A,B in XYZ} K_AB (A rho B - 1/2 {BA, rho}) with K = S + iT (S symmetric, T antisymmetric, K_ZZ kept
+in Gamma), 8 parameters per noise site in the order NOISE_KEYS. For every observable O,
   <O>(t) - <O>(0) = sum_k theta_k  int_0^t <G_k(O)>(s) ds,   L^dag(O) = sum_k theta_k G_k(O),
 which is linear in theta; the integrals are taken over a cubic spline through the samples with t <= t_learn.
 """
@@ -11,9 +13,26 @@ from dataclasses import dataclass, field
 
 import numpy as np
 from scipy.interpolate import CubicSpline
+from scipy.optimize import lsq_linear
 
 from qerr.lindblad import OpenModel, evolve
 from qerr.pauli import comm_i, expectation_tables, expectations, pmul, psparse
+
+
+NOISE_KEYS = ("SXX", "SYY", "SXY", "TXY", "SXZ", "TXZ", "SYZ", "TYZ")
+
+
+def _unit_kossakowski(key):
+    K = np.zeros((3, 3), complex)
+    a, b = "XYZ".index(key[1]), "XYZ".index(key[2])
+    if key[0] == "S":
+        K[a, b] = K[b, a] = 1.0
+    else:
+        K[a, b], K[b, a] = 1j, -1j
+    return K
+
+
+_NOISE_UNITS = {key: _unit_kossakowski(key) for key in NOISE_KEYS}
 
 
 @dataclass
@@ -22,10 +41,47 @@ class Ansatz:
     h_terms: list
     deph_pairs: list
     emission_sites: list = field(default_factory=list)
+    noise_sites: list = field(default_factory=list)
 
     @property
     def n_params(self) -> int:
-        return len(self.h_terms) + len(self.deph_pairs) + len(self.emission_sites)
+        return len(self.h_terms) + len(self.deph_pairs) + len(self.emission_sites) + len(NOISE_KEYS) * len(
+            self.noise_sites)
+
+
+def noise_charges() -> dict:
+    """Charge-definite combinations ((key, sign), ...) of the noise parameters and their superoperator charges.
+
+    In the jump basis (sigma+, sigma-, sigma^z) the term K'_ab has charge q_a - q_b; emission and absorption rates
+    are SXX + SYY +- 2 TXY.
+    """
+    return {(("SXX", 1), ("SYY", 1)): {0}, (("TXY", 1),): {0},
+            (("SXX", 1), ("SYY", -1)): {-2, 2}, (("SXY", 1),): {-2, 2},
+            (("SXZ", 1),): {-1, 1}, (("TXZ", 1),): {-1, 1}, (("SYZ", 1),): {-1, 1}, (("TYZ", 1),): {-1, 1}}
+
+
+def _kossakowski_adjoint(O, site, K) -> dict:
+    """D^dag(O) = sum_AB K_AB (B O A - 1/2 {BA, O}) for single-site Paulis at `site`, as {string: coefficient}."""
+    out = {}
+
+    def add(phase, R, c):
+        out[R] = out.get(R, 0.0) + c * phase
+
+    for a, A in enumerate("XYZ"):
+        for b, B in enumerate("XYZ"):
+            k = K[a, b]
+            if k == 0:
+                continue
+            pa, pb = ((site, A),), ((site, B),)
+            ph1, R1 = pmul(pb, O)
+            ph2, R2 = pmul(R1, pa)
+            add(ph1 * ph2, R2, k)
+            ph_ba, C = pmul(pb, pa)
+            ph3, R3 = pmul(C, O)
+            add(ph_ba * ph3, R3, -0.5 * k)
+            ph4, R4 = pmul(O, C)
+            add(ph_ba * ph4, R4, -0.5 * k)
+    return out
 
 
 def _anticommutes_z(O, site) -> bool:
@@ -56,6 +112,15 @@ def adjoint_terms(O, ans: Ansatz):
         elif letter == "Z":
             rest = tuple((s, a) for s, a in O if s != e)
             terms += [(k1 + m, -1.0, rest), (k1 + m, -1.0, O)]
+    k2 = k1 + len(ans.emission_sites)
+    for m, e in enumerate(ans.noise_sites):
+        if dict(O).get(e) is None:
+            continue  # unital: noise at a site outside supp(O) does not act on O
+        for u, key in enumerate(NOISE_KEYS):
+            for R, c in _kossakowski_adjoint(O, e, _NOISE_UNITS[key]).items():
+                if abs(c) > 1e-12:
+                    assert abs(c.imag) < 1e-12, (O, key, c)
+                    terms.append((k2 + len(NOISE_KEYS) * m + u, float(c.real), R))
     return terms
 
 
@@ -165,6 +230,8 @@ def to_openmodel(theta, ans: Ansatz, gamma=None, sparse=False) -> OpenModel:
 
     sparse=True stores H as a CSR matrix, which `evolve` accepts and which is much faster for n = 10.
     """
+    if ans.noise_sites:
+        raise NotImplementedError("single-site noise is not simulated here; fit with a precomputed defect")
     H = sum(theta[k] * psparse(P, ans.n) for k, P in enumerate(ans.h_terms)).tocsr()
     G = gamma_matrix(theta, ans) if gamma is None else gamma
     return OpenModel(H=H if sparse else H.toarray(), Gamma=G, emission=_emission(theta, ans))
@@ -176,3 +243,98 @@ def _emission(theta, ans: Ansatz) -> np.ndarray:
     for m, e in enumerate(ans.emission_sites):
         emission[e] = theta[k1 + m]
     return emission
+
+
+def site_kossakowski(theta, ans: Ansatz) -> np.ndarray:
+    """(n, 3, 3) single-site Kossakowski matrices over (X, Y, Z); K_ZZ = Gamma_ii, other entries from the noise sites."""
+    K = np.zeros((ans.n, 3, 3), complex)
+    K[:, 2, 2] = np.diag(gamma_matrix(theta, ans))
+    k2 = len(ans.h_terms) + len(ans.deph_pairs) + len(ans.emission_sites)
+    for m, e in enumerate(ans.noise_sites):
+        block = theta[k2 + len(NOISE_KEYS) * m:k2 + len(NOISE_KEYS) * (m + 1)]
+        K[e] += sum(v * _NOISE_UNITS[key] for v, key in zip(block, NOISE_KEYS))
+    return K
+
+
+def flip_rates(K: np.ndarray):
+    """Emission and absorption rates (the sigma-/sigma+ diagonal of K in the charge basis): SXX + SYY +- 2 TXY."""
+    S = K[..., 0, 0].real + K[..., 1, 1].real
+    T = K[..., 0, 1].imag
+    return S + 2 * T, S - 2 * T
+
+
+def structured_map(ans: Ansatz) -> np.ndarray:
+    """P with theta = P theta_s; theta_s replaces the dephasing block by (gamma_c, g_1..g_n), Gamma = gamma_c 11^T + diag(g)."""
+    k0, nd = len(ans.h_terms), len(ans.deph_pairs)
+    rest = ans.n_params - k0 - nd
+    P = np.zeros((ans.n_params, k0 + 1 + ans.n + rest))
+    P[:k0, :k0] = np.eye(k0)
+    for m, (i, j) in enumerate(ans.deph_pairs):
+        P[k0 + m, k0] = 1.0
+        if i == j:
+            P[k0 + m, k0 + 1 + i] = 1.0
+    P[k0 + nd:, k0 + 1 + ans.n:] = np.eye(rest)
+    return P
+
+
+def fit_bounded(A, y, lower):
+    """Least squares with lower bounds (-inf for free parameters), by bounded-variable least squares."""
+    return lsq_linear(A, y, bounds=(np.asarray(lower, float), np.inf), method="bvls", tol=1e-12).x
+
+
+def fit_psd(A, y, ans: Ansatz, n_iter=20000, tol=1e-12):
+    """Least squares subject to Gamma(theta) PSD.
+
+    The other parameters are profiled out exactly. The dephasing block is solved by FISTA with adaptive restart in
+    coordinates x_ii = Gamma_ii, x_ij = sqrt(2) Gamma_ij, where the Euclidean projection is eigenvalue clipping of
+    Gamma. The best iterate is kept, so the result is never worse than the clipped unconstrained solution.
+    """
+    n, k0, nd = ans.n, len(ans.h_terms), len(ans.deph_pairs)
+    assert nd == n * (n + 1) // 2, "fit_psd needs the full dephasing matrix in the ansatz"
+    gcols = np.arange(k0, k0 + nd)
+    ocols = np.r_[0:k0, k0 + nd:ans.n_params]
+    Ao = A[:, ocols]
+    Q, _ = np.linalg.qr(Ao)
+    B = A[:, gcols] - Q @ (Q.T @ A[:, gcols])
+    c = y - Q @ (Q.T @ y)
+    s = np.array([1.0 if i == j else np.sqrt(0.5) for i, j in ans.deph_pairs])
+    Bs = B * s
+    BtB, Btc = Bs.T @ Bs, Bs.T @ c
+    L = np.linalg.eigvalsh(BtB)[-1]
+    rows = np.array([i for i, _ in ans.deph_pairs])
+    cols = np.array([j for _, j in ans.deph_pairs])
+
+    def project(x):
+        G = np.zeros((n, n))
+        G[rows, cols] = x * s
+        G[cols, rows] = x * s
+        w, V = np.linalg.eigh(G)
+        return ((V * np.clip(w, 0.0, None)) @ V.T)[rows, cols] / s
+
+    def objective(x):
+        r = Bs @ x - c
+        return r @ r
+
+    x = project(np.linalg.lstsq(Bs, c, rcond=None)[0])
+    best, best_obj = x, objective(x)
+    z, t = x, 1.0
+    for _ in range(n_iter):
+        grad = BtB @ z - Btc
+        x_new = project(z - grad / L)
+        if grad @ (x_new - x) > 0:  # adaptive restart (O'Donoghue and Candes)
+            z, t = x, 1.0
+            continue
+        t_new = 0.5 * (1.0 + np.sqrt(1.0 + 4.0 * t * t))
+        z = x_new + ((t - 1.0) / t_new) * (x_new - x)
+        step = np.linalg.norm(x_new - x)
+        x, t = x_new, t_new
+        obj = objective(x)
+        if obj < best_obj:
+            best, best_obj = x, obj
+        if step <= tol * max(1.0, np.linalg.norm(x)):
+            break
+    gamma = best * s
+    theta = np.zeros(ans.n_params)
+    theta[gcols] = gamma
+    theta[ocols] = np.linalg.lstsq(Ao, y - A[:, gcols] @ gamma, rcond=None)[0]
+    return theta

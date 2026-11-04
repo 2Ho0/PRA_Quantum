@@ -122,3 +122,197 @@ def test_defect_correction_removes_coarse_grid_bias():
     errs = [np.abs(t - theta).max() / np.abs(theta).max() for t in thetas]
     print(f"coarse grid (dt = 0.5): max relative parameter error per iteration {np.round(errs, 4)}")
     assert errs[0] > 0.05 and errs[-1] < 0.01
+
+
+# --- single-site Kossakowski parameters, structured and PSD-constrained fits -------------------------------
+
+PAULI1 = {"X": np.array([[0, 1], [1, 0]], complex), "Y": np.array([[0, -1j], [1j, 0]], complex),
+          "Z": np.array([[1, 0], [0, -1]], complex)}
+
+
+def site_op(n, site, a):
+    return pmatrix(((site, a),), n)
+
+
+def random_site_noise(rng, scale=0.05):
+    """Random PSD 3x3 Kossakowski matrix over (X, Y, Z)."""
+    F = scale * (rng.normal(size=(3, 3)) + 1j * rng.normal(size=(3, 3)))
+    return F @ F.conj().T
+
+
+def jumps_from(n, site, K):
+    w, V = np.linalg.eigh(K)
+    ops = [site_op(n, site, a) for a in "XYZ"]
+    return [np.sqrt(max(lam, 0.0)) * sum(v[a] * ops[a] for a in range(3)) for lam, v in zip(w, V.T)]
+
+
+def noise_theta(K):
+    return [K[0, 0].real, K[1, 1].real, K[0, 1].real, K[0, 1].imag, K[0, 2].real, K[0, 2].imag,
+            K[1, 2].real, K[1, 2].imag]
+
+
+def noisy_model(n, rng):
+    """Dense model with XY Hamiltonian, Z dephasing Gamma and site noise K_e; theta in the noise-site ansatz."""
+    from qerr.lindblad import OpenModel
+
+    base = xy_ansatz(n)
+    ans = Ansatz(n=n, h_terms=base.h_terms, deph_pairs=base.deph_pairs, emission_sites=[],
+                 noise_sites=list(range(n)))
+    th0 = random_theta(base, rng)
+    k0 = len(base.h_terms)
+    H = sum(th0[k] * pmatrix(P, n) for k, P in enumerate(base.h_terms))
+    G = np.zeros((n, n))
+    for m, (i, j) in enumerate(base.deph_pairs):
+        G[i, j] = G[j, i] = th0[k0 + m]
+    Ks = [random_site_noise(rng) for _ in range(n)]
+    jumps = [J for e, K in enumerate(Ks) for J in jumps_from(n, e, K)]
+    model = OpenModel(H=H, Gamma=G, emission=np.zeros(n), jumps=tuple(jumps))
+    theta = np.concatenate([th0[:k0], np.zeros(len(base.deph_pairs)), np.concatenate([noise_theta(K) for K in Ks])])
+    for m, (i, j) in enumerate(base.deph_pairs):
+        theta[k0 + m] = G[i, j] + (Ks[i][2, 2].real if i == j else 0.0)
+    return model, ans, theta
+
+
+def random_state(D, rng):
+    X = rng.normal(size=(D, D)) + 1j * rng.normal(size=(D, D))
+    rho = X @ X.conj().T
+    return rho / np.trace(rho)
+
+
+def test_site_noise_adjoint_matches_superop():
+    from qerr.lindblad import lindblad_rhs
+
+    n = 2
+    rng = np.random.default_rng(7)
+    model, ans, theta = noisy_model(n, rng)
+    rho = random_state(4, rng)
+    Lrho = lindblad_rhs(model, rho)
+    for O in all_strings(n, 2):
+        direct = np.trace(pmatrix(O, n) @ Lrho)
+        terms = sum(theta[k] * c * (np.trace(pmatrix(S, n) @ rho) if S != () else 1.0)
+                    for k, c, S in adjoint_terms(O, ans))
+        assert abs(direct - terms) < 1e-10, O
+
+
+def test_site_noise_reproduces_emission():
+    n, gam = 2, 0.37
+    rng = np.random.default_rng(8)
+    em = Ansatz(n=n, h_terms=[], deph_pairs=[], emission_sites=[0])
+    no = Ansatz(n=n, h_terms=[], deph_pairs=[], noise_sites=[0])
+    th_no = np.zeros(no.n_params)
+    th_no[:4] = [gam / 4, gam / 4, 0.0, gam / 4]
+    rho = random_state(4, rng)
+    expect = lambda S: np.trace(pmatrix(S, n) @ rho) if S != () else 1.0
+    for O in all_strings(n, 2):
+        a = sum(gam * c * expect(S) for k, c, S in adjoint_terms(O, em))
+        b = sum(th_no[k] * c * expect(S) for k, c, S in adjoint_terms(O, no))
+        assert abs(a - b) < 1e-12, O
+
+
+def test_noise_charges_match_superop():
+    from qerr.charge import superop_charges
+    from qerr.learning import NOISE_KEYS, noise_charges
+
+    n = 1
+    I = np.eye(2)
+
+    def superop_of(K):
+        S = np.zeros((4, 4), complex)
+        for a, A in enumerate("XYZ"):
+            for b, B in enumerate("XYZ"):
+                PA, PB = PAULI1[A], PAULI1[B]
+                BA = PB @ PA
+                S += K[a, b] * (np.kron(PB.T, PA) - 0.5 * np.kron(I, BA) - 0.5 * np.kron(BA.T, I))
+        return S
+
+    combos = noise_charges()
+    for combo, charges in combos.items():
+        K = np.zeros((3, 3), complex)
+        for key, sign in combo:
+            kind, A, B = key[0], "XYZ".index(key[1]), "XYZ".index(key[2])
+            if kind == "S":
+                K[A, B] += sign
+                if A != B:
+                    K[B, A] += sign
+            else:
+                K[A, B] += 1j * sign
+                K[B, A] -= 1j * sign
+        assert set(superop_charges(n, superop_of(K))) == charges, combo
+    used = {key for combo in combos for key, _ in combo}
+    assert used == set(NOISE_KEYS)
+
+
+def test_site_noise_ansatz_full_rank():
+    n = 2
+    rng = np.random.default_rng(9)
+    model, ans, theta = noisy_model(n, rng)
+    times = np.linspace(0.0, 1.5, 151)
+    bloch_states = [[(np.sin(1.04), 0.0, -np.cos(1.04))] * n, [(0.0, 1.0, 0.0)] * n]
+    series = exact_series(model, n, bloch_states, times, all_strings(n, 2))
+    A, y, _ = integral_system(all_strings(n, 2), ans, series, times, 1.5)
+    assert np.linalg.matrix_rank(A) == ans.n_params
+    est = fit(A, y)
+    assert np.abs(est - theta).max() / np.abs(theta).max() < 1e-3
+
+
+def test_structured_fit_recovers_gamma_c():
+    from qerr.learning import fit_bounded, gamma_matrix, structured_map, to_openmodel
+
+    n = 3
+    rng = np.random.default_rng(10)
+    ans = xy_ansatz(n)
+    theta = random_theta(ans, rng)
+    gc, g = 0.3, np.array([0.1, 0.2, 0.05])
+    G = gc * np.ones((n, n)) + np.diag(g)
+    k0 = len(ans.h_terms)
+    for m, (i, j) in enumerate(ans.deph_pairs):
+        theta[k0 + m] = G[i, j]
+    times = np.linspace(0.0, 1.5, 151)
+    bloch_states = [[(np.sin(1.04), 0.0, -np.cos(1.04))] * n, [(0.0, 1.0, 0.0)] * n]
+    series = exact_series(to_openmodel(theta, ans), n, bloch_states, times, all_strings(n, 3))
+    A, y, _ = integral_system(all_strings(n, 2), ans, series, times, 1.5)
+    P = structured_map(ans)
+    lower = np.full(P.shape[1], -np.inf)
+    lower[k0 + 1:k0 + 1 + n] = 0.0
+    th_s = fit_bounded(A @ P, y, lower)
+    assert abs(th_s[k0] - gc) < 1e-3
+    assert np.abs(th_s[k0 + 1:k0 + 1 + n] - g).max() < 1e-3
+    G_back = gamma_matrix(P @ th_s, ans)
+    assert np.allclose(G_back, th_s[k0] * np.ones((n, n)) + np.diag(th_s[k0 + 1:k0 + 1 + n]))
+
+
+def test_psd_fit_is_feasible_and_optimal():
+    from qerr.learning import fit_psd, gamma_matrix
+
+    n = 3
+    rng = np.random.default_rng(11)
+    ans = xy_ansatz(n)
+    A = rng.normal(size=(400, ans.n_params))
+    theta = random_theta(ans, rng)
+    est = fit_psd(A, A @ theta, ans)
+    assert np.abs(est - theta).max() < 1e-6
+    k0, nd = len(ans.h_terms), len(ans.deph_pairs)
+    bad = theta.copy()
+    bad[k0] -= 0.3  # one negative eigenvalue: clipping it is feasible but not optimal
+    y = A @ bad + 0.01 * rng.normal(size=A.shape[0])
+    est = fit_psd(A, y, ans)
+    assert np.linalg.eigvalsh(gamma_matrix(est, ans)).min() > -1e-9
+    ls = fit(A, y)
+    w, V = np.linalg.eigh(gamma_matrix(ls, ans))
+    Gc = (V * np.clip(w, 0, None)) @ V.T
+    clip = ls.copy()
+    for m, (i, j) in enumerate(ans.deph_pairs):
+        clip[k0 + m] = Gc[i, j]
+    other = np.r_[0:k0, k0 + nd:ans.n_params]
+    clip[other] = np.linalg.lstsq(A[:, other], y - A[:, k0:k0 + nd] @ clip[k0:k0 + nd], rcond=None)[0]
+    obj = lambda th: np.sum((A @ th - y) ** 2)
+    assert obj(est) < obj(clip) - 1e-3 * obj(clip)
+    # KKT for min f over Gamma >= 0: the gradient Z is PSD, complementary to Gamma*, and zero for free parameters
+    grad = 2 * A.T @ (A @ est - y)
+    Z = np.zeros((n, n))
+    for m, (i, j) in enumerate(ans.deph_pairs):
+        Z[i, j] = Z[j, i] = grad[k0 + m] if i == j else 0.5 * grad[k0 + m]
+    scale = np.abs(grad).max() + np.abs(2 * A.T @ y).max()
+    assert np.abs(grad[other]).max() < 1e-8 * scale
+    assert np.linalg.eigvalsh(Z).min() > -1e-6 * scale
+    assert abs(np.sum(Z * gamma_matrix(est, ans))) < 1e-6 * scale
