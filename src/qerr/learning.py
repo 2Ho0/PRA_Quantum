@@ -109,7 +109,7 @@ def needed_strings(obs, ans: Ansatz) -> list:
     return sorted({S for O in obs for _, _, S in adjoint_terms(O, ans) if S != ()})
 
 
-def quadrature_defect(model, rho0s, strings, times, t_learn, n_sub=16):
+def quadrature_defect(model, rho0s, strings, times, t_learn, n_sub=16, rtol=1e-9, atol=1e-11):
     """defect[(s, S)][m] = int_0^{t_m} <S>_model exactly minus the spline quadrature of its grid samples.
 
     The model is integrated on a grid refined n_sub times; adding the defect to the spline integrals of the
@@ -124,7 +124,7 @@ def quadrature_defect(model, rho0s, strings, times, t_learn, n_sub=16):
     for s, rho in enumerate(rho0s):
         vals = [expectations(rho, idx, ph)]
         for a, b in zip(fine[:-1], fine[1:]):
-            rho = evolve(model, rho, [0.0, b - a], rtol=1e-9, atol=1e-11)[-1]
+            rho = evolve(model, rho, [0.0, b - a], rtol=rtol, atol=atol)[-1]
             vals.append(expectations(rho, idx, ph))
         vals = np.array(vals)                                   # (n_fine, n_strings)
         exact = CubicSpline(fine, vals, axis=0)
@@ -136,13 +136,17 @@ def quadrature_defect(model, rho0s, strings, times, t_learn, n_sub=16):
     return defect
 
 
-def learn(series, ans: Ansatz, obs, times, t_learn, rho0s, n_iter=3, states=(0, 1)):
-    """Integral-method fit followed by n_iter defect-corrected refits; returns the estimate of every round."""
+def learn(series, ans: Ansatz, obs, times, t_learn, rho0s, n_iter=3, states=(0, 1), **defect_options):
+    """Integral-method fit followed by n_iter defect-corrected refits; returns the estimate of every round.
+
+    defect_options (n_sub, rtol, atol) are passed to `quadrature_defect`.
+    """
     A, y, _ = integral_system(obs, ans, series, times, t_learn, states)
     thetas = [fit(A, y)]
     strings = needed_strings(obs, ans)
     for _ in range(n_iter):
-        defect = quadrature_defect(to_openmodel(thetas[-1], ans, sparse=True), rho0s, strings, times, t_learn)
+        defect = quadrature_defect(to_openmodel(thetas[-1], ans, sparse=True), rho0s, strings, times, t_learn,
+                                   **defect_options)
         A, y, _ = integral_system(obs, ans, series, times, t_learn, states, defect=defect)
         thetas.append(fit(A, y))
     return thetas
