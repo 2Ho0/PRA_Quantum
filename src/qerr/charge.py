@@ -1,4 +1,4 @@
-"""U(1) charge sectors B_q = {X : [S^z, X] = q X} and the protective collective rate."""
+"""U(1) charge sectors B_q = {X : [S^z, X] = q X}, superoperator charge parts, and the protective collective rate."""
 
 import numpy as np
 
@@ -17,6 +17,22 @@ def charge_projector(n: int, X: np.ndarray, q: int) -> np.ndarray:
 
 def charge_decompose(n: int, X: np.ndarray) -> dict:
     return {q: charge_projector(n, X, q) for q in range(-n, n + 1)}
+
+
+def superop_charge_part(n: int, S: np.ndarray, Q: int) -> np.ndarray:
+    """S_Q for a column-stacking superoperator (vec index a + D b <-> |a><b|): S_Q maps B_p into B_{p+Q}."""
+    ch = _charge_matrix(n).ravel(order="F")
+    return np.where(np.isclose(ch[:, None] - ch[None, :], Q), S, 0.0)
+
+
+def superop_charges(n: int, S: np.ndarray, tol: float = 1e-12) -> dict:
+    """{Q: ||S_Q||_F} for the nonzero superoperator charge parts."""
+    out = {}
+    for Q in range(-2 * n, 2 * n + 1):
+        norm = np.linalg.norm(superop_charge_part(n, S, Q))
+        if norm > tol:
+            out[Q] = float(norm)
+    return out
 
 
 def protective_collective_rate(Gamma: np.ndarray, tol: float = 1e-10) -> float:

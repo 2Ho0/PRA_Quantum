@@ -74,3 +74,53 @@ def test_sample_coeffs_antithetic():
     g = sample_coeffs(5, 0.1, 4, np.random.default_rng(3))
     assert g.shape == (8, 5)
     assert np.allclose(g[0::2], -g[1::2])
+
+
+def _vec(X):
+    return X.reshape(-1, order="F")
+
+
+def _unvec(v, D):
+    return v.reshape(D, D, order="F")
+
+
+def test_superop_charge_maps_sectors():
+    from qerr.charge import superop_charge_part
+
+    n, D = 2, 4
+    rng = np.random.default_rng(3)
+    S = random_complex(D * D, rng)
+    parts = {Q: superop_charge_part(n, S, Q) for Q in range(-2 * n, 2 * n + 1)}
+    assert np.allclose(sum(parts.values()), S)
+    X = random_complex(D, rng)
+    for p in range(-n, n + 1):
+        Xp = charge_projector(n, X, p)
+        for Q, SQ in parts.items():
+            Y = _unvec(SQ @ _vec(Xp), D)
+            assert np.allclose(charge_projector(n, Y, p + Q), Y)
+
+
+def _superop_of(n, H=None, jumps=()):
+    from qerr.lindblad import superop
+
+    D = 2**n
+    model = OpenModel(H=np.zeros((D, D), complex) if H is None else H, Gamma=np.zeros((n, n)),
+                      emission=np.zeros(n), jumps=tuple(jumps))
+    return superop(model)
+
+
+def test_dissipator_charges():
+    from qerr.charge import superop_charge_part, superop_charges
+
+    n = 2
+    sp_, sm, x, z = (spins.pauli_op(n, 0, k) for k in "+-xz")
+    assert set(superop_charges(n, _superop_of(n, jumps=[sm]))) == {0}
+    assert set(superop_charges(n, _superop_of(n, jumps=[sp_]))) == {0}
+    assert set(superop_charges(n, _superop_of(n, jumps=[z]))) == {0}
+    assert set(superop_charges(n, _superop_of(n, H=x))) == {-1, 1}
+    SX = _superop_of(n, jumps=[x])
+    assert set(superop_charges(n, SX)) == {-2, 0, 2}
+    flips = _superop_of(n, jumps=[sp_]) + _superop_of(n, jumps=[sm])
+    assert np.allclose(superop_charge_part(n, SX, 0), flips, atol=1e-12)
+    rho = random_complex(4, np.random.default_rng(5))
+    assert np.allclose(_unvec(superop_charge_part(n, SX, 2) @ _vec(rho), 4), sp_ @ rho @ sp_)
