@@ -1,0 +1,171 @@
+{
+  "truth J_nn (rad/s)": 607.0872460118699,
+  "truth gamma_c (rad/s), static slope beta_s (rad/s per ms)": [
+    28.648766041358027,
+    38.1983547218107
+  ],
+  "windows": [
+    "(0.0, 1.5)",
+    "(0.0, 3.0)",
+    "(0.0, 5.0)",
+    "(1.0, 3.0)",
+    "(3.0, 5.0)",
+    "(5.0, 10.0)"
+  ],
+  "white truth, noise x0.0: J_nn mean per window": [
+    607.0407433529979,
+    607.0516151429462,
+    607.0541980668381,
+    607.0773211332847,
+    607.0589333211864,
+    607.0794210976482
+  ],
+  "white truth, noise x0.0: beta (Xb15, Xb30) mean": [
+    0.05496690073744648,
+    0.005305067994801349
+  ],
+  "white truth, noise x0.0: gamma_c (Xb15, Xb30) mean": [
+    28.633228507340924,
+    28.653931270103197
+  ],
+  "white truth, noise x0.25: J_nn mean per window": [
+    605.881043725976,
+    605.8524140219577,
+    604.8719510005143,
+    603.4258456780102,
+    501.81855229912026,
+    529.0942934667474
+  ],
+  "white truth, noise x0.25: beta (Xb15, Xb30) mean": [
+    -0.8197226567139542,
+    -0.9549104693335829
+  ],
+  "white truth, noise x0.25: gamma_c (Xb15, Xb30) mean": [
+    29.210074803092557,
+    29.52617866933765
+  ],
+  "white truth, noise x0.25: J_nn sd per window": [
+    2.3014719890620783,
+    1.5682174654728678,
+    1.792455386451473,
+    2.7658190412751056,
+    14.20814141669247,
+    9.21832781226527
+  ],
+  "white truth, noise x0.25: beta (Xb15, Xb30) sd": [
+    1.2100497564409325,
+    1.0531723805958069
+  ],
+  "white truth, noise x1.0: J_nn mean per window": [
+    592.0292622154841,
+    581.1547229185256,
+    564.4611048006057,
+    520.8238717911656,
+    201.24816142001507,
+    220.6819740891395
+  ],
+  "white truth, noise x1.0: beta (Xb15, Xb30) mean": [
+    -19.565647087047225,
+    -19.38646944891964
+  ],
+  "white truth, noise x1.0: gamma_c (Xb15, Xb30) mean": [
+    40.078935071753826,
+    44.55935669853004
+  ],
+  "white truth, noise x1.0: J_nn sd per window": [
+    8.882153797789051,
+    7.534525049150636,
+    7.222119880482455,
+    11.903095523516399,
+    15.239345235037304,
+    16.480786982788025
+  ],
+  "white truth, noise x1.0: beta (Xb15, Xb30) sd": [
+    4.7104098516092385,
+    3.6755201823416983
+  ],
+  "static truth, noise x0.0: J_nn mean per window": [
+    599.0499686297627,
+    593.6677114170877,
+    592.822229614558,
+    600.9798815647443,
+    602.3603306275123,
+    604.9066187600239
+  ],
+  "static truth, noise x0.0: beta (Xb15, Xb30) mean": [
+    38.241396393141976,
+    38.19086654441616
+  ],
+  "static truth, noise x0.0: gamma_c (Xb15, Xb30) mean": [
+    -0.006812662695469818,
+    0.015150954600653965
+  ],
+  "static truth, noise x1.0: J_nn mean per window": [
+    582.6031744852,
+    567.4997152558608,
+    550.0741412689442,
+    516.3844258394804,
+    148.18960210900795,
+    64.57545300686017
+  ],
+  "static truth, noise x1.0: beta (Xb15, Xb30) mean": [
+    19.934667157089038,
+    17.04632195985679
+  ],
+  "static truth, noise x1.0: gamma_c (Xb15, Xb30) mean": [
+    10.773634631613227,
+    16.407778616810024
+  ],
+  "static truth, noise x1.0: J_nn sd per window": [
+    8.550668278147416,
+    7.955290139238517,
+    7.802295517180785,
+    12.444245173420892,
+    20.862842860205877,
+    11.734776947771742
+  ],
+  "static truth, noise x1.0: beta (Xb15, Xb30) sd": [
+    5.736862201638458,
+    3.9714790597641554
+  ],
+  "measured: J_nn per window": [
+    620.2790278475313,
+    571.2023721023579,
+    497.6973256592441,
+    372.71189441576297,
+    13.280782822948295,
+    27.7117025037864
+  ],
+  "measured: beta (Xb15, Xb30)": [
+    3.7105331725201807,
+    10.29623685608913
+  ],
+  "measured: gamma_c (Xb15, Xb30)": [
+    32.414038354211,
+    27.897713552699113
+  ],
+  "percentile of the measured beta in the white-truth (null) distribution (Xb15, Xb30)": [
+    100.0,
+    100.0
+  ],
+  "percentile of the measured beta in the static-truth distribution (Xb15, Xb30)": [
+    0.0,
+    5.0
+  ],
+  "z of the measured beta under the white / static truth (Xb15, Xb30)": [
+    [
+      4.941434183612591,
+      8.075783789084712
+    ],
+    [
+      -2.8280501455892066,
+      -1.6996401094378453
+    ]
+  ],
+  "acceptance": {
+    "noise-free control recovers J_nn in every window (within 2%)": true,
+    "a time-independent truth reproduces the late-window collapse (J[5,10] < 0.5 J[0,1.5])": true,
+    "and the cumulative-window drift (J[0,5] < 0.95 J[0,1.5])": false,
+    "the beta test separates the truths (|mean difference| > 2 sd, Xb30)": true
+  }
+}

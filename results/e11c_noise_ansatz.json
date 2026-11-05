@@ -1,0 +1,158 @@
+{
+  "without memory": {
+    "collective gamma_c (rad/s): estimate, bootstrap sd": [
+      23.538070359557253,
+      3.7868372657109175
+    ],
+    "flip S=SXX+SYY": {
+      "site mean (rad/s)": -15.251833095578553,
+      "bootstrap sd of the site mean": 7.3757915929210185,
+      "ions with |z| > 3": 0,
+      "max |z|": 1.9662682846508015
+    },
+    "imbalance TXY": {
+      "site mean (rad/s)": -19.028275392907986,
+      "bootstrap sd of the site mean": 4.794032779900342,
+      "ions with |z| > 3": 0,
+      "max |z|": 1.69457345308785
+    },
+    "SXX-SYY": {
+      "site mean (rad/s)": -94.0835985394315,
+      "bootstrap sd of the site mean": 12.77827837141366,
+      "ions with |z| > 3": 2,
+      "max |z|": 3.788099758679004
+    },
+    "SXY": {
+      "site mean (rad/s)": 3.8496953799281166,
+      "bootstrap sd of the site mean": 6.716499181511348,
+      "ions with |z| > 3": 0,
+      "max |z|": 2.9249125756081815
+    },
+    "SXZ": {
+      "site mean (rad/s)": 63.050123223756444,
+      "bootstrap sd of the site mean": 10.559331713956173,
+      "ions with |z| > 3": 4,
+      "max |z|": 3.455881848163763
+    },
+    "TXZ": {
+      "site mean (rad/s)": -30.756685189091492,
+      "bootstrap sd of the site mean": 4.828832140060643,
+      "ions with |z| > 3": 2,
+      "max |z|": 3.4346573431653735
+    },
+    "SYZ": {
+      "site mean (rad/s)": -55.499077528575604,
+      "bootstrap sd of the site mean": 9.54949907098729,
+      "ions with |z| > 3": 1,
+      "max |z|": 3.0424817611369024
+    },
+    "TYZ": {
+      "site mean (rad/s)": -27.26224015900915,
+      "bootstrap sd of the site mean": 5.709661105282221,
+      "ions with |z| > 3": 2,
+      "max |z|": 3.3689923955639163
+    },
+    "total flip rate (emission + absorption) per ion (rad/s)": [
+      -30.38032283804823,
+      -15.551228022790326,
+      -3.070028523650606,
+      4.261740281350349,
+      -125.42856618043714,
+      -82.99266864912538,
+      -53.29204217369668,
+      20.026551536175305,
+      -64.16517307052318,
+      45.55507572917486
+    ],
+    "total flip rate: site mean, bootstrap sd": [
+      -30.5036661911571,
+      14.751583185842039
+    ],
+    "ions whose XY block violates |S_XX - S_YY| <= S_XX + S_YY (not PSD)": 10
+  },
+  "with gamma_c + beta t": {
+    "collective gamma_c (rad/s): estimate, bootstrap sd": [
+      -5.927813193479708,
+      4.983851215127486
+    ],
+    "flip S=SXX+SYY": {
+      "site mean (rad/s)": -22.755885287667198,
+      "bootstrap sd of the site mean": 7.454205465307968,
+      "ions with |z| > 3": 0,
+      "max |z|": 2.16634639006968
+    },
+    "imbalance TXY": {
+      "site mean (rad/s)": -19.03242332917798,
+      "bootstrap sd of the site mean": 5.015997241610392,
+      "ions with |z| > 3": 0,
+      "max |z|": 1.6466135329113527
+    },
+    "SXX-SYY": {
+      "site mean (rad/s)": -86.49062306661125,
+      "bootstrap sd of the site mean": 13.256769497789804,
+      "ions with |z| > 3": 2,
+      "max |z|": 3.7579754361931466
+    },
+    "SXY": {
+      "site mean (rad/s)": 26.72579121983363,
+      "bootstrap sd of the site mean": 7.711343196972196,
+      "ions with |z| > 3": 1,
+      "max |z|": 4.011357369590563
+    },
+    "SXZ": {
+      "site mean (rad/s)": 59.13299780362494,
+      "bootstrap sd of the site mean": 10.062149964833115,
+      "ions with |z| > 3": 3,
+      "max |z|": 3.1693516179735224
+    },
+    "TXZ": {
+      "site mean (rad/s)": -28.855565722229763,
+      "bootstrap sd of the site mean": 4.976886784169882,
+      "ions with |z| > 3": 2,
+      "max |z|": 3.345435830123593
+    },
+    "SYZ": {
+      "site mean (rad/s)": -67.5805102166544,
+      "bootstrap sd of the site mean": 9.468129155299325,
+      "ions with |z| > 3": 2,
+      "max |z|": 3.4482196588373584
+    },
+    "TYZ": {
+      "site mean (rad/s)": -8.07866736654806,
+      "bootstrap sd of the site mean": 6.335972318192558,
+      "ions with |z| > 3": 0,
+      "max |z|": 1.6810943683275659
+    },
+    "total flip rate (emission + absorption) per ion (rad/s)": [
+      -66.27286253310501,
+      -32.50550005607519,
+      -12.000815527880825,
+      -6.414877959197497,
+      -132.2659126246586,
+      -82.9794681254811,
+      -61.40302162700671,
+      10.519559063202742,
+      -79.23216399074684,
+      7.437357627605081
+    ],
+    "total flip rate: site mean, bootstrap sd": [
+      -45.511770575334396,
+      14.908410930615936
+    ],
+    "ions whose XY block violates |S_XX - S_YY| <= S_XX + S_YY (not PSD)": 10
+  },
+  "beta (rad/s per ms): estimate, bootstrap mean, sd": [
+    90.97853578733593,
+    94.77582253245606,
+    13.192799430727266
+  ],
+  "E9 (full ansatz) for comparison": {
+    "flip S site mean": -49.9,
+    "S_XX - S_YY per ion": "about -160",
+    "combinations beyond 3 sigma": "10 of 60"
+  },
+  "acceptance": {
+    "total flip rate consistent with >= 0 (site mean > -2 sd)": false,
+    "no charged combination beyond 3 sigma on more than one ion": false
+  }
+}
