@@ -100,6 +100,67 @@
   - Néel 51 ions: z 기저, 20세트 × 50 shot × 11 시점 (0–10 ms)
 - 결론: 실데이터를 쓰려면 integral method로 재학습하는 별도 작업이 필요하다. random unitary의 기저 정보가 파일 안에 있는지 확인해야 하고, README의 연락처는 M. K. Joshi다. 이번 세션에서는 BEQS 논문에 실린 파라미터 규모를 쓴 합성 모델로 대체한다(E3).
 
+## 6. 4단계 선행연구 재점검 (2026-11-05)
+
+사용자 요청으로 지금까지의 기여 전체를 다시 검색했다(WebSearch, 초록과 본문 일부). 결론부터 정리한다.
+- 우리 작업 전체, 즉 "학습된 열린계 생성자에 대한 대칭 분해 인증 bound + 실데이터"를 그대로 한 연구는 찾지 못했다.
+- 그러나 **핵심 물리 메커니즘은 이미 잘 알려져 있다.** 대칭을 깨는 오차를 dissipation, noise, 에너지 벌점, 무작위 대칭 변환이 Zeno 효과로 억제한다는 것은 gauge 보호 문헌의 중심 주제다. 이것이 가장 큰 겹침 위험이다.
+
+| 우리 주장 | 가장 가까운 선행연구 | 겹침 | 우리 몫으로 남는 것 |
+|---|---|---|---|
+| 대칭을 깨는 오차의 Zeno 억제 (정리 B2–B4, B3′) | Stannigel et al. PRL 2014(gauge 생성자에 결합한 고전 noise, 보호 시간 κ/λ²)<br>Halimeh–Hauke 계열: PRX Quantum 2021, 리뷰 2022, Commun. Phys. 2025(에너지 벌점, Zeno 증명, λ²/V²)<br>Lamm–Lawrence–Yamauchi 2020과 후속 연구(무작위 gauge 변환 → 결맞은 표류가 무작위 걸음으로)<br>Tran et al. 2021(대칭 보호)<br>Schmale–Weimer 2024(dissipation으로 gauge 위반 교정)<br>Zanardi–Campos Venuti 2014/2015(dissipation 투영 동역학)<br>Burgarth–Facchi 외(강결합·Zeno 극한의 엄밀 bound) | **높음 (메커니즘)** | 학습된 생성자에 쓰는 **관측량 수준의 인증 bound**, 유한 γ_c에서 상수가 명시된 모든 차수 bound, 장치에 원래 있는 집단 dephasing을 자원으로 쓰는 것, 광원뿔 안의 국소 증명서(B3′) |
+| 선택 규칙(정리 B1)과 실효 파라미터 수 감소 | 위 문헌, 대칭 검증 기반 오차 완화 | 중간 | 오차 예산(BEQS형 M → M_sym)과 인증 bound로의 연결 |
+| 초연산자 charge로 본 불완전함의 분류, 약한/강한 대칭 (정리 B6) | Buča–Prosen 2012, Albert–Jiang 2014, Lieu et al. PRL 2020(약한/강한 대칭과 오류 정정) | 중간 | 이 개념을 **오차 예산과 인증**에 쓴 것: 공변 flip은 보호받지 못하는 1차 오차, P(M)이 닫힌 방정식을 따른다는 정확한 결과, γ_c scan 진단 |
+| 기억이 있는 집단 noise와 보호 스케일링 1/Q² vs 1/\|Q\| (정리 G) | Kumar–Hauke–Halimeh 2022(에너지 벌점이 1/f^β noise를 1/V^β로 억제: noise가 오차원인 쌍대 상황)<br>Kiely EPL 2021, arXiv:2207.03980(고전 noise master equation)<br>Monz et al. 2011(상관 dephasing에서 GHZ의 N² 초결어긋남)<br>준정적 noise의 Gaussian 감쇠(T₂* ∝ 1/q)는 교과서 내용 | **중간** | noise를 **보호 자원**으로 볼 때의 정확한 해부(임의 고전 집단 noise), 보호 시간 τ_Q의 charge 스케일링, BEQS 데이터에서의 white 기각. 1/\|Q\| 자체는 알려진 결어긋남 법칙의 직접적 귀결이므로 "따름정리 수준"으로 주장한다 |
+| 다중극 forgetting, 밀도의 √t (정리 E) | 보존 전하가 있을 때 연산자 확산의 확산 꼬리(Khemani–Vishwanath–Huse 2018, Rakovszky–Pollmann–von Keyserlingk 2018)<br>Han–Hartnoll 2018(dissipative 수송의 국소성 bound) | 중간 | 오차 bound의 시간 거동을 다중극 차수로 정리한 것, Heisenberg형 bound의 no-go |
+| 두 그림 forgetting으로 얻는 시간 균일 bound (정리 F) | Trivedi et al. 2024, Kashyap et al. 2025(rapid mixing에서 시간 균일)<br>Trivedi–Cirac 2025(사상의 noise 강건성, O(γ^α τ^{d+1}))<br>Heyl–Hauke–Zoller 2019<br>operator backflow 2021(확산계수 오차의 대수적 감쇠)<br>포물형 PDE의 오차 추정 | **낮음** | rapid mixing 없이 보존 밀도에 대해 시간 균일한 국소 bound(quasi-free에서는 엄밀). 표본 검색에서 같은 결과는 보이지 않았다 |
+| BEQS 데이터의 모델 선택, 보정, 기억 시험 (E11, E11b, E11c) | BEQS 자체: 부록 A3(재시뮬레이션에서 최근접 항이 조금 위로 편향), 학습 오차 plateau, 각주 73, 결론의 유색 noise 학습 제안<br>Olsacher et al. QST 2025, Guo et al. Sci. Adv. 2025(300 ion, 훈련/검증 오차, 물리 기반 모델 비교)<br>van den Berg et al. 2025(대규모 Lindblad 학습)<br>Gleinig–Eisert(모델 선택은 열린 문제) | 낮음 | 이 데이터셋의 독립 재분석, 대칭 제약 모델 선택, 창 의존성의 errors-in-variables 정량화, white 집단 noise 기각. 회귀 변수에 noise가 있을 때의 편향 자체는 통계학에서 알려진 현상이므로 그 문헌을 인용한다 |
+
+**포지셔닝 권고 (원고를 재개할 때).**
+1. 도입부에서 "dissipation과 noise가 대칭을 깨는 오차를 Zeno 효과로 억제한다"를 **알려진 사실로 먼저 인정**한다. Stannigel 2014, Halimeh–Hauke 계열, Lamm 2020, Zanardi–Campos Venuti, Burgarth–Facchi를 인용한다. 우리 기여는 그 위의 네 가지로 좁혀 말한다.
+   - 학습된 생성자에 적용할 수 있는 상수가 명시된 인증 bound.
+   - 관측량 수준의 선택 규칙과 오차 예산.
+   - dissipative 불완전함까지 포함하는 charge 분류.
+   - 장치 고유 noise의 스펙트럼 의존성.
+2. 정리 G는 Kumar–Hauke–Halimeh 2022의 쌍대 상황임을 밝힌다. 그쪽은 noise가 오차원이고 우리는 noise가 보호 자원이다. 1/|Q|는 따름정리로 제시한다.
+3. 정리 E, F는 확산 꼬리 문헌과 Han–Hartnoll을 인용하고, 포물형 평활화와의 유사성을 밝힌다. 새로움은 "rapid mixing 없이 보존 밀도에 대한 시간 균일 인증"에 둔다.
+4. 데이터 분석은 BEQS 부록 A3의 재시뮬레이션과 Olsacher 2025의 plateau 진단을 인용한다. 우리 분석이 그 위에서 무엇을 더했는지(창 의존성, 기억 시험, 모델 선택)를 분명히 한다.
+
+**출처 (4단계 재점검).**
+- Zeno 보호와 gauge 보호:
+  - [Stannigel et al., arXiv:1308.0528](https://arxiv.org/pdf/1308.0528)
+  - [Halimeh et al., Gauge-symmetry protection using single-body terms, PRX Quantum 2, 040311](https://journals.aps.org/prxquantum/pdf/10.1103/PRXQuantum.2.040311)
+  - [Halimeh–Hauke review, arXiv:2204.13709](https://arxiv.org/pdf/2204.13709)
+  - [Local pseudogenerators, Commun. Phys. (2025)](https://www.nature.com/articles/s42005-025-02035-y)
+  - [Kumar–Hauke–Halimeh, 1/f noise, arXiv:2210.06489](https://arxiv.org/pdf/2210.06489)
+  - [Schmale–Weimer, arXiv:2404.16454](https://arxiv.org/pdf/2404.16454)
+  - [Symmetry-protection Zeno phase transition, arXiv:2405.18504](https://arxiv.org/pdf/2405.18504)
+- 무작위 gauge 변환:
+  - [Lamm–Lawrence–Yamauchi, arXiv:2005.12688](https://arxiv.org/abs/2005.12688)
+  - [Zeno suppression of gauge drift, arXiv:2405.09462](https://arxiv.org/pdf/2405.09462)
+  - [Ball, PRA 111, 042428](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.111.042428)
+- 강한 dissipation과 Zeno 극한의 엄밀 결과:
+  - [Zanardi–Campos Venuti, arXiv:1404.4673](https://www.arxiv.org/abs/1404.4673)
+  - [Zanardi–Campos Venuti, arXiv:1412.6198](https://ar5iv.labs.arxiv.org/html/1412.6198)
+  - [Burgarth et al., arXiv:1807.02036](https://arxiv.org/pdf/1807.02036)
+  - [Burgarth et al., arXiv:2111.08961](https://arxiv.org/pdf/2111.08961v2)
+- 약한/강한 대칭:
+  - [Lieu et al., arXiv:2008.02816](https://www.arxiv.org/abs/2008.02816)
+- 시간 균일성과 수송:
+  - [Trivedi–Cirac, arXiv:2509.17579](https://arxiv.org/pdf/2509.17579)
+  - [Han–Hartnoll, arXiv:1806.01859](https://arxiv.org/html/1806.01859)
+  - [Operator backflow, arXiv:2111.09904](https://arxiv.org/pdf/2111.09904)
+  - [Poggi et al., arXiv:2007.01901](https://arxiv.org/abs/2007.01901)
+- 학습:
+  - [Olsacher et al., arXiv:2405.06768](https://arxiv.org/pdf/2405.06768)
+  - [Guo et al., arXiv:2408.03801](https://arxiv.org/pdf/2408.03801)
+  - [van den Berg et al., arXiv:2512.08165](https://arxiv.org/pdf/2512.08165)
+  - [Gleinig–Eisert, arXiv:2209.14328](https://arxiv.org/pdf/2209.14328)
+- 대칭을 쓰는 오차 완화:
+  - [GUESS, arXiv:2603.13060](https://arxiv.org/abs/2603.13060)
+- 상관 dephasing:
+  - [Open-system dynamics of entanglement review (Monz 2011 논의), arXiv:1402.3713](https://arxiv.org/pdf/1402.3713)
+
 ## 출처
 
 - [Kraft et al., arXiv:2511.23392](https://arxiv.org/abs/2511.23392) · [Zenodo 17750419](https://zenodo.org/records/17750419)
