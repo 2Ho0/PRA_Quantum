@@ -255,6 +255,36 @@ Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D
    - M = i[δh, w(u)] consists of differences of w along the diagonal (the density gradient, bounded the same way) and the components w_{±m}, m ≥ 1. Their ℓ¹ norms carry (CJ/g)^m and sum to the same order.
 4. Insert into Corollary F-qf and use ∫_0^t (1 + Du)^{−1/2} (1 + D(t − u))^{−1/2} du ≤ π/D. □
 
+**Closing the gap in step 1 (outline).** The uniform estimate does not need the pole–cut split; hypocoercivity gives it directly.
+- In time units 1/g and with α = a_k/g, the r-chain reads dc/dτ = −α(S − S*)c − (1 − Π)c. Here S is the shift in r and Π projects onto r = 0. The transport T = α(S − S*) is skew-adjoint and the collision part L = −(1 − Π) is symmetric.
+- The conditions of Dolbeault, Mouhot and Schmeiser (Trans. AMS 367, 3807 (2015)) hold with constants that do not depend on α:
+  - microscopic coercivity −⟨Lc, c⟩ = ‖(1 − Π)c‖², so λ_m = 1;
+  - macroscopic coercivity ‖TΠc‖² = 2α²|c_0|², so λ_M = 2α²;
+  - ΠTΠ = 0;
+  - the auxiliary operator A = (1 + (TΠ)*(TΠ))^{−1}(TΠ)* = ΠT*/(1 + 2α²) gives ‖AT(1 − Π)‖ ≤ 4α²/(1 + 2α²) ≤ 2 and ‖AL‖ ≤ 2|α|/(1 + 2α²) ≤ 1/√2.
+- Their theorem then gives ‖c(t)‖_2 ≤ C e^{−λ_k t} ‖c(0)‖_2 with λ_k ≥ c min(g, a_k²/g), uniformly in k and with universal C, c. Since a_k² ≥ (4J²/π²) k² on the Brillouin zone, ∫|G_k(t)| dk/2π ≤ C (1 + Dt)^{−1/2} follows without Lemma F.2's decomposition.
+- The k-derivative needed in step 3 follows by Duhamel's formula: ∂_k c obeys the same chain with the source −(a_k′/g)(S − S*)c, so ‖∂_k c(t)‖ ≤ C′ (J/g) t e^{−λ_k t}.
+- Still to be written out: the factor sin(k/2) carried by the coherences, which needs a Duhamel bound for c_{±1} driven by a_k c_0.
+
 **Remarks.**
 1. The constants are not optimized. The exponents match E13: −0.50 to −0.53 for a, m and ‖∇c_u‖₁, and −0.50 for γ and κ of the domain wall.
 2. With Proposition F.1, Corollary F-qf is a proven time-uniform bound for quasi-free fermions with dephasing. For interacting chains (H_O) and (H_ρ) remain hypotheses; E16 tests them at N = 10.
+
+## Data checks on the BEQS 10-ion data (E15, E11e)
+
+The data were measured by Kraft et al. and are analysed here from their public data.
+
+**Out-of-sample bands (E15).** The two reference models of E11 are learned on t ≤ 1.5 ms and predict 1.5 < t ≤ 10 ms: X15 (U(1)-symmetric couplings, single-site fields, collective dephasing, fixed D5/2 emission) and the memory model Xb15 (collective rate γ_c + βt).
+- *Certified band.* Theorem A in its general-V form, with the bootstrap deviations V_k = L_k − L_ref of X15 (30 refits) and the 95% quantile over k. It holds for every initial state.
+  - Only mean Z stays informative to 10 ms: B = 0.13, 0.60 and 1.62 at 1.5, 5 and 10 ms, against osc(O) = 2. Its integrand at u = 0 is 0.063 per ms, against 0.29 for mean X and Y and 0.84–1.66 for the observables of the central pair. This is Remark A.3 on data: a conserved observable sees only the symmetry-breaking part of δH.
+  - The other observables become vacuous at 1–4 ms. Corollary A.1, the BEQS form, is already 12.6 at 1.5 ms.
+  - The preregistered coverage (at least 90% of the held-out points) is met with 100%, but mostly after the band has become vacuous. While it is informative, it covers every held-out point of mean Z, X and Y.
+- *Statistical band.* Twelve bootstrap refits per model, simulated exactly; the band is 1.96 √(sd_boot² + SEM²). It is 30–550 times narrower than the certified band and informative throughout.
+  - Calibration factors, rms deviation over predicted spread, for X15 and Xb15: 1.49–1.54 and 1.47–1.50 in the three neutral classes; 1.82–2.40 and 0.61–1.12 in the three charged classes; 1.77 and 1.08 over all 435 observables.
+  - The memory model therefore changes only the charged classes, as Lemma G.0 requires: collective noise multiplies the charge-q blocks by χ_q and leaves the neutral block alone. The evidence for memory now includes out-of-sample prediction, not only the fitted β.
+  - The neutral classes keep a structural error of about 1.5 times the predicted spread. For example, the measured mean Z lies 0.010–0.035 above both predictions for every held-out time and both initial states.
+- *Consequence for certification.* On this device a worst-case certificate over all initial states is informative for 10 ms only for conserved observables. Elsewhere the usable statement is a probabilistic band. Its calibration is empirical: it holds as it stands in the charged classes of the memory model, and it needs a factor of about 1.5 in the neutral classes.
+
+**The single-ion noise block (E11e).** Synthetic shot-level data from the E14 truths contain no single-ion noise; their total flip rate is the D5/2 emission, 0.86 rad/s. The E11c fit (minimal model plus the full Kossakowski block of every ion, t ≤ 1.5 ms) is applied to 20 realizations of each truth, f = 0, ½, 1.
+- The fit returns non-PSD XY blocks on 9–10 of 10 ions and a total flip rate of about −50 rad/s (5–95%: −69 to −22). The measured −30.5 rad/s lies inside this range for f = 1. The negative rates and the non-PSD blocks found since E9 are therefore produced by the estimator and do not indicate a violation of CP-divisibility in the device.
+- The rms of the charged site means is 23–26 rad/s on synthetic data (95th percentile 29.5–33.6) and 54.2 rad/s on the data. By the preregistered rule the charged structure is in the data: some U(1)-breaking single-ion effect, or an effect outside the model that projects onto these columns, is not contained in the truths tested.
