@@ -7,22 +7,26 @@ This repository holds theory, numerics and a manuscript draft (target: Physical 
 - **U(1) charge anatomy.** Imperfections, Hamiltonian or dissipative, split by their superoperator charge Q. Charged ones vanish from the linear response of charge-conserving observables, and collective dephasing then suppresses them at rate 2γ_c Q². Covariant ones (for example incoherent spin flips, which break only the strong symmetry) are unprotected.
 - **Size-independent commutator-form certificates.**
 - **Conserved charges.** The forgetting of an observable follows its multipole order: bounds grow as √t for densities and are time-uniform from quadrupoles on.
-- **Application to the public BEQS trapped-ion data.** Re-learned 10-ion generator, a certified collective dephasing rate within a structured model, a charge-resolved validation, and strong-symmetry diagnostics of a 51-ion quench.
+- **Collective noise with memory.** The selection rule and the noise-independence of covariant errors hold for collective noise of any spectrum; the Zeno suppression of charged errors survives memory but scales as 1/|Q| for quasi-static Gaussian noise instead of 1/Q² for white noise.
+- **Forgetting in both pictures.** Pairing the observable's density gradients with the state's currents and gradients gives a time-uniform local bound for conserved densities, where every Heisenberg-only bound grows as √t.
+- **Application to the public BEQS trapped-ion data.** Re-learned 10-ion generator, a certified collective dephasing rate within a structured model, a charge-resolved validation, and strong-symmetry diagnostics of a 51-ion quench. Phase 4 adds model selection (a minimal U(1)-symmetric model with collective dephasing only and a growing collective rate predicts the 5–10 ms data three times better than the full fit), a simulation-based calibration of the learning method, and a calibrated rejection of white collective noise.
 
 ## Layout
 
 | Path | Content |
 |---|---|
-| `docs/theory/error-anatomy-theory.md` | Theorems and proofs (English) |
+| `docs/theory/error-anatomy-theory.md` | Theorems and proofs, phases 1–2 (English) |
+| `docs/theory/phase3-theory.md` | Weak/strong symmetry classes (Theorem B6), multipole forgetting (Theorem E) |
+| `docs/theory/phase4-theory.md` | Collective noise with memory (Theorem G), forgetting in both pictures (Theorem F) |
 | `docs/results/summary.md` | Results summary with limits and next steps (Korean) |
 | `docs/literature/novelty-check.md` | Related work and novelty (Korean) |
 | `docs/data/beqs-data-notes.md` | Structure of the BEQS data, the inferred conventions, and a draft e-mail to the authors |
 | `docs/superpowers/` | Design specs and execution plans |
-| `src/qerr/` | Library: Lindblad solver, charge sectors, bounds, free fermions, quadratic-operator engine, Pauli algebra, Lindbladian learning, ion-data I/O |
+| `src/qerr/` | Library: Lindblad solver, charge sectors, bounds, free fermions, quadratic-operator engine, Pauli algebra, Lindbladian learning (windows, weighted columns), ion-data I/O, classical collective noise (`noise`), two-sided pairing (`hydro`) |
 | `tests/` | pytest suite |
-| `experiments/` | E1–E10 figure scripts (E6, E6c, E9 use the BEQS data) |
+| `experiments/` | E1–E13 figure scripts (E6, E6c, E9, E11, E11b use the BEQS data) |
 | `results/` | Figures (PNG and PDF) and JSON acceptance checks |
-| `paper/` | Manuscript draft and phase-3 theory notes, kept locally only and not committed (this repository is public) |
+| `paper/` | Manuscript draft, kept locally only and not committed (this repository is public); writing is paused, the research notes in `docs/` are the record |
 | `data/fetch_beqs.py` | Downloads the BEQS raw data (Zenodo, CC BY 4.0) into `data/raw/` and checks the md5 checksums |
 
 ## Reproduce
@@ -47,9 +51,14 @@ python e8_symmetry_classes.py        # about 20 min (N = 6, dense superoperators
 python e9_symmetry_data.py           # about 5 min on 12 cores; run after e6_ion_learning and e6_symmetry
 python e6c_validation.py             # several hours on 3 cores (learning windows up to 5 ms); run after e9
 python e10_hydro_forgetting.py       # about 1 h on 12 cores (N = 400 to t = 1500)
+python e11_model_selection.py        # about 1.5 h (10-qubit trajectory, 10 variants, bootstrap, validation); caches e11_stage1.npz
+python e11b_calibration.py           # about 40 min; run after e11 (simulation-based calibration, memory test)
+python e11c_noise_ansatz.py          # a few minutes; run after e11 (single-ion noise block on the minimal model)
+python e12_noise_memory.py           # about 20 min on 16 cores (N = 6, exact noise averages)
+python e13_two_sided_bound.py        # about 30 min on 4 cores (N = 400 to t = 1500)
 ```
 
-E8, E9, E6c and E10 cache their results in `results/*.npz`; `--replot` redraws the figure from the cache.
+E8–E13 and E6c cache their results in `results/*.npz`; `--replot` redraws the figure from the cache. Parallel runs are memory-bound on Windows (commit limit): run the long scripts one or two at a time.
 
 ## Data and attribution
 

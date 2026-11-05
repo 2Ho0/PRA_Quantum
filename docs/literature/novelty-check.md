@@ -62,12 +62,33 @@
    - 그 결과 Heisenberg형 bound로는 시간 균일한 국소 bound를 얻을 수 없다. 실제 오차는 확산계수 재규격화 때문에 유계일 수 있다(E10).
    - Rapid-mixing 안정성(Cubitt 2015, Kashyap 2025)은 유일 고정점을 가정해서 이 경우를 다루지 않는다. Dephasing에 의한 확산 자체는 잘 알려져 있다(Haken–Strobl, Eisler 2011).
 9. **(3단계) 인증된 collective rate.** 엄격한 γ_c*가 오목 함수라서 noise에 의해 아래로 편향됨(Jensen)을 보였다. 그래서 구조화 모델에 조건부로 bias를 보정한 하한을 쓴다.
+10. **(4단계) 기억이 있는 집단 noise에서의 오차 해부 (정리 G).**
+    - Lemma G.0: 고전 집단 noise ξ(t)S^z는 공변 생성자 아래에서 charge 섹터마다 χ_q(t)를 곱할 뿐이다. 어떤 확률과정에도 정확하다. Gaussian이면 시간 의존 rate를 갖는 정확한 time-local 방정식이 된다.
+      - 이런 "정확한 고전 noise master equation" 자체는 Kiely, EPL 134, 10001 (2021)에 있다. BEQS의 ref. [72]다. 반드시 인용한다.
+      - 비마르코프 고전 noise의 근사 master equation으로 arXiv:2207.03980이 있다. 우리 Lemma G.0은 공변 생성자와 교환하는 집단 noise라는 특수한 경우이고, 그래서 근사 없이 정확하다.
+    - 새로운 부분: 선택 규칙과 공변 오차의 noise 무관성은 noise 스펙트럼과 무관하게 성립한다. Zeno 억제는 기억이 있어도 남지만, charge 스케일링이 1/Q²(white)에서 1/|Q|(준정적)로 바뀐다. 같은 T₂에서 |Q|=2 보호가 약 1.8배 약하다.
+    - 표본 검색에서 이 스케일링을 다룬 연구는 보이지 않았다. 가까운 것은 집단 noise로 DFS를 보호하는 APS 초록(2025)과 DFS의 비마르코프 조건(quant-ph/0505051)이다.
+11. **(4단계) 두 그림 forgetting에 의한 시간 균일 bound (정리 F, 따름정리 F-qf).**
+    - 정리 E의 √t 장애물(Heisenberg형 bound)을 넘는다. 관측량의 기울기와 상태의 전류·기울기를 짝지어서, 둘 다 확산으로 u^{−1/2}씩 감쇠하면 합성곱이 π/D로 유계가 된다.
+    - Quasi-free fermion에서는 가정 없이 엄밀하다(이차 모멘트로 계산 가능).
+    - 표본 검색에서는 "유일 고정점이나 rapid mixing 없이, 확산하는 보존량으로 얻는 시간 균일 아날로그 bound"가 보이지 않았다. 가까운 것은 다음과 같다.
+      - Trivedi–Franco Rubio–Cirac 2024와 Kashyap 2025: N 무관이지만 시간 균일성에는 mixing이 필요하다.
+      - Heyl–Hauke–Zoller, Sci. Adv. 2019: 디지털 Trotter 오차, 창발 보존량.
+      - Cai–Tong–Preskill: t^{d/2+1} 증가.
+    - 수치해석의 포물형 오차 추정과 같은 구조라는 점을 원고에서 밝혀야 한다.
+12. **(4단계) BEQS 데이터의 모델 선택과 학습 방법의 편향 (E11, E11b, E11c).**
+    - 물리적 제약(집단 dephasing만, D₅/₂ emission, U(1) 대칭 결합)을 둔 최소 모델이 원래 E6a의 275-파라미터 fit보다 표본 밖 예측이 3배 좋다(rms 0.118 → 0.040). BEQS 저자들의 학습 결과를 반박하는 것이 아니다. 같은 데이터에서 대칭과 물리 제약이 예측력을 높인다는 독립 재분석이다.
+    - 시뮬레이션 기반 보정으로 integral method의 errors-in-variables 편향을 정량화했다. 늦은 창의 J 붕괴와, 집단 rate 기울기의 귀무 분포가 −20만큼 치우친 것이 이 편향이다.
+    - 순수 white 집단 noise를 4.9–8.1σ로 기각했다. BEQS가 각주 73과 결론에서 남긴 질문, 즉 느린 장 요동과 유색 noise 학습에 답한다. 표본 검색에서 같은 데이터로 이를 시험한 연구는 보이지 않았다.
+    - 해결되지 않은 것: 단일 이온 noise block의 charged 섹터 mismatch(E11c)와, 편향을 넘는 누적 창 표류(−15%).
 
 ## 4. 리스크
 
 - Zeno 억제 자체는 잘 알려진 물리다. 도입부에서 Stannigel 2014, PRA 62 062305, Tran 2021을 먼저 인용해서 새로움이 "certification용 엄밀 bound와 선택 규칙"에 있다는 점을 분명히 해야 한다.
 - (3단계) 정리 E는 확산 가정(커널의 기울기 bound)을 조건으로 둔다. 수치로는 E10에서 확인했지만 일반적인 증명은 아니다. 원고에서도 조건부 정리로 썼다.
 - (3단계) 확장 ansatz에서 dissipator 파라미터가 비물리적 값을 낸다. 이것을 대칭 위반으로 읽으면 안 된다. 원고에는 model mismatch로 썼다.
+- (4단계) white noise 기각(E11b)의 근거는 두 가지다. 독립 Gaussian noise로 만든 합성 데이터에서 얻은 귀무 분포, 그리고 시간에 대해 선형인 rate 모델이다. 실제 noise는 같은 shot을 공유해 상관되어 있다. 혼합 참으로 보정을 넓히고, 상관 noise를 넣어 다시 검증하기 전에는 "준정적 성분 60–80%"를 정량 결론으로 쓰지 않는다.
+- (4단계) 정리 F는 일반 계에서 확산 가정에 조건부다. 엄밀한 것은 quasi-free fermion(따름정리 F-qf)뿐이다. 상태 쪽 인자를 전역 최대값으로 짝짓기 때문에 domain wall에서는 14배 느슨하다.
 - BEQS 실험 영역(10 ions, $\gamma_c\approx0.08J_0$, 측정 시간 ≲ 6 $J_0^{-1}$)에서는 Zeno 억제가 |q|=2 오차에서만 O(1) 수준이다. 선택 규칙(B1)은 $\gamma_c$와 무관하게 성립하므로 이 영역에서도 쓸모가 있다. 수치로 확인해야 한다(E3).
 
 ## 5. 데이터 판정 (E6)
@@ -92,5 +113,6 @@
 - [Tran et al., symmetry protection](https://hub.jqi.umd.edu/publications/faster-digital-quantum-simulation-symmetry-protection)
 - [Symmetry-protected coherent relaxation, arXiv:1802.05293](https://arxiv.org/abs/1802.05293)
 - [Graph symmetry and correlated dephasing, arXiv:2603.10654](https://arxiv.org/abs/2603.10654)
+- (4단계) [Heyl, Hauke, Zoller, Sci. Adv. 5, eaau8342 (2019)](https://www.science.org/doi/10.1126/sciadv.aau8342) · [Trivedi et al., Nat. Commun. 15, 6507 (2024)](https://pmc.ncbi.nlm.nih.gov/articles/PMC11297267/) · [Kashyap et al., PRX 15, 021017 (2025)](https://dx.doi.org/10.1103/PhysRevX.15.021017) · [Paladino et al., 1/f noise review, arXiv:1304.7925](https://arxiv.org/pdf/1304.7925) · [Non-Markovian DFS, quant-ph/0505051](https://arxiv.org/pdf/quant-ph/0505051) · [APS March Meeting 2025 abstract on noise-protected DFS](https://archive.aps.org/smt/2025/mar-c31/3)
 - [Time-continuous error cancellation, arXiv:2601.05952](https://arxiv.org/pdf/2601.05952)
 - [QEM for non-Hermitian dynamics, arXiv:2602.21879](https://arxiv.org/html/2602.21879v1)

@@ -323,5 +323,9 @@ Consider a single two-level system with emission jump $\sqrt\gamma\sigma^-$ and 
 ## 7. Open items
 
 1. ~~Local (Lieb–Robinson) refinement of B3~~. Done: Lemma B.2, Theorem B3′ and Corollary B3-loc, checked by E7. What remains open is a local bound that is also *time-uniform* for U(1)-conserving dynamics. It would need forgetting inside the light cone for the non-conserved part of $O$, while diffusive transport of the conserved charge keeps the commutator with $O_\infty$ alive (Remark A.3).
+   - Phase 3 (Theorem E): no Heisenberg-only bound can be time-uniform for a density.
+   - Phase 4 (Theorem F, Corollary F-qf, E13 in `docs/theory/phase4-theory.md`): pairing the observable with the state's forgetting gives a time-uniform bound. It is rigorous for quasi-free fermions with dephasing and conditional on diffusive hypotheses in general.
 2. Steady-state version (t → ∞), connected to the BQP-hardness of fixed points (Kashyap et al. 2025).
 3. Non-Markovian / quasi-static noise (BEQS footnote 73): the dephasing-by-a-random-static-field ensemble versus Lindblad dephasing.
+   - Phase 4 (Theorem G, E12, `docs/theory/phase4-theory.md`): the anatomy holds for any classical collective noise. The protection changes from 1/Q² to 1/|Q| for quasi-static Gaussian noise.
+   - BEQS data test: E11/E11b.
