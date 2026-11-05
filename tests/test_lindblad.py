@@ -105,3 +105,16 @@ def test_evolve_releases_solver_memory():
     finally:
         tracemalloc.stop()
     assert growth < 5 * 2**20
+
+
+def test_evolve_td_frees_solver_cycles():
+    """Large evolutions collect the solver's reference cycles, which hold its stage arrays (~300 MB per call at n = 10)."""
+    import gc
+
+    from qerr.lindblad import evolve_td
+
+    n = 7
+    model = OpenModel(H=np.diag(np.linspace(0.0, 1.0, 2**n)).astype(complex), Gamma=0.1 * np.eye(n), emission=np.zeros(n))
+    gc.collect()
+    evolve_td(model, np.eye(2**n, dtype=complex) / 2**n, [0.0, 0.01], np.ones((n, n)), lambda t: 0.1)
+    assert gc.collect() == 0

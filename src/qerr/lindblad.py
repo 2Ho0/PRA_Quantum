@@ -106,7 +106,11 @@ def evolve_td(model: OpenModel, X0: np.ndarray, times, Gamma_td: np.ndarray, rat
                     (0.0, times[-1]), y0, t_eval=times, method="DOP853", rtol=rtol, atol=atol)
     if not sol.success:
         raise RuntimeError(sol.message)
-    return sol.y.T.reshape(len(times), D, D)
+    out = sol.y.T.reshape(len(times), D, D).copy()
+    del sol
+    if D >= 128:
+        gc.collect()  # as in evolve: the solver's stage arrays sit in reference cycles
+    return out
 
 
 def expect(Xs: np.ndarray, O: np.ndarray) -> np.ndarray:
