@@ -1,0 +1,71 @@
+{
+  "wave 20": {
+    "F_loc >= |error| at all t": false,
+    "max (|error| - F_loc) / peak error": 3.906462929260341e-08,
+    "F_loc <= F_global at all t": true,
+    "sup F_loc / peak error": 1.3663071159406375,
+    "sup F_global / peak error": 4.942035542250109,
+    "F_loc(T) / F_loc(T/10)": 0.3010315881510194
+  },
+  "wave 40": {
+    "F_loc >= |error| at all t": true,
+    "max (|error| - F_loc) / peak error": 1.0537049632466948e-08,
+    "F_loc <= F_global at all t": true,
+    "sup F_loc / peak error": 1.1091095905200545,
+    "sup F_global / peak error": 3.805928321998628,
+    "F_loc(T) / F_loc(T/10)": 0.2716584954515608
+  },
+  "wave 80": {
+    "F_loc >= |error| at all t": true,
+    "max (|error| - F_loc) / peak error": 2.685769604861716e-09,
+    "F_loc <= F_global at all t": true,
+    "sup F_loc / peak error": 1.0505102395634285,
+    "sup F_global / peak error": 2.6402384054117127,
+    "F_loc(T) / F_loc(T/10)": 0.2338103968134597
+  },
+  "wave 160": {
+    "F_loc >= |error| at all t": true,
+    "max (|error| - F_loc) / peak error": 6.748602209084478e-10,
+    "F_loc <= F_global at all t": true,
+    "sup F_loc / peak error": 1.0362479398682938,
+    "sup F_global / peak error": 2.1165284300781595,
+    "F_loc(T) / F_loc(T/10)": 0.6946290599649358
+  },
+  "wall 10": {
+    "F_loc >= |error| at all t": true,
+    "max (|error| - F_loc) / peak error": 8.064597256494401e-24,
+    "F_loc <= F_global at all t": true,
+    "sup F_loc / peak error": 2.1376114104763295,
+    "sup F_global / peak error": 13.943547255048959,
+    "F_loc(T) / F_loc(T/10)": 0.9735329945926627
+  },
+  "wall 40": {
+    "F_loc >= |error| at all t": true,
+    "max (|error| - F_loc) / peak error": 7.554855317568605e-44,
+    "F_loc <= F_global at all t": true,
+    "sup F_loc / peak error": 2.024764981599915,
+    "sup F_global / peak error": 14.083927267264347,
+    "F_loc(T) / F_loc(T/10)": 2.2261828537190214
+  },
+  "Neel": {
+    "F_loc >= |error| at all t": false,
+    "max (|error| - F_loc) / peak error": 1.1919560551179522e-06,
+    "F_loc <= F_global at all t": true,
+    "sup F_loc / peak error": 2.0239192180222227,
+    "sup F_global / peak error": 4.194924464771311,
+    "F_loc(T) / F_loc(T/10)": 0.31167575961062083
+  },
+  "random": {
+    "F_loc >= |error| at all t": true,
+    "max (|error| - F_loc) / peak error": 0.0,
+    "F_loc <= F_global at all t": true,
+    "sup F_loc / peak error": 1.6273457264587445,
+    "sup F_global / peak error": 6.001244893567784,
+    "F_loc(T) / F_loc(T/10)": 0.47643445959049635
+  },
+  "acceptance": {
+    "local bound holds for every state": false,
+    "local bound never exceeds the global one": true,
+    "domain walls within 10x of the peak error": true
+  }
+}
