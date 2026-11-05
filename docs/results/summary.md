@@ -24,7 +24,8 @@
 | `tests/` | pytest (3단계 후 43개, 실데이터가 있을 때만 도는 테스트 1개 포함) |
 | `experiments/e1`–`e10`, `e3b`, `e6c` | 그림 생성 스크립트 (E6, E6c, E9 = BEQS 실데이터, E7 = 국소 Zeno bound, E8 = 세 분류, E10 = 다중극 forgetting) |
 | `results/*.png`, `*.pdf`, `*.json` | 그림(PNG은 팀용, PDF는 원고용)과 판정 결과 |
-| `paper/main.tex`, `paper/refs.bib`, `paper/notes/phase3-theory.md` | PRA 원고 초안 (revtex4-2)과 3단계 이론 노트. **로컬 전용, git 제외** |
+| `docs/theory/phase3-theory.md` | 3단계 이론 노트 (정리 B6, 따름정리 B6′, 정리 E). 2026-11-05에 로컬 `paper/notes/`에서 연구 노트로 옮김 |
+| `paper/main.tex`, `paper/refs.bib` | PRA 원고 초안 (revtex4-2). **로컬 전용, git 제외.** 2026-11-05부터 작성 중단(3단계 상태로 고정) |
 | `docs/data/beqs-data-notes.md` | BEQS 데이터 구조, 추론한 규약, 저자 확인 메일 초안 |
 | `data/fetch_beqs.py` | Zenodo 데이터 다운로드와 md5 검증 (원시 데이터는 git에 올리지 않음) |
 
@@ -166,16 +167,13 @@ python e5_free_fermion.py                # 약 1.5분
 2. ~~인증된 $\gamma_c^*$~~ **3단계에서 함(§7.2).** 구조화 모델 조건부로 γ_c ≥ 20.7 rad/s를 인증했다. 엄격한 γ_c*는 noise 때문에 0으로 무너진다(오목 함수의 Jensen bias).
 3. ~~51-ion 자화 분산 증가의 원인~~ **3단계에서 정리함(§7.2).** 강한 대칭은 깨져 있다(균형 섹터 변화율 2.10 ± 0.22 s⁻¹/ion). 이것이 class I/III인지 II인지는 z-기저 데이터만으로는 가릴 수 없고, γ_c scan으로 가린다(따름정리 B6′).
 4. ~~시간에 무관한 국소 bound~~ **3단계에서 부분 해결(§7.4).** Heisenberg forgetting형 bound로는 불가능함을 보였다(밀도는 √t). Hydrodynamic 구조를 쓰는 시간 균일 bound는 열린 문제로 남아 있다(PRX 방향).
-5. **원고 마무리.**
-   - 저자와 소속을 넣는다.
-   - 그림 일부를 Supplemental로 옮긴다(현재 10쪽).
-   - 공동 저자 검토 → arXiv → PRA 순서로 진행한다.
+5. **원고 마무리 — 보류 (사용자 결정, 2026-11-05).** 당분간 원고는 쓰지 않고 실험과 연구만 진행한다. 결과는 이 문서와 `docs/theory/`의 연구 노트에 기록한다. 원고(`paper/`, 로컬)는 3단계 상태(15쪽)로 둔다.
 6. **확장(PRX).** 정상상태 인증, 비마르코프(준정적) 노이즈, 의도적으로 설계한 집단 dephasing을 인증 자원으로 쓰는 방향, 실험 협업.
 7. **후속 논문(QNO).** 감쇠가 있는 trunk를 갖는 QuanONet. 이 논문의 bound를 물리 기반 기준선으로 쓴다.
 
 ## 7. 3단계 결과 (2026-11-04, 브랜치 `phase3-symmetry-classes`)
 
-이론 노트는 로컬 `paper/notes/phase3-theory.md`에만 둔다(git 제외). 공개 여부는 사용자가 정한다.
+이론 노트: `docs/theory/phase3-theory.md` (2026-11-05에 연구 노트로 옮김).
 
 ### 7.1 약한/강한 대칭과 소산 불완전함 (이론: 정리 B6, 따름정리 B6′ / 수치: E8)
 
