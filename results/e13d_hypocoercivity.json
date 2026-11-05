@@ -1,0 +1,16 @@
+{
+  "(1) ||e^{tM}||: max measured / bound over alpha and t": 0.8265671080240342,
+  "(2) ||Q e^{tM} e_0||: max measured / bound over alpha and t": 0.7058805913981309,
+  "(3) ||P e^{tM} Q||: max measured / bound over alpha and t": 0.705880591398131,
+  "(4) ||Q e^{tM} Q||: max measured / bound over alpha and t": 0.9995961431667276,
+  "(5) ||Q d_alpha e^{tM} e_0||: max measured / bound over alpha and t": 0.4678017936758474,
+  "(6) J/g = 0.25: max measured / bound over t": 0.4088944765305056,
+  "(6) J/g = 1: max measured / bound over t": 0.40151930391421253,
+  "lambda / true slowest rate: min, max over alpha": [
+    0.027865686096428324,
+    0.08330833749900478
+  ],
+  "acceptance": {
+    "all six estimates hold to 1e-9": true
+  }
+}
