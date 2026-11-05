@@ -1,0 +1,131 @@
+{
+  "Delta=1": {
+    "(H_O) slope of the Theorem A integrand on [1, 10]": -0.8846902318611103,
+    "(H_O) slope of ||grad c_u||_1 on [1, 10]": -0.895677170466173,
+    "A(10) / A(2)": 2.010090148266635,
+    "A(40) / A(10)": 1.2073633238804549,
+    "wall": {
+      "Lemma F.0: max |int G - error| / peak error": 0.00017979930072322303,
+      "F_abs >= |error| - 1% of peak at all t": true,
+      "sup F_abs / peak error": 1.0000123063855477,
+      "sup A / peak error (t <= 40)": 14.161811067892135,
+      "A / |error| at the peak time": 3.8777052067395403,
+      "F_abs(10) / F_abs(2)": 0.38406787676396686,
+      "F_abs(40) / F_abs(10)": 0.7228958948778822,
+      "(H_rho) slopes on [1, 10]: gradient, current, coherence": [
+        -0.59059665157363,
+        -0.5741422501654526,
+        -1.1001275942189244
+      ]
+    },
+    "Neel": {
+      "Lemma F.0: max |int G - error| / peak error": 0.00037342872213194905,
+      "F_abs >= |error| - 1% of peak at all t": true,
+      "sup F_abs / peak error": 1.0001146606957754,
+      "sup A / peak error (t <= 40)": 9.270432193395568,
+      "A / |error| at the peak time": 2.0786504593130757,
+      "F_abs(10) / F_abs(2)": 0.00684291163483675,
+      "F_abs(40) / F_abs(10)": 13.09963300775724,
+      "(H_rho) slopes on [1, 10]: gradient, current, coherence": [
+        -1.1194229979810204,
+        -1.2676491952609814,
+        -1.8082070806981014
+      ]
+    },
+    "lowest mode": {
+      "Lemma F.0: max |int G - error| / peak error": 7.656309552311897e-06,
+      "F_abs >= |error| - 1% of peak at all t": true,
+      "sup F_abs / peak error": 0.9999965632183594,
+      "sup A / peak error (t <= 40)": 85.20965922546641,
+      "A / |error| at the peak time": 81.01143792439332,
+      "F_abs(10) / F_abs(2)": 4.111373816150797,
+      "F_abs(40) / F_abs(10)": 1.0288510805872348,
+      "(H_rho) slopes on [1, 10]: gradient, current, coherence": [
+        -0.18766350406927912,
+        -0.18572621100196485,
+        -0.4137540822823402
+      ]
+    },
+    "random": {
+      "Lemma F.0: max |int G - error| / peak error": 0.0001756870981145966,
+      "F_abs >= |error| - 1% of peak at all t": true,
+      "sup F_abs / peak error": 0.9999850878468758,
+      "sup A / peak error (t <= 40)": 29.78787904347242,
+      "A / |error| at the peak time": 18.298730173608572,
+      "F_abs(10) / F_abs(2)": 0.870708251067854,
+      "F_abs(40) / F_abs(10)": 0.02620028939761637,
+      "(H_rho) slopes on [1, 10]: gradient, current, coherence": [
+        -1.0453219331375838,
+        -1.0722441783873837,
+        -1.9136867024032351
+      ]
+    }
+  },
+  "Delta=0": {
+    "(H_O) slope of the Theorem A integrand on [1, 10]": -0.9449012497088056,
+    "(H_O) slope of ||grad c_u||_1 on [1, 10]": -0.9523586024775604,
+    "A(10) / A(2)": 1.950245664237474,
+    "A(40) / A(10)": 1.1780306786850323,
+    "wall": {
+      "Lemma F.0: max |int G - error| / peak error": 9.106407871945605e-05,
+      "F_abs >= |error| - 1% of peak at all t": true,
+      "sup F_abs / peak error": 1.0000032539503836,
+      "sup A / peak error (t <= 40)": 12.331212199419745,
+      "A / |error| at the peak time": 3.6250300167144265,
+      "F_abs(10) / F_abs(2)": 0.37347673981311047,
+      "F_abs(40) / F_abs(10)": 0.763812080457686,
+      "(H_rho) slopes on [1, 10]: gradient, current, coherence": [
+        -0.5722326652964167,
+        -0.6016437902930811,
+        null
+      ]
+    },
+    "Neel": {
+      "Lemma F.0: max |int G - error| / peak error": 0.0002388966679404881,
+      "F_abs >= |error| - 1% of peak at all t": true,
+      "sup F_abs / peak error": 1.0001039753052197,
+      "sup A / peak error (t <= 40)": 8.254293789229958,
+      "A / |error| at the peak time": 1.9995495256660705,
+      "F_abs(10) / F_abs(2)": 0.07561777009790954,
+      "F_abs(40) / F_abs(10)": 2.2881805279531506,
+      "(H_rho) slopes on [1, 10]: gradient, current, coherence": [
+        -1.0563894129877043,
+        -1.197818234325245,
+        null
+      ]
+    },
+    "lowest mode": {
+      "Lemma F.0: max |int G - error| / peak error": 1.0251641975437764e-05,
+      "F_abs >= |error| - 1% of peak at all t": true,
+      "sup F_abs / peak error": 0.999996042072753,
+      "sup A / peak error (t <= 40)": 79.68230449040469,
+      "A / |error| at the peak time": 75.64237430393842,
+      "F_abs(10) / F_abs(2)": 3.7565709721943996,
+      "F_abs(40) / F_abs(10)": 0.919355146834976,
+      "(H_rho) slopes on [1, 10]: gradient, current, coherence": [
+        -0.21048101026414764,
+        -0.20798276963780096,
+        null
+      ]
+    },
+    "random": {
+      "Lemma F.0: max |int G - error| / peak error": 0.00015806509766378495,
+      "F_abs >= |error| - 1% of peak at all t": true,
+      "sup F_abs / peak error": 0.9999814563537208,
+      "sup A / peak error (t <= 40)": 26.897021311316383,
+      "A / |error| at the peak time": 15.926417728787136,
+      "F_abs(10) / F_abs(2)": 0.7657053197788287,
+      "F_abs(40) / F_abs(10)": 0.03443762590170887,
+      "(H_rho) slopes on [1, 10]: gradient, current, coherence": [
+        -1.066529581784385,
+        -1.1080191859212871,
+        null
+      ]
+    }
+  },
+  "acceptance": {
+    "Lemma F.0 reproduced to 1% of the peak error": true,
+    "(H_O) slopes at Delta = 1 within 0.15 of Delta = 0": true,
+    "F_abs grows less than A between t = 2 and 10, every state and Delta": false
+  }
+}
