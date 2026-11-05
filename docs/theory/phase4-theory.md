@@ -269,6 +269,12 @@ Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D
 **Remarks.**
 1. The constants are not optimized. The exponents match E13: −0.50 to −0.53 for a, m and ‖∇c_u‖₁, and −0.50 for γ and κ of the domain wall.
 2. With Proposition F.1, Corollary F-qf is a proven time-uniform bound for quasi-free fermions with dephasing. For interacting chains (H_O) and (H_ρ) remain hypotheses; E16 tests them at N = 10.
+3. *Interacting check (E16).* The dephased XXZ chain at the isotropic point Δ = 1 (N = 10, g = 4, exact) is compared with the quasi-free control Δ = 0 at the same size.
+   - Lemma F.0 holds to 4 × 10⁻⁴ of the peak error, which is the quadrature error.
+   - The integrand G(u, t − u) has a fixed sign on every diagonal. Hence F_abs equals the envelope of the true error to 10⁻⁴ for all four initial states and both Δ, while Theorem A is 8–85 times looser.
+   - On [1, 10] the exponents of the (H_O) factors differ from the control by 0.06, and those of the density gradient and the current by at most 0.07. The bond coherence is nonzero only at Δ = 1, where ZZ breaks the sublattice symmetry, and decays faster (exponents −1.1 to −1.9).
+   - The exponents (about −0.9) are steeper than the infinite-chain −1/2 because the slowest mode of the open chain decays at D(π/N)² ≈ 0.05 and everything saturates after t ≈ 20. The comparison between Δ = 1 and Δ = 0 at the same size is the meaningful one.
+   - The preregistered comparison of growth on [2, 10] (F_abs against A) fails for the lowest density mode, whose error itself grows until t ≈ 1/(Dk²) ≈ 20. That criterion did not test time uniformity.
 
 ## Data checks on the BEQS 10-ion data (E15, E11e)
 

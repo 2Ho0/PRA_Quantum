@@ -64,7 +64,7 @@ python e13b_local_pairing.py         # about 1.5 h on 3 cores; run after e13 (po
 python e13c_kspace_check.py          # seconds; run after e13 (exact k-space density propagator)
 python e14_shot_calibration.py       # about 25 min on 8 cores; run after e11 (shot-level calibration of the memory test)
 python e15_coverage.py               # about 2.5 h on 16 cores, resumable; run after e11 (certified and statistical bands against held-out data)
-python e16_interacting_forgetting.py # run any time (dephased XXZ chain, N = 10, exact)
+python e16_interacting_forgetting.py # about 4 h on 2 cores (memory-bound, slower next to other jobs); run any time (dephased XXZ chain, N = 10, exact)
 ```
 
 E8–E16 and E6c cache their results in `results/*.npz`; `--replot` redraws the figure from the cache. Parallel runs are memory-bound on Windows (commit limit): run the long scripts one or two at a time.
