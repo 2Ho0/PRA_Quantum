@@ -28,10 +28,21 @@ class ChainNoise:
     pi: np.ndarray
 
     def chi(self, q, t):
-        """chi_q(t) = E exp(-i q int_0^t xi) from the stationary state (Feynman-Kac for the chain)."""
+        """chi_q(t) = E exp(-i q int_0^t xi) from the stationary state (Feynman-Kac for the chain).
+
+        Evaluated as 1^T exp(t M) pi with M = W - i q diag(xi), through one eigendecomposition of M (exact
+        exponentials for W = 0); matrix exponentials are used where M is close to defective.
+        """
         ts = np.atleast_1d(np.asarray(t, float))
         M = self.W - 1j * q * np.diag(self.xi)
-        out = np.array([np.sum(expm(s * M) @ self.pi) for s in ts])
+        if not np.any(self.W):
+            out = np.exp(-1j * q * np.outer(ts, self.xi)) @ self.pi
+        else:
+            lam, V = np.linalg.eig(M)
+            if np.linalg.cond(V) < 1e8:
+                out = np.exp(np.outer(ts, lam)) @ (V.sum(axis=0) * np.linalg.solve(V, self.pi.astype(complex)))
+            else:
+                out = np.array([np.sum(expm(s * M) @ self.pi) for s in ts])
         return out if np.ndim(t) else out[0]
 
 
