@@ -1,0 +1,153 @@
+{
+  "summary": {
+    "all-orders bound >= exact leakage for every process, T2 and charge": true,
+    "bound/exact at t = 10, range per process": {
+      "white": [
+        7.514537519852812,
+        26.48169696148539
+      ],
+      "static": [
+        31.758301369759305,
+        230.72514348832772
+      ],
+      "OU": [
+        9.756311513856442,
+        60.82377451575097
+      ],
+      "telegraph": [
+        11.009685540491757,
+        69.89670169567546
+      ]
+    }
+  },
+  "cases": {
+    "white T2=0.5 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 7.514537519852812
+    },
+    "white T2=0.5 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 9.990805479700876
+    },
+    "white T2=1.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 9.206060288753665
+    },
+    "white T2=1.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 11.710941656524119
+    },
+    "white T2=2.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 12.926302774606766
+    },
+    "white T2=2.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 16.307036684259455
+    },
+    "white T2=4.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 19.42559411523915
+    },
+    "white T2=4.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 26.48169696148539
+    },
+    "static T2=0.5 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 79.8628409329555
+    },
+    "static T2=0.5 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 230.72514348832772
+    },
+    "static T2=1.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 46.336855270113425
+    },
+    "static T2=1.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 143.23399118070728
+    },
+    "static T2=2.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 32.438876961160304
+    },
+    "static T2=2.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 121.20100040564677
+    },
+    "static T2=4.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 31.758301369759305
+    },
+    "static T2=4.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 130.26531369380092
+    },
+    "OU T2=0.5 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 9.756311513856442
+    },
+    "OU T2=0.5 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 17.054650627925234
+    },
+    "OU T2=1.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 11.019664191736089
+    },
+    "OU T2=1.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 20.401048566483688
+    },
+    "OU T2=2.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 14.40781927353686
+    },
+    "OU T2=2.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 31.816347833994197
+    },
+    "OU T2=4.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 22.850856644159446
+    },
+    "OU T2=4.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 60.82377451575097
+    },
+    "telegraph T2=0.5 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 11.009685540491757
+    },
+    "telegraph T2=0.5 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 39.787359016124775
+    },
+    "telegraph T2=1.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 11.268246269445786
+    },
+    "telegraph T2=1.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 28.413344106419377
+    },
+    "telegraph T2=2.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 13.231703635176267
+    },
+    "telegraph T2=2.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 40.16342759554586
+    },
+    "telegraph T2=4.0 Q1": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 21.34671444007771
+    },
+    "telegraph T2=4.0 Q2": {
+      "bound holds at all t": true,
+      "bound / exact at t = 10": 69.89670169567546
+    }
+  }
+}

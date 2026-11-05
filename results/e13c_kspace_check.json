@@ -1,0 +1,26 @@
+{
+  "lambda=20": {
+    "max |crest density - (1/2 + 0.4 G_k)|": 2.16279530379504e-06,
+    "-p_+ (exact slow pole)": 0.21996658381757217,
+    "fitted late-time decay rate": 0.21996714710131612,
+    "D k^2 (diffusive estimate)": 0.19739208802178715
+  },
+  "lambda=40": {
+    "max |crest density - (1/2 + 0.4 G_k)|": 2.113399867553767e-06,
+    "-p_+ (exact slow pole)": 0.05052292036031658,
+    "fitted late-time decay rate": 0.05052291822725994,
+    "D k^2 (diffusive estimate)": 0.04934802200544679
+  },
+  "lambda=80": {
+    "max |crest density - (1/2 + 0.4 G_k)|": 1.931154961942738e-06,
+    "-p_+ (exact slow pole)": 0.012407639830570694,
+    "fitted late-time decay rate": 0.012407639619862685,
+    "D k^2 (diffusive estimate)": 0.012337005501361697
+  },
+  "lambda=160": {
+    "max |crest density - (1/2 + 0.4 G_k)|": 0.004097213239401265,
+    "-p_+ (exact slow pole)": 0.003088624838805676,
+    "fitted late-time decay rate": 0.003083965310354963,
+    "D k^2 (diffusive estimate)": 0.003084251375340424
+  }
+}
