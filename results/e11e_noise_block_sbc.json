@@ -1,0 +1,244 @@
+{
+  "measured (E11c), without / with memory: charged rms, non-PSD ions, flip rate": [
+    [
+      54.17750568887615,
+      10,
+      -30.5036661911571
+    ],
+    [
+      53.47373362180235,
+      10,
+      -45.511770575334396
+    ]
+  ],
+  "truth f=0, oracle defect": {
+    "without memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        26.143189340077285,
+        33.62398060536876
+      ],
+      "non-PSD ions median, min, max": [
+        10.0,
+        7,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -55.23721977997478,
+        -69.32739395557975,
+        -38.43390771194188
+      ]
+    },
+    "with memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        27.69677195692045,
+        34.195692269400304
+      ],
+      "non-PSD ions median, min, max": [
+        10.0,
+        7,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -56.121263572301345,
+        -72.25855015095807,
+        -39.66224699610038
+      ]
+    }
+  },
+  "truth f=0, white-truth defect": {
+    "without memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        26.143189340077285,
+        33.62398060536876
+      ],
+      "non-PSD ions median, min, max": [
+        10.0,
+        7,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -55.23721977997478,
+        -69.32739395557975,
+        -38.43390771194188
+      ]
+    },
+    "with memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        27.69677195692045,
+        34.195692269400304
+      ],
+      "non-PSD ions median, min, max": [
+        10.0,
+        7,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -56.121263572301345,
+        -72.25855015095807,
+        -39.66224699610038
+      ]
+    }
+  },
+  "truth f=0.5, oracle defect": {
+    "without memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        25.776632318379075,
+        31.89326662030622
+      ],
+      "non-PSD ions median, min, max": [
+        9.5,
+        7,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -55.885747415454446,
+        -69.01960937383461,
+        -34.442405284598514
+      ]
+    },
+    "with memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        26.86444839811106,
+        33.574233657664614
+      ],
+      "non-PSD ions median, min, max": [
+        9.5,
+        7,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -60.04509914771276,
+        -73.61929603529907,
+        -40.84858047148197
+      ]
+    }
+  },
+  "truth f=0.5, white-truth defect": {
+    "without memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        25.319367640111153,
+        31.470956771671307
+      ],
+      "non-PSD ions median, min, max": [
+        9.0,
+        7,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -54.955389940324984,
+        -68.09081425705865,
+        -33.530789548593035
+      ]
+    },
+    "with memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        26.62023604615395,
+        33.34156554265033
+      ],
+      "non-PSD ions median, min, max": [
+        9.5,
+        7,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -59.700918155314326,
+        -73.16734832413744,
+        -40.53732919622909
+      ]
+    }
+  },
+  "truth f=1, oracle defect": {
+    "without memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        23.954542061823965,
+        30.303228246631743
+      ],
+      "non-PSD ions median, min, max": [
+        9.0,
+        8,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -50.815328387342454,
+        -65.91425503011288,
+        -23.139741592902947
+      ]
+    },
+    "with memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        27.057284853184136,
+        32.74436209519761
+      ],
+      "non-PSD ions median, min, max": [
+        10.0,
+        8,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -60.25309464314961,
+        -74.27713149093113,
+        -34.198511407841686
+      ]
+    }
+  },
+  "truth f=1, white-truth defect": {
+    "without memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        23.12963747627822,
+        29.479190059247703
+      ],
+      "non-PSD ions median, min, max": [
+        9.0,
+        8,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -49.00392288203389,
+        -64.4304600961836,
+        -21.885461417977247
+      ]
+    },
+    "with memory": {
+      "charged rms median, 95th percentile (rad/s)": [
+        26.667356118973302,
+        32.36358395415386
+      ],
+      "non-PSD ions median, min, max": [
+        10.0,
+        8,
+        10
+      ],
+      "flip rate median, 5th, 95th percentile (rad/s)": [
+        -59.679024106591804,
+        -74.08471873941564,
+        -34.17166450192498
+      ]
+    }
+  },
+  "verdict": "in the data",
+  "post hoc, not part of the rule": {
+    "truth total flip rate, D5/2 emission (rad/s)": 0.8561643835616438,
+    "measured charged rms / synthetic median: min, max over truths and defects": [
+      2.072337272400904,
+      2.342341324823645
+    ],
+    "measured charged rms / synthetic 95th percentile: min, max": [
+      1.6112757833385618,
+      1.8378220561687555
+    ],
+    "measured flip rate inside the synthetic 5-95% range, per truth (oracle, white-truth defect)": {
+      "f=0": [
+        false,
+        false
+      ],
+      "f=0.5": [
+        false,
+        false
+      ],
+      "f=1": [
+        true,
+        true
+      ]
+    }
+  }
+}
