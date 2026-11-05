@@ -124,18 +124,42 @@ def adjoint_terms(O, ans: Ansatz):
     return terms
 
 
-def _spline_integrals(tw, vals):
+_GL_X, _GL_W = np.polynomial.legendre.leggauss(4)  # exact for (cubic spline) x (polynomial weight of degree <= 4)
+
+
+def _weighted_cumulative(knots, spline, weight):
+    """int_{knots[0]}^{knots[i]} weight(s) spline(s) ds for every knot, by 4-point Gauss-Legendre on each interval."""
+    a, b = knots[:-1], knots[1:]
+    s = 0.5 * (a + b)[:, None] + 0.5 * (b - a)[:, None] * _GL_X[None]
+    vals = spline(s)                                              # (n_int, 4) + value shape
+    w = (0.5 * (b - a)[:, None] * _GL_W[None] * weight(s)).reshape(s.shape + (1,) * (vals.ndim - 2))
+    pieces = (w * vals).sum(axis=1)
+    return np.concatenate([np.zeros((1,) + pieces.shape[1:]), np.cumsum(pieces, axis=0)])
+
+
+def _spline_integrals(tw, vals, weight=None):
     spline = CubicSpline(tw, vals)
-    return np.array([spline.integrate(0.0, t) for t in tw])
+    if weight is None:
+        return np.array([spline.integrate(tw[0], t) for t in tw])
+    return _weighted_cumulative(tw, spline, weight)
 
 
-def integral_system(obs, ans: Ansatz, series, times, t_learn, states=(0, 1), defect=None):
-    """Rows (state, O, t_m) for 0 < t_m <= t_learn; rows needing an unavailable series are dropped.
+def _window(times, t_start, t_learn):
+    return (times >= t_start - 1e-12) & (times <= t_learn + 1e-12)
 
-    `defect[(state, S)]` (from `quadrature_defect`) is added to the spline integral of <S>.
+
+def integral_system(obs, ans: Ansatz, series, times, t_learn, states=(0, 1), defect=None, t_start=0.0,
+                    weight=None):
+    """Rows (state, O, t_m) for t_start < t_m <= t_learn; rows needing an unavailable series are dropped.
+
+    A row reads <O>(t_m) - <O>(t_start) = sum_k theta_k int_{t_start}^{t_m} <G_k(O)>, so a window that starts after
+    t = 0 estimates the generator acting there. `defect[(state, S)]` (from `quadrature_defect` or
+    `trajectory_defect` for the same window and weight) is added to the spline integral of <S>.
+    With `weight` w(s), every column integral becomes int w(s) <G_k(O)>(s) ds (the rows are unchanged): a parameter
+    with time profile w, such as the slope b of a collective rate a + b s, is a weighted column.
     """
     times = np.asarray(times, float)
-    win = times <= t_learn + 1e-12
+    win = _window(times, t_start, t_learn)
     tw = times[win]
     cache = {}
 
@@ -146,7 +170,7 @@ def integral_system(obs, ans: Ansatz, series, times, t_learn, states=(0, 1), def
             if np.any(~np.isfinite(vals)):
                 cache[key] = np.full(len(tw), np.nan)
             else:
-                cache[key] = _spline_integrals(tw, vals) + (0.0 if defect is None else defect.get(key, 0.0))
+                cache[key] = _spline_integrals(tw, vals, weight) + (0.0 if defect is None else defect.get(key, 0.0))
         return cache[key]
 
     A, y, rows = [], [], []
@@ -174,45 +198,77 @@ def needed_strings(obs, ans: Ansatz) -> list:
     return sorted({S for O in obs for _, _, S in adjoint_terms(O, ans) if S != ()})
 
 
-def quadrature_defect(model, rho0s, strings, times, t_learn, n_sub=16, rtol=1e-9, atol=1e-11):
-    """defect[(s, S)][m] = int_0^{t_m} <S>_model exactly minus the spline quadrature of its grid samples.
+def refine(times, n_sub) -> np.ndarray:
+    """The grid `times` with every interval split into n_sub equal steps."""
+    times = np.asarray(times, float)
+    return np.concatenate([np.linspace(a, b, n_sub + 1)[:-1] for a, b in zip(times[:-1], times[1:])] + [times[-1:]])
+
+
+def model_trajectory(model, rho0s, strings, fine, rtol=1e-9, atol=1e-11) -> list:
+    """[(len(fine), len(strings)) array of <S>_model at the times `fine`, for each initial state]; starts at t = 0."""
+    idx, ph = expectation_tables(strings, model.H.shape[0].bit_length() - 1)
+    out = []
+    for rho in rho0s:
+        if fine[0] > 0.0:
+            rho = evolve(model, rho, [0.0, fine[0]], rtol=rtol, atol=atol)[-1]
+        vals = [expectations(rho, idx, ph)]
+        for a, b in zip(fine[:-1], fine[1:]):
+            rho = evolve(model, rho, [0.0, b - a], rtol=rtol, atol=atol)[-1]
+            vals.append(expectations(rho, idx, ph))
+        out.append(np.array(vals))
+    return out
+
+
+def trajectory_defect(fine, vals, strings, times, t_learn, t_start=0.0, weight=None) -> dict:
+    """defect[(s, S)][m] = int_{t_start}^{t_m} <S>_model minus the spline quadrature of its samples on `times`.
+
+    `vals` is the output of `model_trajectory` on a grid `fine` that contains every point of `times` in the window;
+    the integral over `fine` stands for the exact one. One trajectory thus serves every window inside it.
+    With `weight`, both integrals carry w(s), matching `integral_system(..., weight=w)`.
+    """
+    times, fine = np.asarray(times, float), np.asarray(fine, float)
+    tw = times[_window(times, t_start, t_learn)]
+    fw = _window(fine, tw[0], tw[-1])
+    at = np.searchsorted(fine, tw - 1e-12)
+    assert np.allclose(fine[at], tw, atol=1e-12, rtol=0.0), "the fine grid must contain the window's grid points"
+    sub = np.searchsorted(fine[fw], tw - 1e-12)
+    defect = {}
+    for s, v in enumerate(vals):
+        exact = CubicSpline(fine[fw], v[fw], axis=0)
+        coarse = CubicSpline(tw, v[at], axis=0)
+        if weight is None:
+            diff = np.array([exact.integrate(tw[0], t) - coarse.integrate(tw[0], t) for t in tw])
+        else:
+            diff = _weighted_cumulative(fine[fw], exact, weight)[sub] - _weighted_cumulative(tw, coarse, weight)
+        for k, S in enumerate(strings):
+            defect[(s, S)] = diff[:, k]
+    return defect
+
+
+def quadrature_defect(model, rho0s, strings, times, t_learn, n_sub=16, rtol=1e-9, atol=1e-11, t_start=0.0):
+    """defect[(s, S)][m] = int_{t_start}^{t_m} <S>_model exactly minus the spline quadrature of its grid samples.
 
     The model is integrated on a grid refined n_sub times; adding the defect to the spline integrals of the
     data removes the discretisation bias of a coarse time grid to the extent that the model is accurate.
     """
     times = np.asarray(times, float)
-    tw = times[times <= t_learn + 1e-12]
-    fine = np.concatenate([np.linspace(a, b, n_sub + 1)[:-1] for a, b in zip(tw[:-1], tw[1:])] + [tw[-1:]])
-    coarse_at = np.searchsorted(fine, tw)
-    idx, ph = expectation_tables(strings, model.H.shape[0].bit_length() - 1)
-    defect = {}
-    for s, rho in enumerate(rho0s):
-        vals = [expectations(rho, idx, ph)]
-        for a, b in zip(fine[:-1], fine[1:]):
-            rho = evolve(model, rho, [0.0, b - a], rtol=rtol, atol=atol)[-1]
-            vals.append(expectations(rho, idx, ph))
-        vals = np.array(vals)                                   # (n_fine, n_strings)
-        exact = CubicSpline(fine, vals, axis=0)
-        exact_int = np.array([exact.integrate(0.0, t) for t in tw])
-        coarse = CubicSpline(tw, vals[coarse_at], axis=0)
-        coarse_int = np.array([coarse.integrate(0.0, t) for t in tw])
-        for k, S in enumerate(strings):
-            defect[(s, S)] = exact_int[:, k] - coarse_int[:, k]
-    return defect
+    fine = refine(times[_window(times, t_start, t_learn)], n_sub)
+    vals = model_trajectory(model, rho0s, strings, fine, rtol=rtol, atol=atol)
+    return trajectory_defect(fine, vals, strings, times, t_learn, t_start=t_start)
 
 
-def learn(series, ans: Ansatz, obs, times, t_learn, rho0s, n_iter=3, states=(0, 1), **defect_options):
-    """Integral-method fit followed by n_iter defect-corrected refits; returns the estimate of every round.
+def learn(series, ans: Ansatz, obs, times, t_learn, rho0s, n_iter=3, states=(0, 1), t_start=0.0, **defect_options):
+    """Integral-method fit on (t_start, t_learn] followed by n_iter defect-corrected refits; every round's estimate.
 
     defect_options (n_sub, rtol, atol) are passed to `quadrature_defect`.
     """
-    A, y, _ = integral_system(obs, ans, series, times, t_learn, states)
+    A, y, _ = integral_system(obs, ans, series, times, t_learn, states, t_start=t_start)
     thetas = [fit(A, y)]
     strings = needed_strings(obs, ans)
     for _ in range(n_iter):
         defect = quadrature_defect(to_openmodel(thetas[-1], ans, sparse=True), rho0s, strings, times, t_learn,
-                                   **defect_options)
-        A, y, _ = integral_system(obs, ans, series, times, t_learn, states, defect=defect)
+                                   t_start=t_start, **defect_options)
+        A, y, _ = integral_system(obs, ans, series, times, t_learn, states, defect=defect, t_start=t_start)
         thetas.append(fit(A, y))
     return thetas
 

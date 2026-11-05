@@ -95,6 +95,20 @@ def evolve(model: OpenModel, X0: np.ndarray, times, heisenberg: bool = False,
     return out
 
 
+def evolve_td(model: OpenModel, X0: np.ndarray, times, Gamma_td: np.ndarray, rate,
+              rtol: float = 1e-10, atol: float = 1e-12) -> np.ndarray:
+    """Schrodinger-picture evolution under L + rate(t) D_{Gamma_td}: a time-dependent sigma^z dephasing on top of L."""
+    times = np.asarray(times, dtype=float)
+    D = X0.shape[0]
+    W = OpenModel(H=np.zeros((D, D)), Gamma=Gamma_td, emission=np.zeros(model.n))._elementwise
+    y0 = np.asarray(X0, dtype=complex).ravel()
+    sol = solve_ivp(lambda t, y: (lindblad_rhs(model, y.reshape(D, D)) + rate(t) * W * y.reshape(D, D)).ravel(),
+                    (0.0, times[-1]), y0, t_eval=times, method="DOP853", rtol=rtol, atol=atol)
+    if not sol.success:
+        raise RuntimeError(sol.message)
+    return sol.y.T.reshape(len(times), D, D)
+
+
 def expect(Xs: np.ndarray, O: np.ndarray) -> np.ndarray:
     """Tr[O X_t] for each t."""
     return np.einsum("ij,tji->t", O, Xs)

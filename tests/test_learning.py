@@ -330,3 +330,88 @@ def test_fit_psd_rejects_rank_deficient_profile():
     A[:, 1] = A[:, 0]  # two Hamiltonian columns made identical
     with pytest.raises(ValueError, match="rank"):
         fit_psd(A, A @ random_theta(ans, rng), ans)
+
+
+# --- learning windows that start after t = 0 (time-resolved generators) ------------------------------------
+
+def late_window_problem(times):
+    n = 4
+    rng = np.random.default_rng(3)
+    ans = xy_ansatz(n)
+    theta = random_theta(ans, rng)
+    bloch_states = [[(np.sin(1.04), 0.0, -np.cos(1.04))] * n, [(0.0, 1.0, 0.0)] * n]
+    series = exact_series(to_openmodel(theta, ans), n, bloch_states, times, all_strings(n, 3))
+    return ans, theta, series, [product_state(b) for b in bloch_states]
+
+
+def test_window_fit_recovers_parameters_on_late_window():
+    ans, theta, series, _ = late_window_problem(np.linspace(0.0, 3.0, 301))
+    A, y, rows = integral_system(all_strings(4, 2), ans, series, np.linspace(0.0, 3.0, 301), 3.0, t_start=1.5)
+    assert min(t for _, _, t in rows) > 1.5 + 1e-9
+    assert np.abs(fit(A, y) - theta).max() / np.abs(theta).max() < 1e-3
+
+
+def test_window_defect_correction_on_late_window():
+    times = np.arange(0.0, 3.01, 0.5)
+    ans, theta, series, rho0s = late_window_problem(times)
+    thetas = learn(series, ans, all_strings(4, 2), times, 3.0, rho0s, n_iter=3, t_start=1.0)
+    errs = [np.abs(t - theta).max() / np.abs(theta).max() for t in thetas]
+    print(f"late window [1, 3], dt = 0.5: max relative parameter error per iteration {np.round(errs, 4)}")
+    assert errs[0] > 0.05 and errs[-1] < 0.01
+
+
+def test_unit_weight_reproduces_the_unweighted_system():
+    times = np.arange(0.0, 3.01, 0.5)
+    ans, _, series, _ = late_window_problem(times)
+    A, y, rows = integral_system(all_strings(4, 2), ans, series, times, 3.0, t_start=1.0)
+    Aw, yw, rows_w = integral_system(all_strings(4, 2), ans, series, times, 3.0, t_start=1.0,
+                                     weight=lambda s: np.ones_like(s))
+    assert rows_w == rows and np.array_equal(yw, y)
+    assert np.abs(Aw - A).max() < 1e-12
+
+
+def test_time_weighted_column_recovers_a_growing_collective_rate():
+    """gamma_c(t) = a + b t (white plus quasi-static noise) is linear in (a, b): weight the collective column by t."""
+    from qerr.lindblad import evolve_td
+
+    n = 3
+    rng = np.random.default_rng(8)
+    ans = xy_ansatz(n)
+    theta = random_theta(ans, rng)
+    a, b = 0.2, 0.4
+    times = np.linspace(0.0, 1.5, 151)
+    model = to_openmodel(theta, ans)
+    mats = {p: pmatrix(p, n) for p in all_strings(n, 3)}
+    series = {}
+    for s, bloch in enumerate([[(np.sin(1.04), 0.0, -np.cos(1.04))] * n, [(0.0, 1.0, 0.0)] * n]):
+        rhos = evolve_td(model, product_state(bloch), times, np.ones((n, n)), lambda t: a + b * t)
+        for p, P in mats.items():
+            series[(s, p)] = np.einsum("ij,tji->t", P, rhos).real
+    obs = all_strings(n, 2)
+    A, y, _ = integral_system(obs, ans, series, times, 1.5)
+    Aw, _, _ = integral_system(obs, ans, series, times, 1.5, weight=lambda s: s)
+    k0, nd = len(ans.h_terms), len(ans.deph_pairs)
+    est = fit(np.column_stack([A, Aw[:, k0:k0 + nd].sum(axis=1)]), y)
+    truth = theta.copy()
+    truth[k0:k0 + nd] += a  # the constant part of the collective rate adds a to every Gamma_ij
+    assert abs(est[-1] - b) < 1e-3
+    assert np.abs(est[:-1] - truth).max() / np.abs(truth).max() < 1e-3
+
+
+def test_trajectory_defect_matches_quadrature_defect():
+    from qerr.learning import model_trajectory, needed_strings, quadrature_defect, refine, trajectory_defect
+
+    n = 3
+    ans = xy_ansatz(n)
+    model = to_openmodel(random_theta(ans, np.random.default_rng(5)), ans)
+    rho0s = [product_state([(0.0, 1.0, 0.0)] * n)]
+    strings = needed_strings(all_strings(n, 2), ans)
+    times = np.arange(0.0, 3.01, 0.5)
+    direct = quadrature_defect(model, rho0s, strings, times, 2.5, n_sub=8, t_start=1.0)
+    fine = refine(times, 8)
+    via = trajectory_defect(fine, model_trajectory(model, rho0s, strings, fine), strings, times, 2.5, t_start=1.0)
+    assert set(via) == set(direct)
+    assert max(np.abs(direct[k] - via[k]).max() for k in direct) < 1e-7
+    unit = trajectory_defect(fine, model_trajectory(model, rho0s, strings, fine), strings, times, 2.5, t_start=1.0,
+                             weight=lambda s: np.ones_like(s))
+    assert max(np.abs(unit[k] - via[k]).max() for k in via) < 1e-12
