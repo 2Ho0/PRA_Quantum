@@ -25,7 +25,7 @@ This repository holds theory, numerics and a manuscript draft (target: Physical 
 | `docs/superpowers/` | Design specs and execution plans |
 | `src/qerr/` | Library: Lindblad solver, charge sectors, bounds, free fermions, quadratic-operator engine, Pauli algebra, Lindbladian learning (windows, weighted columns), ion-data I/O, classical collective noise (`noise`), two-sided pairing (`hydro`), shot-level sampling (`shots`) |
 | `tests/` | pytest suite |
-| `experiments/` | E1–E16 figure scripts (E6, E6c, E9, E11, E11b–E11e, E14, E15 use the BEQS data) |
+| `experiments/` | E1–E16 figure scripts and their lettered follow-ups (E6, E6c, E9, E11, E11b–E11e, E14, E15 use the BEQS data) |
 | `results/` | Figures (PNG and PDF) and JSON acceptance checks |
 | `paper/` | Manuscript draft, kept locally only and not committed (this repository is public); writing is paused, the research notes in `docs/` are the record |
 | `data/fetch_beqs.py` | Downloads the BEQS raw data (Zenodo, CC BY 4.0) into `data/raw/` and checks the md5 checksums |
@@ -62,6 +62,7 @@ python e12b_all_orders.py            # seconds; run after e12 (Markov-conditione
 python e13_two_sided_bound.py        # about 30 min on 4 cores (N = 400 to t = 1500)
 python e13b_local_pairing.py         # about 1.5 h on 3 cores; run after e13 (pointwise pairing in Corollary F-qf)
 python e13c_kspace_check.py          # seconds; run after e13 (exact k-space density propagator)
+python e13d_hypocoercivity.py        # about 30 s (hypocoercive estimates behind Proposition F.1)
 python e14_shot_calibration.py       # about 25 min on 8 cores; run after e11 (shot-level calibration of the memory test)
 python e15_coverage.py               # about 2.5 h on 16 cores, resumable; run after e11 (certified and statistical bands against held-out data)
 python e16_interacting_forgetting.py # about 4 h on 2 cores (memory-bound, slower next to other jobs); run any time (dephased XXZ chain, N = 10, exact)

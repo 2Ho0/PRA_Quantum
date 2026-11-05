@@ -246,7 +246,7 @@ For a product initial state only the density mode is nonzero at t = 0: C_r(k, 0)
 Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D for all t. This bound is time-uniform and assumes nothing.
 
 *Proof sketch.*
-1. *Fourier bounds.* On the slow region |a_k| ≤ g/4 the residue is at most 2/√3 and −p_+(k) ≥ 2a_k²/g ≥ c k², so Lemma F.2 gives |G_k(t)| ≤ C e^{−c k² t}. On the rest of the Brillouin zone every singularity has Re p ≤ −(1 − √3/2) g, which gives |G_k(t)| ≤ C e^{−c′ g t}. Hence ∫|G_k(t)| dk/2π ≤ C (1 + Dt)^{−1/2}. The second estimate must be uniform in k: the residue g/ν_k diverges where the pole meets a branch point (2|a_k| = g), and the cut contribution cancels the divergence. This is the step a full proof has to write out.
+1. *Fourier bounds.* On the slow region |a_k| ≤ g/4 the residue is at most 2/√3 and −p_+(k) ≥ 2a_k²/g ≥ c k², so Lemma F.2 gives |G_k(t)| ≤ C e^{−c k² t}. On the rest of the Brillouin zone every singularity has Re p ≤ −(1 − √3/2) g, which gives |G_k(t)| ≤ C e^{−c′ g t}. Hence ∫|G_k(t)| dk/2π ≤ C (1 + Dt)^{−1/2}. The second estimate must be uniform in k: the residue g/ν_k diverges where the pole meets a branch point (2|a_k| = g), and the cut contribution cancels the divergence. The section after this sketch proves the uniform estimate by hypocoercivity instead.
 2. *State side.* n(s) = K_s ∗ n_0 with K̂_s(k) = G_k(s). Then ∇n(s) = K_s ∗ ∇n_0, so γ(s) ≤ ‖K_s‖_∞ V(n_0) ≤ V(n_0) ∫|G_k(s)| dk/2π.
    - In the slow-pole part, the m-th coherence is the density times μ_k(p_+)^m, and μ_k(p_+) = (g − ν_k)/(2a_k) = O((J/g)|sin(k/2)|). One factor of sin(k/2) turns n̂_0 into the transform of ∇n_0, so κ(s) obeys the same bound. The fast part is O(e^{−c′gs}).
 3. *Observable side.* The Heisenberg dynamics of w(u) is the same chain with a_k → −a_k, and G_k is even in a_k. It starts from w(0) = e_C e_Cᵀ; measure positions from C.
@@ -255,16 +255,34 @@ Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D
    - M = i[δh, w(u)] consists of differences of w along the diagonal (the density gradient, bounded the same way) and the components w_{±m}, m ≥ 1. Their ℓ¹ norms carry (CJ/g)^m and sum to the same order.
 4. Insert into Corollary F-qf and use ∫_0^t (1 + Du)^{−1/2} (1 + D(t − u))^{−1/2} du ≤ π/D. □
 
-**Closing the gap in step 1 (outline).** The uniform estimate does not need the pole–cut split; hypocoercivity gives it directly.
-- In time units 1/g and with α = a_k/g, the r-chain reads dc/dτ = −α(S − S*)c − (1 − Π)c. Here S is the shift in r and Π projects onto r = 0. The transport T = α(S − S*) is skew-adjoint and the collision part L = −(1 − Π) is symmetric.
-- The conditions of Dolbeault, Mouhot and Schmeiser (Trans. AMS 367, 3807 (2015)) hold with constants that do not depend on α:
-  - microscopic coercivity −⟨Lc, c⟩ = ‖(1 − Π)c‖², so λ_m = 1;
-  - macroscopic coercivity ‖TΠc‖² = 2α²|c_0|², so λ_M = 2α²;
-  - ΠTΠ = 0;
-  - the auxiliary operator A = (1 + (TΠ)*(TΠ))^{−1}(TΠ)* = ΠT*/(1 + 2α²) gives ‖AT(1 − Π)‖ ≤ 4α²/(1 + 2α²) ≤ 2 and ‖AL‖ ≤ 2|α|/(1 + 2α²) ≤ 1/√2.
-- Their theorem then gives ‖c(t)‖_2 ≤ C e^{−λ_k t} ‖c(0)‖_2 with λ_k ≥ c min(g, a_k²/g), uniformly in k and with universal C, c. Since a_k² ≥ (4J²/π²) k² on the Brillouin zone, ∫|G_k(t)| dk/2π ≤ C (1 + Dt)^{−1/2} follows without Lemma F.2's decomposition.
-- The k-derivative needed in step 3 follows by Duhamel's formula: ∂_k c obeys the same chain with the source −(a_k′/g)(S − S*)c, so ‖∂_k c(t)‖ ≤ C′ (J/g) t e^{−λ_k t}.
-- Still to be written out: the factor sin(k/2) carried by the coherences, which needs a Duhamel bound for c_{±1} driven by a_k c_0.
+**Closing the gap in step 1 (proof; checked by E13d).** The uniform estimate does not need the pole–cut split; hypocoercivity gives it with explicit constants.
+- *Setting.* In time units 1/g and with α = a_k/g, the r-chain reads ċ = Mc with M = L − T, L = −(1 − Π) and T = α(S − S*). Here S is the shift r → r + 1, Π projects onto r = 0 and Q = 1 − Π. T is skew-adjoint and L is symmetric; ΠTΠ = 0, ‖TΠ‖ = ‖ΠT‖ = √2|α| and ‖T‖ ≤ 2|α|.
+- *Modified energy.* Take the auxiliary operator of Dolbeault, Mouhot and Schmeiser (Trans. AMS 367, 3807 (2015)), A = (1 + (TΠ)*(TΠ))^{−1}(TΠ)* = ΠT*/(1 + 2α²). Write w = α²/(1 + 2α²), a = ‖Qc‖, b = |c_0| and H = ½‖c‖² + ε Re⟨Ac, c⟩. Since A maps into ΠH and LA = 0,
+  dH/dt = −a² + ε Re[⟨ALc, c⟩ − ⟨ATΠc, c⟩ − ⟨ATQc, c⟩ + ⟨TAc, c⟩].
+  - ATΠ = 2wΠ, so the second term is −2w b².
+  - ⟨TAc, c⟩ = ‖ΠTQc‖²/(1 + 2α²) ≤ 2w a².
+  - |⟨ALc, c⟩| + |⟨ATQc, c⟩| ≤ κ a b with κ = √2|α|(1 + 2|α|)/(1 + 2α²). Young's inequality gives κab ≤ w b² + (κ²/4w) a², and κ²/4w = (1 + 2|α|)²/(2(1 + 2α²)) ≤ 3/2.
+  - Hence dH/dt ≤ −(1 − 5ε/2) a² − ε w b², and ε = 1/5 gives dH/dt ≤ −a²/2 − (w/5) b².
+  - The cross term is O(|α|) because ‖AL‖ = ‖ΠTQ‖/(1 + 2α²) = O(|α|). That is what lets ε stay independent of α. With O(1) constants in the cross term, the general DMS rate would come out O(α⁴) instead of O(α²).
+- *Decay.* ‖A‖ = √2|α|/(1 + 2α²) ≤ 1/2, so (2/5)‖c‖² ≤ H ≤ (3/5)‖c‖² and dH/dt ≤ −(w/5)‖c‖² ≤ −(w/3)H. Therefore
+  ‖e^{tM}‖ ≤ √(3/2) e^{−λt},  λ = α²/(6(1 + 2α²)) ≥ min(α², 1)/18.
+  In physical units λ_k ≥ min(a_k²/g, g)/18, uniformly in k, with explicit constants.
+- *Step 1.* |G_k(t)| ≤ ‖e^{tM}‖, and a_k² ≥ 4J²k²/π² for |k| ≤ π. Splitting off the part of the zone where a_k > g gives
+  ∫|G_k(t)| dk/2π ≤ √(3/2) [min(1, (3/2)√(π/(Dt))) + e^{−gt/18}] ≤ C(1 + Dt)^{−1/2},
+  with C depending only on g/J.
+- *Coherences carry sin(k/2) (step 2).* Qc obeys d(Qc)/dt = (−1 − QTQ)Qc − c_0 TΠe_0, and QTQ is skew. Hence
+  ‖Q e^{tM} e_0‖ ≤ √2|α| ∫_0^t e^{−(t−s)} |c_0(s)| ds ≤ 2|α| e^{−λt}.
+  - By duality (M^T is the chain at −α), ‖Π e^{tM} Q‖ ≤ 2|α| e^{−λt}, and then ‖Q e^{tM} Q‖ ≤ e^{−t} + 4α² e^{−λt}.
+  - Since |α|·|n̂_0(k)| = (J/g)|(∇n_0)^(k)| ≤ (J/g)V(n_0), the bond coherence of the state obeys κ(s) ≤ (2J/g) V(n_0) ∫ e^{−λ_k s} dk/2π ≤ C V(n_0)(1 + Ds)^{−1/2}.
+- *k-derivative (step 3).* d = ∂_α c obeys ḋ = Md − (S − S*)c with d(0) = 0. The source has |Π(S − S*)c| ≤ √2‖Qc‖ ≤ 2√2|α| e^{−λt} and ‖Q(S − S*)c‖ ≤ √6 e^{−λt}. Propagating each part with the block estimates above gives
+  ‖Q ∂_α e^{tM} e_0‖ ≤ (3 + 16α²t) e^{−λt}.
+  - The Duhamel bound without the split by sector, of order t e^{−λt}, does not decay in L²(dk). The outline in an earlier version of this note used it.
+  - With the factor α²t, and since λ ≥ α²/18 for |α| ≤ 1, one gets |∂_kσ_u(k)| ≤ C(J/g) e^{−λ_k u/2}. Hence ‖σ_u′‖_2 ≤ C(J/g)(1 + Du)^{−1/4} and ‖σ_u‖_2 ≤ C(J/g)(1 + Du)^{−3/4}, as step 3 requires.
+- *Numerical check (E13d).* The estimates hold for every truncation |r| ≤ R, so the truncated chain can be checked directly. Exact matrix exponentials were used for α from 0.01 to 10 and t up to 15/λ.
+  - The largest ratios of measured to bound for the five operator estimates are 0.83, 0.71, 0.71, 0.9996 and 0.47. The value 0.9996 is reached as t → 0, where the e^{−t} term is exact.
+  - The integrated estimate reaches 0.40–0.41 at J/g = 0.25 and 1.
+  - λ is 3–8% of the slowest rate of the infinite chain: the constants are conservative, the scaling is right.
+- *Still open.* m(u) needs the ℓ¹ norm over the coherence index r as well as over x. The estimates above control the coherences only in ℓ²(r). A possible route: for |α| ≤ α_0 < 1/2, the exact slow-pole formula of Lemma F.2 gives the factors μ^{|r|} with |μ| ≤ 2|α|, and the residue is bounded there. For |α| > α_0 the decay rate is bounded below (λ ≥ α_0²/18), and a bound on how fast the coherences spread in r should suffice. This is not written out.
 
 **Remarks.**
 1. The constants are not optimized. The exponents match E13: −0.50 to −0.53 for a, m and ‖∇c_u‖₁, and −0.50 for γ and κ of the domain wall.
