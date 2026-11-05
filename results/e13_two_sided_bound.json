@@ -1,0 +1,184 @@
+{
+  "observable factors: exponent of a(u), m(u), f(u), ||grad c_u||_1 for u in [20, 800]": [
+    -0.5048178202626666,
+    -0.5330841170409368,
+    -0.5042519445752611,
+    -0.5019463447066546
+  ],
+  "wave 20": {
+    "max_t |error at C|": 0.0032570701294812876,
+    "at t": 5.696615789496701,
+    "F(T/10), F(T)": [
+      0.0011421303856516548,
+      0.0003417791800968145
+    ],
+    "Theorem-A bound (T/10), (T)": [
+      0.07758922631001446,
+      0.21113840617725918
+    ],
+    "sup_t F / sup_t |error|": 4.942035542250109,
+    "Theorem A(T) / sup_t |error|": 64.82464232690148,
+    "Theorem A at the time of the peak error / peak error": 8.351691302752776,
+    "state-factor exponents gamma, kappa for s in [20, 800]": [
+      -1.1554079414499854,
+      -1.169135899547933
+    ]
+  },
+  "wave 40": {
+    "max_t |error at C|": 0.0030308534753547,
+    "at t": 20.61521784616662,
+    "F(T/10), F(T)": [
+      0.002112901545048084,
+      0.0005781923128149303
+    ],
+    "Theorem-A bound (T/10), (T)": [
+      0.07758922631001446,
+      0.21113840617725918
+    ],
+    "sup_t F / sup_t |error|": 3.805928321998628,
+    "Theorem A(T) / sup_t |error|": 69.66301996916881,
+    "Theorem A at the time of the peak error / peak error": 12.719866704620946,
+    "state-factor exponents gamma, kappa for s in [20, 800]": [
+      -2.0648442402643012,
+      -2.0736899325864577
+    ]
+  },
+  "wave 80": {
+    "max_t |error at C|": 0.002975665974891628,
+    "at t": 81.28248905888121,
+    "F(T/10), F(T)": [
+      0.005387533668810287,
+      0.0011015438142517688
+    ],
+    "Theorem-A bound (T/10), (T)": [
+      0.07758922631001446,
+      0.21113840617725918
+    ],
+    "sup_t F / sup_t |error|": 2.6402384054117127,
+    "Theorem A(T) / sup_t |error|": 70.95500904967962,
+    "Theorem A at the time of the peak error / peak error": 20.667559988524143,
+    "state-factor exponents gamma, kappa for s in [20, 800]": [
+      -1.7920622215680069,
+      -1.7928743000327378
+    ]
+  },
+  "wave 160": {
+    "max_t |error at C|": 0.0029615175257897697,
+    "at t": 320.4837842077751,
+    "F(T/10), F(T)": [
+      0.0062182896898941055,
+      0.003946171286236875
+    ],
+    "Theorem-A bound (T/10), (T)": [
+      0.07758922631001446,
+      0.21113840617725918
+    ],
+    "sup_t F / sup_t |error|": 2.1165284300781595,
+    "Theorem A(T) / sup_t |error|": 71.29399179258726,
+    "Theorem A at the time of the peak error / peak error": 36.049860081315934,
+    "state-factor exponents gamma, kappa for s in [20, 800]": [
+      -0.42687003613088337,
+      -0.42708168161848625
+    ]
+  },
+  "wall 10": {
+    "max_t |error at C|": 0.0024580850607256455,
+    "at t": 26.662577344959313,
+    "F(T/10), F(T)": [
+      0.013115350808304872,
+      0.010867259442566817
+    ],
+    "Theorem-A bound (T/10), (T)": [
+      0.07758922631001446,
+      0.21113840617725918
+    ],
+    "sup_t F / sup_t |error|": 13.943547255048959,
+    "Theorem A(T) / sup_t |error|": 85.89548407040459,
+    "Theorem A at the time of the peak error / peak error": 16.992530943577425,
+    "state-factor exponents gamma, kappa for s in [20, 800]": [
+      -0.5017606955284032,
+      -0.5046342647351652
+    ]
+  },
+  "wall 40": {
+    "max_t |error at C|": 0.002433584365407998,
+    "at t": 414.49591985922024,
+    "F(T/10), F(T)": [
+      0.013115350809508427,
+      0.010866835735977645
+    ],
+    "Theorem-A bound (T/10), (T)": [
+      0.07758922631001446,
+      0.21113840617725918
+    ],
+    "sup_t F / sup_t |error|": 14.083927267264347,
+    "Theorem A(T) / sup_t |error|": 86.76025749444736,
+    "Theorem A at the time of the peak error / peak error": 49.0065830531598,
+    "state-factor exponents gamma, kappa for s in [20, 800]": [
+      -0.5017606966913752,
+      -0.504634265934864
+    ]
+  },
+  "Neel": {
+    "max_t |error at C|": 0.005651159669352035,
+    "at t": 0.6129530316173446,
+    "F(T/10), F(T)": [
+      0.0010509834342004158,
+      0.0003265041772262086
+    ],
+    "Theorem-A bound (T/10), (T)": [
+      0.07758922631001446,
+      0.21113840617725918
+    ],
+    "sup_t F / sup_t |error|": 4.194924464771311,
+    "Theorem A(T) / sup_t |error|": 37.36196082413443,
+    "Theorem A at the time of the peak error / peak error": 1.4395642090331087,
+    "state-factor exponents gamma, kappa for s in [20, 800]": [
+      -0.9930570443130308,
+      -0.9986362193994405
+    ]
+  },
+  "random": {
+    "max_t |error at C|": 0.0057771764096904155,
+    "at t": 1.8686246059953382,
+    "F(T/10), F(T)": [
+      0.0044918845481852045,
+      0.0014172154453792195
+    ],
+    "Theorem-A bound (T/10), (T)": [
+      0.07758922631001446,
+      0.21113840617725918
+    ],
+    "sup_t F / sup_t |error|": 6.001244893567784,
+    "Theorem A(T) / sup_t |error|": 36.54698960258573,
+    "Theorem A at the time of the peak error / peak error": 3.166718045632584,
+    "state-factor exponents gamma, kappa for s in [20, 800]": [
+      -1.1360741512062156,
+      -1.1395384491628517
+    ]
+  },
+  "wave lambda -> sup F / sup |error|": [
+    4.942035542250109,
+    3.805928321998628,
+    2.6402384054117127,
+    2.1165284300781595
+  ],
+  "F(T)/F(T/10) per state": {
+    "wave 20": 0.2992470775583198,
+    "wave 40": 0.27364848786731905,
+    "wave 80": 0.20446161118748415,
+    "wave 160": 0.6346071802750117,
+    "wall 10": 0.8285908323310327,
+    "wall 40": 0.8285585260974764,
+    "Neel": 0.31066538881710515,
+    "random": 0.3155057593703734
+  },
+  "acceptance": {
+    "F >= |error at C| at all times, every state": true,
+    "F saturates: F(T)/F(T/10) < 1.3 for every state (T = 1500)": true,
+    "Theorem-A bound grows: A(T)/A(T/10) > 2.5": true,
+    "observable factors decay as u^(-1/2) (a, m exponents in [-0.6, -0.4])": true,
+    "sup F / sup |error| for the waves varies by < 2x across lambda (lambda-independent tightness)": false,
+    "sup F within 10x of the peak true error for every state": false
+  }
+}
