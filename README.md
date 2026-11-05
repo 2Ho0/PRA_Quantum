@@ -56,7 +56,7 @@ python e11_model_selection.py        # about 1.5 h (10-qubit trajectory, 10 vari
 python e11b_calibration.py           # about 40 min; run after e11 (simulation-based calibration, memory test)
 python e11c_noise_ansatz.py          # a few minutes; run after e11 (single-ion noise block on the minimal model)
 python e11d_mismatch_diagnosis.py    # about 5 min on 4 cores; run after e11 (six explanations of the charged mismatch)
-python e11e_noise_block_sbc.py       # about 2 h on 8 cores; run after e11c and e14 (calibration of the single-ion noise block)
+python e11e_noise_block_sbc.py       # about 20 min on 8 cores (2 h next to other heavy jobs); run after e11c and e14 (calibration of the single-ion noise block)
 python e12_noise_memory.py           # about 20 min on 16 cores (N = 6, exact noise averages)
 python e12b_all_orders.py            # seconds; run after e12 (Markov-conditioned all-orders bound)
 python e13_two_sided_bound.py        # about 30 min on 4 cores (N = 400 to t = 1500)
