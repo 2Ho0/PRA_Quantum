@@ -126,10 +126,21 @@ def analyse(stats):
                 "measured minus synthetic median: min, max over truths and defects": [
                     float((meas[0][3 + c] - med[..., c]).min()), float((meas[0][3 + c] - med[..., c]).max())]}
             for c, n in enumerate(COMBOS)}
-        S, K = (meas[0][3 + list(COMBOS).index(n)] - med[i1, 0, list(COMBOS).index(n)] for n in ("flip S=SXX+SYY", "SXX-SYY"))
-        out["post hoc, not part of the rule"]["site-mean S_XX, S_YY after subtracting the f = 1 synthetic median"] = [
-            float((S + K) / 2), float((S - K) / 2)]
+        out["post hoc, not part of the rule"][
+            "site-mean S_XX after subtracting the synthetic median (oracle defect): value (rad/s), z with the data "
+            "bootstrap"] = {f"f={f:g}": psd_check(s[i, :, 0, 3:], meas[0][3:]) for i, f in enumerate(TRUTHS)}
     return out
+
+
+def psd_check(synthetic, data):
+    """S_XX = (S + K)/2 of the site-mean XY block, corrected by the synthetic median; a GKSL block needs S_XX >= 0."""
+    iS, iK = list(COMBOS).index("flip S=SXX+SYY"), list(COMBOS).index("SXX-SYY")
+    P = extended_ansatz().n_params
+    boot = [summary(th, extended_ansatz())[0] for th in np.load(RESULTS / "e11c_noise_ansatz.npz")["boot"][:, :P]]
+    sd_data = np.std([(b["flip S=SXX+SYY"] + b["SXX-SYY"]).mean() / 2 for b in boot], ddof=1)
+    xx = (synthetic[:, iS] + synthetic[:, iK]) / 2
+    value = (data[iS] + data[iK]) / 2 - np.median(xx)
+    return [float(value), float(value / np.hypot(sd_data, xx.std(ddof=1) / np.sqrt(len(xx))))]
 
 
 def plot(stats, out):
@@ -176,7 +187,7 @@ def plot_combinations(stats, out):
     ax.set_yticks(range(len(names)), names)
     ax.invert_yaxis()
     ax.set_xlabel("site mean over the 10 ions (rad/s)")
-    ax.legend(fontsize=7, loc="lower left")
+    ax.legend(fontsize=7, loc="upper right")
     ax.set_title("E11e, post hoc: noise-block combinations without single-ion noise in the truth", fontsize=9)
     fig.tight_layout()
     return save_figure(fig, "e11e_combinations")
