@@ -19,6 +19,7 @@ This repository holds theory, numerics and a manuscript draft (target: Physical 
 | `docs/theory/phase3-theory.md` | Weak/strong symmetry classes (Theorem B6), multipole forgetting (Theorem E) |
 | `docs/theory/phase4-theory.md` | Collective noise with memory (Theorem G), forgetting in both pictures (Theorem F) |
 | `docs/results/summary.md` | Results summary with limits and next steps (Korean) |
+| `docs/research-qa.md` | Plain-language Q&A: what the project does, why symmetry and dissipation help, contributions (Korean) |
 | `docs/literature/novelty-check.md` | Related work and novelty (Korean) |
 | `docs/data/beqs-data-notes.md` | Structure of the BEQS data, the inferred conventions, and a draft e-mail to the authors |
 | `docs/superpowers/` | Design specs and execution plans |
