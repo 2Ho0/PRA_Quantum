@@ -1,0 +1,266 @@
+{
+  "certified (Theorem A, X15)": {
+    "mean Z": {
+      "out-of-sample coverage, Theorem A band + 1.96 SEM": 1.0,
+      "out-of-sample coverage, shot noise only": 0.0,
+      "out-of-sample coverage while the band is non-vacuous": 1.0,
+      "band vacuous from (ms)": null,
+      "Theorem A band at 1.5 / 5 / 10 ms": [
+        0.12714731829493897,
+        0.6014798242104317,
+        1.6244962337889082
+      ],
+      "Corollary A.1 (BEQS form) at 1.5 ms": 12.55857724567618,
+      "Theorem A integrand at u = 0, bootstrap median (1/ms)": 0.0629215403829713,
+      "max |data - prediction| out of sample": 0.03528052434169336,
+      "quadrature: max relative change from the 0.5 ms grid": 0.006647693657862761,
+      "osc(O)": 1.9999999999999998,
+      "statistical band of the same observable (added after the run)": {
+        "1.96 sd_boot at 1.5 / 5 / 10 ms, larger of the two initial states": [
+          0.016953074200403824,
+          0.01978291940759124,
+          0.026140649581025285
+        ],
+        "Theorem A band / 1.96 sd_boot at 5 / 10 ms": [
+          30.40399709557668,
+          62.14444781693877
+        ],
+        "out-of-sample coverage, 1.96 sqrt(sd_boot^2 + SEM^2)": 0.2647058823529412
+      }
+    },
+    "mean X": {
+      "out-of-sample coverage, Theorem A band + 1.96 SEM": 1.0,
+      "out-of-sample coverage, shot noise only": 0.14705882352941177,
+      "out-of-sample coverage while the band is non-vacuous": 1.0,
+      "band vacuous from (ms)": 4.0,
+      "Theorem A band at 1.5 / 5 / 10 ms": [
+        0.6877931349433545,
+        2.8419455787554804,
+        5.347949127401297
+      ],
+      "Corollary A.1 (BEQS form) at 1.5 ms": 12.558577245676215,
+      "Theorem A integrand at u = 0, bootstrap median (1/ms)": 0.28921879175398413,
+      "max |data - prediction| out of sample": 0.21993945411648577,
+      "quadrature: max relative change from the 0.5 ms grid": 0.015500415674564663,
+      "osc(O)": 2.000000000000002,
+      "statistical band of the same observable (added after the run)": {
+        "1.96 sd_boot at 1.5 / 5 / 10 ms, larger of the two initial states": [
+          0.03287782833488456,
+          0.013470681377621115,
+          0.0859752614511578
+        ],
+        "Theorem A band / 1.96 sd_boot at 5 / 10 ms": [
+          210.9726671641728,
+          62.20334823220568
+        ],
+        "out-of-sample coverage, 1.96 sqrt(sd_boot^2 + SEM^2)": 0.38235294117647056
+      }
+    },
+    "mean Y": {
+      "out-of-sample coverage, Theorem A band + 1.96 SEM": 1.0,
+      "out-of-sample coverage, shot noise only": 0.029411764705882353,
+      "out-of-sample coverage while the band is non-vacuous": 1.0,
+      "band vacuous from (ms)": 4.0,
+      "Theorem A band at 1.5 / 5 / 10 ms": [
+        0.696288942892947,
+        2.8588207673030515,
+        5.396099499200296
+      ],
+      "Corollary A.1 (BEQS form) at 1.5 ms": 12.55857724567618,
+      "Theorem A integrand at u = 0, bootstrap median (1/ms)": 0.2890747508264786,
+      "max |data - prediction| out of sample": 0.18714112240290298,
+      "quadrature: max relative change from the 0.5 ms grid": 0.01764837215629499,
+      "osc(O)": 1.9999999999999978,
+      "statistical band of the same observable (added after the run)": {
+        "1.96 sd_boot at 1.5 / 5 / 10 ms, larger of the two initial states": [
+          0.01972023329704318,
+          0.01140154955107062,
+          0.07882452974821635
+        ],
+        "Theorem A band / 1.96 sd_boot at 5 / 10 ms": [
+          250.73966959470036,
+          68.45710994327116
+        ],
+        "out-of-sample coverage, 1.96 sqrt(sd_boot^2 + SEM^2)": 0.4411764705882353
+      }
+    },
+    "flip-flop (4,5)": {
+      "out-of-sample coverage, Theorem A band + 1.96 SEM": 1.0,
+      "out-of-sample coverage, shot noise only": 0.5294117647058824,
+      "out-of-sample coverage while the band is non-vacuous": null,
+      "band vacuous from (ms)": 1.5,
+      "Theorem A band at 1.5 / 5 / 10 ms": [
+        2.2076114500552055,
+        8.53810601438516,
+        17.500135016778874
+      ],
+      "Corollary A.1 (BEQS form) at 1.5 ms": 12.55857724567617,
+      "Theorem A integrand at u = 0, bootstrap median (1/ms)": 0.8710855796985164,
+      "max |data - prediction| out of sample": 0.07412671520824615,
+      "quadrature: max relative change from the 0.5 ms grid": 0.03379941839487831,
+      "osc(O)": 2.0,
+      "statistical band of the same observable (added after the run)": {
+        "1.96 sd_boot at 1.5 / 5 / 10 ms, larger of the two initial states": [
+          0.012987807106344267,
+          0.044212942832831066,
+          0.03171093997978178
+        ],
+        "Theorem A band / 1.96 sd_boot at 5 / 10 ms": [
+          193.1132710769265,
+          551.8642786349628
+        ],
+        "out-of-sample coverage, 1.96 sqrt(sd_boot^2 + SEM^2)": 0.8529411764705882
+      }
+    },
+    "ZZ (4,5)": {
+      "out-of-sample coverage, Theorem A band + 1.96 SEM": 1.0,
+      "out-of-sample coverage, shot noise only": 0.5294117647058824,
+      "out-of-sample coverage while the band is non-vacuous": null,
+      "band vacuous from (ms)": 1.0,
+      "Theorem A band at 1.5 / 5 / 10 ms": [
+        3.340578250700579,
+        11.815441542798899,
+        23.186466960116313
+      ],
+      "Corollary A.1 (BEQS form) at 1.5 ms": 12.55857724567615,
+      "Theorem A integrand at u = 0, bootstrap median (1/ms)": 1.6580218519419216,
+      "max |data - prediction| out of sample": 0.12570480746182222,
+      "quadrature: max relative change from the 0.5 ms grid": 0.017542551989641362,
+      "osc(O)": 2.0,
+      "statistical band of the same observable (added after the run)": {
+        "1.96 sd_boot at 1.5 / 5 / 10 ms, larger of the two initial states": [
+          0.024823660691011763,
+          0.07989977754449154,
+          0.050589938447087826
+        ],
+        "Theorem A band / 1.96 sd_boot at 5 / 10 ms": [
+          147.87827833712763,
+          458.3217072771715
+        ],
+        "out-of-sample coverage, 1.96 sqrt(sd_boot^2 + SEM^2)": 0.8823529411764706
+      }
+    },
+    "charge-2 pair (4,5)": {
+      "out-of-sample coverage, Theorem A band + 1.96 SEM": 1.0,
+      "out-of-sample coverage, shot noise only": 0.7058823529411765,
+      "out-of-sample coverage while the band is non-vacuous": null,
+      "band vacuous from (ms)": 2.0,
+      "Theorem A band at 1.5 / 5 / 10 ms": [
+        1.85366134075773,
+        4.761605655052738,
+        6.787943806261919
+      ],
+      "Corollary A.1 (BEQS form) at 1.5 ms": 12.55857724567615,
+      "Theorem A integrand at u = 0, bootstrap median (1/ms)": 0.8377930246292051,
+      "max |data - prediction| out of sample": 0.07297009988692355,
+      "quadrature: max relative change from the 0.5 ms grid": 0.045722190420088675,
+      "osc(O)": 2.0,
+      "statistical band of the same observable (added after the run)": {
+        "1.96 sd_boot at 1.5 / 5 / 10 ms, larger of the two initial states": [
+          0.010718833200860945,
+          0.01978096532629013,
+          0.015885692107361786
+        ],
+        "Theorem A band / 1.96 sd_boot at 5 / 10 ms": [
+          240.71654626097887,
+          427.2992174584722
+        ],
+        "out-of-sample coverage, 1.96 sqrt(sd_boot^2 + SEM^2)": 0.7058823529411765
+      }
+    }
+  },
+  "statistical bands": {
+    "X15": {
+      "q=0  Z_i": {
+        "coverage t > 1.5 ms": 0.788235294117647,
+        "coverage t > 5 ms": 0.765,
+        "calibration factor t > 1.5 ms": 1.5383513725194724,
+        "median bootstrap sd / SEM, t > 1.5 ms": 3.4653089718305097
+      },
+      "q=0  Z_iZ_j": {
+        "coverage t > 1.5 ms": 0.788235294117647,
+        "coverage t > 5 ms": 0.7466666666666667,
+        "calibration factor t > 1.5 ms": 1.4933764491904662,
+        "median bootstrap sd / SEM, t > 1.5 ms": 1.4070146207941991
+      },
+      "q=0  flip-flop": {
+        "coverage t > 1.5 ms": 0.7800653594771242,
+        "coverage t > 5 ms": 0.76,
+        "calibration factor t > 1.5 ms": 1.499547764393,
+        "median bootstrap sd / SEM, t > 1.5 ms": 1.7610709880357902
+      },
+      "q=\u00b11  X_i, Y_i": {
+        "coverage t > 1.5 ms": 0.6514705882352941,
+        "coverage t > 5 ms": 0.63,
+        "calibration factor t > 1.5 ms": 2.13971114569857,
+        "median bootstrap sd / SEM, t > 1.5 ms": 3.1303664620132965
+      },
+      "q=\u00b11  XZ-type": {
+        "coverage t > 1.5 ms": 0.7504901960784314,
+        "coverage t > 5 ms": 0.7205555555555555,
+        "calibration factor t > 1.5 ms": 1.8155967250359526,
+        "median bootstrap sd / SEM, t > 1.5 ms": 0.933973243556209
+      },
+      "q=\u00b12  pair": {
+        "coverage t > 1.5 ms": 0.6130718954248366,
+        "coverage t > 5 ms": 0.5783333333333334,
+        "calibration factor t > 1.5 ms": 2.3980741282261935,
+        "median bootstrap sd / SEM, t > 1.5 ms": 0.6288803625347834
+      },
+      "all 435 observables": {
+        "coverage t > 1.5 ms": 0.73894523326572,
+        "coverage t > 5 ms": 0.7079310344827586,
+        "calibration factor t > 1.5 ms": 1.7711155428979517,
+        "median bootstrap sd / SEM, t > 1.5 ms": 1.2855586720310734
+      }
+    },
+    "Xb15": {
+      "q=0  Z_i": {
+        "coverage t > 1.5 ms": 0.7911764705882353,
+        "coverage t > 5 ms": 0.775,
+        "calibration factor t > 1.5 ms": 1.498099455111286,
+        "median bootstrap sd / SEM, t > 1.5 ms": 3.4692047484224178
+      },
+      "q=0  Z_iZ_j": {
+        "coverage t > 1.5 ms": 0.7901960784313725,
+        "coverage t > 5 ms": 0.7511111111111111,
+        "calibration factor t > 1.5 ms": 1.4715700623101506,
+        "median bootstrap sd / SEM, t > 1.5 ms": 1.4181421681200548
+      },
+      "q=0  flip-flop": {
+        "coverage t > 1.5 ms": 0.7872549019607843,
+        "coverage t > 5 ms": 0.7722222222222223,
+        "calibration factor t > 1.5 ms": 1.4744752231083516,
+        "median bootstrap sd / SEM, t > 1.5 ms": 1.7775068720420073
+      },
+      "q=\u00b11  X_i, Y_i": {
+        "coverage t > 1.5 ms": 0.8352941176470589,
+        "coverage t > 5 ms": 0.91,
+        "calibration factor t > 1.5 ms": 1.0042535934071004,
+        "median bootstrap sd / SEM, t > 1.5 ms": 3.748295616381318
+      },
+      "q=\u00b11  XZ-type": {
+        "coverage t > 1.5 ms": 0.8977124183006536,
+        "coverage t > 5 ms": 0.9463888888888888,
+        "calibration factor t > 1.5 ms": 1.1152178698714368,
+        "median bootstrap sd / SEM, t > 1.5 ms": 1.2422507169885182
+      },
+      "q=\u00b12  pair": {
+        "coverage t > 1.5 ms": 0.9183006535947712,
+        "coverage t > 5 ms": 0.9927777777777778,
+        "calibration factor t > 1.5 ms": 0.6128089322649266,
+        "median bootstrap sd / SEM, t > 1.5 ms": 2.2200169105432437
+      },
+      "all 435 observables": {
+        "coverage t > 1.5 ms": 0.8797160243407708,
+        "coverage t > 5 ms": 0.9186206896551724,
+        "calibration factor t > 1.5 ms": 1.0831652822676343,
+        "median bootstrap sd / SEM, t > 1.5 ms": 1.7060254040080975
+      }
+    }
+  },
+  "predictions": {
+    "certified band covers >= 90% out of sample for every observable": true,
+    "memory model has the smaller calibration factor in every charged class": true
+  }
+}
