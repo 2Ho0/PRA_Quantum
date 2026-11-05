@@ -107,18 +107,21 @@ def _init(prob, defects, bases, strings, times):
     _W.update(prob=prob, defects=defects, bases=bases, strings=strings, times=times)
 
 
-def realisation(args):
-    f, seed = args
-    rng = np.random.default_rng(seed)
+def synthetic_series(prob_f, bases, strings, rng):
+    """One shot-level data set (both initial states) from the outcome distributions of one truth."""
     data = []
-    for s in (0, 1):
-        p = _W["prob"][f][s]                                              # (21, settings, 1024)
+    for p in prob_f:                                                      # (21, settings, 1024) per initial state
         sp = np.empty((p.shape[0], p.shape[1], SHOTS, N), np.int8)
         for t in range(p.shape[0]):
             for k in range(p.shape[1]):
                 sp[t, k] = sample_spins(p[t, k], SHOTS, rng, N)
         data.append(sp)
-    series = series_from(per_setting_tables(tuple(data), _W["bases"], _W["strings"]))
+    return series_from(per_setting_tables(tuple(data), bases, strings))
+
+
+def realisation(args):
+    f, seed = args
+    series = synthetic_series(_W["prob"][f], _W["bases"], _W["strings"], np.random.default_rng(seed))
     return fit_all(series, _W["times"], _W["defects"][f])
 
 

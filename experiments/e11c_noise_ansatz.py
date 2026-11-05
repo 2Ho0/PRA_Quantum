@@ -67,11 +67,14 @@ def _init(tables, times, defect, defect_t):
 
 def replicate(w):
     """[theta without memory, theta with the growing collective rate gamma_c + beta t, beta]."""
+    return fit_noise_block(series_from(_W["tables"], w), _W["times"], _W["defect"], _W["defect_t"])
+
+
+def fit_noise_block(series, times, defect, defect_t):
+    """The minimal model plus the full single-ion noise block, without and with the collective slope beta."""
     ext = extended_ansatz()
-    series = series_from(_W["tables"], w)
-    A, y, _ = integral_system(observables(), ext, series, _W["times"], T_LEARN, defect=_W["defect"])
-    At, _, _ = integral_system(observables(), ext, series, _W["times"], T_LEARN, defect=_W["defect_t"],
-                               weight=lambda s: s)
+    A, y, _ = integral_system(observables(), ext, series, times, T_LEARN, defect=defect)
+    At, _, _ = integral_system(observables(), ext, series, times, T_LEARN, defect=defect_t, weight=lambda s: s)
     T = constrained_map(ext)
     M = A @ T
     markov = T @ lsq_linear(M, y, method="bvls", tol=1e-12).x
