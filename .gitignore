@@ -20,3 +20,6 @@ paper/
 
 # Local Claude Code settings and hooks (e.g. LaTeX auto-compile); not shared
 .claude/
+
+# Intermediate caches that experiments regenerate (E11 learning and bootstrap)
+results/e11_stage1.npz
