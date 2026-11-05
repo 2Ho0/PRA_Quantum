@@ -23,3 +23,6 @@ paper/
 
 # Intermediate caches that experiments regenerate (E11 learning and bootstrap)
 results/e11_stage1.npz
+
+# Per-job partial results of E15 (resumable run); the combined cache is results/e15_coverage.npz
+results/e15_parts/

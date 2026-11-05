@@ -52,6 +52,7 @@ In the OU case, τ_c → 0 at fixed σ²τ_c = 2γ_c recovers the white case.
 4. **All orders.**
    - If ξ has independent increments (white noise, Lévy noise), Theorem B6 holds with e^{−2γ_cQ²b} replaced by |χ_Q(b)|.
    - For stationary Gaussian noise, it holds with the innovation kernel e^{−Q² v(b)/2}. Here v(b) = Var[Φ(u + b, u) | ξ(τ), τ ≤ u] is the variance that remains once the past is known.
+   - For a stationary Markov process on finitely many noise values ξ_k, with rate matrix W (dp/dt = Wp), it holds with the kernel K_Q(b) = max_k |1ᵀ e^{b(W − iQΞ)} e_k|, Ξ = diag(ξ_k): the worst case over the noise value at the start of the middle segment. Telegraph noise and the Ehrenfest (discretized OU) chain are of this kind. Quasi-static noise (W = 0) gives K_Q ≡ 1: no all-orders protection, as for the Gaussian innovation kernel with v ≡ 0.
 
 *Proof.*
 - Item 1: Per run, the reference propagator is covariant and preserves sectors. Apply the argument of Theorem B6.
@@ -60,6 +61,7 @@ In the OU case, τ_c → 0 at fixed σ²τ_c = 2γ_c recovers the white case.
 - Item 4: In the D2 form of Theorem B6, the last factor ρ′_ξ(u) depends only on ξ on [0, u], and the middle phase is e^{iQΦ(s,u)}.
   - For independent increments the two are independent, so the average factorizes.
   - For Gaussian ξ, condition on the past: |E[e^{iQΦ(s,u)} | ξ_{≤u}]| = e^{−Q² v(s−u)/2}, which multiplies a bounded random variable.
+  - For a Markov process, the future phase depends on the past only through ξ(u). Kubo's stochastic Liouville equation gives E[e^{−iQΦ(s,u)} | ξ(u) = ξ_k] = 1ᵀ e^{(s−u)(W − iQΞ)} e_k, whose modulus is at most K_Q(s − u) (the conjugate phase has the same modulus because W is real).
 
 □
 
@@ -93,6 +95,7 @@ Slow, Gaussian-distributed field noise therefore protects pair-creation errors (
 | Protection, \|Q\| = 1, at T_2 = 0.5 | Quasi-static 0.99, against a limit of 0.886. At \|Q\| = 1 the protection time T_2 is not yet short compared with 1/J |
 | Weak noise (T_2 = 4) | All ratios tend to 1.1–1.2: there is little protection to lose |
 | Telegraph, \|Q\| = 2, at T_2 = 0.5 | Ratio 1.03: the oscillating kernel. Its t → ∞ protection-time ratio is 0.739 for both \|Q\| (the 1/Q² law) |
+| Item 4, all-orders kernel bound (E12b) | Holds against the exact leakage for every process, T_2 and \|Q\|. Bound/exact at t = 10: white 7.5–26, OU (Ehrenfest chain) 9.8–61, telegraph 11–70, quasi-static 32–231 (no all-orders protection, K_Q ≡ 1) |
 
 **Remarks.**
 1. *Innovation kernel for OU.* v(b) = 2σ²τ_c [b − 2τ_c(1 − e^{−b/τ_c}) + (τ_c/2)(1 − e^{−2b/τ_c})].
@@ -107,10 +110,18 @@ Slow, Gaussian-distributed field noise therefore protects pair-creation errors (
 - *Model.* The Gaussian class above is linear in its rate parameters, so the integral method takes the collective rate γ_c + βt directly: β enters through a t-weighted collective column. White noise means β = 0; a quasi-static component means β = σ²/2 > 0.
 - *Out-of-sample prediction (5–10 ms).* Adding β to the minimal physical model lowers the rms error from 0.052 to 0.040. The charged classes improve most (X_i, Y_i: 0.082 → 0.028–0.053).
 - *The estimator is biased.* It is an errors-in-variables estimator. A simulation-based calibration (E11b) puts the white-noise null of the fitted β at −19.5 ± 4 rad/s per ms rather than 0, and a pure quasi-static truth with β = 38.2 at 17–20 ± 4–6.
-- *Result.* The measured β = 3.7 (1.5 ms window) and 10.3 (3 ms window) lie 4.9σ and 8.1σ above the white-noise null. **White collective noise is rejected.** Interpolating between the two calibrations gives a quasi-static slope of about 22–31 rad/s per ms: 60–80% of the static value, or an rms static field of about 210–250 rad/s.
+- *Result (Gaussian calibration, E11b).* The measured β = 3.7 (1.5 ms window) and 10.3 (3 ms window) lie 4.9σ and 8.1σ above the white-noise null. Interpolating between the two calibrations gives a quasi-static slope of about 22–31 rad/s per ms: 60–80% of the static value, or an rms static field of about 210–250 rad/s.
+- *Shot-level calibration (E14), which supersedes E11b.* Synthetic data are sampled exactly like the BEQS data (the same 200 settings, 200 shots each) from truths that mix white and quasi-static collective noise, f = 0, ¼, ½, ¾, 1, with 20 realizations each (`qerr.shots`).
+  - The white-noise null widens to −22.4 ± 9.1 (Xb15) and −22.9 ± 6.6 rad/s per ms (Xb30). The Gaussian calibration drew independent noise for every observable; shot-level samples keep the correlations between the strings read out in the same setting.
+  - The measured β lies 2.9σ (1.5 ms) and 5.1σ (3 ms) above the null. The preregistered criterion, more than 3σ in both windows, is met only in the 3 ms window. With the f = ½ trajectory defect instead of the white one, the significances are 2.5σ and 4.6σ.
+  - **White collective noise is rejected at 5.1σ by the 3 ms window.** The Neyman belt gives the quasi-static fraction f = 0.93 [0.62, 1] (3 ms) and 0.64 [0.12, 1] (1.5 ms). The fitted β increases monotonically with f in both windows, as required.
+  - *Conservative check.* The bootstrap of the real data (settings resampled) has a β spread of 12.9 (Xb15) and 8.9 (Xb30), 1.35–1.4 times the shot-level null. Measured against that spread, z = 2.0 and 3.7. The rejection should therefore be quoted as 3.7–5.1σ in the 3 ms window. The bootstrap means (−8.5, −8.4) lie 12–19 below the point estimates: the errors-in-variables attenuation grows with the noise.
+  - *Power.* The 1.5 ms window has four time points. Even a pure quasi-static truth gives an expected z of only 4.1, and f ≈ 0.64 gives 2.9, so a 3σ outcome there was a coin flip. The preregistered criterion was set without a power calculation.
+  - The same simulations reproduce a decline of the learned J_nn with later windows although the truth is constant (607 rad/s): 581–588 on [0, 1.5], 539–551 on [0, 5], 491–501 on [1, 3] ms. The measured decline (620, 498, 373) is 10–25% steeper on [0, 5] and [1, 3]: part of the J drift is genuine.
 - *Consequences.*
   - The certified collective rate of phase 3 (γ_c ≥ 20.7 rad/s) assumes white noise and must say so.
   - The Zeno factor of |Q| = 2 errors at 10 ms ranges from 0.40 to 0.78 depending on the noise model (E11). A noise-robust certificate takes the worst case over the spectra the data allow.
+  - Re-certified with window-matched mixtures over the wider interval f ∈ [0.12, 1] (E14): at 10 ms the worst-case Zeno factor is 0.85 for |Q| = 1 and 0.57 for |Q| = 2 at the certified scale γ_c ≥ 20.7 rad/s (0.80 and 0.49 at the point estimate). Memory helps here: at matched early-time decay, the quasi-static truth (f = 1) protects more at 10 ms (0.71 and 0.44) than the white one (0.88 and 0.62).
 
 ## F. Forgetting in both pictures: a time-uniform bound for conserved densities
 
@@ -174,6 +185,11 @@ with
 3. *Tightness.* For a density wave the true error is at most A(δD/D)/e for every wavelength (Remark E.2). Theorem F gives O(ε osc(n_0)/D), also independent of the wavelength, whereas the Theorem-A bound at the peak time grows ∝ λ.
 4. *Combine with Theorem A.* Both bounds are rigorous, so min(Theorem A, Corollary F-qf) is too. Theorem A is the tighter one at short times, before the state has developed gradients. Theorem F wins at all later times.
 5. *Locality.* Corollary F-qf pairs the observable factors with *global* maxima of the state factors. It therefore cannot use the distance between the observable and the region where the gradients sit. A pointwise pairing ∫ Σ_b |a_b(u)| |∇n_b(t − u)| du would recover that distance. This is the next refinement.
+   - *Checked (E13b).* Hölder's inequality entry by entry gives P(u, s) = Σ_b |e_b| |w_{x+1,x}(u) − w_{x,x+1}(u)| |n′_x(s) − n′_{x+1}(s)| + Σ_{x≠y} |M_xy(u)| |C′_xy(s)|, which is still rigorous, and F_loc(t) = ∫_0^t P(u, t − u) du.
+   - sup_t F_loc / peak error: waves 1.37, 1.11, 1.05, 1.04 (λ = 20 → 160), Néel 2.0, random 1.6, walls 2.1 and 2.0. The global pairing gave 4.9–2.1, 4.2, 6.0 and 14. F_loc never exceeds it.
+   - Both E13 tightness criteria are met by the local pairing: the spread across λ is 1.3× and every state is within 2.2×. The global maxima were therefore the main loss. The per-bond absolute values cost at most 37% at the peak (λ = 20).
+   - At late times F_loc saturates (≈ 5 × 10⁻³ for the walls) while the true error decays (5 × 10⁻⁴ at t = 1500). The bound is time-uniform, not decaying: the convolution of two s^{−1/2} factors is constant.
+   - The numerical evaluation falls below the true error only at the rounding level. At the first grid time it is 0.2% low (bilinear interpolation of P on the first cell); elsewhere the shortfall is below 10⁻²⁴ in absolute terms (float32 underflow). At most this is 1.2 × 10⁻⁶ of the peak error (Néel). The preregistered flag "holds at all t", with an absolute tolerance of 10⁻¹⁰, is reported as failed for λ = 20 and Néel on these numerical grounds.
 
 **Numerical check (E13).**
 - *Setup.* Dephased XX chain with N = 400, g = 1, so D = 2. The imperfection is a uniform hopping miscalibration with ε = 0.01, and the observable is n_C. Eight initial product states run to t = 1500/J:
@@ -196,3 +212,49 @@ with
 Two tightness criteria were set before the run, and both missed:
 - a spread below 2× across λ: it is 2.3×, with F tighter for longer waves;
 - a ratio within 10× for every state: the walls reach 14×, the price of the global maxima (Remark 5).
+
+### Lemma F.2 (exact density propagator of the dephased XX chain)
+
+**Setting.** Infinite chain, hopping J, number dephasing g. Write the two-point matrix in centre-of-mass momentum k and relative distance r. Then
+
+dC_r/dt = −a_k (C_{r+1} − C_{r−1}) − g (1 − δ_{r0}) C_r,   a_k = 2J sin(k/2).
+
+For a product initial state only the density mode is nonzero at t = 0: C_r(k, 0) = δ_{r0} n̂_0(k). Write n̂(k, t) = G_k(t) n̂_0(k).
+
+**Statement.**
+1. G̃_k(p) = ∫_0^∞ e^{−pt} G_k(t) dt = 1/(√((p + g)² + 4a_k²) − g). The coherences follow the density: C̃_{±m}(k, p) = (±μ_k(p))^m C̃_0(k, p) for m ≥ 1, with μ_k(p) = [√((p + g)² + 4a_k²) − (p + g)]/(2a_k).
+2. If 2|a_k| < g, G̃_k has exactly one pole, at p_+(k) = −g + √(g² − 4a_k²) = −Dk² + O(k⁴) with D = 2J²/g, and residue g/ν_k, ν_k = √(g² − 4a_k²). Every other singularity lies on Re p = −g (branch points −g ± 2ia_k). Hence G_k(t) = (g/ν_k) e^{p_+(k) t} + O(e^{−gt}).
+3. If 2|a_k| ≥ g, every singularity lies on Re p = −g.
+4. |G_k(t)| ≤ 1 for all t.
+
+*Proof.*
+1. Laplace-transform the chain. For r ≠ 0 the recursion has constant coefficients, and its square-summable solution is geometric with ratio ±μ_k (the root of a_k μ² + (p + g)μ − a_k = 0 with |μ| < 1). The r = 0 equation then reads p C̃_0 − 1 = −2a_k μ_k C̃_0, which gives item 1.
+2. A pole needs √((p + g)² + 4a_k²) = g. The branch that behaves as p + g at infinity takes the value +g at p_+ and −g at p_− = −g − ν_k, so only p_+ is a pole. Its residue is the inverse derivative of the square root at p_+, which is g/ν_k. Expand p_+ in k for the diffusive limit.
+3. For 2|a_k| ≥ g the two candidate poles have p + g = ±i√(4a_k² − g²).
+4. The hopping term is anti-Hermitian in ℓ²(r), so d/dt Σ_r |C_r|² = −2g Σ_{r≠0} |C_r|² ≤ 0. □
+
+**Check (E13c).** The crest density of the E13 density waves equals 1/2 + 0.4 G_k(t), with G_k from the truncated r-chain, to 2 × 10⁻⁶ for λ = 20, 40 and 80. For λ = 160 the agreement is 4 × 10⁻³, because the open boundary of the N = 400 chain has a node there. In the slow-mode window 10/g < t < 3/(Dk²), the fitted decay rate equals −p_+ to 6–7 digits: 0.2199671 vs 0.2199666 (λ = 20), 0.0505229 vs 0.0505229 (λ = 40), 0.01240764 vs 0.01240764 (λ = 80). The diffusive estimate Dk² is 11% off at λ = 20, so the exact pole, not Dk², is the relevant rate.
+
+### Proposition F.1 (the hypotheses of Theorem F hold for the dephased XX chain)
+
+**Setting.** As in Lemma F.2, with O = n_C, a uniform hopping miscalibration δh of size ε, and an initial product profile of bounded variation V(n_0) = Σ_x |n_0(x + 1) − n_0(x)| < ∞. A domain wall has V = 1.
+
+**Statement.** There is a constant C that depends only on g/J such that, for all u, s ≥ 0,
+
+γ(s) + κ(s) ≤ C V(n_0) (1 + Ds)^{−1/2},   a(u) + m(u) ≤ C ε (1 + Du)^{−1/2}.
+
+Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D for all t. This bound is time-uniform and assumes nothing.
+
+*Proof sketch.*
+1. *Fourier bounds.* On the slow region |a_k| ≤ g/4 the residue is at most 2/√3 and −p_+(k) ≥ 2a_k²/g ≥ c k², so Lemma F.2 gives |G_k(t)| ≤ C e^{−c k² t}. On the rest of the Brillouin zone every singularity has Re p ≤ −(1 − √3/2) g, which gives |G_k(t)| ≤ C e^{−c′ g t}. Hence ∫|G_k(t)| dk/2π ≤ C (1 + Dt)^{−1/2}. The second estimate must be uniform in k: the residue g/ν_k diverges where the pole meets a branch point (2|a_k| = g), and the cut contribution cancels the divergence. This is the step a full proof has to write out.
+2. *State side.* n(s) = K_s ∗ n_0 with K̂_s(k) = G_k(s). Then ∇n(s) = K_s ∗ ∇n_0, so γ(s) ≤ ‖K_s‖_∞ V(n_0) ≤ V(n_0) ∫|G_k(s)| dk/2π.
+   - In the slow-pole part, the m-th coherence is the density times μ_k(p_+)^m, and μ_k(p_+) = (g − ν_k)/(2a_k) = O((J/g)|sin(k/2)|). One factor of sin(k/2) turns n̂_0 into the transform of ∇n_0, so κ(s) obeys the same bound. The fast part is O(e^{−c′gs}).
+3. *Observable side.* The Heisenberg dynamics of w(u) is the same chain with a_k → −a_k, and G_k is even in a_k. It starts from w(0) = e_C e_Cᵀ; measure positions from C.
+   - a(u) = 2ε ‖Im w_1(u)‖_{ℓ¹} is the ℓ¹ norm of a sequence whose transform σ_u(k) has the slow part μ_k(p_+)(g/ν_k) e^{p_+(k)u}. Carlson's inequality, (Σ_x |f_x|)⁴ ≤ c Σ_x |f_x|² Σ_x (1 + x²)|f_x|², reads ‖f‖_{ℓ¹} ≤ c^{1/4} ‖f̂‖_2^{1/2} (‖f̂‖_2² + ‖f̂′‖_2²)^{1/4} in Fourier space.
+   - Step 1 gives ‖σ_u‖_2 ≲ (J/g)(1 + Du)^{−3/4} and ‖σ_u′‖_2 ≲ (J/g)(1 + Du)^{−1/4}, so a(u) ≲ ε (J/g)(1 + Du)^{−1/2}.
+   - M = i[δh, w(u)] consists of differences of w along the diagonal (the density gradient, bounded the same way) and the components w_{±m}, m ≥ 1. Their ℓ¹ norms carry (CJ/g)^m and sum to the same order.
+4. Insert into Corollary F-qf and use ∫_0^t (1 + Du)^{−1/2} (1 + D(t − u))^{−1/2} du ≤ π/D. □
+
+**Remarks.**
+1. The constants are not optimized. The exponents match E13: −0.50 to −0.53 for a, m and ‖∇c_u‖₁, and −0.50 for γ and κ of the domain wall.
+2. With Proposition F.1, Corollary F-qf is a proven time-uniform bound for quasi-free fermions with dephasing. For interacting chains (H_O) and (H_ρ) remain hypotheses; E16 tests them at N = 10.
