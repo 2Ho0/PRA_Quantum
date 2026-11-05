@@ -35,6 +35,28 @@ def test_duhamel_pairing_reproduces_the_error():
     assert abs(via - direct) < 1e-6 * abs(direct) + 1e-12
 
 
+def test_two_point_propagator_matches_both_engines():
+    """dX/dt = i[h, X] - Lambda o X evolves C = <c^dag c> forward and the coefficient matrix w of O backward."""
+    from qerr.hydro import coefficient_matrix, evolve_two_point, two_point
+
+    N, g = 16, 0.6
+    rng = np.random.default_rng(3)
+    e = -1.0 + 0.1 * rng.normal(size=N - 1)
+    h = np.diag(e, 1) + np.diag(e, -1)
+    times = np.array([0.0, 0.7, 2.3])
+    occ = rng.random(N)
+    G = evolve_covariance(h, np.zeros((N, N)), g * np.ones(N), 0.0, product_covariance(occ), times, rtol=1e-11,
+                          atol=1e-13)
+    C = evolve_two_point(e, g * np.ones(N), np.diag(occ).astype(complex), times, rtol=1e-11, atol=1e-13)
+    assert max(np.abs(C[k] - two_point(G[k])).max() for k in range(len(times))) < 1e-9
+    A = heisenberg_evolve(h, np.zeros((N, N)), g * np.ones(N), 0.0, bdg_to_majorana(number_operator(N, 5)).real,
+                          times, rtol=1e-11, atol=1e-13)
+    w0 = np.zeros((N, N), complex)
+    w0[5, 5] = 1.0
+    W = evolve_two_point(e, g * np.ones(N), w0, times, rtol=1e-11, atol=1e-13)
+    assert max(np.abs(W[k] - coefficient_matrix(A[k])).max() for k in range(len(times))) < 1e-9
+
+
 def test_two_sided_factors_bound_the_pairing():
     from qerr.hydro import commutator_coefficients, observable_factors, pairing, state_factors
 
