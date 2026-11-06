@@ -1,0 +1,439 @@
+{
+  "(A) neutral residual split, calibration factors t > 1.5 ms": {
+    "X15": {
+      "Z_i": {
+        "class factor": 1.5383513725194728,
+        "conserved direction: factor": 2.5884273905407156,
+        "rest: factor": 1.373017119098612,
+        "share of the squared residual in the conserved direction (one of n directions)": [
+          0.28303778966476356,
+          10
+        ]
+      },
+      "Z_iZ_j": {
+        "class factor": 1.4933764491904662,
+        "conserved direction: factor": 2.753312230810258,
+        "rest: factor": 1.3888752721684157,
+        "share of the squared residual in the conserved direction (one of n directions)": [
+          0.1811516075084664,
+          45
+        ]
+      },
+      "flip-flop (XX+YY)/2": {
+        "class factor": 1.7269069266669819,
+        "conserved direction: factor": 4.246439736156223,
+        "rest: factor": 1.581253733206829,
+        "share of the squared residual in the conserved direction (one of n directions)": [
+          0.18758341890419367,
+          45
+        ]
+      }
+    },
+    "Xb15": {
+      "Z_i": {
+        "class factor": 1.498099455111286,
+        "conserved direction: factor": 2.5253203304764833,
+        "rest: factor": 1.3384154514860755,
+        "share of the squared residual in the conserved direction (one of n directions)": [
+          0.2806563068844592,
+          10
+        ]
+      },
+      "Z_iZ_j": {
+        "class factor": 1.4715700623101506,
+        "conserved direction: factor": 2.9143517805618564,
+        "rest: factor": 1.363628169198118,
+        "share of the squared residual in the conserved direction (one of n directions)": [
+          0.1809349117973439,
+          45
+        ]
+      },
+      "flip-flop (XX+YY)/2": {
+        "class factor": 1.6981564097542152,
+        "conserved direction: factor": 4.228773300280607,
+        "rest: factor": 1.5512916510067611,
+        "share of the squared residual in the conserved direction (one of n directions)": [
+          0.19122356221578096,
+          45
+        ]
+      }
+    }
+  },
+  "(B) conserved quantities": {
+    "mean Z, initial state 1": {
+      "data at 0 / 1.5 / 5 / 10 ms": [
+        -0.44746528612584024,
+        -0.4253683128927156,
+        -0.4113245724601223,
+        -0.3956219003118291
+      ],
+      "bootstrap se at the same times": [
+        0.0027530165781213924,
+        0.00281340838874133,
+        0.0025805621628348843,
+        0.0029567131158343162
+      ],
+      "data: mean over t >= 2 ms minus t = 0, and its z": [
+        0.044032417643221466,
+        17.21254293367161
+      ],
+      "Y15: mean over t >= 2 ms minus t = 0": -0.002829876579171109,
+      "X15: mean over t >= 2 ms minus t = 0": 0.02353476967919338,
+      "Xb15: mean over t >= 2 ms minus t = 0": 0.023184887494814954,
+      "Xb15: rms of (data - prediction) / se, t > 1.5 ms": 7.42851554108808
+    },
+    "mean Z, initial state 2": {
+      "data at 0 / 1.5 / 5 / 10 ms": [
+        0.04451655834817643,
+        0.03819841616462994,
+        0.04996834168027362,
+        0.04904618246288904
+      ],
+      "bootstrap se at the same times": [
+        0.0035828561060038317,
+        0.003965580813803752,
+        0.003553255411301965,
+        0.003449285562239746
+      ],
+      "data: mean over t >= 2 ms minus t = 0, and its z": [
+        0.004774404931889152,
+        1.1599928854635593
+      ],
+      "Y15: mean over t >= 2 ms minus t = 0": -0.005349623961724684,
+      "X15: mean over t >= 2 ms minus t = 0": -0.024390824495545558,
+      "Xb15: mean over t >= 2 ms minus t = 0": -0.023119527697858185,
+      "Xb15: rms of (data - prediction) / se, t > 1.5 ms": 8.226503859604543
+    },
+    "mean ZZ (all pairs), initial state 1": {
+      "data at 0 / 1.5 / 5 / 10 ms": [
+        0.20251678804812118,
+        0.19468177104810075,
+        0.20455633849758587,
+        0.207230387886823
+      ],
+      "bootstrap se at the same times": [
+        0.0033453506675762868,
+        0.0033407035440044725,
+        0.002769364980106385,
+        0.003246744963019845
+      ],
+      "data: mean over t >= 2 ms minus t = 0, and its z": [
+        -0.006211630822667624,
+        -1.8598961032364554
+      ],
+      "Y15: mean over t >= 2 ms minus t = 0": 0.002542615158035888,
+      "X15: mean over t >= 2 ms minus t = 0": -0.00669795608858903,
+      "Xb15: mean over t >= 2 ms minus t = 0": -0.006142493743508143,
+      "Xb15: rms of (data - prediction) / se, t > 1.5 ms": 4.674032407143357
+    },
+    "mean ZZ (all pairs), initial state 2": {
+      "data at 0 / 1.5 / 5 / 10 ms": [
+        0.00893714052073006,
+        0.019069314650280837,
+        0.036021839690136524,
+        0.06014915313695686
+      ],
+      "bootstrap se at the same times": [
+        0.0023670216857731943,
+        0.003110503375817448,
+        0.002468375805395124,
+        0.0021166637934228894
+      ],
+      "data: mean over t >= 2 ms minus t = 0, and its z": [
+        0.031153017670806436,
+        13.104660369493427
+      ],
+      "Y15: mean over t >= 2 ms minus t = 0": -0.0004422978335123641,
+      "X15: mean over t >= 2 ms minus t = 0": 0.02243051206061903,
+      "Xb15: mean over t >= 2 ms minus t = 0": 0.022144488477862663,
+      "Xb15: rms of (data - prediction) / se, t > 1.5 ms": 8.395265855765357
+    },
+    "energy of Y15 (rad/s), initial state 1": {
+      "data at 0 / 1.5 / 5 / 10 ms": [
+        4224.41883362644,
+        4464.47782848044,
+        4411.127010548402,
+        4249.689637488777
+      ],
+      "bootstrap se at the same times": [
+        25.436142071110773,
+        39.97986238338273,
+        36.30202626862507,
+        29.138957467178074
+      ],
+      "data: mean over t >= 2 ms minus t = 0, and its z": [
+        127.52724966820915,
+        5.017149012061031
+      ],
+      "Y15: mean over t >= 2 ms minus t = 0": -26.274095904004753,
+      "X15: mean over t >= 2 ms minus t = 0": -62.630165160595425,
+      "Xb15: mean over t >= 2 ms minus t = 0": -64.13217032910234,
+      "Xb15: rms of (data - prediction) / se, t > 1.5 ms": 7.484513138840528
+    },
+    "energy of Y15 (rad/s), initial state 2": {
+      "data at 0 / 1.5 / 5 / 10 ms": [
+        6080.379342139638,
+        5931.498809161236,
+        5842.380511190238,
+        5532.63300678131
+      ],
+      "bootstrap se at the same times": [
+        19.055584859664524,
+        32.065961019253,
+        44.7331952952204,
+        29.832167139034894
+      ],
+      "data: mean over t >= 2 ms minus t = 0, and its z": [
+        -351.67310761290264,
+        -15.143483677929659
+      ],
+      "Y15: mean over t >= 2 ms minus t = 0": -35.914616542548174,
+      "X15: mean over t >= 2 ms minus t = 0": -226.99814915967454,
+      "Xb15: mean over t >= 2 ms minus t = 0": -225.85945391146106,
+      "Xb15: rms of (data - prediction) / se, t > 1.5 ms": 4.406572661295387
+    }
+  },
+  "(C) time-point jitter, t >= 0.5 ms": {
+    "mean Z, initial state 1": {
+      "second differences / bootstrap expectation (1 = no jitter)": 1.8052353723075585,
+      "jitter sd beyond the bootstrap (same units)": 0.0026182085061689,
+      "time points with |standardised residual| > 3 about a cubic fit (ms)": []
+    },
+    "mean Z, initial state 2": {
+      "second differences / bootstrap expectation (1 = no jitter)": 1.3551159181175887,
+      "jitter sd beyond the bootstrap (same units)": 0.001966585900165921,
+      "time points with |standardised residual| > 3 about a cubic fit (ms)": []
+    },
+    "mean ZZ (all pairs), initial state 1": {
+      "second differences / bootstrap expectation (1 = no jitter)": 2.511134200191581,
+      "jitter sd beyond the bootstrap (same units)": 0.0038169614759236193,
+      "time points with |standardised residual| > 3 about a cubic fit (ms)": [
+        2.0,
+        5.0
+      ]
+    },
+    "mean ZZ (all pairs), initial state 2": {
+      "second differences / bootstrap expectation (1 = no jitter)": 1.8764976505509696,
+      "jitter sd beyond the bootstrap (same units)": 0.0025140727801739446,
+      "time points with |standardised residual| > 3 about a cubic fit (ms)": [
+        0.5
+      ]
+    },
+    "energy of Y15 (rad/s), initial state 1": {
+      "second differences / bootstrap expectation (1 = no jitter)": 1.665875258607108,
+      "jitter sd beyond the bootstrap (same units)": 24.786243792688545,
+      "time points with |standardised residual| > 3 about a cubic fit (ms)": [
+        2.0
+      ]
+    },
+    "energy of Y15 (rad/s), initial state 2": {
+      "second differences / bootstrap expectation (1 = no jitter)": 0.8382199520827086,
+      "jitter sd beyond the bootstrap (same units)": 0.0,
+      "time points with |standardised residual| > 3 about a cubic fit (ms)": []
+    }
+  },
+  "(D) mean-Z balance": {
+    "initial state 1": {
+      "measured change of mean Z at 1.5 / 5 / 10 ms": [
+        0.02209697323312465,
+        0.03614071366571797,
+        0.051843385814011156
+      ],
+      "X15 fields on the measured <X_i>, <Y_i>, same times": [
+        0.015602848690808711,
+        0.00790265608857308,
+        0.004292948102572127
+      ],
+      "X15 prediction, same times": [
+        0.017156421384290632,
+        0.02040430172523139,
+        0.031229472483456033
+      ],
+      "identity check: X15 fields on the X15 trajectory minus the X15 prediction, max over t": 5.193054649617508e-05
+    },
+    "initial state 2": {
+      "measured change of mean Z at 1.5 / 5 / 10 ms": [
+        -0.006318142183546489,
+        0.005451783332097192,
+        0.00452962411471261
+      ],
+      "X15 fields on the measured <X_i>, <Y_i>, same times": [
+        -0.013839465927066256,
+        -0.018647707803369832,
+        -0.022280284261109777
+      ],
+      "X15 prediction, same times": [
+        -0.01669264173474188,
+        -0.0225576360312931,
+        -0.030644611767281053
+      ],
+      "identity check: X15 fields on the X15 trajectory minus the X15 prediction, max over t": 4.421609777632493e-05
+    },
+    "fits of the mean-Z change, t > 0, both states": {
+      "fields": {
+        "parameters": {
+          "uniform field h_x (rad/s)": 5.272993704589915,
+          "uniform field h_y (rad/s)": -45.917909042576085
+        },
+        "chi2 / dof": [
+          291.4449279603008,
+          38
+        ]
+      },
+      "flips": {
+        "parameters": {
+          "flip rate S (rad/s)": 7.847140486305724
+        },
+        "chi2 / dof": [
+          319.8844470513185,
+          39
+        ]
+      },
+      "pumping": {
+        "parameters": {
+          "pumping c (1/s)": 4.231058138183501
+        },
+        "chi2 / dof": [
+          894.9229896078132,
+          39
+        ]
+      },
+      "fields + flips + pumping": {
+        "parameters": {
+          "uniform field h_x (rad/s)": 5.855896193943885,
+          "uniform field h_y (rad/s)": -21.141596839974977,
+          "flip rate S (rad/s)": 5.03610669608026,
+          "pumping c (1/s)": -0.5631200025065356
+        },
+        "chi2 / dof": [
+          63.36529841356899,
+          36
+        ]
+      }
+    },
+    "X15 fields, site mean (rad/s): h_x, h_y": [
+      -4.618892792416268,
+      -18.772825034632014
+    ]
+  },
+  "(E) collision-like shots": {
+    "initial state 1": {
+      "all +1: observed fraction at 0 / 1.5 / 5 / 10 ms": [
+        0.004725,
+        0.00485,
+        0.002875,
+        0.00375
+      ],
+      "all +1: independent-ion expectation, same times": [
+        0.003962309350436674,
+        0.0003814357469499846,
+        0.00020108751669768574,
+        0.00026258894048503524
+      ],
+      "all -1: observed fraction at 0 / 1.5 / 5 / 10 ms": [
+        0.000225,
+        0.025025,
+        0.0184,
+        0.0163
+      ],
+      "all -1: independent-ion expectation, same times": [
+        0.00013179174995567498,
+        0.0033605090855417996,
+        0.003967896584986233,
+        0.0034116414769647775
+      ],
+      "observed / expected, all +1 and all -1 together, t > 0: mean, max": [
+        5.21925306477741,
+        7.983816260622434
+      ],
+      "shots per time": 40000
+    },
+    "initial state 2": {
+      "all +1: observed fraction at 0 / 1.5 / 5 / 10 ms": [
+        0.016425,
+        0.019025,
+        0.012075,
+        0.0121
+      ],
+      "all +1: independent-ion expectation, same times": [
+        0.017144132587810015,
+        0.0028359200272416556,
+        0.0011944875486746705,
+        0.0011665061023325997
+      ],
+      "all -1: observed fraction at 0 / 1.5 / 5 / 10 ms": [
+        2.5e-05,
+        0.009825,
+        0.00845,
+        0.00835
+      ],
+      "all -1: independent-ion expectation, same times": [
+        4.904719714314121e-06,
+        0.000360495712290298,
+        0.0008223654085770303,
+        0.000906960545918116
+      ],
+      "observed / expected, all +1 and all -1 together, t > 0: mean, max": [
+        9.020194664270448,
+        11.608684523443898
+      ],
+      "shots per time": 40000
+    }
+  },
+  "(F) drift over the acquisition": {
+    "mean Z, initial state 1": {
+      "change (t >= 2 ms minus t = 0) per quarter of the settings": [
+        0.028538587364192958,
+        0.047302186658977285,
+        0.05073853444886739,
+        0.04993485656070795
+      ],
+      "chi2 of homogeneity (3 dof; se of a quarter = 2 x full-data se)": 12.626646211603036
+    },
+    "mean Z, initial state 2": {
+      "change (t >= 2 ms minus t = 0) per quarter of the settings": [
+        0.009077266173849227,
+        0.009992161668589017,
+        0.008427065826330536,
+        -0.0032050819608095
+      ],
+      "chi2 of homogeneity (3 dof; se of a quarter = 2 x full-data se)": 1.712013225327244
+    },
+    "mean ZZ (all pairs), initial state 1": {
+      "change (t >= 2 ms minus t = 0) per quarter of the settings": [
+        0.009967017370555387,
+        -0.006878156447764239,
+        -0.012172777259051748,
+        -0.010422116119174873
+      ],
+      "chi2 of homogeneity (3 dof; se of a quarter = 2 x full-data se)": 6.910611431007062
+    },
+    "mean ZZ (all pairs), initial state 2": {
+      "change (t >= 2 ms minus t = 0) per quarter of the settings": [
+        0.031123782459843843,
+        0.026705488121174396,
+        0.02952177093059446,
+        0.03204800667741844
+      ],
+      "chi2 of homogeneity (3 dof; se of a quarter = 2 x full-data se)": 0.7276835091792038
+    },
+    "energy of Y15 (rad/s), initial state 1": {
+      "change (t >= 2 ms minus t = 0) per quarter of the settings": [
+        120.48103661353889,
+        112.32742118974602,
+        99.2661689365168,
+        113.48876177256989
+      ],
+      "chi2 of homogeneity (3 dof; se of a quarter = 2 x full-data se)": 0.09090000668424748
+    },
+    "energy of Y15 (rad/s), initial state 2": {
+      "change (t >= 2 ms minus t = 0) per quarter of the settings": [
+        -458.5271476880953,
+        -379.22739045514936,
+        -246.0897699559173,
+        -348.8459285968229
+      ],
+      "chi2 of homogeneity (3 dof; se of a quarter = 2 x full-data se)": 10.738032553053895
+    }
+  }
+}
