@@ -1,6 +1,7 @@
 # 연구 설명 Q&A (쉬운 설명)
 
 2026-11-05 기준. 연구 진행 중에 나온 질문과 답을 쉬운 말로 정리했다. 기술적인 세부는 다음 문서에 있다.
+- 전체 흐름(처음 읽을 때): `docs/research-overview.md`
 - 결과: `docs/results/summary.md`
 - 정리와 증명: `docs/theory/`
 - 선행연구 점검: `docs/literature/novelty-check.md`

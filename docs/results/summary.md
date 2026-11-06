@@ -1,6 +1,6 @@
 # 결과 요약 — Dissipation이 지우는 Hamiltonian 오차 (2026-11-04)
 
-쉬운 설명(연구 질문, 원리, 기여를 Q&A로 정리): `docs/research-qa.md`.
+쉬운 설명(연구 질문, 원리, 기여를 Q&A로 정리): `docs/research-qa.md`. 처음 읽는다면 전체 흐름을 그림과 함께 정리한 `docs/research-overview.md`부터 본다.
 
 **한 줄 결론.** 제안한 정리들(A, A2, B1–B3, 명제 C)이 모든 수치 검증을 통과했다. 핵심 메시지는 "대칭을 지키는 오차는 collective noise와 무관하게 남고, 대칭을 깨는 오차는 1차에서 사라지며 collective noise가 추가로 억제한다"이고, N=6 정확 계산과 N=200 free-fermion 계산에서 모두 확인됐다. 다만 BEQS 실험 영역(약한 collective noise, 짧은 시간)에서는 Zeno 억제 효과가 크지 않다. 그 영역에서 실질적인 이득은 선택 규칙(B1)에서 나온다.
 
