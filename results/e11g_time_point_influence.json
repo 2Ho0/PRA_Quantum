@@ -1,0 +1,35 @@
+{
+  "data: site-mean K per design (rad/s)": {
+    "all four times": -94.08359853943134,
+    "without 0.5 ms": -154.2562693801692,
+    "without 1.0 ms": -66.97991252656375
+  },
+  "data: charged rms per design (rad/s)": {
+    "all four times": 54.177505688875975,
+    "without 0.5 ms": 115.62379800024694,
+    "without 1.0 ms": 41.67145607645678
+  },
+  "change of K when one time point is removed": {
+    "without 0.5 ms": {
+      "data change of K (rad/s)": -60.17267084073785,
+      "synthetic change: mean, sd": [
+        -36.07100614684676,
+        11.490119667194557
+      ],
+      "z of the data change": -2.0975991018356193
+    },
+    "without 1.0 ms": {
+      "data change of K (rad/s)": 27.103686012867584,
+      "synthetic change: mean, sd": [
+        0.22563103512554772,
+        12.036242696814764
+      ],
+      "z of the data change": 2.2330934706771046
+    }
+  },
+  "synthetic K per design: median": {
+    "all four times": -17.300322483929186,
+    "without 0.5 ms": -49.366473843241195,
+    "without 1.0 ms": -17.798491479354347
+  }
+}
