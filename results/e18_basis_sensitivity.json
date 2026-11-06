@@ -1,0 +1,185 @@
+{
+  "settings below the margin threshold (4, 5)": [
+    13,
+    77
+  ],
+  "expected number of misassigned (setting, qubit) cells, sum Phi(-margin)": 0.004107029607124081,
+  "full data": {
+    "gamma_c of X15 (rad/s)": 33.25379623878165,
+    "J_nn of X15 (rad/s)": 596.9110019667081,
+    "beta of Xb15 (rad/s per ms)": 7.584715859110386,
+    "beta of Xb30 (rad/s per ms)": 13.99456859310455,
+    "site-mean K (rad/s)": -94.08359853943134,
+    "charged rms (rad/s)": 54.177505688875975,
+    "mean Z change, state 1": 0.04403241764322141,
+    "mean ZZ change, state 2": 0.031153017670806436,
+    "energy change, state 2 (rad/s)": -351.67310761290264
+  },
+  "margin < 4: change when the low-margin settings are removed": {
+    "gamma_c of X15 (rad/s)": {
+      "change": -1.0304370272346617,
+      "random-removal 2.5%, 97.5%": [
+        -1.022244829651456,
+        2.2212586046166387
+      ],
+      "z against random removal": -1.427753331175337,
+      "inside": false
+    },
+    "J_nn of X15 (rad/s)": {
+      "change": -4.033566206083265,
+      "random-removal 2.5%, 97.5%": [
+        -7.6745316697435895,
+        4.66139501485358
+      ],
+      "z against random removal": -0.6190850729403582,
+      "inside": true
+    },
+    "beta of Xb15 (rad/s per ms)": {
+      "change": -3.023977274969086,
+      "random-removal 2.5%, 97.5%": [
+        -9.350056870702943,
+        4.0013439643297675
+      ],
+      "z against random removal": -0.1908625564241753,
+      "inside": true
+    },
+    "beta of Xb30 (rad/s per ms)": {
+      "change": -2.2037429311567145,
+      "random-removal 2.5%, 97.5%": [
+        -8.601404009514662,
+        4.656742380989633
+      ],
+      "z against random removal": 0.04322605463542497,
+      "inside": true
+    },
+    "site-mean K (rad/s)": {
+      "change": -4.39613055318037,
+      "random-removal 2.5%, 97.5%": [
+        -8.433612159579857,
+        6.294594456240987
+      ],
+      "z against random removal": -0.93909956078862,
+      "inside": true
+    },
+    "charged rms (rad/s)": {
+      "change": 2.2849536493787355,
+      "random-removal 2.5%, 97.5%": [
+        -2.64421058503222,
+        4.47512820924536
+      ],
+      "z against random removal": 0.5112535403414722,
+      "inside": true
+    },
+    "mean Z change, state 1": {
+      "change": -0.0012914251364927187,
+      "random-removal 2.5%, 97.5%": [
+        -0.0015137338492495502,
+        0.0014969903151148811
+      ],
+      "z against random removal": -1.573295812529577,
+      "inside": true
+    },
+    "mean ZZ change, state 2": {
+      "change": 0.00025727114314407634,
+      "random-removal 2.5%, 97.5%": [
+        -0.001005927611642398,
+        0.0013274176815715967
+      ],
+      "z against random removal": 0.22120276175547768,
+      "inside": true
+    },
+    "energy change, state 2 (rad/s)": {
+      "change": 1.7381605120071981,
+      "random-removal 2.5%, 97.5%": [
+        -11.749998176034591,
+        14.113474457690243
+      ],
+      "z against random removal": 0.10336739297079277,
+      "inside": true
+    }
+  },
+  "margin < 5: change when the low-margin settings are removed": {
+    "gamma_c of X15 (rad/s)": {
+      "change": -3.9250230723010375,
+      "random-removal 2.5%, 97.5%": [
+        -4.028041683578783,
+        9.153232891555668
+      ],
+      "z against random removal": -1.7279847960347126,
+      "inside": true
+    },
+    "J_nn of X15 (rad/s)": {
+      "change": -29.913128220107637,
+      "random-removal 2.5%, 97.5%": [
+        -43.55598601240764,
+        9.792659093418356
+      ],
+      "z against random removal": -0.720373560714692,
+      "inside": true
+    },
+    "beta of Xb15 (rad/s per ms)": {
+      "change": 6.347440137827787,
+      "random-removal 2.5%, 97.5%": [
+        -30.51558662146204,
+        14.37090542236196
+      ],
+      "z against random removal": 1.1891590623612718,
+      "inside": true
+    },
+    "beta of Xb30 (rad/s per ms)": {
+      "change": -14.824449839343028,
+      "random-removal 2.5%, 97.5%": [
+        -31.412881450934655,
+        1.1669341009385106
+      ],
+      "z against random removal": 0.11714409053412429,
+      "inside": true
+    },
+    "site-mean K (rad/s)": {
+      "change": -9.64334587828489,
+      "random-removal 2.5%, 97.5%": [
+        -32.02075791824976,
+        9.050162191962226
+      ],
+      "z against random removal": -0.015330448184665956,
+      "inside": true
+    },
+    "charged rms (rad/s)": {
+      "change": 7.002507924656278,
+      "random-removal 2.5%, 97.5%": [
+        -2.283889899840312,
+        22.813316361433657
+      ],
+      "z against random removal": -0.41462726182502,
+      "inside": true
+    },
+    "mean Z change, state 1": {
+      "change": -0.0006260086780335294,
+      "random-removal 2.5%, 97.5%": [
+        -0.00489841536056955,
+        0.004302007675346453
+      ],
+      "z against random removal": -0.042496876811693375,
+      "inside": true
+    },
+    "mean ZZ change, state 2": {
+      "change": 0.0029123358743625705,
+      "random-removal 2.5%, 97.5%": [
+        -0.003636901820612584,
+        0.0029834058858640685
+      ],
+      "z against random removal": 1.783566257701663,
+      "inside": true
+    },
+    "energy change, state 2 (rad/s)": {
+      "change": 32.193960757533205,
+      "random-removal 2.5%, 97.5%": [
+        -32.688528585475204,
+        25.43337402210682
+      ],
+      "z against random removal": 2.0040122996962637,
+      "inside": false
+    }
+  },
+  "verdict: every result robust for both thresholds": false
+}
