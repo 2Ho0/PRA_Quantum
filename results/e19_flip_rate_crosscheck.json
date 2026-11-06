@@ -1,0 +1,70 @@
+{
+  "10 ions: estimate and bootstrap sd": {
+    "learning window: h_x": [
+      43.770222645144166,
+      11.788748892698537
+    ],
+    "learning window: h_y": [
+      -29.96590566035596,
+      8.321408710232303
+    ],
+    "learning window: S": [
+      18.85430467707917,
+      7.941974077648593
+    ],
+    "learning window: c": [
+      -58.44265339114592,
+      15.516498285032863
+    ],
+    "whole record: h_x": [
+      5.358414248140587,
+      1.7530473253719012
+    ],
+    "whole record: h_y": [
+      -21.647566255018273,
+      3.6534104504551
+    ],
+    "whole record: S": [
+      4.473168570368068,
+      0.40663729047247904
+    ],
+    "whole record: c": [
+      0.43982586641280674,
+      0.24177938032092758
+    ],
+    "t >= 3 ms, fields from the whole record: S": [
+      3.3155891886093376,
+      1.073251937038
+    ],
+    "t >= 3 ms, fields from the whole record: c": [
+      0.12230546993852835,
+      0.5664969208588926
+    ],
+    "t >= 3 ms, no fields: S": [
+      2.48220464294647,
+      1.0684202582392373
+    ],
+    "t >= 3 ms, no fields: c": [
+      0.16596790429435088,
+      0.5660287665239115
+    ]
+  },
+  "51 ions: balanced sector-changing rate per ion (1/s) and se": [
+    2.0992815708627806,
+    0.2219591736293186
+  ],
+  "10 ions, E11e: bias-corrected flip S of the noise block, t <= 1.5 ms (rad/s), over truths": [
+    10.585831098092745,
+    13.121040612148827
+  ],
+  "late-window S minus the 51-ion rate, and z": [
+    1.216307617746557,
+    1.1098068679939408
+  ],
+  "consistent (|z| < 2)": true,
+  "the same without fields, z": 0.35090888143853277,
+  "transverse polarisation at 3 ms, site-mean |r_xy| per state": [
+    0.03200070612357012,
+    0.013149219342762627
+  ]
+}
