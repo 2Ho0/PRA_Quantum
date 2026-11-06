@@ -252,7 +252,7 @@ Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D
 3. *Observable side.* The Heisenberg dynamics of w(u) is the same chain with a_k → −a_k, and G_k is even in a_k. It starts from w(0) = e_C e_Cᵀ; measure positions from C.
    - a(u) = 2ε ‖Im w_1(u)‖_{ℓ¹} is the ℓ¹ norm of a sequence whose transform σ_u(k) has the slow part μ_k(p_+)(g/ν_k) e^{p_+(k)u}. Carlson's inequality, (Σ_x |f_x|)⁴ ≤ c Σ_x |f_x|² Σ_x (1 + x²)|f_x|², reads ‖f‖_{ℓ¹} ≤ c^{1/4} ‖f̂‖_2^{1/2} (‖f̂‖_2² + ‖f̂′‖_2²)^{1/4} in Fourier space.
    - Step 1 gives ‖σ_u‖_2 ≲ (J/g)(1 + Du)^{−3/4} and ‖σ_u′‖_2 ≲ (J/g)(1 + Du)^{−1/4}, so a(u) ≲ ε (J/g)(1 + Du)^{−1/2}.
-   - M = i[δh, w(u)] consists of differences of w along the diagonal (the density gradient, bounded the same way) and the components w_{±m}, m ≥ 1. Their ℓ¹ norms carry (CJ/g)^m and sum to the same order.
+   - M = i[δh, w(u)] is the hopping term of the Heisenberg chain applied to w(u), so m(u) needs the ℓ¹ norm over the coherence index r as well as over x. *Closing the ℓ¹ sum over r* below proves m(u) ≤ Cε(1 + Du)^{−1/2} with an exponential weight in r.
 4. Insert into Corollary F-qf and use ∫_0^t (1 + Du)^{−1/2} (1 + D(t − u))^{−1/2} du ≤ π/D. □
 
 **Closing the gap in step 1 (proof; checked by E13d).** The uniform estimate does not need the pole–cut split; hypocoercivity gives it with explicit constants.
@@ -282,7 +282,34 @@ Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D
   - The largest ratios of measured to bound for the five operator estimates are 0.83, 0.71, 0.71, 0.9996 and 0.47. The value 0.9996 is reached as t → 0, where the e^{−t} term is exact.
   - The integrated estimate reaches 0.40–0.41 at J/g = 0.25 and 1.
   - λ is 3–8% of the slowest rate of the infinite chain: the constants are conservative, the scaling is right.
-- *Still open.* m(u) needs the ℓ¹ norm over the coherence index r as well as over x. The estimates above control the coherences only in ℓ²(r). A possible route: for |α| ≤ α_0 < 1/2, the exact slow-pole formula of Lemma F.2 gives the factors μ^{|r|} with |μ| ≤ 2|α|, and the residue is bounded there. For |α| > α_0 the decay rate is bounded below (λ ≥ α_0²/18), and a bound on how fast the coherences spread in r should suffice. This is not written out.
+
+**Closing the ℓ¹ sum over r (Lemma F.3; proof, checked by E13e).** The estimates above control the coherences in ℓ²(r), but m(u) = Σ_{x≠y} |M_xy(u)| is an ℓ¹ norm over r as well as over x. An exponential weight in r closes it.
+- *Weighted chain.* Let W = diag(e^{θ|r|}), s = sinh(θ/2) and α′ = α cosh(θ/2). Conjugation gives W^{1/2} M W^{−1/2} = −Q − α′K − αsB, with K = S − S* and B the symmetric matrix with +1 on the bonds (r − 1, r) for r ≥ 1 and −1 for r ≤ 0. The skew part is the old chain at α′. The weight adds the symmetric term P = αsB, with ‖P‖ ≤ 2|α|s, ‖PΠ‖ = √2|α|s and ΠPΠ = 0.
+- *Lemma F.3 (weighted decay).* Let α_m = 2J/g and |s| ≤ 1/(40(1 + α_m)). For |α| ≤ α_m,
+  ‖W^{1/2} e^{tM} W^{−1/2}‖ ≤ √(3/2) e^{−λ_θ t},  λ_θ = α²/(13(1 + 2α²)) ≥ min(α², 1)/39.
+  *Proof.* Take the modified energy of the unweighted proof at α′: T′ = α′K, A = ΠT′*/(1 + 2α′²), ε = 1/5. The skew part gives dH/dt ≤ −a²/2 − (w′/5) b² with w′ = α′²/(1 + 2α′²). The symmetric term adds X = −⟨Pc, c⟩ − ε Re[⟨APc, c⟩ + ⟨Ac, Pc⟩], and
+  - |⟨Pc, c⟩| ≤ 2|α|s a² + 2√2|α|s ab, because ΠPΠ = 0;
+  - ⟨APc, c⟩ = αα′s (2c_0 + c_2 + c_{−2}) c̄_0 / (1 + 2α′²), so its modulus is at most s w′ (2b² + √2 ab);
+  - Ac is a multiple of e_0 of norm at most √2|α′| a/(1 + 2α′²), so |⟨Ac, Pc⟩| ≤ 2s w′ a².
+  Young's inequality on the ab terms, against half of the b² margin, costs at most 22.9 s²(1 + 2α′²)/(1 − 2s) a². With the stated s the a² coefficients sum to at most −2/5 and the b² coefficient is at most −0.095 w′. So dH/dt ≤ −0.095 w′ ‖c‖² ≤ −0.158 w′ H, and (2/5)‖c‖² ≤ H ≤ (3/5)‖c‖² gives the claim, since 0.079 w′ ≥ α²/(13(1 + 2α²)). Every step uses |s| only, so the bound also holds for W^{−1/2} e^{tM} W^{1/2}, which is the transpose of the weighted chain at −α. □
+- *Weighted block estimates.* On QH the generator −1 − Q(T′ + P)Q has symmetric part at most −(1 − 2|α|s) ≤ −0.95, and ‖Q(T′ + P)Π‖ = √2|α| e^{θ/2}. The Duhamel arguments of the unweighted proof then give
+  ‖W^{1/2} Q e^{tM} e_0‖ ≤ 2|α| e^{−λ_θ t},  ‖Π W^{1/2} e^{tM} W^{−1/2} Q‖ ≤ 2|α| e^{−λ_θ t},  ‖Q W^{1/2} e^{tM} W^{−1/2} Q‖ ≤ e^{−0.95t} + 3.2α² e^{−λ_θ t}.
+  For the α-derivative the source is −K_θ c with K_θ = cosh(θ/2) K + sB, ‖K_θ‖ ≤ 2e^{θ/2} and ΠK_θΠ = 0, so
+  ‖W^{1/2} Q ∂_α e^{tM} e_0‖ ≤ (3 + 14α²t) e^{−λ_θ t},  |Π ∂_α e^{tM} e_0| ≤ 8.6|α| t e^{−λ_θ t}.
+- *The ℓ¹ sum.* Write r = x − y and R = (x + y)/2, measured from C. A uniform miscalibration δh = (ε/J) h gives M̂_r(k, u) = (ε/J) a_k (K ŵ(k, u))_r, the hopping term of the Heisenberg chain. Two Cauchy–Schwarz steps follow.
+  - For each r, the weight λ + μR² with λ = ‖Rf‖², μ = ‖f‖² gives the two-sided Carlson inequality ‖f‖_{ℓ¹} ≤ √2 ‖f‖_2 + √(2π) ‖f‖_2^{1/2} ‖Rf‖_2^{1/2}. By Parseval the two norms are those of M̂_r and ∂_k M̂_r in L²(dk/2π).
+  - Over r, the weight e^{θ|r|} gives
+    m(u) ≤ S_θ^{1/2} [√2 𝒳 + √(2π) 𝒳^{1/2} 𝒴^{1/2}],  S_θ = Σ_{r≠0} e^{−θ|r|} = 2/(e^θ − 1),
+    where 𝒳² = ∫ ‖W^{1/2} Q M̂(k, u)‖² dk/2π and 𝒴² is the same for ∂_k M̂.
+  - Lemma F.3 and the derivative estimates give, with τ = gu,
+    ‖W^{1/2} Q M̂‖ ≤ (ε/J) |a_k| 2e^{θ/2} √(3/2) e^{−λ_θ τ},
+    ‖W^{1/2} Q ∂_k M̂‖ ≤ 2ε e^{θ/2} (|a_k′|/J) [√(3/2) + |α|(3 + 8.6|α|τ + 14α²τ)] e^{−λ_θ τ}.
+    As in step 3, 𝒳 ≤ Cε (1 + Du)^{−3/4} and 𝒴 ≤ Cε (1 + Du)^{−1/4}.
+  - Hence m(u) ≤ Cε (1 + Du)^{−1/2}, with C depending only on g/J. This was the last open step: Proposition F.1 holds as stated, with no hypothesis left.
+- *Numerical check (E13e).* Exact matrix exponentials on truncated chains, α from 0.01 to α_m, t up to 15/λ_θ, J/g = 0.25 and 1 (θ = 0.033 and 0.017).
+  - The largest ratios of measured to bound are 0.82 for the weighted decay (both signs of θ), 0.72 and 0.70 for the two off-diagonal blocks, 0.9992 for the QQ block (as t → 0), 0.48 and 0.45 for the two derivative estimates, and 0.17 for the ℓ¹ norm over r.
+  - On the E13 chain (N = 400, J = g = 1, ε = 0.01) the measured m(u) stays below the Carlson step evaluated on the exact r-chain (largest ratio 0.72), and that stays below the closed bound (largest ratio 0.05). The Carlson step is nearly tight; the slack sits in the hypocoercive constants. The closed bound is 76, 2550 and 730 times m at u = 1, 100 and 1500.
+  - The closed bound has a hump near u ≈ 10, made by the factors α²τ, so its slope on [20, 800] is −1.26. Its slope is −0.504 on [10⁵, 10⁶] and −0.501 on [10⁷, 10⁸], and m_B √u tends to 4.88. The measured m(u) has slope −0.53 on [20, 800].
 
 **Remarks.**
 1. The constants are not optimized. The exponents match E13: −0.50 to −0.53 for a, m and ‖∇c_u‖₁, and −0.50 for γ and κ of the domain wall.
