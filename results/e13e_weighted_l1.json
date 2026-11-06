@@ -1,0 +1,45 @@
+{
+  "J/g = 0.25 (alpha_m = 0.5, theta = 0.0333)": {
+    "(1) weighted ||e^{tM}||: max measured / bound": 0.8187417118027958,
+    "(1-) the same, theta -> -theta: max measured / bound": 0.8187417118027954,
+    "(2) weighted ||Q e^{tM} e_0||: max measured / bound": 0.717879644779292,
+    "(3) weighted ||P e^{tM} Q||: max measured / bound": 0.6943435099354363,
+    "(4) weighted ||Q e^{tM} Q||: max measured / bound": 0.9991806624639553,
+    "(5) weighted ||Q d_alpha e^{tM} e_0||: max measured / bound": 0.4754720769438063,
+    "(5') |P d_alpha e^{tM} e_0|: max measured / bound": 0.45248800429711455,
+    "(6) l1 over r of e^{tM} e_0: max measured / bound": 0.16515570766977938
+  },
+  "J/g = 1 (alpha_m = 2, theta = 0.0167)": {
+    "(1) weighted ||e^{tM}||: max measured / bound": 0.8197051772746169,
+    "(1-) the same, theta -> -theta: max measured / bound": 0.8197051772746171,
+    "(2) weighted ||Q e^{tM} e_0||: max measured / bound": 0.7119220447447834,
+    "(3) weighted ||P e^{tM} Q||: max measured / bound": 0.7001539778126773,
+    "(4) weighted ||Q e^{tM} Q||: max measured / bound": 0.999178999372275,
+    "(5) weighted ||Q d_alpha e^{tM} e_0||: max measured / bound": 0.47152503316760747,
+    "(5') |P d_alpha e^{tM} e_0|: max measured / bound": 0.45248800429711455,
+    "(6) l1 over r of e^{tM} e_0: max measured / bound": 0.1527010350074598
+  },
+  "(7) m(u) of E13 against the Carlson step m_C and the closed bound m_B": {
+    "max m / m_C": 0.7153180288591966,
+    "max m_C / m_B": 0.05015917722517921,
+    "m_B / m at u = 1, 100, 1500": [
+      76.01242851775868,
+      2550.1530535580105,
+      730.2311005021553
+    ],
+    "log-slopes on u in [20, 800]: m, m_C, m_B": [
+      -0.5330841170409368,
+      -0.5582893005692812,
+      -1.2569758037033398
+    ],
+    "m_B log-slope on u in [1e5, 1e6] and [1e7, 1e8] (added after the run: the bound's hump)": [
+      -0.5042471896023446,
+      -0.5006910882256813
+    ],
+    "u of the largest m_B * u^(1/2) on [1e3, 1e8]": 1000.0
+  },
+  "acceptance": {
+    "(1)-(6) hold to 1e-9": true,
+    "m <= m_C <= m_B on the E13 grid": true
+  }
+}
