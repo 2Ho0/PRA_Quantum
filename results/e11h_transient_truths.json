@@ -1,0 +1,193 @@
+{
+  "calibration (A)": {
+    "flip burst": {
+      "tau (ms)": 0.4217652915781356,
+      "chi2": 36.85724331626595,
+      "dof": 35,
+      "params (rad/s, 1/s)": [
+        4.61773387662007,
+        29.48419085724431,
+        0.9431326510265293,
+        144.08352618199646,
+        0.4702607841403398
+      ]
+    },
+    "field transient": {
+      "tau (ms)": 1.3921540779848285,
+      "chi2": 44.031774665997276,
+      "dof": 35,
+      "params (rad/s, 1/s)": [
+        23.029737081600462,
+        -27.65421039359547,
+        29.465879172719912,
+        -59.25302115230802,
+        -0.18668597128539496
+      ]
+    },
+    "stationary (fields, S, c)": {
+      "chi2": 63.365298413569015,
+      "dof": 36,
+      "params (rad/s, 1/s)": [
+        5.855896193943891,
+        -21.14159683997497,
+        4.608024504299436,
+        0.29304438105510033
+      ]
+    }
+  },
+  "measured site-mean K (rad/s)": -94.0835985394315,
+  "truths": {
+    "control": {
+      "oracle defect": {
+        "K median, 5th, 95th percentile": [
+          -20.282496295215715,
+          -37.03890323397565,
+          -7.96022284111731
+        ],
+        "K median minus control median": 0.0,
+        "charged rms median": 25.309070781910933,
+        "site means per combination, median": {
+          "flip S=SXX+SYY": -25.064078620409724,
+          "imbalance TXY": -13.009479269724046,
+          "SXX-SYY": -20.282496295215715,
+          "SXY": 21.32033395292273,
+          "SXZ": 39.03177608760603,
+          "TXZ": -16.149082479791673,
+          "SYZ": -33.49455454123074,
+          "TYZ": -1.3402157233528906
+        }
+      },
+      "reference defect": {
+        "K median, 5th, 95th percentile": [
+          -18.162823943273768,
+          -35.279875923472616,
+          -5.882072642359505
+        ],
+        "K median minus control median": 0.0,
+        "charged rms median": 24.52290398177393,
+        "site means per combination, median": {
+          "flip S=SXX+SYY": -24.293824809126697,
+          "imbalance TXY": -13.245529383220369,
+          "SXX-SYY": -18.162823943273768,
+          "SXY": 20.66766027926784,
+          "SXZ": 38.672299431158436,
+          "TXZ": -15.83519290001464,
+          "SYZ": -32.155798399116186,
+          "TYZ": -2.527183678438363
+        }
+      }
+    },
+    "flip burst": {
+      "oracle defect": {
+        "K median, 5th, 95th percentile": [
+          -30.192715114840478,
+          -47.68942191120506,
+          -12.689942374435232
+        ],
+        "K median minus control median": -9.910218819624763,
+        "charged rms median": 47.466627932266945,
+        "site means per combination, median": {
+          "flip S=SXX+SYY": -12.817023600393274,
+          "imbalance TXY": -27.21418992056673,
+          "SXX-SYY": -30.192715114840478,
+          "SXY": 56.94841951045859,
+          "SXZ": 52.25654146005176,
+          "TXZ": -28.47561672123079,
+          "SYZ": -71.61260238966078,
+          "TYZ": 17.515587274726634
+        }
+      },
+      "reference defect": {
+        "K median, 5th, 95th percentile": [
+          -37.367118001377456,
+          -55.00986920739877,
+          -20.40081197344987
+        ],
+        "K median minus control median": -19.204294058103688,
+        "charged rms median": 49.87853096936321,
+        "site means per combination, median": {
+          "flip S=SXX+SYY": -15.655168882754513,
+          "imbalance TXY": -28.040142655577334,
+          "SXX-SYY": -37.367118001377456,
+          "SXY": 56.06324381150449,
+          "SXZ": 55.79801541501318,
+          "TXZ": -30.74218524099556,
+          "SYZ": -75.33172244126823,
+          "TYZ": 17.130077518481464
+        }
+      },
+      "reproduces K": false,
+      "sign and half the excess": false,
+      "truth: mean Z change at 0.5 / 1 / 1.5 ms, state 1 and 2": [
+        [
+          0.03660275774047189,
+          0.047441436681145976,
+          0.05095605911828516
+        ],
+        [
+          -0.0036414641563971006,
+          -0.004719761620891147,
+          -0.005069417559901188
+        ]
+      ]
+    },
+    "field transient": {
+      "oracle defect": {
+        "K median, 5th, 95th percentile": [
+          -19.827086639935793,
+          -32.15937059592192,
+          -0.22695670275644872
+        ],
+        "K median minus control median": 0.4554096552799223,
+        "charged rms median": 27.662634021782182,
+        "site means per combination, median": {
+          "flip S=SXX+SYY": -20.421621795395502,
+          "imbalance TXY": -18.48551807699136,
+          "SXX-SYY": -19.827086639935793,
+          "SXY": 18.92946096685263,
+          "SXZ": 42.03822748419072,
+          "TXZ": -15.142287303970885,
+          "SYZ": -39.60253671625206,
+          "TYZ": -5.115545305899076
+        }
+      },
+      "reference defect": {
+        "K median, 5th, 95th percentile": [
+          -19.836695720239078,
+          -32.17507747832622,
+          -0.33872749102251254
+        ],
+        "K median minus control median": -1.67387177696531,
+        "charged rms median": 27.708418472938703,
+        "site means per combination, median": {
+          "flip S=SXX+SYY": -20.270794107260933,
+          "imbalance TXY": -19.126752647792856,
+          "SXX-SYY": -19.836695720239078,
+          "SXY": 17.675710570963417,
+          "SXZ": 42.50186965799578,
+          "TXZ": -15.373275417931769,
+          "SYZ": -39.14770451377589,
+          "TYZ": -6.881105659089744
+        }
+      },
+      "reproduces K": false,
+      "sign and half the excess": false,
+      "truth: mean Z change at 0.5 / 1 / 1.5 ms, state 1 and 2": [
+        [
+          0.016349020881564424,
+          0.022652921502773482,
+          0.02848540527470611
+        ],
+        [
+          -0.0012516429998242692,
+          0.0033826754293854316,
+          0.009332950045819549
+        ]
+      ]
+    }
+  },
+  "verdict": {
+    "reproduce K": [],
+    "give the sign and half the excess": []
+  }
+}
