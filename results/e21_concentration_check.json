@@ -1,0 +1,103 @@
+{
+  "spectral gap of L on the traceless subspace": 0.20000000000000145,
+  "K, tau": [
+    4.0133998301434355,
+    5.099999999999963
+  ],
+  "radius 1/(4 K tau) and sigma": [
+    0.012213985627588391,
+    0.0006633941117487088
+  ],
+  "empirical P(||delta H|| > radius) and the bound delta'": [
+    0.0,
+    0.01
+  ],
+  "Lemma A3.1: max s'(u) / (K e^{-u/(2 tau)}) over samples inside S": 0.3439309695010717,
+  "concentration": {
+    "t = 1": {
+      "T_eff": 1.0,
+      "delta = 0.1: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.03488256377851634,
+        0.0012433005832273303,
+        0.0,
+        0.01488256377851634
+      ],
+      "delta = 0.05: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.03651480632912327,
+        0.0014873777734416625,
+        0.0,
+        0.016514806329123267
+      ],
+      "delta = 0.01: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.039792253175835485,
+        0.002009027478364435,
+        0.0,
+        0.019792253175835484
+      ]
+    },
+    "t = 5": {
+      "T_eff": 5.0,
+      "delta = 0.1: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.0944128188925817,
+        4.662058046069894e-05,
+        0.0,
+        0.0744128188925817
+      ],
+      "delta = 0.05: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.10257403164561633,
+        5.551712290968734e-05,
+        0.0,
+        0.08257403164561633
+      ],
+      "delta = 0.01: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.11896126587917742,
+        7.128552791731405e-05,
+        0.0,
+        0.09896126587917742
+      ]
+    },
+    "t = 20": {
+      "T_eff": 20.0,
+      "delta = 0.1: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.3176512755703268,
+        1.2872705937760908e-05,
+        0.0,
+        0.2976512755703268
+      ],
+      "delta = 0.05: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.35029612658246534,
+        1.65150056436858e-05,
+        0.0,
+        0.3302961265824653
+      ],
+      "delta = 0.01: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.4158450635167097,
+        2.7615860391447804e-05,
+        0.0,
+        0.39584506351670967
+      ]
+    },
+    "t = 60": {
+      "T_eff": 38.05795525022117,
+      "delta = 0.1: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.5863999462913373,
+        1.4187850362068487e-05,
+        0.0,
+        0.8929538267109804
+      ],
+      "delta = 0.05: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.6485197602398426,
+        1.8249840568751435e-05,
+        0.0,
+        0.9908883797473961
+      ],
+      "delta = 0.01: bound, empirical (1-delta) quantile, exceedance, no-dissipation bound": [
+        0.7732526856669947,
+        3.039240241846759e-05,
+        0.0,
+        1.187535190550129
+      ]
+    }
+  },
+  "acceptance: lemma and concentration hold": true
+}
