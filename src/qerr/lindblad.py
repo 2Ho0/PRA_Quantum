@@ -4,9 +4,11 @@ Generator (Schrodinger picture):
     L(X) = -i[H, X]
            + sum_ij Gamma_ij (Z_i X Z_j - 1/2 {Z_j Z_i, X})      sigma^z dephasing
            + sum_i e_i (s-_i X s+_i - 1/2 {s+_i s-_i, X})        emission, s- = |1><0|
+           + sum_i a_i (s+_i X s-_i - 1/2 {s-_i s+_i, X})        absorption, s+ = |0><1|
            + sum_k (J_k X J_k^dag - 1/2 {J_k^dag J_k, X})        extra jumps
-Dephasing and the emission anticommutators act elementwise in the z basis,
-which keeps the right-hand side cheap.
+Dephasing and the emission and absorption anticommutators act elementwise in the z basis,
+which keeps the right-hand side cheap. Equal emission and absorption rates S on a site are the
+isotropic flips (S/2)(D[sigma^x] + D[sigma^y]), i.e. Kossakowski S_XX = S_YY = S/2.
 """
 
 import gc
@@ -25,32 +27,46 @@ class OpenModel:
     Gamma: np.ndarray
     emission: np.ndarray
     jumps: tuple = ()
+    absorption: np.ndarray = None  # rates of s+ = |0><1| (down -> up); None means zero
 
     @property
     def n(self) -> int:
         return int(round(np.log2(self.H.shape[0])))
 
     @cached_property
+    def _absorption(self) -> np.ndarray:
+        return np.zeros(self.n) if self.absorption is None else np.asarray(self.absorption, dtype=float)
+
+    @cached_property
     def _elementwise(self) -> np.ndarray:
-        """Real (D, D) factor W with D_Gamma(X) + emission anticommutators = W * X."""
+        """Real (D, D) factor W with D_Gamma(X) + emission and absorption anticommutators = W * X."""
         z = spins.zvals(self.n).astype(float)
         a = z @ self.Gamma
         q = np.sum(a * z, axis=1)
         w = -0.5 * (q[:, None] + q[None, :] - 2.0 * a @ z.T)
-        p0 = 1.0 - spins.bits(self.n)
+        p1 = spins.bits(self.n).astype(float)
+        p0 = 1.0 - p1
         w -= 0.5 * (p0 @ self.emission)[:, None] + 0.5 * (p0 @ self.emission)[None, :]
+        w -= 0.5 * (p1 @ self._absorption)[:, None] + 0.5 * (p1 @ self._absorption)[None, :]
         return w
 
-    @cached_property
-    def _emission_maps(self) -> list:
-        """(rate, idx0, idx1): basis states with bit_i = 0 and their bit-flipped partners."""
+    def _flip_maps(self, rates) -> list:
+        """(rate, idx0, idx1): basis states with bit_i = 0 and their bit-flipped partners, for sites with rate != 0."""
         b = spins.bits(self.n)
         maps = []
-        for i, rate in enumerate(self.emission):
+        for i, rate in enumerate(rates):
             if rate != 0.0:
                 idx0 = np.flatnonzero(b[:, i] == 0)
                 maps.append((rate, np.ix_(idx0, idx0), np.ix_(idx0 + 2 ** (self.n - 1 - i), idx0 + 2 ** (self.n - 1 - i))))
         return maps
+
+    @cached_property
+    def _emission_maps(self) -> list:
+        return self._flip_maps(self.emission)
+
+    @cached_property
+    def _absorption_maps(self) -> list:
+        return self._flip_maps(self._absorption)
 
     @cached_property
     def _jumps(self) -> list:
@@ -61,6 +77,8 @@ def lindblad_rhs(model: OpenModel, X: np.ndarray) -> np.ndarray:
     out = -1j * (model.H @ X - X @ model.H) + model._elementwise * X
     for rate, sel0, sel1 in model._emission_maps:
         out[sel1] += rate * X[sel0]
+    for rate, sel0, sel1 in model._absorption_maps:
+        out[sel0] += rate * X[sel1]
     for J, Jd, JdJ in model._jumps:
         out += J @ X @ Jd - 0.5 * (JdJ @ X + X @ JdJ)
     return out
@@ -70,6 +88,8 @@ def adjoint_rhs(model: OpenModel, A: np.ndarray) -> np.ndarray:
     out = 1j * (model.H @ A - A @ model.H) + model._elementwise * A
     for rate, sel0, sel1 in model._emission_maps:
         out[sel0] += rate * A[sel1]
+    for rate, sel0, sel1 in model._absorption_maps:
+        out[sel1] += rate * A[sel0]
     for J, Jd, JdJ in model._jumps:
         out += Jd @ A @ J - 0.5 * (JdJ @ A + A @ JdJ)
     return out
@@ -136,6 +156,8 @@ def superop(model: OpenModel) -> np.ndarray:
                 L = L + model.Gamma[i, j] * (np.kron(Z[j].T, Z[i]) - 0.5 * np.kron(I, ZZ) - 0.5 * np.kron(ZZ.T, I))
         if model.emission[i] != 0.0:
             L = L + dissipator(spins.pauli_op(n, i, "-"), model.emission[i])
+        if model._absorption[i] != 0.0:
+            L = L + dissipator(spins.pauli_op(n, i, "+"), model._absorption[i])
     for J in model.jumps:
         L = L + dissipator(J, 1.0)
     return L

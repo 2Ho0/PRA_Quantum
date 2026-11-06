@@ -1,7 +1,7 @@
 import numpy as np
 
 from qerr import spins
-from qerr.lindblad import OpenModel, evolve, lindblad_rhs, superop
+from qerr.lindblad import OpenModel, adjoint_rhs, evolve, lindblad_rhs, superop
 
 
 def random_model(n, rng, n_extra_jumps=1):
@@ -42,6 +42,46 @@ def test_pauli_algebra():
     assert np.allclose(spins.pauli_op(1, 0, "z") @ ket0, ket0)
     # site 0 is the leftmost Kronecker factor
     assert np.allclose(spins.basis_state(2, "10"), np.diag([0, 0, 1, 0]))
+
+
+def test_absorption_matches_explicit_jumps():
+    """Absorption rates a_i (sigma^+ = |0><1|, down -> up) on the fast path equal the same jumps given explicitly."""
+    rng = np.random.default_rng(11)
+    n = 3
+    base = random_model(n, rng, n_extra_jumps=0)
+    a = 0.1 * rng.random(n)
+    fast = OpenModel(H=base.H, Gamma=base.Gamma, emission=base.emission, absorption=a)
+    slow = OpenModel(H=base.H, Gamma=base.Gamma, emission=base.emission,
+                     jumps=tuple(np.sqrt(a[i]) * spins.pauli_op(n, i, "+") for i in range(n)))
+    rho = random_state(8, rng)
+    assert np.linalg.norm(lindblad_rhs(fast, rho) - lindblad_rhs(slow, rho)) < 1e-12
+    A = random_hermitian(8, rng)
+    assert np.linalg.norm(adjoint_rhs(fast, A) - adjoint_rhs(slow, A)) < 1e-12
+
+
+def test_absorption_in_superop_and_adjoint():
+    rng = np.random.default_rng(12)
+    n = 3
+    base = random_model(n, rng)
+    model = OpenModel(H=base.H, Gamma=base.Gamma, emission=base.emission, jumps=base.jumps,
+                      absorption=0.1 * rng.random(n))
+    rho = random_state(8, rng)
+    lhs = lindblad_rhs(model, rho).reshape(-1, order="F")
+    assert np.linalg.norm(lhs - superop(model) @ rho.reshape(-1, order="F")) < 1e-12
+    A = random_hermitian(8, rng)
+    assert abs(np.trace(A @ lindblad_rhs(model, rho)) - np.trace(adjoint_rhs(model, A) @ rho)) < 1e-12
+
+
+def test_equal_emission_and_absorption_are_isotropic_flips():
+    """emission = absorption = S equals (S/2)(D[sigma^x] + D[sigma^y]) per site, i.e. Kossakowski S_XX = S_YY = S/2."""
+    rng = np.random.default_rng(13)
+    n, S = 2, 0.3
+    H = random_hermitian(4, rng)
+    flips = OpenModel(H=H, Gamma=np.zeros((n, n)), emission=S * np.ones(n), absorption=S * np.ones(n))
+    xy = OpenModel(H=H, Gamma=np.zeros((n, n)), emission=np.zeros(n),
+                   jumps=tuple(np.sqrt(S / 2) * spins.pauli_op(n, i, k) for i in range(n) for k in "xy"))
+    rho = random_state(4, rng)
+    assert np.linalg.norm(lindblad_rhs(flips, rho) - lindblad_rhs(xy, rho)) < 1e-12
 
 
 def test_rhs_matches_superop():
