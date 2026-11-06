@@ -313,13 +313,40 @@ Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D
 
 **Remarks.**
 1. The constants are not optimized. The exponents match E13: −0.50 to −0.53 for a, m and ‖∇c_u‖₁, and −0.50 for γ and κ of the domain wall.
-2. With Proposition F.1, Corollary F-qf is a proven time-uniform bound for quasi-free fermions with dephasing. For interacting chains (H_O) and (H_ρ) remain hypotheses; E16 tests them at N = 10.
+2. With Proposition F.1, Corollary F-qf is a proven time-uniform bound for quasi-free fermions with dephasing. For interacting chains (H_O) and (H_ρ) remain hypotheses; E16 tests them at N = 10, and Proposition F.4 below reduces the strong-dephasing case to a single parabolic estimate.
 3. *Interacting check (E16).* The dephased XXZ chain at the isotropic point Δ = 1 (N = 10, g = 4, exact) is compared with the quasi-free control Δ = 0 at the same size.
    - Lemma F.0 holds to 4 × 10⁻⁴ of the peak error, which is the quadrature error.
    - The integrand G(u, t − u) has a fixed sign on every diagonal. Hence F_abs equals the envelope of the true error to 10⁻⁴ for all four initial states and both Δ, while Theorem A is 8–85 times looser.
    - On [1, 10] the exponents of the (H_O) factors differ from the control by 0.06, and those of the density gradient and the current by at most 0.07. The bond coherence is nonzero only at Δ = 1, where ZZ breaks the sublattice symmetry, and decays faster (exponents −1.1 to −1.9).
    - The exponents (about −0.9) are steeper than the infinite-chain −1/2 because the slowest mode of the open chain decays at D(π/N)² ≈ 0.05 and everything saturates after t ≈ 20. The comparison between Δ = 1 and Δ = 0 at the same size is the meaningful one.
    - The preregistered comparison of growth on [2, 10] (F_abs against A) fails for the lowest density mode, whose error itself grows until t ≈ 1/(Dk²) ≈ 20. That criterion did not test time uniformity.
+
+### Proposition F.4 (interacting chains in the strong-dephasing limit: time uniformity reduces to a parabolic estimate)
+
+**Setting.** The dephased XXZ chain of E16: H = ½ Σ_b (X_bX_{b+1} + Y_bY_{b+1} + Δ Z_bZ_{b+1}) with hopping amplitude J = 1 on an open chain, number dephasing at rate g (a hop coherence decays at rate g), the uniform hopping miscalibration J → (1 + ε)J, and the observable n_C.
+
+**Statement.**
+1. *Reduction.* To leading order in J/g, adiabatic elimination of the bond coherences turns the diagonal of the density matrix into a classical exclusion process. A particle hops across bond b at rate w_b(η) = 2J²g/(g² + E_b(η)²), where E_b = Δ(Z_{b−1} − Z_{b+2}) is the ZZ energy cost of the hop (Z = 1 − 2n; a missing neighbour at an open end contributes 0). At Δ = 0 this is the symmetric simple exclusion process (SSEP) with D = 2J²/g; for Δ ≠ 0 it is a symmetric Katz–Lebowitz–Spohn (KLS) process. Both are reversible, because w_b does not change under the hop.
+2. *Time rescaling.* Every rate is proportional to J², so the miscalibrated process is the reference process run at speed λ = (1 + ε)². For every initial distribution the error is
+   Δ_cl(t) = n_C(λt) − n_C(t),  |Δ_cl(t)| ≤ (λ − 1) sup_{s∈[t,λt]} s |ṅ_C(s)|.
+   Hence the error is time-uniform if and only if the parabolic estimate P = sup_{t>0} t |ṅ_C(t)| < ∞ holds, and then sup_t |Δ_cl| ≤ (λ − 1)P ≈ 2εP.
+3. *SSEP (Δ = 0).* P ≤ (A/2) osc(n_0) with the universal constant A = sup_t t‖∂_t p_t‖_{ℓ¹} = 0.527 of the continuous-time simple random walk, for every chain length and every initial profile. So sup_t |Δ_cl| ≤ 0.264 (λ − 1) osc(n_0).
+4. *KLS (Δ ≠ 0).* Duality fails, and P < ∞ uniformly in N is a microscopic parabolic-regularity estimate for a reversible exclusion process that is not of gradient type. We state it as a conjecture.
+
+*Proof.*
+- Item 2: the generator of the miscalibrated process is λW, so e^{tλW} gives n_C(λt). The mean-value theorem gives n_C(λt) − n_C(t) = (λ − 1)t ṅ_C(ξ) with ξ ∈ [t, λt], and t ṅ_C(ξ) = (t/ξ) ξ ṅ_C(ξ) with t/ξ ≤ 1.
+- Item 3: in SSEP the one-point function obeys n_C(t) = Σ_y p_t(C, y) n_0(y), with p_t the kernel of a single continuous-time random walk with the same rate (self-duality). Since Σ_y ∂_t p_t(C, y) = 0, subtracting the midpoint of n_0 gives |ṅ_C(t)| ≤ ‖∂_t p_t(C, ·)‖₁ osc(n_0)/2.
+  - On ℤ the kernel is p_t(x) = e^{−2wt} I_x(2wt), and t‖∂_t p_t‖₁ depends on wt only. Its supremum is A = 0.527, reached at wt ≈ 0.40; the Gaussian limit is 2/√(2πe) = 0.484 (computed with modified Bessel functions).
+  - On an open segment the reflecting kernel is a sum over image points that partition ℤ, so the same ℓ¹ bound holds. □
+
+**Remarks.**
+1. *Relation to Proposition F.1.* At Δ = 0 Proposition F.1 already proves time uniformity for every g, with constants that depend on g/J and a bound proportional to the variation V(n_0). At leading order in J/g the reduction gives an explicit constant that depends neither on V(n_0) nor on N.
+2. *Check (E16b).* Exact master equation on the 2^N configurations, g = 4, ε = 0.01, N = 10, 14, 18, Δ = 0, 1, 2, the four initial states of E16.
+   - The reduction is quantitatively relevant. At N = 10 the classical error Δ_cl reproduces the exact quantum error of E16 within ratios 1.01–1.36 for all four states at Δ = 0 and 1 (preregistered: within 1.5). The largest deviation is for the Néel state, the sharpest profile.
+   - P = sup_t t |ṅ_C| does not depend on N for the domain wall (0.132, 0.127, 0.119 at Δ = 0, 1, 2) and the Néel state (0.184, 0.190, 0.203), and it decreases with N for the lowest mode.
+   - The preregistered no-growth test fails for the random profile (a factor 1.6–1.7 from N = 10 to 18). The same growth appears at Δ = 0, where P is proven bounded: the random occupations near C change with N, so that criterion compared different profiles.
+   - Post hoc, at fixed N, P(Δ)/P(0) = 0.90–1.10 for every state and size, and every P is below the SSEP bound 0.264 osc(n_0). The classical errors sup_t |Δ_cl| = 0.0024–0.0040 lie below the SSEP bound 0.264(λ − 1) = 0.0053.
+3. *What is open.* For Δ ≠ 0 the only missing input is the parabolic estimate for symmetric KLS. Reversibility gives ‖W e^{tW}‖ ≤ 1/(et) in L²(Bernoulli), but that norm is exponentially large in N for a fixed initial configuration, so it does not give a size-independent P. Hydrodynamic limits of non-gradient exclusion processes (Varadhan's method) give the macroscopic equation, not uniform-in-time pointwise control. The corrections of order (J/g)² to the reduction are also not controlled uniformly in time here.
 
 ## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g)
 

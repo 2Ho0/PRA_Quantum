@@ -9,7 +9,7 @@ Status: statements and proofs for the PRA draft. Every statement is checked nume
 | Thm A (Heisenberg forgetting) | $\mathcal L,\mathcal L'$ valid GKSL | $\lvert\Delta(t)\rvert\le\int_0^t\lVert[\delta H,O_u]\rVert du\le 2t\lVert\delta H\rVert\lVert O\rVert$ (the right-hand side is BEQS Eq. 14) |
 | Cor A.2 | $\mathrm{osc}(O_u)\le K e^{-u/\tau}\mathrm{osc}(O)$ | $\lvert\Delta(t)\rvert\le 2K\lVert\delta H\rVert\mathrm{osc}(O)\,\tau(1-e^{-t/\tau})$: saturates |
 | Thm A2 (expected error) | $\mathbb E g=0$, covariance $\Sigma$ | leading term $4\,\mathrm{osc}(O)\sum_m\sigma_m^2\lVert h_m\rVert^2 K^2\tau^2 f_2(t/\tau)$, which reproduces BEQS $2t^2\sigma^2M$ at short times |
-| Thm A3 (concentration) | uniform forgetting | width $2\sigma\,\mathrm{osc}(O)\sqrt{M}\,c_\delta\,T_{\rm eff}(t)$, with $T_{\rm eff}\le\min(t,K'\tau')$ |
+| Thm A3 (concentration) | uniform forgetting on a convex set (Lemma A3.1: a ball, for primitive $\mathcal L$) | width $\sigma\,\mathrm{osc}(O)\sqrt{M}\,c_\delta\,T_{\rm eff}(t)+\mathrm{osc}(O)\delta'$, with $T_{\rm eff}\le\min(t,2K\tau)$ |
 | Lemma B.0 | U(1)-covariant $\mathcal L_0$ + collective dephasing $\gamma_c$ | charge-$q$ sector decays exactly as $e^{-2\gamma_c q^2 t}$, with $K=1$ |
 | Lemma B.1 | learned dephasing matrix $\Gamma$ | protective collective rate $\gamma_c^*=1/(\mathbf 1^T\Gamma^+\mathbf 1)$ |
 | Thm B1 (selection rule) | covariant $\mathcal L$, charge-0 $O,\rho_0$ | charged imperfections give zero first-order response |
@@ -85,14 +85,31 @@ with
 
 ### Theorem A3 (concentration)
 
-Let $g=\Sigma^{1/2}z$ with $z\sim\mathcal N(0,\mathbb 1)$, $\sigma_{\max}^2=\lVert\Sigma\rVert$ and $f(g)=\mathrm{Tr}[Oe^{t\mathcal L'(g)}\rho_0]$. Assume uniform forgetting on a convex set $S$ with $\Pr[g\in S]\ge1-\delta'$, namely $\int_0^t\kappa_{\mathcal L'(g)}(u)du\le T_{\rm eff}(t)$ for all $g\in S$. Then with probability at least $1-\delta-\delta'$,
-$$\lvert f(g)-\mathbb Ef\rvert\le 2\sigma_{\max}\,\mathrm{osc}(O)\,\Big(\sum_m\lVert h_m\rVert^2\Big)^{1/2}\sqrt{2\ln(2/\delta)}\;T_{\rm eff}(t)\;(+\text{the }\delta'\text{ correction}).$$
+Let $g=\Sigma^{1/2}z$ with $z\sim\mathcal N(0,\mathbb 1_M)$, $\sigma_{\max}^2=\lVert\Sigma\rVert$, $\delta H(g)=\sum_mg_mh_m$, $\mathcal L'(g)=\mathcal L-i[\delta H(g),\cdot\,]$ and $f(g)=\mathrm{Tr}[Oe^{t\mathcal L'(g)}\rho_0]$. Let $\kappa_{\mathcal L}(u)=\sup_{\rho\ne\sigma}\lVert e^{u\mathcal L}(\rho-\sigma)\rVert_1/\lVert\rho-\sigma\rVert_1\le1$ be the trace-norm contraction coefficient, i.e. the norm of $e^{u\mathcal L}$ on the real space of traceless Hermitian operators with the trace norm. Let $S\subset\mathbb R^M$ be convex with $\int_0^t\kappa_{\mathcal L'(g)}(u)\,du\le T_{\rm eff}(t)$ for every $g\in S$, and $\Pr[g\notin S]\le\delta'$. Then for every $\delta\in(0,1)$, with probability at least $1-\delta-\delta'$,
+$$\lvert f(g)-\mathbb Ef\rvert\le\sigma_{\max}\,\mathrm{osc}(O)\Big(\sum_m\lVert h_m\rVert^2\Big)^{1/2}T_{\rm eff}(t)\sqrt{2\ln(2/\delta)}\;+\;\mathrm{osc}(O)\,\delta'.$$
 
-*Proof sketch.* $\partial_mf=\int_0^t\mathrm{Tr}[e^{(t-s)\mathcal L'^\dagger}(O)\,\mathcal V_m(e^{s\mathcal L'}\rho_0)]ds$, so $\lvert\partial_mf\rvert\le2\lVert h_m\rVert\mathrm{osc}(O)\int_0^t\kappa_{\mathcal L'}$. Then $\lVert\nabla_zf\rVert\le\sigma_{\max}\lVert\nabla_gf\rVert$. Apply Tsirelson–Ibragimov–Sudakov to a Lipschitz extension of $f|_S$. $\square$
+**Lemma A3.1 (uniform forgetting survives a small Hamiltonian perturbation).** Let $\lVert\cdot\rVert_\star$ be a norm on the traceless Hermitian operators with $\lVert[\delta H,X]\rVert_\star\le2\lVert\delta H\rVert\,\lVert X\rVert_\star$ (true for the trace and the Hilbert–Schmidt norm). If $\lVert e^{u\mathcal L}X\rVert_\star\le Ke^{-u/\tau}\lVert X\rVert_\star$ for all traceless Hermitian $X$ and $\lVert\delta H\rVert\le1/(4K\tau)$, then $\lVert e^{u\mathcal L'}X\rVert_\star\le Ke^{-u/(2\tau)}\lVert X\rVert_\star$.
 
-- Without dissipation, $T_{\rm eff}=t$ and this is BEQS Eq. (11).
-- With dissipation, $T_{\rm eff}\le K'\tau'(1-e^{-t/\tau'})$ is time-uniform.
-- For Hamiltonian perturbations, the bounded-perturbation theorem on the traceless subspace gives $\kappa_{\mathcal L'(g)}(u)\le Ke^{-u/(2\tau)}$ whenever $\lVert\delta H(g)\rVert\le1/(4K\tau)$. So $S$ can be taken to be that ball.
+*Proof.* $\mathcal L$ and $\mathcal V=-i[\delta H,\cdot\,]$ both preserve the traceless Hermitian operators. By (D1), $\phi(u)=e^{u/\tau}\lVert e^{u\mathcal L'}\rVert_\star$ (operator norm on that space) obeys $\phi(u)\le K+2K\lVert\delta H\rVert\int_0^u\phi(s)\,ds$. Grönwall's inequality gives $\phi(u)\le Ke^{2K\lVert\delta H\rVert u}\le Ke^{u/(2\tau)}$. $\square$
+
+- In the trace norm this is $\kappa_{\mathcal L'(g)}(u)\le Ke^{-u/(2\tau)}$ on the convex ball $S=\{g:\lVert\delta H(g)\rVert\le1/(4K\tau)\}$, so $T_{\rm eff}(t)=\int_0^t\min(1,Ke^{-u/(2\tau)})\,du\le\min(t,\,2K\tau)$.
+- In the Hilbert–Schmidt norm, $\kappa\le\sqrt D\,\lVert e^{u\mathcal L'}\rVert_{2\to2}$ gives the same with $K\to\sqrt D\,K_2$ in $T_{\rm eff}$ but the larger radius $1/(4K_2\tau)$; $K_2$ and $\tau$ are computable from the spectrum of $\mathcal L$.
+- A valid $\delta'$: by the matrix Gaussian series bound (Tropp, Found. Comput. Math. 12, 389 (2012)), $\Pr[\lVert\delta H(g)\rVert>r]\le2D\exp(-r^2/2v^2)$ with $v^2=\lVert\sum_kA_k^2\rVert$ and $A_k=\sum_m(\Sigma^{1/2})_{mk}h_m$.
+
+*Proof of Theorem A3.*
+1. *Gradient on $S$.* $\partial_mf=\int_0^t\mathrm{Tr}[e^{(t-s)\mathcal L'^\dagger}(O)\,\mathcal V_m(e^{s\mathcal L'}\rho_0)]\,ds$ with $\mathcal V_m=-i[h_m,\cdot\,]$. For a state $\rho$ and Hermitian $A$, $\lvert\mathrm{Tr}[A\,\mathcal V_m(\rho)]\rvert=\lvert\mathrm{Tr}[i[h_m,A]\rho]\rvert\le\lVert[h_m,A]\rVert\le\lVert h_m\rVert\,\mathrm{osc}(A)$; the last step subtracts the midpoint of the spectrum of $A$, which leaves the commutator unchanged. By duality, $\mathrm{osc}(e^{u\mathcal L'^\dagger}O)=\sup_{\rho,\sigma}\mathrm{Tr}[O\,e^{u\mathcal L'}(\rho-\sigma)]\le\kappa_{\mathcal L'}(u)\,\mathrm{osc}(O)$. Hence $\lvert\partial_mf\rvert\le\lVert h_m\rVert\,\mathrm{osc}(O)\,T_{\rm eff}(t)$ on $S$, and $\lVert\nabla_zf\rVert\le\sigma_{\max}\lVert\nabla_gf\rVert\le L_S:=\sigma_{\max}\,\mathrm{osc}(O)(\sum_m\lVert h_m\rVert^2)^{1/2}T_{\rm eff}(t)$.
+2. *Lipschitz on $S$.* $S_z=\{z:\Sigma^{1/2}z\in S\}$ is convex, so the mean-value theorem along segments inside $S_z$ shows that $f$ is $L_S$-Lipschitz on $S_z$.
+3. *Extension.* McShane's extension $\tilde f(z)=\inf_{w\in S_z}[f(w)+L_S\lVert z-w\rVert]$ is $L_S$-Lipschitz on $\mathbb R^M$ and equals $f$ on $S_z$. Clamping it to $[\lambda_{\min}(O),\lambda_{\max}(O)]$ keeps both properties; call the result $\hat f$. Since $f$ takes values in the same interval, $\lvert f-\hat f\rvert\le\mathrm{osc}(O)$ everywhere and $f=\hat f$ on $S_z$, so $\lvert\mathbb Ef-\mathbb E\hat f\rvert\le\mathrm{osc}(O)\,\delta'$.
+4. *Gaussian concentration.* By the Tsirelson–Ibragimov–Sudakov inequality, $\Pr[\lvert\hat f-\mathbb E\hat f\rvert>L_S\sqrt{2\ln(2/\delta)}]\le\delta$. On the intersection of this event with $\{g\in S\}$, $f=\hat f$, and step 3 gives the claim. $\square$
+
+**Remarks.**
+- The earlier sketch had a factor 2 from $\lVert[h,A]\rVert\le2\lVert h\rVert\,\mathrm{osc}(A)$; subtracting the spectral midpoint removes it.
+- Without dissipation, $\kappa\le1$, $S=\mathbb R^M$, $\delta'=0$ and $T_{\rm eff}=t$: for unit-norm $h_m$ the bound is $\sigma_{\max}\,\mathrm{osc}(O)\sqrt M\,t\sqrt{2\ln(2/\delta)}$, the form of BEQS Eq. (11).
+- With a primitive $\mathcal L$, Lemma A3.1 makes $T_{\rm eff}\le2K\tau$ time-uniform. With a conserved charge, $\kappa_{\mathcal L}(u)$ does not decay and $T_{\rm eff}=t$; for U(1) dynamics the gains come from Corollary B1′ and Theorem F instead.
+- *Check (E21).* N = 4, nearest-neighbour XY chain with local dephasing 0.5 and emission 0.2 (primitive; gap 0.2 on the traceless subspace), the 21 one- and two-local Paulis as $h_m$, $O=Z_0$, Néel initial state, 4000 samples. In the Hilbert–Schmidt norm $K_2=4.01$, $\tau=5.1$, radius $1/(4K_2\tau)=0.0122$; $\sigma$ is set so that the matrix Gaussian bound gives $\delta'=0.01$ (no sample left the ball).
+  - Lemma A3.1 holds with a largest ratio of 0.34 over the samples inside $S$.
+  - No sample exceeded the concentration bound at $t=1,5,20,60$ and $\delta=0.1,0.05,0.01$ (preregistered: at most $\delta+\delta'$ plus three binomial errors).
+  - The bound saturates at $T_{\rm eff}=38.1$ (the factor $\sqrt D\,K_2=16$ delays the decay), whereas the bound without dissipation grows as $t$: 0.59 against 0.89 at $t=60$, $\delta=0.1$. It is loose by orders of magnitude here, mostly through $\sqrt D$ and the additive $\mathrm{osc}(O)\delta'$.
 
 ## 4. U(1)-symmetric generators and collective noise
 
