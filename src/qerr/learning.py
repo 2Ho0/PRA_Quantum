@@ -84,6 +84,39 @@ def _kossakowski_adjoint(O, site, K) -> dict:
     return out
 
 
+CORRELATED_KEYS = {"cXX": (("X", "X"),), "cYY": (("Y", "Y"),), "cXY": (("X", "Y"), ("Y", "X"))}
+
+
+def correlated_adjoint(O, key) -> dict:
+    """D^dag(O) for D(r) = sum_{i != j} sum_(A,B) (A_i r B_j - 1/2 {B_j A_i, r}), (A, B) over CORRELATED_KEYS[key].
+
+    With the single-ion block S_AB = c_AB on every ion this is the collective dissipator D[sum_k (a X_k + b Y_k)]
+    for (cXX, cYY, cXY) = (a^2, b^2, ab). A pair with one ion outside supp(O) cancels against its mirror pair,
+    so only ion pairs inside the support contribute. Returns {string: coefficient}.
+    """
+    out = {}
+    sites = [s for s, _ in O]
+    for i in sites:
+        for j in sites:
+            if i == j:
+                continue
+            for A, B in CORRELATED_KEYS[key]:
+                pa, pb = ((i, A),), ((j, B),)
+                ph1, R1 = pmul(pb, O)
+                ph2, R2 = pmul(R1, pa)
+                ph_ba, C = pmul(pb, pa)
+                ph3, R3 = pmul(C, O)
+                ph4, R4 = pmul(O, C)
+                for ph, R, c in ((ph1 * ph2, R2, 1.0), (ph_ba * ph3, R3, -0.5), (ph_ba * ph4, R4, -0.5)):
+                    out[R] = out.get(R, 0.0) + c * ph
+    clean = {}
+    for R, c in out.items():
+        if abs(c) > 1e-12:
+            assert abs(c.imag) < 1e-12, (O, key, c)
+            clean[R] = float(c.real)
+    return clean
+
+
 def _anticommutes_z(O, site) -> bool:
     return dict(O).get(site) in ("X", "Y")
 

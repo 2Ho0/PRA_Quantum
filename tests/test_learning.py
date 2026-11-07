@@ -194,6 +194,31 @@ def test_site_noise_adjoint_matches_superop():
         assert abs(direct - terms) < 1e-10, O
 
 
+def test_correlated_adjoint_matches_collective_jump():
+    """Single-ion block S = c plus the cross-ion block c is the collective dissipator D[sum_k (a X_k + b Y_k)]."""
+    from qerr.learning import NOISE_KEYS, correlated_adjoint
+    from qerr.lindblad import OpenModel, lindblad_rhs
+
+    n, a, b = 3, 0.6, -0.8
+    rng = np.random.default_rng(11)
+    D = 2**n
+    J = sum(a * pmatrix(((k, "X"),), n) + b * pmatrix(((k, "Y"),), n) for k in range(n))
+    model = OpenModel(H=np.zeros((D, D)), Gamma=np.zeros((n, n)), emission=np.zeros(n), jumps=(J,))
+    rho = random_state(D, rng)
+    Lrho = lindblad_rhs(model, rho)
+    ans = Ansatz(n=n, h_terms=[], deph_pairs=[], noise_sites=list(range(n)))
+    theta = np.zeros(ans.n_params)
+    for m in range(n):
+        theta[len(NOISE_KEYS) * m:len(NOISE_KEYS) * m + 3] = [a * a, b * b, a * b]  # SXX, SYY, SXY
+    c = {"cXX": a * a, "cYY": b * b, "cXY": a * b}
+    expect = lambda S: np.trace(pmatrix(S, n) @ rho) if S != () else 1.0
+    for O in all_strings(n, 3):
+        direct = np.trace(pmatrix(O, n) @ Lrho)
+        single = sum(theta[k] * w * expect(S) for k, w, S in adjoint_terms(O, ans))
+        cross = sum(c[key] * w * expect(S) for key in c for S, w in correlated_adjoint(O, key).items())
+        assert abs(direct - single - cross) < 1e-12, O
+
+
 def test_site_noise_reproduces_emission():
     n, gam = 2, 0.37
     rng = np.random.default_rng(8)
