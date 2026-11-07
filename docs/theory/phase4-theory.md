@@ -332,6 +332,8 @@ Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D
    Hence the error is time-uniform if and only if the parabolic estimate P = sup_{t>0} t |ṅ_C(t)| < ∞ holds, and then sup_t |Δ_cl| ≤ (λ − 1)P ≈ 2εP.
 3. *SSEP (Δ = 0).* P ≤ (A/2) osc(n_0) with the universal constant A = sup_t t‖∂_t p_t‖_{ℓ¹} = 0.527 of the continuous-time simple random walk, for every chain length and every initial profile. So sup_t |Δ_cl| ≤ 0.264 (λ − 1) osc(n_0).
 4. *KLS (Δ ≠ 0).* Duality fails, and P < ∞ uniformly in N is a microscopic parabolic-regularity estimate for a reversible exclusion process that is not of gradient type. We state it as a conjecture.
+   - Its hydrodynamic version is proven (Lemma F.5), and so is its near-equilibrium version (Remark 4).
+   - E16c supports it up to N = 128 (Remark 6).
 
 *Proof.*
 - Item 2: the generator of the miscalibrated process is λW, so e^{tλW} gives n_C(λt). The mean-value theorem gives n_C(λt) − n_C(t) = (λ − 1)t ṅ_C(ξ) with ξ ∈ [t, λt], and t ṅ_C(ξ) = (t/ξ) ξ ṅ_C(ξ) with t/ξ ≤ 1.
@@ -346,9 +348,54 @@ Corollary F-qf then gives |Δ(t)| ≤ 2C² ε V(n_0) B(t) ≤ 2πC² ε V(n_0)/D
    - P = sup_t t |ṅ_C| does not depend on N for the domain wall (0.132, 0.127, 0.119 at Δ = 0, 1, 2) and the Néel state (0.184, 0.190, 0.203), and it decreases with N for the lowest mode.
    - The preregistered no-growth test fails for the random profile (a factor 1.6–1.7 from N = 10 to 18). The same growth appears at Δ = 0, where P is proven bounded: the random occupations near C change with N, so that criterion compared different profiles.
    - Post hoc, at fixed N, P(Δ)/P(0) = 0.90–1.10 for every state and size, and every P is below the SSEP bound 0.264 osc(n_0). The classical errors sup_t |Δ_cl| = 0.0024–0.0040 lie below the SSEP bound 0.264(λ − 1) = 0.0053.
-3. *What is open.* For Δ ≠ 0 the only missing input is the parabolic estimate for symmetric KLS. Reversibility gives ‖W e^{tW}‖ ≤ 1/(et) in L²(Bernoulli), but that norm is exponentially large in N for a fixed initial configuration, so it does not give a size-independent P. Hydrodynamic limits of non-gradient exclusion processes (Varadhan's method) give the macroscopic equation, not uniform-in-time pointwise control. The corrections of order (J/g)² to the reduction are also not controlled uniformly in time here.
+3. *What is open, and what the literature gives (checked 2026-11-07).*
+   - *The class.* The KLS process here is a speed-change exclusion process that is reversible under every Bernoulli product measure. The rate of bond b depends only on η_{b−1} and η_{b+2}, not on the bond's own occupations, and lies in [w_min, w_max] = [2J²g/(g² + 4Δ²), 2J²/g].
+   - *Not gradient.* For Δ ≠ 0 the process is not of gradient type. Write w_b = α + β(η_{b−1} + η_{b+2} − 2η_{b−1}η_{b+2}). The current then contains the three-point term η_{b−1}η_{b+2}(η_b − η_{b+1}), and its sum over the bonds of a ring does not vanish.
+   - *Known results for the class.*
+     - The hydrodynamic limit ∂_s ρ = ∂_x(D(ρ)∂_x ρ): Varadhan's non-gradient method, and Funaki, Uchiyama and Yau (1996) for speed-change exclusion.
+     - Smoothness of D in the density: Bernardin, Stoch. Proc. Appl. 101, 43 (2002).
+     - Decay to equilibrium in the stationary measure: Gu and Yang (arXiv:2509.20797, 2025) prove Var_ρ[P_t u] = C_u t^{−d/2} + o(t^{−(d+δ)/2}) for every local u. Their hypotheses (local rates between two positive constants, independent of the bond's occupations) cover this process.
+   - *What the known results do not give.* Every statement above is about the stationary Bernoulli measure in infinite volume. None gives an L^∞ bound, a result for non-equilibrium initial data, or a time-derivative estimate. Gu and Yang note that the triple-norm contraction |||P_t F||| ≤ |||F||| behind their SSEP estimates is verified only for symmetric exclusion. That contraction is the analogue of the ℓ¹ bound on ∂_t p_t used in item 3.
+   - *So what is open is one microscopic statement:* P_N = sup_t t|ṅ_C| bounded uniformly in N for product initial states far from equilibrium. Lemma F.5 below proves its hydrodynamic version, Remark 4 its near-equilibrium version, and E16c tests it numerically up to N = 128 (Remark 6).
+   - The corrections of order (J/g)² to the reduction are also not controlled uniformly in time here.
 
-## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g)
+### Lemma F.5 (the parabolic estimate holds for the hydrodynamic equation)
+
+**Statement.** Let D ∈ C^{1,α}([0, 1]) with 0 < d_− ≤ D ≤ d_+, and let ρ be a bounded weak solution of ∂_s ρ = ∂_x(D(ρ) ∂_x ρ) with 0 ≤ ρ ≤ 1, either on ℝ × (0, ∞) or on an interval with no-flux boundary conditions. Then
+   s |∂_s ρ(x, s)| ≤ C_*  for every x and every s > 0.
+The constant C_* depends only on d_±, α and ‖D‖_{C^{1,α}}. It does not depend on the initial data, the time or the length of the interval.
+
+For the KLS process of Proposition F.4:
+- w_min ≤ D ≤ w_max, because the variational formula for D is monotone in the rates and equals the rate for SSEP.
+- D(0) = D(1) = w_max: an isolated particle or hole hops with E = 0.
+- C^{1,α} up to ρ = 0 and 1 is assumed here. Bernardin's theorem gives smoothness in the density, but its endpoint form was not checked.
+
+*Proof.*
+- *Rescaling.* Fix (x₀, s₀), set R = √s₀ and define ρ̃(y, τ) = ρ(x₀ + Ry, R²τ). Then ∂_τ ρ̃ = R² ∂_s ρ = ∂_y(D(ρ̃) ∂_y ρ̃). Because D depends on ρ only, the equation is invariant under parabolic scaling. So ρ̃ solves it on Q = (−1, 1) × (1/2, 1] with 0 ≤ ρ̃ ≤ 1, and ∂_τ ρ̃(0, 1) = s₀ ∂_s ρ(x₀, s₀).
+- *Interior regularity on Q.*
+  1. View a = D(ρ̃) ∈ [d_−, d_+] as a measurable coefficient. De Giorgi–Nash–Moser gives ‖ρ̃‖_{C^β(Q_{3/4})} ≤ C(d_±).
+  2. Then a ∈ C^β with norm at most ‖D′‖_∞ C(d_±). The Schauder estimate for divergence-form equations gives ∂_y ρ̃ ∈ C^β(Q_{1/2}).
+  3. In non-divergence form, ∂_τ ρ̃ = D(ρ̃) ∂_y² ρ̃ + D′(ρ̃)(∂_y ρ̃)². The coefficient and the source are Hölder, so the parabolic Schauder estimate bounds ‖ρ̃‖_{C^{2+γ, 1+γ/2}(Q_{1/4})} by a constant C_* of the stated kind. In particular |∂_τ ρ̃(0, 1)| ≤ C_*.
+- *Boundary.* With a no-flux boundary, even reflection across the ends extends ρ to a periodic solution of the same equation, and the argument applies unchanged.
+- References: Ladyzhenskaya, Solonnikov and Ural'tseva (1968), chapters III–V; Lieberman (1996). □
+
+4. *Near-equilibrium microscopic version.*
+   - Let ν be a Bernoulli product measure, so W is self-adjoint in L²(ν) for every N, and let μ be an initial law with density h = dμ/dν. The spectral theorem gives
+     t |ṅ_C(t)| = t |⟨h − 1, W e^{tW} n_C⟩_ν| ≤ (2/e) ‖h − 1‖_{L²(ν)} Var_ν(e^{(t/2)W} n_C)^{1/2} ≤ (1/e) χ²(μ‖ν)^{1/2}.
+   - This bound is uniform in N whenever the chi-square divergence χ²(μ‖ν) is, for example for initial states that differ from equilibrium on a fixed finite set. On ℤ, Gu and Yang's variance decay makes it decay like t^{−1/4}.
+   - For a domain wall, a Néel state or a random profile, χ²(μ‖ν) grows exponentially with N. The open case of Proposition F.4 is therefore exactly the far-from-equilibrium one.
+5. *What Lemma F.5 means for Proposition F.4.* Suppose the KLS one-point function converged to the hydrodynamic solution together with its time derivative, uniformly at all times beyond O(1). Then P_N ≤ C_* + o(1). The missing link is this convergence for single-site time derivatives. The hydrodynamic limit gives only spatially averaged densities at fixed macroscopic times.
+6. *Check (E16c, preregistered).*
+   - *Setup.* Continuous-time Monte Carlo of the same process, 10⁵ runs per case, N = 18, 32, 64, 128, Δ = 0, 1, 2, observed site C = N/2 − 1. Initial states: domain wall, Néel, and random occupations centred on C (the same values around C for every N). This removes the defect of E16b (b).
+   - *Estimator.* t ṅ_C comes from the generator at small t and from log-time differences at large t, whichever has the smaller standard error.
+   - *All four preregistered criteria hold:*
+     - (a) at N = 18 the Monte Carlo P agrees with the exact master equation in all nine cases;
+     - (b) P does not change from N = 32 to N = 128 beyond the statistical error in any case (for example Néel, Δ = 2: 0.203 → 0.205; wall, Δ = 2: 0.122 → 0.119; random, Δ = 2: 0.065 → 0.066);
+     - (c) every P lies below the SSEP constant 0.264 osc(n_0); the largest is 0.205 (Néel, Δ = 2);
+     - (d) at N = 128 the values on 100 ≤ t ≤ 1000 stay at the noise level (≤ 0.025), with no late regrowth.
+   - P(Δ)/P(0) = 0.90–1.12 at every size. The supremum is reached at t = 0.4–10 (units of 1/J), so it is set by local relaxation, not by the system size.
+
+## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g, E22, E22b)
 
 The data were measured by Kraft et al. and are analysed here from their public data.
 
@@ -381,3 +428,22 @@ The data were measured by Kraft et al. and are analysed here from their public d
 - None of them reproduces the imbalance. The shifts of the median K relative to the control are +1.9, −9.6, +1.2, +1.7 and −12.8 rad/s, against the −74 rad/s excess of the data; the preregistered thresholds were the 5–95% range and a shift of −37 rad/s. Noise-free fits give |K| ≤ 8 rad/s, so the synthetic offset of about −20 rad/s is estimator bias from shot noise, not model misspecification.
 - Removing one interior time point of the learning window (E11g, post hoc) changes K by about 2σ of its synthetic spread, but the excess over the synthetic median stays between −49 and −105 rad/s.
 - The memory reading of the imbalance (CP-divisibility) is therefore not supported by covariant single-ion noise with memory. What remains is an effect outside the model class. Since E17 sees U(1)-breaking processes directly in the conserved quantities of the same data, the leading candidate is U(1)-breaking dynamics that change over the first few milliseconds, which a time-local ansatz cannot represent. E11d only removed the first 0.5 ms.
+
+**What acts in the first milliseconds, and what the late record shows (E22, E22b, 2026-11-07).** Both initial states are transverse product states: state 1 has X ≈ 0.87 and Z ≈ −0.45, state 2 has Y ≈ 0.99 and Z ≈ 0.05.
+- *Learning window (E22 (A), diagnostic).* Six candidate generators were added to Xb15uf and learned with all 435 observables on t ≤ 1.5 ms, with a bootstrap over the settings.
+  - An isotropic flip burst (τ = 0.42 ms) gets S_b = 30 ± 9 rad/s, against 144 rad/s from the mean-Z balance alone (E11h), and lowers χ² by only 138. Bursts of local z dephasing or of a uniform field do little.
+  - The data prefer transverse charge-2 terms: an anisotropic burst, a constant anisotropic single-ion block, or a collective transverse block with ion–ion correlations (qerr.learning.correlated_adjoint). These lower χ² by 1100–1600, but every such 2×2 block is non-PSD at 3σ or more (smallest eigenvalues −33 ± 10, −16 ± 3, −8 ± 3 rad/s).
+  - So no physical Markovian generator of these families describes the first milliseconds.
+- *Late record (E22 (B)).* Three features lie 10–25σ from every learned model and every E11f truth:
+  - (i) M² grows. The mean ZZ over all pairs, (M² − N)/(N(N − 1)), rises in both states (3.2 ± 0.3 and 4.7 ± 0.2 × 10⁻³ per ms). Every U(1)-covariant generator conserves it and independent flips pull it towards zero, so the growth requires U(1)-breaking processes that are correlated between ions. This matches the excess growth of Var M in the 51-ion data (E6b).
+  - (ii) State 1 has a charge-2 floor. Across the 45 pairs, (XX − YY)/2 ≈ −0.045 C_ij and (XY + YX)/2 ≈ +0.051 C_ij with one common coefficient, where C = (XX + YY)/2. State 2 has no floor. The pattern is that of a non-conformal X/Y readout map, but a contrast mismatch alone would need a Y contrast above 1, given the length of the measured state-1 Bloch vector at t = 0.
+  - (iii) The mean-Z level. A burst model reproduces state 1, and a model without transverse fields reproduces state 2; the learned uniform h_x ≈ −4 rad/s pulls the state-2 magnetisation down where the data stay flat.
+- *Collective flips (E22b, preregistered).* Jump operators √g Σ_k X_k and √g Σ_k Y_k give d⟨Z_iZ_j⟩/dt = 4g⟨X_iX_j + Y_iY_j⟩ − 8g⟨Z_iZ_j⟩.
+  - The late M² slope of each state fixes g: 2.2 and 1.5 rad/s.
+  - Each state was predicted with the rate of the other state. The overall calibration factor drops to 0.88, the best so far, and the charged classes improve. But the neutral classes stay at 1.26, 1.49 and 1.20, so the rule of E20 fails.
+  - A constant collective rate makes M² grow too fast while the transverse correlations are large (first 2 ms). The correlated process must be weaker early, or only partially correlated between ions.
+- *The charge-2 imbalance (E22 (C)).*
+  - Fitted per initial state against the same fit on 20 control realisations (preregistered), the excess of K lies in state 2 (−152.5 rad/s, below the control's 5th percentile of −98.6). State 1 is inside its control range (−140.6; 5–95% −160 to −85).
+  - Removing the state-1 floor with a fitted readout map makes K more negative (−151.8 rad/s).
+  - Adding the ion–ion correlated block leaves K unchanged (−94.4).
+  - The imbalance therefore remains unexplained. It comes from state 2 and is reproduced by none of the Markovian generators or simulated truths tested so far.
