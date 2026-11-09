@@ -324,7 +324,7 @@ def plot(out1, phi0_syn, levels_syn, out2):
         ax.set_yticks(range(len(classes)), classes)
         ax.invert_yaxis()
         ax.set_xlabel("calibration factor, t > 1.5 ms")
-        ax.legend(fontsize=6.5, loc="lower right")
+        ax.legend(fontsize=6.5, loc="upper left")
         ax.set_title("(b) step 2: calibration by charge class", fontsize=9)
         ax = axes[2]
         zt = out2["pooled neutral z-score per time: as learned, corrected"]

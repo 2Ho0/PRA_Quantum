@@ -395,7 +395,7 @@ For the KLS process of Proposition F.4:
      - (d) at N = 128 the values on 100 ≤ t ≤ 1000 stay at the noise level (≤ 0.025), with no late regrowth.
    - P(Δ)/P(0) = 0.90–1.12 at every size. The supremum is reached at t = 0.4–10 (units of 1/J), so it is set by local relaxation, not by the system size.
 
-## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g, E22, E22b, E23, E23c, E23k, E23s, E23d)
+## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g, E22, E22b, E23, E23c, E23k, E23s, E23d, E24, E24b)
 
 The data were measured by Kraft et al. and are analysed here from their public data.
 
@@ -493,3 +493,23 @@ The data were measured by Kraft et al. and are analysed here from their public d
   - (iv) If a slip at the start remains, the comparison bound for CPTP semigroups and a channel S is ‖e^{tL}S − e^{tL̂}‖⋄ ≤ ‖S − id‖⋄ + t‖L − L̂‖⋄; the slip adds a constant, not a growing term.
   - (v) The symmetric error bounds (Theorems A, B, E, F, G) are unaffected; the defects found here lie in the learning and the decision rules.
   - The remaining half of the scale shift that the late data prefer is open.
+
+**Errors-in-variables correction of the learning (E24 preregistered, E24b post hoc, 2026-11-09).** The rules were committed before the run (94a2516).
+- *Estimator.* SIMEX on the Xb15uf least-squares fit (E20 structure, window, defect and fixed flips). The setting bootstrap is not a clean noise doubling for this design: a resample of the 200 settings leaves some weight-3 strings unmeasured and drops about 30% of the rows. The noise is therefore added by resampling the 200 shots of every (setting, time), which keeps the design and the correlations between strings of one setting (qerr.shots.resample_shots). Level ζ = m resamples m times in a chain; the linear extrapolation is 2φ₀ − φ̄₁ (qerr.learning.simex_extrapolate).
+- *Synthetic data with a known truth (preregistered: pass).* E11f control truth, 12 realisations, 40 chains each, oracle defect. The relative error of J_nn is −3.32 ± 0.46% for least squares, +0.92 ± 0.52% for linear SIMEX (criterion 1%) and +1.15 ± 0.53% for quadratic SIMEX. The coupling scale over the 45 pairs is 0.961, 1.000 and 1.002. Linear SIMEX also restores γ_c (12.3 → −0.4 rad/s against 0) and β (16.0 → 36.3 against 38.2 rad/s per ms).
+- *Data (preregistered: pass by rule B; rule A fails).* With 100 chains the couplings rise by 4.5% (J_nn 599 → 627 rad/s), γ_c falls from 30 to 15 rad/s, and β rises from 5.1 to 31.4 rad/s per ms, inside the SBC-calibrated estimate of E11b (22–31).
+  - The neutral factors become 1.27, 1.39 and 1.23 (from 1.34, 1.41 and 1.25). The charged classes become 0.51, 0.67 and 0.54 (from 0.90, 1.00 and 0.65), and all 435 observables 0.83 (from 0.99).
+  - Rule B passes (null p = 0.103, 0.021 and 0.109 against the Holm threshold 0.0167), and the no-smoothing guard holds (1.04). The pass is narrow: as learned the smallest p was 0.0165.
+- *Parts of the correction (E24b, post hoc).* Per-parameter SIMEX raises the couplings at distance 1–2 by 4–5% but the currents (XY − YX) by 46%.
+  - On the synthetic data the currents are hardly identifiable in the window: slope 0.26 against the truth (truth rms 87 rad/s). Per-parameter SIMEX raises their error from 101 to 122 rad/s and the error of the couplings at distance ≥ 3 from 35.0 to 37.2.
+  - One common SIMEX scale of all two-body terms (1.040 ± 0.002 per realisation) together with SIMEX for the collective rates gives the smallest coupling error (34.5 against 35.6 and 35.7 rad/s), an unbiased scale (1.000), currents as accurate as least squares (102.9) and γ_c error 3.4 (from 12.8).
+  - On the data (variants built from the E24 parameters, evaluated on the same late data):
+    - currents as learned: 1.15, 1.34, 1.13; all 0.80;
+    - SIMEX only for J (d ≤ 2) and the rates: 1.20, 1.29, 1.14; all 0.80;
+    - common scale 1.045 with SIMEX rates: 1.14, 1.21, 1.05; charged 0.54, 0.66, 0.54; all 0.76; null p = 0.23, 0.10, 0.33.
+  - The common coupling scale corrects the neutral (phase) sector and the corrected collective rates the charged (damping) sector.
+- *Consequences.*
+  - The errors-in-variables bias of the integral method is real and removable.
+  - A per-parameter correction amplifies noise along directions the window does not identify. The standard measurement-error remedy, a common reliability ratio estimated once and applied to all couplings, is the better estimator here.
+  - Because the structured variant was chosen after E24, its numbers on the data are exploratory. A confirmation needs a preregistered coverage test of the whole procedure on synthetic data, or new data.
+  - The band must be rebuilt for the corrected estimator; with the Xb15 band the charged factors are 0.5–0.7, i.e. the band is now too wide.
