@@ -1,0 +1,111 @@
+{
+  "calibration factors, t > 1.5 ms (Xb15 bootstrap spread)": {
+    "Xb15uf (one generator)": {
+      "q=0  Z_i": 1.3444911610036543,
+      "q=0  Z_iZ_j": 1.407061338791243,
+      "q=0  flip-flop": 1.25291033594247,
+      "q=\u00b11  X_i, Y_i": 0.9009730097556383,
+      "q=\u00b11  XZ-type": 1.0036648071637355,
+      "q=\u00b12  pair": 0.6482836286877705,
+      "all 435 observables": 0.9854622765540405
+    },
+    "Xb15uf-s (one generator per state)": {
+      "q=0  Z_i": 1.6910204313240573,
+      "q=0  Z_iZ_j": 1.612061121549058,
+      "q=0  flip-flop": 1.6239801945705992,
+      "q=\u00b11  X_i, Y_i": 0.6535097370779048,
+      "q=\u00b11  XZ-type": 0.7146765497090506,
+      "q=\u00b12  pair": 0.544858087366384,
+      "all 435 observables": 0.9978546597116577
+    },
+    "Xb15uf-r (joint generator, run parameters for state 2)": {
+      "q=0  Z_i": 1.752438094658403,
+      "q=0  Z_iZ_j": 1.6104269318019744,
+      "q=0  flip-flop": 1.6335882926282168,
+      "q=\u00b11  X_i, Y_i": 0.588166063237408,
+      "q=\u00b11  XZ-type": 0.7267285479355021,
+      "q=\u00b12  pair": 0.5417654606278207,
+      "all 435 observables": 1.0008461468907943
+    }
+  },
+  "neutral factors per state": {
+    "Xb15uf (one generator), state 1": {
+      "q=0  Z_i": 1.3976360035686783,
+      "q=0  Z_iZ_j": 1.1581730041969411,
+      "q=0  flip-flop": 1.3979217855035555
+    },
+    "Xb15uf (one generator), state 2": {
+      "q=0  Z_i": 1.2638167560263964,
+      "q=0  Z_iZ_j": 1.7701649157398551,
+      "q=0  flip-flop": 1.0491802500312482
+    },
+    "Xb15uf-s (one generator per state), state 1": {
+      "q=0  Z_i": 1.7476962681719712,
+      "q=0  Z_iZ_j": 1.6016849559261412,
+      "q=0  flip-flop": 1.7981317331432292
+    },
+    "Xb15uf-s (one generator per state), state 2": {
+      "q=0  Z_i": 1.6056586273959597,
+      "q=0  Z_iZ_j": 1.6306429403956133,
+      "q=0  flip-flop": 1.3820916941233452
+    },
+    "Xb15uf-r (joint generator, run parameters for state 2), state 1": {
+      "q=0  Z_i": 1.7831591397104374,
+      "q=0  Z_iZ_j": 1.555451875882995,
+      "q=0  flip-flop": 1.8519685897092197
+    },
+    "Xb15uf-r (joint generator, run parameters for state 2), state 2": {
+      "q=0  Z_i": 1.707103881656848,
+      "q=0  Z_iZ_j": 1.7052756530731747,
+      "q=0  flip-flop": 1.3190541234735824
+    }
+  },
+  "temporal variance on t >= 4 ms": {
+    "q=0  Z_i, state 1": {
+      "data (shot noise removed)": 0.0018918668034541887,
+      "Xb15uf (one generator)": 0.0017292185481887178,
+      "Xb15uf-s (one generator per state)": 0.0017524476190373373,
+      "Xb15uf-r (joint generator, run parameters for state 2)": 0.0016044368369996197
+    },
+    "q=0  Z_i, state 2": {
+      "data (shot noise removed)": 0.0003201754660947263,
+      "Xb15uf (one generator)": 0.0005516141605608506,
+      "Xb15uf-s (one generator per state)": 0.0009484375969252952,
+      "Xb15uf-r (joint generator, run parameters for state 2)": 0.0006723465286242888
+    },
+    "q=0  Z_iZ_j, state 1": {
+      "data (shot noise removed)": 0.0010652744621705349,
+      "Xb15uf (one generator)": 0.0012277341631041318,
+      "Xb15uf-s (one generator per state)": 0.0011957972322886824,
+      "Xb15uf-r (joint generator, run parameters for state 2)": 0.0011079953995949314
+    },
+    "q=0  Z_iZ_j, state 2": {
+      "data (shot noise removed)": 0.0005449528792552912,
+      "Xb15uf (one generator)": 0.0005481842988275102,
+      "Xb15uf-s (one generator per state)": 0.0004452237602788144,
+      "Xb15uf-r (joint generator, run parameters for state 2)": 0.0005129953907959628
+    },
+    "q=0  flip-flop, state 1": {
+      "data (shot noise removed)": 0.0007500594166632148,
+      "Xb15uf (one generator)": 0.0006617026909298998,
+      "Xb15uf-s (one generator per state)": 0.0005843318682040106,
+      "Xb15uf-r (joint generator, run parameters for state 2)": 0.0006432153982948658
+    },
+    "q=0  flip-flop, state 2": {
+      "data (shot noise removed)": 0.00023947064392160065,
+      "Xb15uf (one generator)": 0.00029172713564997474,
+      "Xb15uf-s (one generator per state)": 0.0003962940676864601,
+      "Xb15uf-r (joint generator, run parameters for state 2)": 0.00032809385232165445
+    }
+  },
+  "verdict": {
+    "all neutral classes <= 1.2": false,
+    "all 435 observables <= 1.15": true,
+    "one generator per state explains the neutral error": false
+  },
+  "verdict (run parameters)": {
+    "all neutral classes <= 1.2": false,
+    "all 435 observables <= 1.15": true,
+    "run parameters explain the neutral error": false
+  }
+}
