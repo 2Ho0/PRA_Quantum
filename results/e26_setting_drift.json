@@ -1,0 +1,115 @@
+{
+  "part A (data, learning window)": {
+    "between-setting / shot variance (data, t = 0, 0.5, 1.0, 1.5 ms)": {
+      "weight 1, t index 0": 1.2553634922970278,
+      "weight 1, t index 1": 2.037847524812479,
+      "weight 1, t index 2": 2.3254297136990987,
+      "weight 1, t index 3": 2.161351580187682,
+      "weight 2, t index 0": 1.1515715506179693,
+      "weight 2, t index 1": 1.3507789838401727,
+      "weight 2, t index 2": 1.2884798525952608,
+      "weight 2, t index 3": 1.3158666538710495,
+      "weight 3, t index 0": 1.0831738013284402,
+      "weight 3, t index 1": 1.1657117806785524,
+      "weight 3, t index 2": 1.1596872483650078,
+      "weight 3, t index 3": 1.1693022234028092
+    },
+    "state 1: per-setting rotation angle": {
+      "robust sd at t = 0, 0.5, 1.0 ms (rad)": [
+        0.058340241322951,
+        0.14484500566579303,
+        0.2909688697134574
+      ],
+      "Spearman between t = 0.5 and 1.0 ms": 0.8695993836671804,
+      "lag-1 Spearman over the setting order at t = 0.5 ms": 0.8026176336226588
+    },
+    "state 2: per-setting rotation angle": {
+      "robust sd at t = 0, 0.5, 1.0 ms (rad)": [
+        0.05708683705657604,
+        0.11381612348189236,
+        0.23536596570829138
+      ],
+      "Spearman between t = 0.5 and 1.0 ms": 0.7629814016554348,
+      "lag-1 Spearman over the setting order at t = 0.5 ms": 0.5807463714511645
+    }
+  },
+  "part B (synthetic, parameter level)": {
+    "truth J_nn (rad/s)": 607.0872460118699,
+    "drift": {
+      "between-setting / shot variance, mean over realisations": [
+        1.009041294468508,
+        2.078121979555578,
+        3.0314569355720447,
+        3.0049660971829084,
+        1.0047474811319979,
+        1.4234643289981268,
+        1.4480019624557248,
+        1.4425642770502156,
+        1.0024140266748063,
+        1.1978126510601572,
+        1.2788451626914212,
+        1.2712534913757365
+      ],
+      "least squares: J_nn relative error mean, se": [
+        -0.07507037782456513,
+        0.011561379893400635
+      ],
+      "S with shot: J_nn relative error mean, se; lambda mean": [
+        -0.039149560721107604,
+        0.012370518894260588,
+        1.0388045034177464
+      ],
+      "S with wild-iid: J_nn relative error mean, se; lambda mean": [
+        -0.031520000951190674,
+        0.013101211414136275,
+        1.0469970575928644
+      ],
+      "S with wild-ar: J_nn relative error mean, se; lambda mean": [
+        -0.03212365717593872,
+        0.01308613499309098,
+        1.0463452415854846
+      ]
+    },
+    "shot-only": {
+      "between-setting / shot variance, mean over realisations": [
+        0.9997560921289406,
+        1.000476980579087,
+        1.0180153964732541,
+        1.017960630757057,
+        0.99809709746713,
+        0.9956756075514944,
+        1.0013832805068448,
+        0.9994694780069061,
+        0.9994999618208373,
+        1.0017429673789138,
+        1.0017663138507815,
+        1.00337966210012
+      ],
+      "least squares: J_nn relative error mean, se": [
+        -0.04048698199565143,
+        0.006417350075938922
+      ],
+      "S with shot: J_nn relative error mean, se; lambda mean": [
+        -0.00225069117941179,
+        0.006769499133669078,
+        1.0398464809788
+      ],
+      "S with wild-iid: J_nn relative error mean, se; lambda mean": [
+        -0.004283424483342772,
+        0.007113150751380494,
+        1.0377163818029829
+      ],
+      "S with wild-ar: J_nn relative error mean, se; lambda mean": [
+        -0.005129930425073685,
+        0.007196662601699601,
+        1.0368300407797477
+      ]
+    },
+    "passes (|mean relative error of J_nn| <= 1% in both worlds)": {
+      "shot": false,
+      "wild-iid": false,
+      "wild-ar": false
+    },
+    "primary noise model for part C": null
+  }
+}

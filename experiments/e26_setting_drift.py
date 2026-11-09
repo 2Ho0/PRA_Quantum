@@ -38,6 +38,7 @@ Status: the drift was found in the learning window after E24 and E25 had been de
 data's late record, part C reuses it (a calibration check, not a blind test).
 """
 
+import json
 import os
 import sys
 
@@ -50,7 +51,7 @@ from concurrent.futures import ProcessPoolExecutor  # noqa: E402
 import numpy as np  # noqa: E402
 from scipy.stats import spearmanr  # noqa: E402
 
-from common import CAT, MUTED, ORDINAL, RESULTS, save_figure, save_json, style  # noqa: E402
+from common import CAT, INK, MUTED, ORDINAL, RESULTS, save_figure, save_json, style  # noqa: E402
 from e6_ion_learning import N, PAIRS, ansatz, observables, per_setting_tables, product_state, series_from  # noqa: E402
 from e6c_validation import charge_classes, load  # noqa: E402
 from e9_symmetry_data import extended_ansatz  # noqa: E402
@@ -380,27 +381,47 @@ def analyse_c(model):
 
 def plot(out):
     plt = style()
-    fig, axes = plt.subplots(1, 2, figsize=(11.5, 3.9))
+    c = out.get("part C (data)")
+    fig, axes = plt.subplots(1, 3 if c else 2, figsize=(16.5 if c else 11.5, 3.9))
     ax = axes[0]
     b = out["part B (synthetic, parameter level)"]
     labels = ["least squares"] + [f"S, {m}" for m in MODELS]
-    for j, (world, c) in enumerate((("drift", CAT[1]), ("shot-only", CAT[0]))):
+    for j, (world, col) in enumerate((("drift", CAT[1]), ("shot-only", CAT[0]))):
         row = b[world]
         vals = [row["least squares: J_nn relative error mean, se"]] + [
             row[f"S with {m}: J_nn relative error mean, se; lambda mean"][:2] for m in MODELS]
         y = np.arange(len(labels)) + 0.15 * (j - 0.5)
-        ax.errorbar([100 * v[0] for v in vals], y, xerr=[200 * v[1] for v in vals], fmt="o", color=c, ms=5,
+        ax.errorbar([100 * v[0] for v in vals], y, xerr=[200 * v[1] for v in vals], fmt="o", color=col, ms=5,
                     capsize=2, label=f"{world} world")
     ax.axvspan(-1, 1, color=CAT[0], alpha=0.08, lw=0)
     ax.axvline(0, color=MUTED, lw=0.8, ls=":")
     ax.set_yticks(range(len(labels)), labels)
     ax.invert_yaxis()
-    ax.set_xlabel("relative error of $J_{nn}$ (%), mean $\\pm$ 2 se")
-    ax.legend(fontsize=6.5, loc="lower right")
+    ax.set_xlabel(r"relative error of $J_{nn}$ (%), mean $\pm$ 2 se")
+    ax.legend(fontsize=6.5, loc="center left")
     ax.set_title("(a) part B: synthetic data, truth known", fontsize=9)
     ax = axes[1]
-    c = out.get("part C (data)")
+    a = out["part A (data, learning window)"]["between-setting / shot variance (data, t = 0, 0.5, 1.0, 1.5 ms)"]
+    t = np.arange(N_WIN) * 0.5
+    series = (("data (Kraft et al.)", INK, [a[f"weight {w}, t index {i}"] for w in (1, 2, 3) for i in range(N_WIN)]),
+              ("drift world", CAT[1], b["drift"]["between-setting / shot variance, mean over realisations"]),
+              ("shot-only world", CAT[0], b["shot-only"]["between-setting / shot variance, mean over realisations"]))
+    for name, col, v in series:
+        v = np.asarray(v).reshape(3, N_WIN)
+        for w, (ls, mk) in enumerate((("-", "o"), ("--", "s"), (":", "^"))):
+            ax.plot(t, v[w], ls=ls, marker=mk, color=col, lw=1.3, ms=4, label=name if w == 0 else None)
+    data = np.array(series[0][2]).reshape(3, N_WIN)
+    for w in range(3):
+        ax.annotate(f"weight {w + 1}", (t[-1], data[w, -1]), xytext=(6, 0), textcoords="offset points",
+                    fontsize=7, color=INK, va="center")
+    ax.axhline(1.0, color=MUTED, lw=0.6, ls=":")
+    ax.set_xlim(-0.1, 1.95)
+    ax.set_xlabel("t (ms), learning window")
+    ax.set_ylabel("between-setting / shot variance")
+    ax.legend(fontsize=6.5, loc="upper left", title="line style: string weight 1 / 2 / 3", title_fontsize=6.5)
+    ax.set_title("(b) part A: scatter of the per-setting means", fontsize=9)
     if c:
+        ax = axes[2]
         classes = list(c["factors with its own band"])
         ax.plot([c["factors with the Xb15 band"][n] for n in classes], np.arange(len(classes)) - 0.12, "s",
                 color=MUTED, ms=5, label="S (drift-aware), Xb15 band")
@@ -411,13 +432,16 @@ def plot(out):
         ax.invert_yaxis()
         ax.set_xlabel("calibration factor, t > 1.5 ms")
         ax.legend(fontsize=6.5, loc="lower right")
-    ax.set_title("(b) part C: data", fontsize=9)
+        ax.set_title("(c) part C: data", fontsize=9)
     fig.suptitle("E26: detuning drift across the settings in the noise model (data: Kraft et al.)")
     fig.tight_layout()
     return save_figure(fig, "e26_setting_drift")
 
 
 if __name__ == "__main__":
+    if "--plot" in sys.argv:  # redraw from the saved results
+        print(plot(json.loads((RESULTS / "e26_setting_drift.json").read_text(encoding="utf-8"))))
+        sys.exit(0)
     out = {"part A (data, learning window)": part_a()}
     print("part A:", out["part A (data, learning window)"], flush=True)
     if "--part-a" in sys.argv:

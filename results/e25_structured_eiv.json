@@ -1,0 +1,236 @@
+{
+  "step 0 (synthetic, parameter level)": {
+    "rms error of the currents against the truth (rad/s): (a) scaled, (b) zero": [
+      102.89382956643477,
+      87.4944477810627
+    ],
+    "truth current rms (rad/s)": 87.49444778106269,
+    "oracle linear shrinkage of the scaled currents: factor, rms error": [
+      0.29062247304175465,
+      84.04720211422911
+    ],
+    "choice": "zero"
+  },
+  "step 1 (data)": {
+    "estimator S: lambda, beta (rad/s per ms)": [
+      1.0448372259434886,
+      31.38954198776074
+    ],
+    "bootstrap replicates: lambda mean, sd; beta mean, sd": [
+      1.042207273694361,
+      0.004275805206692708,
+      7.841751467452743,
+      14.003698324878467
+    ],
+    "band spread, new over Xb15 (rms over t > 1.5 ms)": {
+      "q=0  Z_i": 0.4477635319699099,
+      "q=0  Z_iZ_j": 0.525962130971056,
+      "q=0  flip-flop": 0.3835588368640615,
+      "q=\u00b11  X_i, Y_i": 0.6735620452568091,
+      "q=\u00b11  XZ-type": 0.6919911687066075,
+      "q=\u00b12  pair": 0.7682648019826974,
+      "all 435 observables": 0.6654200820109077
+    },
+    "factors of S with the new band": {
+      "q=0  Z_i": 2.109106387067917,
+      "q=0  Z_iZ_j": 1.6525868555152505,
+      "q=0  flip-flop": 1.8633385000748308,
+      "q=\u00b11  X_i, Y_i": 0.7884979862857624,
+      "q=\u00b11  XZ-type": 0.8377285700138105,
+      "q=\u00b12  pair": 0.6832862159355142,
+      "all 435 observables": 1.026299811358779
+    },
+    "factors of S with the Xb15 band": {
+      "q=0  Z_i": 1.0693903911243188,
+      "q=0  Z_iZ_j": 1.1543004162754555,
+      "q=0  flip-flop": 1.0577051612501027,
+      "q=\u00b11  X_i, Y_i": 0.5411658811451125,
+      "q=\u00b11  XZ-type": 0.6587845242558166,
+      "q=\u00b12  pair": 0.5439804532265394,
+      "all 435 observables": 0.7556705789461928
+    },
+    "null of the factor (new band): 90%, 95% per neutral class": {
+      "q=0  Z_i": [
+        1.2504871316403594,
+        1.3477320886626074
+      ],
+      "q=0  Z_iZ_j": [
+        1.1359374060800882,
+        1.1957215247044808
+      ],
+      "q=0  flip-flop": [
+        1.1409011388375838,
+        1.21699111538457
+      ]
+    },
+    "rule B': p-values, Holm rejections": {
+      "q=0  Z_i": [
+        0.00025,
+        true
+      ],
+      "q=0  Z_iZ_j": [
+        0.00025,
+        true
+      ],
+      "q=0  flip-flop": [
+        0.0,
+        true
+      ]
+    },
+    "rule B' passes": false,
+    "guard: late variance S / Xb15uf as learned, mean of six cells": 1.0805211048001127,
+    "guard holds": true,
+    "rule A (E20 rule, new band)": false,
+    "data consistent with S (rule B' and guard)": false
+  },
+  "step 2 (synthetic, end to end)": {
+    "per estimator and class": {
+      "least squares, Xb15 band": {
+        "q=0  Z_i": {
+          "pooled factor": 1.0557779747079197,
+          "bias rms / band rms": 0.6801716910035145,
+          "spread across realisations / band rms": 0.8632388198842619
+        },
+        "q=0  Z_iZ_j": {
+          "pooled factor": 1.0290092766798655,
+          "bias rms / band rms": 0.7876546703936049,
+          "spread across realisations / band rms": 0.7078823241192093
+        },
+        "q=0  flip-flop": {
+          "pooled factor": 0.9326717264079811,
+          "bias rms / band rms": 0.6500502016188309,
+          "spread across realisations / band rms": 0.7149915361066761
+        },
+        "all 435 observables": {
+          "pooled factor": 0.6574681044345875,
+          "bias rms / band rms": 0.48362796448835654,
+          "spread across realisations / band rms": 0.4761371954908536
+        }
+      },
+      "S, step-1 band": {
+        "q=0  Z_i": {
+          "pooled factor": 2.0065672336121585,
+          "bias rms / band rms": 1.7480665308879528,
+          "spread across realisations / band rms": 1.053199461014082
+        },
+        "q=0  Z_iZ_j": {
+          "pooled factor": 1.767115064907425,
+          "bias rms / band rms": 1.4734692857136809,
+          "spread across realisations / band rms": 1.0428444161077297
+        },
+        "q=0  flip-flop": {
+          "pooled factor": 2.400253141916169,
+          "bias rms / band rms": 2.2016261647397837,
+          "spread across realisations / band rms": 1.0220748510535558
+        },
+        "all 435 observables": {
+          "pooled factor": 0.723316862283439,
+          "bias rms / band rms": 0.6380188091017807,
+          "spread across realisations / band rms": 0.3642907512192584
+        }
+      }
+    },
+    "null of the pooled factor (step-1 band): 2.5%, 50%, 98.3% quantiles": {
+      "q=0  Z_i": [
+        0.8037191212020961,
+        0.985636085635565,
+        1.2371122830809125
+      ],
+      "q=0  Z_iZ_j": [
+        0.8164187595834527,
+        0.9906513748790544,
+        1.2298033152099819
+      ],
+      "q=0  flip-flop": [
+        0.7955577754664851,
+        0.9881792947350269,
+        1.2589997741657681
+      ]
+    },
+    "lambda of S per realisation: mean, sd": [
+      1.0410193757807722,
+      0.0014105540705584307
+    ],
+    "beta (rad/s per ms, truth 38.2): least squares mean, S mean": [
+      15.552349580211992,
+      35.16255470227898
+    ],
+    "rule S per neutral class": {
+      "q=0  Z_i": false,
+      "q=0  Z_iZ_j": false,
+      "q=0  flip-flop": false
+    },
+    "rule S passes": false
+  },
+  "pooled neutral z-score per time (data)": {
+    "times": [
+      0.0,
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      4.5,
+      5.0,
+      5.5,
+      6.0,
+      6.5,
+      7.0,
+      7.5,
+      8.0,
+      8.5,
+      9.0,
+      9.5,
+      10.0
+    ],
+    "Xb15uf as learned, Xb15 band": [
+      0.8468427659361547,
+      1.3267502720647355,
+      1.1535395855553652,
+      1.158757016731889,
+      1.2812105195856998,
+      1.176024421116237,
+      1.106810263666086,
+      1.2174788272949544,
+      1.2413792725788275,
+      1.2027542718907112,
+      1.2986691717731056,
+      1.3770773767401183,
+      1.323612717749698,
+      1.4701665152968322,
+      1.1979486990541568,
+      1.7506595635921935,
+      1.245467780150788,
+      1.4837400735358675,
+      1.423334870067447,
+      1.4002423490140867,
+      1.421062547431172
+    ],
+    "S, new band": [
+      0.8468427659361547,
+      1.7377843595443465,
+      1.5781953219742764,
+      1.6877642440110832,
+      2.076012886575432,
+      1.9541695052386348,
+      1.6223241245735107,
+      1.8562326428390958,
+      2.069201116664435,
+      1.8263048672584523,
+      1.701082766789827,
+      1.8155501002259975,
+      1.9356485330336899,
+      1.9216900282734637,
+      2.0778990121072125,
+      1.773784944992742,
+      1.6652440071460979,
+      1.8333641614134422,
+      1.7949338397310943,
+      1.8945829578476268,
+      1.7214357801106328
+    ]
+  }
+}

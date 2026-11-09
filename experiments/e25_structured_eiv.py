@@ -387,7 +387,7 @@ def plot(out, nullp):
                 ms=5, label="estimator S (its own band)" if y == 0 else None)
     ax.axvline(1.0, color=MUTED, lw=0.6, ls=":")
     ax.set_yticks(range(len(NEUTRAL)), NEUTRAL)
-    ax.invert_yaxis()
+    ax.set_ylim(len(NEUTRAL) + 0.25, -0.4)  # inverted, with room for the legend below the last row
     ax.set_xlabel("pooled factor against the exact truth, 8 realisations")
     ax.legend(fontsize=6.5, loc="lower right", title="grey: 2.5-98.3% if the band were exact", title_fontsize=6.5)
     ax.set_title("(a) step 2: synthetic data, truth known", fontsize=9)
@@ -413,7 +413,7 @@ def plot(out, nullp):
     ax.axhline(1.0, color=MUTED, lw=0.6, ls=":")
     ax.set_xlabel("t (ms)")
     ax.set_ylabel("neutral z-score (rms deviation / rms spread)")
-    ax.legend(fontsize=6.5, loc="upper left")
+    ax.legend(fontsize=6.5, loc="lower right")
     ax.set_title("(c) step 1: neutral error against time", fontsize=9)
     fig.suptitle("E25: the structured errors-in-variables estimator (data: Kraft et al.)")
     fig.tight_layout()
