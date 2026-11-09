@@ -1,0 +1,364 @@
+{
+  "route check": {
+    "setting-averaged trajectory, max |difference| to the control truth": 4.440892098500626e-16,
+    "drift-free outcome distributions, max |difference| (every 37th setting)": 2.2595909726641494e-09
+  },
+  "step A (data)": {
+    "drift: sigma_d estimated, used (rad/s); its share of beta_S": [
+      216.9490659235058,
+      216.9490659235058,
+      0.7497225863224408
+    ],
+    "current prior tau (rad/s) for d = 1, d = 2, d >= 3": [
+      104.93419783891666,
+      105.3156712833693,
+      70.96391919467217
+    ],
+    "parametric correction: mean coupling ratio c (S over W), sd": [
+      0.9911820287254196,
+      0.02974247975551287
+    ],
+    "lambda: S, S_D (late-data values 1.069 and 1.104, E23d)": [
+      1.0448372259434886,
+      1.0541325363687892
+    ],
+    "gamma_c (rad/s): S, S_D": [
+      14.589284696054076,
+      13.259776466745441
+    ],
+    "beta (rad/s per ms): S, S_D; replicates mean, sd": [
+      31.38954198776074,
+      34.933390780177014,
+      27.845693195344463,
+      17.81998471204983
+    ],
+    "band spread over the E25 band and over the Xb15 band (rms, t > 1.5 ms)": {
+      "q=0  Z_i": [
+        3.5691418142476676,
+        1.5981315448490279
+      ],
+      "q=0  Z_iZ_j": [
+        2.0253402449492763,
+        1.065252271174962
+      ],
+      "q=0  flip-flop": [
+        6.323904046974381,
+        2.4255892806974244
+      ],
+      "q=\u00b11  X_i, Y_i": [
+        0.8809837854233964,
+        0.5933972403478688
+      ],
+      "q=\u00b11  XZ-type": [
+        0.9120775356307143,
+        0.6311495998321404
+      ],
+      "q=\u00b12  pair": [
+        0.5809431694852912,
+        0.4463181890678179
+      ],
+      "all 435 observables": [
+        1.7454194369839937,
+        1.1614371449013214
+      ]
+    },
+    "factors of S_D with its band": {
+      "q=0  Z_i": 0.6852396485885949,
+      "q=0  Z_iZ_j": 1.0771090232949045,
+      "q=0  flip-flop": 0.47447762742166405,
+      "q=\u00b11  X_i, Y_i": 0.8676246382914061,
+      "q=\u00b11  XZ-type": 0.8623277490573587,
+      "q=\u00b12  pair": 1.0184046672434608,
+      "all 435 observables": 0.6576056837014562
+    },
+    "factors of S_D with the E25 band": {
+      "q=0  Z_i": 2.11279567018223,
+      "q=0  Z_iZ_j": 1.6139615109746714,
+      "q=0  flip-flop": 1.8466849598242763,
+      "q=\u00b11  X_i, Y_i": 0.7717623604202499,
+      "q=\u00b11  XZ-type": 0.8202029425345279,
+      "q=\u00b12  pair": 0.6821548003261098,
+      "all 435 observables": 1.0130907011489299
+    },
+    "null of the factor: 90%, 95% per neutral class": {
+      "q=0  Z_i": [
+        1.262852472775698,
+        1.3672224112361338
+      ],
+      "q=0  Z_iZ_j": [
+        1.189464282047013,
+        1.2711130023416082
+      ],
+      "q=0  flip-flop": [
+        1.288798529960441,
+        1.4231989946026438
+      ]
+    },
+    "rule B': p-values, Holm rejections": {
+      "q=0  Z_i": [
+        0.929,
+        false
+      ],
+      "q=0  Z_iZ_j": [
+        0.2445,
+        false
+      ],
+      "q=0  flip-flop": [
+        0.9975,
+        false
+      ]
+    },
+    "rule B' passes": true,
+    "guard: late variance S_D / Xb15uf as learned, mean of six cells": 1.0753383145274424,
+    "guard holds": true,
+    "rule A (E20 rule, own band)": true,
+    "data consistent with S_D (rule B' and guard)": true
+  },
+  "step B (synthetic, data-matched drift world, end to end)": {
+    "sigma_d (rad/s): set; estimated per realisation": [
+      216.9490659235058,
+      [
+        187.40919993517795,
+        221.5837253483643,
+        196.84628674783082,
+        229.0949952454018,
+        213.91427365873076,
+        227.01052219207662,
+        236.27370046634752,
+        228.23022646423664
+      ]
+    ],
+    "per neutral class (S_D, step-A band)": {
+      "q=0  Z_i": {
+        "pooled factor": 0.7901271349777012,
+        "bias rms / band rms": 0.6527463947813261,
+        "spread across realisations / band rms": 0.47596282391206224
+      },
+      "q=0  Z_iZ_j": {
+        "pooled factor": 1.313725761645905,
+        "bias rms / band rms": 1.071108823329019,
+        "spread across realisations / band rms": 0.8131780795294739
+      },
+      "q=0  flip-flop": {
+        "pooled factor": 0.5394209516293581,
+        "bias rms / band rms": 0.46291368724978715,
+        "spread across realisations / band rms": 0.2960422387112615
+      },
+      "all 435 observables": {
+        "pooled factor": 0.6229320684574433,
+        "bias rms / band rms": 0.507711858589874,
+        "spread across realisations / band rms": 0.38585419979185265
+      }
+    },
+    "null of the pooled factor: 2.5%, 50%, 98.3% quantiles": {
+      "q=0  Z_i": [
+        0.8419598681932506,
+        0.9927050008777828,
+        1.1840702280581819
+      ],
+      "q=0  Z_iZ_j": [
+        0.8654907976023368,
+        0.9954392559784637,
+        1.1671488171670665
+      ],
+      "q=0  flip-flop": [
+        0.8236695740466501,
+        0.9920693427874399,
+        1.213876203573623
+      ]
+    },
+    "rule S'' per neutral class": {
+      "q=0  Z_i": true,
+      "q=0  Z_iZ_j": false,
+      "q=0  flip-flop": true
+    },
+    "rule S'' passes": false
+  },
+  "parameter level (reported)": {
+    "step B: data-matched drift world": {
+      "least squares": {
+        "coupling scale over the truth: mean, se": [
+          0.9748694228806982,
+          0.011865935178943863
+        ],
+        "J_nn relative error: mean, se": [
+          -0.0284329114198007,
+          0.011315954674268656
+        ]
+      },
+      "S": {
+        "coupling scale over the truth: mean, se": [
+          1.0138762017866962,
+          0.012704004132964887
+        ],
+        "J_nn relative error: mean, se": [
+          0.010441162256361089,
+          0.01214354098067746
+        ]
+      },
+      "S_D": {
+        "coupling scale over the truth: mean, se": [
+          1.0268941304022499,
+          0.012718339015412727
+        ],
+        "J_nn relative error: mean, se": [
+          0.02331782950404926,
+          0.010874048298811653
+        ]
+      },
+      "beta (rad/s per ms, truth 38.2): least squares, S, S_D": [
+        10.41545343199377,
+        29.99485683924865,
+        35.07779941976647
+      ],
+      "sigma_d estimated (rad/s): mean, sd": [
+        217.5453662572708,
+        17.12989632718896
+      ]
+    },
+    "step C: shot-only world": {
+      "least squares": {
+        "coupling scale over the truth: mean, se": [
+          0.9557675572434479,
+          0.0013579277465169848
+        ],
+        "J_nn relative error: mean, se": [
+          -0.050331878712528824,
+          0.0020986984586424877
+        ]
+      },
+      "S": {
+        "coupling scale over the truth: mean, se": [
+          0.9948961880667077,
+          0.0017019500907432712
+        ],
+        "J_nn relative error: mean, se": [
+          -0.01145263618120479,
+          0.0024002552571253948
+        ]
+      },
+      "S_D": {
+        "coupling scale over the truth: mean, se": [
+          0.9959391203970259,
+          0.002307367630352444
+        ],
+        "J_nn relative error: mean, se": [
+          -0.010420640756341734,
+          0.002633090983637109
+        ]
+      },
+      "beta (rad/s per ms, truth 38.2): least squares, S, S_D": [
+        14.580060257491944,
+        34.71288736575039,
+        35.997725197632555
+      ],
+      "sigma_d estimated (rad/s): mean, sd": [
+        18.57045017990854,
+        15.182346904698113
+      ]
+    }
+  },
+  "sensitivity to the drift estimate (data, parameter level)": {
+    "excess with the t = 0 excess subtracted": {
+      "sigma_d estimated, used (rad/s)": [
+        193.82661019245407,
+        193.82661019245407
+      ],
+      "c mean, sd": [
+        0.9877881732910402,
+        0.033042412182310285
+      ],
+      "lambda_D": 1.0577543386274575,
+      "gamma_c of S_D (rad/s)": 9.294852555886246,
+      "beta of S_D (rad/s per ms)": 42.92589708324498
+    },
+    "spread of the per-setting rotation angles": {
+      "sigma_d estimated, used (rad/s)": [
+        246.2134794570955,
+        246.2134794570955
+      ],
+      "c mean, sd": [
+        0.9901133690046028,
+        0.03826950903326083
+      ],
+      "lambda_D": 1.0552702939400784,
+      "gamma_c of S_D (rad/s)": 10.35122074627057,
+      "beta of S_D (rad/s per ms)": 38.54123348486027
+    }
+  },
+  "verdict": {
+    "procedure validated (rule S'')": false,
+    "data consistent with S_D (rule B' and guard)": true
+  },
+  "pooled neutral z-score per time (data)": {
+    "times": [
+      0.0,
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      4.5,
+      5.0,
+      5.5,
+      6.0,
+      6.5,
+      7.0,
+      7.5,
+      8.0,
+      8.5,
+      9.0,
+      9.5,
+      10.0
+    ],
+    "S, E25 band": [
+      0.8468427659361547,
+      1.7377843595443465,
+      1.5781953219742764,
+      1.6877642440110832,
+      2.076012886575432,
+      1.9541695052386348,
+      1.6223241245735107,
+      1.8562326428390958,
+      2.069201116664435,
+      1.8263048672584523,
+      1.701082766789827,
+      1.8155501002259975,
+      1.9356485330336899,
+      1.9216900282734637,
+      2.0778990121072125,
+      1.773784944992742,
+      1.6652440071460979,
+      1.8333641614134422,
+      1.7949338397310943,
+      1.8945829578476268,
+      1.7214357801106328
+    ],
+    "S_D, E27 band": [
+      0.8468427659361547,
+      0.45518563461023476,
+      0.47785555949703556,
+      0.4769824656464657,
+      0.7146000180725591,
+      0.585919028062306,
+      0.5765895178740983,
+      0.6782000742221357,
+      0.7513756482818468,
+      0.6086717115718656,
+      0.550225117718825,
+      0.6788204409866722,
+      0.7271031354721923,
+      0.6685044375709668,
+      0.7324800786246412,
+      0.7373465454471895,
+      0.7012631050960999,
+      0.7467816992681323,
+      0.7856539190371066,
+      0.7215738454900543,
+      0.7147606288936027
+    ]
+  }
+}

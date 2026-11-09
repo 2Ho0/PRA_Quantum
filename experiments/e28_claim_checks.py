@@ -292,7 +292,7 @@ def analyse():
                  "bootstrap mean minus estimate, mean (rad/s)": float((b.mean(axis=1) - g).mean()) * 1e3,
                  "lower bound per realisation (rad/s)": (lo * 1e3).tolist(),
                  "bound below the target": f"{hits} of {N_REAL}", "rule C1 passes": bool(hits >= 7)}
-    e9 = json.loads((RESULTS / "e9_symmetry_data.json").read_text(encoding="utf-8"))
+    e9 = json.loads((RESULTS / "e9_symmetry_data.json").read_text(encoding="utf-8"))["results"]  # key path fixed after the run (reference only)
     c1["E9 on the data (for reference)"] = {k: v for k, v in e9.items() if k.startswith("(b) structured gamma_c")}
     out["C1: E9's certified gamma_c"] = c1
     # C2

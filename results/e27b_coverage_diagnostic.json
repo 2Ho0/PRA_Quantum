@@ -1,0 +1,95 @@
+{
+  "route check: truth by sector propagation against the saved exact truth, max |difference| (neutral classes)": 4.996003610813204e-16,
+  "measured bias of S_D, mean of 8 (bias rms / step-A band rms)": {
+    "q=0  Z_i": 0.6527463947813261,
+    "q=0  Z_iZ_j": 1.071108823329019,
+    "q=0  flip-flop": 0.46291368724978715
+  },
+  "hybrids: bias rms / step-A band rms, t > 1.5 ms": {
+    "currents zero": {
+      "q=0  Z_i": 0.4528826956633565,
+      "q=0  Z_iZ_j": 0.6308175490135136,
+      "q=0  flip-flop": 0.3177133778200099
+    },
+    "couplings S": {
+      "q=0  Z_i": 0.3662664775229281,
+      "q=0  Z_iZ_j": 0.6929806683828575,
+      "q=0  flip-flop": 0.2646277795698576
+    },
+    "couplings S_D": {
+      "q=0  Z_i": 0.5030697910217975,
+      "q=0  Z_iZ_j": 0.9360754119994863,
+      "q=0  flip-flop": 0.35433770559422895
+    },
+    "z fields S_D": {
+      "q=0  Z_i": 0.08675411922315723,
+      "q=0  Z_iZ_j": 0.06435319662921753,
+      "q=0  flip-flop": 0.026415073984530163
+    },
+    "symmetric part of S_D": {
+      "q=0  Z_i": 0.7589517781611227,
+      "q=0  Z_iZ_j": 1.2531615430144654,
+      "q=0  flip-flop": 0.52974944346653
+    }
+  },
+  "rms of (measured bias - symmetric-part hybrid bias) over rms of the measured bias": {
+    "q=0  Z_i": 0.27833043837041305,
+    "q=0  Z_iZ_j": 0.31578189911100024,
+    "q=0  flip-flop": 0.24959713062656386
+  },
+  "current prior tau (rad/s), mean over the step-B realisations": [
+    88.467600457433,
+    112.92884021628234,
+    90.38348249406688
+  ],
+  "currents-only spread over the step-A band (rms ratio)": {
+    "q=0  Z_i": 1.1290369547417467,
+    "q=0  Z_iZ_j": 1.007847886582108,
+    "q=0  flip-flop": 1.1871342157508589
+  },
+  "'currents zero' bias over the currents-only spread: truth; 2.5%, 50%, 97.5% over prior draws": {
+    "q=0  Z_i": [
+      0.40112300466457973,
+      0.6356914348651753,
+      0.9766856505632016,
+      1.474741025653955
+    ],
+    "q=0  Z_iZ_j": [
+      0.6259055135321965,
+      0.7135228590644227,
+      1.0176566238692448,
+      1.5401177528109653
+    ],
+    "q=0  flip-flop": [
+      0.26763054556477184,
+      0.5881667166435061,
+      0.9594000391679942,
+      1.5625538440778215
+    ]
+  },
+  "quantile of the truth's value among the prior draws": {
+    "q=0  Z_i": 0.0,
+    "q=0  Z_iZ_j": 0.0,
+    "q=0  flip-flop": 0.0
+  },
+  "single-draw null of bias rms / band rms: 2.5%, 50%, 97.5%; quantile of the measured bias": {
+    "q=0  Z_i": [
+      0.6117963200608929,
+      0.9542391722501881,
+      1.4842990805949614,
+      0.0485
+    ],
+    "q=0  Z_iZ_j": [
+      0.6507945687374819,
+      0.9574215765201863,
+      1.4480712990229625,
+      0.7075
+    ],
+    "q=0  flip-flop": [
+      0.5582126873659025,
+      0.9422455509370602,
+      1.5347973213187738,
+      0.004
+    ]
+  }
+}

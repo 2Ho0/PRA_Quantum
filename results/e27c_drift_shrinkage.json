@@ -1,0 +1,184 @@
+{
+  "drift levels sigma_d (rad/s)": [
+    0.0,
+    216.9490659235058,
+    276.39954675002895
+  ],
+  "realisations per level": 16,
+  "sigma_d estimated (rad/s): mean, sd per level": [
+    [
+      16.213554795594753,
+      13.896798057286137
+    ],
+    [
+      220.534549618915,
+      20.318180853673567
+    ],
+    [
+      276.68921680551153,
+      27.001299577497356
+    ]
+  ],
+  "coupling scale over the truth, least squares: mean, se per level": [
+    [
+      0.9535870563967854,
+      0.0018538138576745524
+    ],
+    [
+      0.9305762632962167,
+      0.008475604776550832
+    ],
+    [
+      0.9319525587868452,
+      0.007412096686386387
+    ]
+  ],
+  "coupling scale over the truth, least squares: change against sigma_d = 0 (mean, se) at 217 and 276 rad/s": [
+    [
+      -0.02301079310056875,
+      0.008675972691704226
+    ],
+    [
+      -0.021634497609940184,
+      0.007640405951730985
+    ]
+  ],
+  "coupling scale over the truth, least squares: fit through zero in sigma_d^2, read at 216.9 rad/s (value, se)": [
+    -0.015530573320133951,
+    0.0041374223814914105
+  ],
+  "coupling scale over the truth, S: mean, se per level": [
+    [
+      0.9919605338827322,
+      0.0020252259251156445
+    ],
+    [
+      0.9685714297225325,
+      0.009265310653610009
+    ],
+    [
+      0.9679671543639505,
+      0.008015236652216644
+    ]
+  ],
+  "coupling scale over the truth, S: change against sigma_d = 0 (mean, se) at 217 and 276 rad/s": [
+    [
+      -0.02338910416019968,
+      0.0094840667203294
+    ],
+    [
+      -0.023993379518781666,
+      0.008267137269865403
+    ]
+  ],
+  "coupling scale over the truth, S: fit through zero in sigma_d^2, read at 216.9 rad/s (value, se)": [
+    -0.01670864829876962,
+    0.004487142358898582
+  ],
+  "J_nn relative error, least squares: mean, se per level": [
+    [
+      -0.04999187469218834,
+      0.0032989803963017405
+    ],
+    [
+      -0.07364594671556723,
+      0.008865232751805273
+    ],
+    [
+      -0.07101545899866726,
+      0.005989660851305463
+    ]
+  ],
+  "J_nn relative error, least squares: change against sigma_d = 0 (mean, se) at 217 and 276 rad/s": [
+    [
+      -0.023654072023378894,
+      0.009459155533072923
+    ],
+    [
+      -0.021023584306478924,
+      0.006838077856301759
+    ]
+  ],
+  "J_nn relative error, least squares: fit through zero in sigma_d^2, read at 216.9 rad/s (value, se)": [
+    -0.014723712969819697,
+    0.0038484162810135656
+  ],
+  "J_nn relative error, S: mean, se per level": [
+    [
+      -0.011759420965978165,
+      0.0035436883923827545
+    ],
+    [
+      -0.03582368477998639,
+      0.009642640175625796
+    ],
+    [
+      -0.03512310515315293,
+      0.006532005004661359
+    ]
+  ],
+  "J_nn relative error, S: change against sigma_d = 0 (mean, se) at 217 and 276 rad/s": [
+    [
+      -0.024064263814008224,
+      0.010273180470472664
+    ],
+    [
+      -0.023363684187174764,
+      0.007431340175448121
+    ]
+  ],
+  "J_nn relative error, S: fit through zero in sigma_d^2, read at 216.9 rad/s (value, se)": [
+    -0.015996401832542504,
+    0.0041818522194905896
+  ],
+  "coupling scale, sd over realisations per level: least squares, S": [
+    [
+      0.00741525543069821,
+      0.008100903700462578
+    ],
+    [
+      0.033902419106203334,
+      0.037061242614440035
+    ],
+    [
+      0.029648386745545544,
+      0.032060946608866575
+    ]
+  ],
+  "E27 step B against this run at 217 rad/s, coupling scale of least squares: means, Welch p, Mann-Whitney p": [
+    0.9748694228806982,
+    0.9305762632962167,
+    0.008727694436498307,
+    0.007064860477163614
+  ],
+  "E27 step B against this run at 217 rad/s, coupling scale of S: means, Welch p, Mann-Whitney p": [
+    1.0138762017866962,
+    0.9685714297225325,
+    0.01172935541437372,
+    0.008748135548512451
+  ],
+  "beta (rad/s per ms, truth 38.2): least squares, S per level": [
+    [
+      19.190709573659348,
+      38.545093908892
+    ],
+    [
+      18.703074760330818,
+      37.118845450731335
+    ],
+    [
+      15.920978502608317,
+      33.890295593839845
+    ]
+  ],
+  "lambda of S per level: mean": [
+    1.040239601787623,
+    1.0407649330542204,
+    1.0386048367340481
+  ],
+  "earlier runs (for reference)": {
+    "E26 part B, J_nn error of S: drift 276 rad/s, no drift": "-3.9 +- 1.2%, -0.2 +- 0.7% (8 and 6 realisations)",
+    "E27 pre-registration diagnostic, coupling scale of S: drift 276 rad/s, no drift": "0.967 +- 0.018, 1.010 +- 0.004 (3 each)",
+    "E27 steps B and C, coupling scale of S: drift 217 rad/s, no drift": "1.014 +- 0.013, 0.995 +- 0.002 (8 each)"
+  }
+}

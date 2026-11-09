@@ -1,0 +1,208 @@
+{
+  "worlds: sigma_d (rad/s)": {
+    "shot-only": 0.0,
+    "data-matched": 216.9490659235058,
+    "full drift": 276.39954675002895
+  },
+  "C1: E9's certified gamma_c": {
+    "target: structured gamma_c on the exact setting average (rad/s)": 15.308815099002269,
+    "shot-only": {
+      "estimate mean, sd (rad/s)": [
+        18.792942784763227,
+        2.288414396937755
+      ],
+      "bootstrap mean minus estimate, mean (rad/s)": 2.1037886022400856,
+      "lower bound per realisation (rad/s)": [
+        11.863833505270312,
+        11.969064247466264,
+        13.61835536597494,
+        8.635494443437853,
+        15.091965859072038,
+        10.185549455639958,
+        17.33271155383987,
+        12.712023385271594
+      ],
+      "bound below the target": "7 of 8",
+      "rule C1 passes": true
+    },
+    "data-matched": {
+      "estimate mean, sd (rad/s)": [
+        18.86250728892945,
+        3.7717485156207116
+      ],
+      "bootstrap mean minus estimate, mean (rad/s)": 2.470640695942691,
+      "lower bound per realisation (rad/s)": [
+        5.620725716961862,
+        10.06599451797149,
+        13.467015191237126,
+        18.78936148958174,
+        5.642082368014289,
+        11.625475020344535,
+        16.97815017800404,
+        11.839507505625217
+      ],
+      "bound below the target": "6 of 8",
+      "rule C1 passes": false
+    },
+    "full drift": {
+      "estimate mean, sd (rad/s)": [
+        10.97425275485431,
+        10.058260579249788
+      ],
+      "bootstrap mean minus estimate, mean (rad/s)": 2.721732863303465,
+      "lower bound per realisation (rad/s)": [
+        11.781983408207905,
+        1.20007877948047,
+        -20.216306944619436,
+        7.5427334647087045,
+        8.496461417529387,
+        8.93452956255733,
+        -2.780791357554923,
+        7.3650791836145295
+      ],
+      "bound below the target": "8 of 8",
+      "rule C1 passes": true
+    },
+    "E9 on the data (for reference)": {
+      "(b) structured gamma_c, E6a ansatz (rad/s): estimate, bootstrap mean, sd, 95% lower bound (percentile, basic), certified = min": [
+        29.911792408678348,
+        32.024368450143456,
+        4.073948993150931,
+        26.044664207276195,
+        20.676716480709185,
+        20.676716480709185
+      ],
+      "(b) structured gamma_c, extended ansatz (rad/s): estimate, bootstrap mean, sd, 95% lower bound (percentile, basic), certified = min": [
+        27.633145719461126,
+        28.692377161040184,
+        3.066247781859188,
+        24.187233251238364,
+        22.126234184834974,
+        22.126234184834974
+      ]
+    }
+  },
+  "C2: identification of the U(1)-breaking terms": {
+    "E6a median bootstrap sd s_g (rad/s)": {
+      "K": 21.725027537067326,
+      "L": 25.32235968492524,
+      "B": 43.264485376914365
+    },
+    "injected rms (rad/s)": {
+      "K": 41.3254855446077,
+      "L": 42.922126854817094,
+      "B": 88.19826239142915
+    },
+    "K": {
+      "slope": 0.9221477214291706,
+      "residual sd / s_g": 0.7290992918356404,
+      "identified (slope in [0.8, 1.2], residual <= 1.5 s_g)": true
+    },
+    "L": {
+      "slope": 0.8341800476931797,
+      "residual sd / s_g": 0.7270758377441182,
+      "identified (slope in [0.8, 1.2], residual <= 1.5 s_g)": true
+    },
+    "B": {
+      "slope": 0.9681671760727065,
+      "residual sd / s_g": 1.201700209237388,
+      "identified (slope in [0.8, 1.2], residual <= 1.5 s_g)": true
+    },
+    "terms with |estimate| > 3 E6a sd, per realisation (of 110)": [
+      17,
+      17,
+      19,
+      16,
+      15,
+      13,
+      19,
+      13
+    ],
+    "true terms with |value| > 3 E6a sd (of 110)": 19
+  },
+  "C3: J against the window": {
+    "windows (ms)": [
+      "[0, 1.5]",
+      "[0, 3]",
+      "[0, 5]"
+    ],
+    "data: J_nn (rad/s), relative change": [
+      [
+        620.6155715277474,
+        571.8000616388988,
+        498.1085658779643
+      ],
+      [
+        0.0,
+        -0.07865659859078478,
+        -0.197395958577404
+      ]
+    ],
+    "shot-only": {
+      "J_nn mean (rad/s)": [
+        579.5196346619717,
+        559.7916633525687,
+        540.1410926920036
+      ],
+      "relative change: mean, sd": [
+        [
+          0.0,
+          -0.03402694959842534,
+          -0.06797372198697668
+        ],
+        [
+          0.0,
+          0.010554139298163493,
+          0.012425902533251211
+        ]
+      ]
+    },
+    "data-matched": {
+      "J_nn mean (rad/s)": [
+        581.0924555163505,
+        562.2894346167429,
+        538.4839594800734
+      ],
+      "relative change: mean, sd": [
+        [
+          0.0,
+          -0.032327639073460396,
+          -0.07324494875270715
+        ],
+        [
+          0.0,
+          0.00826319746373502,
+          0.008462737858685482
+        ]
+      ]
+    },
+    "full drift": {
+      "J_nn mean (rad/s)": [
+        572.5023180648965,
+        544.4131900627023,
+        509.5056697858925
+      ],
+      "relative change: mean, sd": [
+        [
+          0.0,
+          -0.04859331487677551,
+          -0.10961578243539243
+        ],
+        [
+          0.0,
+          0.01038310389454558,
+          0.01188068019143407
+        ]
+      ]
+    },
+    "share of the data's change explained by the data-matched world: [0, 3], [0, 5] ms": [
+      0.41099716556072674,
+      0.3710559693347822
+    ],
+    "share explained by the shot-only world: [0, 3], [0, 5] ms": [
+      0.4326013355275174,
+      0.34435214619818294
+    ],
+    "rule C3: data's change at [0, 5] ms within the data-matched mean +- 2 sd": false
+  }
+}
