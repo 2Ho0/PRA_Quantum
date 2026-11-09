@@ -1,0 +1,35 @@
+{
+  "z of the 18 comparisons": {
+    "threshold 4: gamma_c (X15)": -1.427753331175337,
+    "threshold 4: J_nn (X15)": -0.6190850729403582,
+    "threshold 4: beta (Xb15)": -0.19086255642417507,
+    "threshold 4: beta (Xb30)": 0.043226054635425115,
+    "threshold 4: K": -0.93909956078862,
+    "threshold 4: charged rms": 0.5112535403414723,
+    "threshold 4: mean Z change, state 1": -1.573295812529577,
+    "threshold 4: mean ZZ change, state 2": 0.22120276175547768,
+    "threshold 4: energy change, state 2": 0.10336739297079278,
+    "threshold 5: gamma_c (X15)": -1.727984796034713,
+    "threshold 5: J_nn (X15)": -0.7203735607146922,
+    "threshold 5: beta (Xb15)": 1.1891590623612716,
+    "threshold 5: beta (Xb30)": 0.11714409053412429,
+    "threshold 5: K": -0.015330448184666091,
+    "threshold 5: charged rms": -0.41462726182501974,
+    "threshold 5: mean Z change, state 1": -0.04249687681169338,
+    "threshold 5: mean ZZ change, state 2": 1.7835662577016635,
+    "threshold 5: energy change, state 2": 2.0040122996962637
+  },
+  "comparisons with |z| > 1.96 (the per-comparison rule of E18)": 1,
+  "expected by chance under the per-comparison rule": 0.9,
+  "max statistic: observed max |z|, 95% of the null max, p": [
+    2.0040122996962637,
+    3.229596498914173,
+    0.6829268292682927
+  ],
+  "Holm: smallest p, its threshold, rejected comparisons": [
+    0.04506874288664,
+    0.002777777777777778,
+    []
+  ],
+  "verdict (post hoc): bases harmless under a familywise 5% rule": true
+}
