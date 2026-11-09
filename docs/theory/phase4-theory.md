@@ -395,7 +395,7 @@ For the KLS process of Proposition F.4:
      - (d) at N = 128 the values on 100 ≤ t ≤ 1000 stay at the noise level (≤ 0.025), with no late regrowth.
    - P(Δ)/P(0) = 0.90–1.12 at every size. The supremum is reached at t = 0.4–10 (units of 1/J), so it is set by local relaxation, not by the system size.
 
-## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g, E22, E22b, E23, E23c, E23k, E23s)
+## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g, E22, E22b, E23, E23c, E23k, E23s, E23d)
 
 The data were measured by Kraft et al. and are analysed here from their public data.
 
@@ -474,3 +474,22 @@ The data were measured by Kraft et al. and are analysed here from their public d
   - A truth with a run-to-run detuning of state 1 reproduces the pattern at about half the size (joint median −101 for δ = 124 rad/s). The preregistered rule fails.
   - Run-specific nuisance parameters (post hoc) halve the excess, leaving about −50 rad/s.
   - K is therefore not evidence for a charge-2 dissipator.
+
+**Estimator bias of the coupling scale and the chance spread of the factor (E23d, diagnostic on saved results, 2026-11-09).** This revises two readings above: part of the window dependence of E23 and about half of the remaining neutral error of E23s come from the estimator, not from the model class.
+- *A fixed coupling scale.* Every two-body coupling of Xb15uf is multiplied by a fixed λ (E23c grid, no averaging). The late data prefer λ = 1.069 (state 1) and 1.104 (state 2); this oracle uses t > 1.5 ms and serves as a diagnostic only. Between λ = 1 and 1.04 the late temporal variance of the neutral observables changes by 3–6%, so the gain is a phase correction, not smoothing (contrast E23c).
+- *The integral method is an errors-in-variables regression.* Its design matrix A is built from measured correlators. With A = A₀ + E and y = A₀θ + ε, least squares gives to first order E[θ̂] ≈ (A₀ᵀA₀ + Σ_AA)⁻¹(A₀ᵀA₀θ + Σ_Ay), with Σ_AA = E[EᵀE] and Σ_Ay = E[Eᵀε], and shrinks the couplings.
+  - Three estimates that use the learning window only agree on the shrinkage of J_nn: the bootstrap of Xb15 (3.4%), the SBC of E11b with independent Gaussian noise (2.5–4.0%) and the shot-level SBC of E14 (3.1–4.3%).
+  - The shrinkage scales with the noise variance (0.20% at a quarter of the noise amplitude, 2.48% at the full noise; E11b, white truth), the signature of errors in variables rather than misspecification.
+  - At the a-priori scale λ = 1.040 (E14 mean) the neutral factors become 1.16, 1.23 and 1.06 (from 1.34, 1.41 and 1.25); the charged classes 0.97, 1.06 and 0.68; all 435 observables 0.95. This removes 43–75% of the neutral excess above 1. It approximates a per-parameter correction by one common scale.
+  - The shrinkage grows with the window (E14: 3–4%, 6–7% and 9–11% on [0, 1.5], [0, 3] and [0, 5] ms), a little over a third of the measured drift of J relative to the 1.5 ms window (−8% and −20%).
+  - The collective parameters carry the same bias: γ_c is 30 rad/s at the centre and 40 ± 5 in the bootstrap mean, β is 7.6 and −8.5 ± 12.8 rad/s per ms. The parameter-level corrections, γ_c ≈ 20 rad/s and β ≈ 24 rad/s per ms, agree with the SBC estimate of β in E11b (22–31). These parameters do not act on the neutral block (Lemma G.0).
+  - A prediction-level bootstrap correction (twice the central prediction minus the mean of the replicates) makes Xb15 worse (neutral factors 1.47–1.50 → 1.70–1.82): averaging oscillations of slightly different frequencies damps them. Corrections belong to the parameters.
+- *Chance spread of the factor.* If the Xb15 band were exactly right (truth = central prediction + a draw from the covariance of its 12 replicates + shot noise; 4000 draws), the neutral factors have 90% quantiles 1.28, 1.21 and 1.24 and 95% quantiles 1.39, 1.29 and 1.32. All three neutral classes stay at or below 1.2 with probability 0.81, and the full rule of E20 passes with probability 0.71. The observed Xb15uf factors have p = 0.067, 0.017 and 0.088; at λ = 1.040, p = 0.20, 0.088 and 0.31. The jackknife error of each factor over the 12 replicates is 0.05–0.07.
+- *Pure-gauge currents.* Phases arg(J_ij + iD_ij) = φ_i − φ_j on the 24 pairs up to distance 3 give χ² = 24.6 for 15 degrees of freedom: weak support, not used.
+- *Consequences.*
+  - (i) The learning step needs an estimator that is consistent under errors in variables. Candidates are corrected least squares, (AᵀA − Σ_AA)θ = Aᵀy − Σ_Ay, with the covariances computed from the raw shots including the correlations of strings from one setting; SIMEX; and regressors built from the model trajectory (instrumental variables).
+  - (ii) A predictive band is √(variance + bias²); the bootstrap spread alone omits the bias.
+  - (iii) Decision rules need null quantiles with familywise control (as E18b), not fixed thresholds.
+  - (iv) If a slip at the start remains, the comparison bound for CPTP semigroups and a channel S is ‖e^{tL}S − e^{tL̂}‖⋄ ≤ ‖S − id‖⋄ + t‖L − L̂‖⋄; the slip adds a constant, not a growing term.
+  - (v) The symmetric error bounds (Theorems A, B, E, F, G) are unaffected; the defects found here lie in the learning and the decision rules.
+  - The remaining half of the scale shift that the late data prefer is open.
