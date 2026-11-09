@@ -395,7 +395,7 @@ For the KLS process of Proposition F.4:
      - (d) at N = 128 the values on 100 ≤ t ≤ 1000 stay at the noise level (≤ 0.025), with no late regrowth.
    - P(Δ)/P(0) = 0.90–1.12 at every size. The supremum is reached at t = 0.4–10 (units of 1/J), so it is set by local relaxation, not by the system size.
 
-## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g, E22, E22b)
+## Data checks on the BEQS 10-ion data (E15, E11e, E17, E11f, E11g, E22, E22b, E23, E23c, E23k, E23s)
 
 The data were measured by Kraft et al. and are analysed here from their public data.
 
@@ -447,3 +447,30 @@ The data were measured by Kraft et al. and are analysed here from their public d
   - Removing the state-1 floor with a fitted readout map makes K more negative (−151.8 rad/s).
   - Adding the ion–ion correlated block leaves K unchanged (−94.4).
   - The imbalance therefore remains unexplained. It comes from state 2 and is reproduced by none of the Markovian generators or simulated truths tested so far.
+
+**Shape of the correlated process, the neutral error, and the sources of K (E23, E23c, E23k, E23s, 2026-11-09).**
+- *Shape (E23, diagnostic, bootstrap over settings).*
+  - On t ≥ 2 ms the mean ZZ over all pairs grows linearly in state 2 (curvature −1 ± 1 × 10⁻⁴ ms⁻²) and decelerates in state 1. A quasi-static global transverse field would make it accelerate (t²), so it is not supported.
+  - The connected part grows at 4.2 and 4.8 × 10⁻³ per ms in the two states.
+  - The per-pair connected slopes do not decay with the ion distance; the farthest pairs grow fastest. The process is global, with a correlation length of at least the chain.
+  - The slopes are not proportional to the pair's transverse correlation (correlation −0.30 ± 0.09 and −0.25 ± 0.08), unlike Markovian collective transverse noise. Pair patterns are, however, also redistributed by the U(1) dynamics.
+  - State 2 shows a single excursion of the connected part at 0.5 ms (+0.023 ± 0.003).
+- *The neutral error (E23).*
+  - The Z_iZ_j error lies in state 2 (factors 1.76–1.86 for Xb15, Xb15u, Xb15uf and Xb15uc) and in directions orthogonal to the conserved sum (factor of the rest 1.25–1.36). The largest residuals involve the edge ions. No change of the U(1)-breaking processes can bring that class below 1.2.
+  - Models learned on longer windows predict the same out-of-sample times worse (neutral factors on t > 3 ms: Xb15 1.49–1.52, Xb30 1.85–2.31, X50 1.83–2.48). This points to misspecification, not to a lack of data.
+  - The learned current terms (XY − YX)/2 (rms 30–58 rad/s) are not the cause. Dropping them raises the window χ² by 2494 for 45 parameters and leaves K at −93.4.
+- *Coupling-scale noise (E23c, preregistered, chosen by a screening on the same data).*
+  - Model: a shot-to-shot Gaussian scale of all couplings, with σ calibrated on the other state (0.0825 and 0.12, the latter at the grid edge).
+  - Factors: Z_i 1.213, Z_iZ_j 1.188, flip-flop 1.130, all 0.847. The rule of E20 fails on Z_i.
+  - A post hoc check rejects the mechanism. On t ≥ 4 ms the temporal variance of the neutral observables (shot noise removed) matches the undamped Xb15uf (ratios 0.58–1.13), while the noise model reduces it 3–12 times. The data's late oscillations are undamped; the improvement came from replacing wrong-phase oscillations by their mean.
+  - The calibration factor rewards such smoothing, so model comparisons must also check the late oscillation amplitude.
+- *Generators per initial state (E23s, preregistered).*
+  - Xb15uf learned on each state alone: neutral factors 1.69, 1.61, 1.62.
+  - One joint generator with a global detuning and a collective rate of its own for state 2: 1.75, 1.61, 1.63. The state-2 detuning comes out at −125.6 rad/s, matching the single-state difference.
+  - Both fail. More flexible models fit the window better and extrapolate worse. The joint Xb15uf remains the best neutral extrapolator, and its remaining 1.2–1.4 is a limit on the frequency accuracy of this model class.
+- *Sources of K (E23k).*
+  - The state-2 single-state anomaly comes from its t = 0.5 ms point. Removing it puts state 2 inside its control range, both without memory (−62.3 against −77 to −38) and with memory (0.2).
+  - The joint anomaly survives (−154.3 against −65 to −43), while each state alone is consistent with the control. The single-state generators differ: mean z field 191 ± 24 against 68 ± 8 rad/s (5.6σ), γ_c at 2.9σ.
+  - A truth with a run-to-run detuning of state 1 reproduces the pattern at about half the size (joint median −101 for δ = 124 rad/s). The preregistered rule fails.
+  - Run-specific nuisance parameters (post hoc) halve the excess, leaving about −50 rad/s.
+  - K is therefore not evidence for a charge-2 dissipator.
