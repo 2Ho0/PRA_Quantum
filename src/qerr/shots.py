@@ -40,3 +40,15 @@ def sample_spins(p, n_shots, rng, n) -> np.ndarray:
     p = np.clip(np.asarray(p, float), 0.0, None)
     idx = rng.choice(len(p), size=n_shots, p=p / p.sum())
     return (1 - 2 * _spins.bits(n)[idx]).astype(np.int8)
+
+
+def resample_shots(spins, rng) -> np.ndarray:
+    """Shots drawn with replacement within every leading cell: spins (..., n_shots, n) -> the same shape.
+
+    Resampling the shots of every (time, setting) keeps the measurement design (every string stays measured in the
+    same settings) and adds shot noise of the measured size to every Pauli estimate, with its correlations between
+    strings measured in the same setting: one SIMEX level.
+    """
+    spins = np.asarray(spins)
+    idx = rng.integers(0, spins.shape[-2], size=spins.shape[:-1])
+    return np.take_along_axis(spins, idx[..., None], axis=-2)

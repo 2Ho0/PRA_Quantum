@@ -306,6 +306,17 @@ def learn(series, ans: Ansatz, obs, times, t_learn, rho0s, n_iter=3, states=(0, 
     return thetas
 
 
+def simex_extrapolate(levels) -> np.ndarray:
+    """SIMEX: the polynomial through the estimates at noise levels zeta = 0, 1, ..., p, evaluated at zeta = -1.
+
+    levels[m] is the (mean) estimate with the noise variance multiplied by 1 + m, so zeta = -1 is the noise-free
+    limit. Two levels give 2 x_0 - x_1 (the bootstrap bias correction), three give 3 x_0 - 3 x_1 + x_2.
+    """
+    p = len(levels) - 1
+    w = [np.prod([(-1.0 - j) / (m - j) for j in range(p + 1) if j != m]) for m in range(p + 1)]
+    return sum(wm * np.asarray(x, float) for wm, x in zip(w, levels))
+
+
 def gamma_matrix(theta, ans: Ansatz) -> np.ndarray:
     k0 = len(ans.h_terms)
     G = np.zeros((ans.n, ans.n))

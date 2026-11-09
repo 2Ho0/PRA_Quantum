@@ -59,3 +59,15 @@ def test_sampled_spins_reproduce_expectations():
         assert abs(spins[:, site].mean() - expect) < 5 / np.sqrt(200000)
     pair = np.trace(pmatrix(((0, "X"), (2, "Z")), n) @ rho).real
     assert abs((spins[:, 0] * spins[:, 2]).mean() - pair) < 5 / np.sqrt(200000)
+
+
+def test_resample_shots_draws_with_replacement_within_each_setting_and_time():
+    from qerr.shots import resample_shots
+
+    T, K, S = 3, 4, 50
+    labels = np.arange(T * K * S).reshape(T, K, S, 1)  # every shot carries the index of its (time, setting) cell
+    out = resample_shots(labels, np.random.default_rng(7))
+    assert out.shape == labels.shape and out.dtype == labels.dtype
+    cell = out[..., 0] // S
+    assert np.array_equal(cell, np.arange(T * K).reshape(T, K, 1) + np.zeros((1, 1, S), int))
+    assert any(len(np.unique(out[t, k, :, 0])) < S for t in range(T) for k in range(K))  # with replacement

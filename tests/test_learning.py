@@ -440,3 +440,13 @@ def test_trajectory_defect_matches_quadrature_defect():
     unit = trajectory_defect(fine, model_trajectory(model, rho0s, strings, fine), strings, times, 2.5, t_start=1.0,
                              weight=lambda s: np.ones_like(s))
     assert max(np.abs(unit[k] - via[k]).max() for k in via) < 1e-12
+
+
+def test_simex_extrapolation_to_zero_noise():
+    from qerr.learning import simex_extrapolate
+
+    truth = np.array([1.0, -2.0, 0.5])
+    a, c = np.array([0.1, 0.3, -0.2]), np.array([0.02, -0.05, 0.01])
+    at = lambda zeta: truth + a * (1 + zeta) + c * (1 + zeta) ** 2  # the bias vanishes at zeta = -1 (no noise)
+    np.testing.assert_allclose(simex_extrapolate([at(0), at(1), at(2)]), truth, atol=1e-12)
+    np.testing.assert_allclose(simex_extrapolate([at(0), at(1)]), truth - 2 * c, atol=1e-12)
