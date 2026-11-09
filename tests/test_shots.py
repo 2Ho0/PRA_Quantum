@@ -71,3 +71,19 @@ def test_resample_shots_draws_with_replacement_within_each_setting_and_time():
     cell = out[..., 0] // S
     assert np.array_equal(cell, np.arange(T * K).reshape(T, K, 1) + np.zeros((1, 1, S), int))
     assert any(len(np.unique(out[t, k, :, 0])) < S for t in range(T) for k in range(K))  # with replacement
+
+
+def test_rotated_setting_probabilities_match_a_rotated_state():
+    from qerr.shots import pauli_tensor, rotated_setting_probabilities, setting_probabilities
+    from qerr.spins import total_sz
+
+    n = 3
+    rng = np.random.default_rng(4)
+    rho = random_density(2**n, rng)
+    m = total_sz(n)
+    E = pauli_tensor(rho, n)
+    for phi in (0.0, 0.37, -1.2):
+        rotated = rho * np.exp(-1j * phi * (m[:, None] - m[None, :]))  # exp(-i phi S^z) rho exp(i phi S^z)
+        for bases in (np.array([0, 1, 2]), np.array([1, 1, 0]), np.array([2, 0, 1])):
+            direct = setting_probabilities(pauli_tensor(rotated, n), bases)
+            assert np.abs(rotated_setting_probabilities(E, bases, phi) - direct).max() < 1e-12

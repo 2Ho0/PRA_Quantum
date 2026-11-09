@@ -52,3 +52,21 @@ def resample_shots(spins, rng) -> np.ndarray:
     spins = np.asarray(spins)
     idx = rng.integers(0, spins.shape[-2], size=spins.shape[:-1])
     return np.take_along_axis(spins, idx[..., None], axis=-2)
+
+
+def rotated_setting_probabilities(E, bases, phi) -> np.ndarray:
+    """setting_probabilities of the state rotated by exp(-i phi S^z), from the Pauli tensor E of the unrotated state.
+
+    The rotation mixes X and Y on every site (<X>' = cos phi <X> - sin phi <Y>, <Y>' = sin phi <X> + cos phi <Y>), so
+    only the two needed components per site are formed: O(4^n) instead of a new Pauli tensor.
+    """
+    n = E.ndim
+    c, s = np.cos(phi), np.sin(phi)
+    rows = {0: [0.0, c, -s, 0.0], 1: [0.0, s, c, 0.0], 2: [0.0, 0.0, 0.0, 1.0]}
+    sub = E
+    for i in range(n):
+        M = np.array([[1.0, 0.0, 0.0, 0.0], rows[int(bases[i])]])
+        sub = np.moveaxis(np.tensordot(M, sub, axes=([1], [i])), 0, i)
+    for i in range(n):
+        sub = np.moveaxis(np.tensordot(_H, sub, axes=([1], [i])), 0, i)
+    return sub.reshape(-1) / 2.0**n
