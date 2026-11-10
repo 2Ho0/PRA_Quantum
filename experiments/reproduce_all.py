@@ -17,6 +17,8 @@ Procedure (fixed before the run).
    refer to, and the imports themselves. IMPORT_ONLY modules are imported only for helpers that read no results.
    Scripts run unchanged, with their own worker and thread settings; a script without thread settings gets 2 BLAS
    threads. At most two heavy stages run at a time, below normal priority, because the machine is shared.
+   (Added after the first launch, rules unchanged: the driver lets the page file grow before a stage starts, and a
+   stage that runs out of memory is rerun from scratch, at most four attempts. E16 had failed on one allocation.)
 4. Comparison (`--compare DEST`, in the working tree): each reproduced JSON against the reference, leaf by leaf (dict
    keys and list positions).
    - Structure: the same set of leaf paths and leaf kinds (int and float are both numbers).
@@ -58,7 +60,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 REFERENCE = "0bc5b71"
 PY = sys.executable
-MAX_HEAVY, MAX_LIGHT = 2, 2
+MAX_HEAVY, MAX_LIGHT, MAX_ATTEMPTS = 2, 2, 4
+EXCLUSIVE = {"e6b"}  # about 3 GB in each of 8 workers: runs without another heavy stage
 ATOL_ID, RTOL_ID, ATOL_AG, RTOL_AG = 1e-12, 1e-9, 1e-9, 1e-3
 EXCLUDE = ("seconds per",)
 IMPORT_ONLY = {"e6c_validation", "e9_symmetry_data", "e11h_transient_truths"}
@@ -74,7 +77,7 @@ STAGES = [
     ("e3", "e3_ensemble.py", [], False, 2, 1, []),
     ("e3b", "e3b_expected_error_bound.py", [], False, 1, 1, []),
     ("e4", "e4_cp_pathology.py", [], False, 1, 1, []),
-    ("e5", "e5_free_fermion.py", [], False, 1, 1, []),
+    ("e5", "e5_free_fermion.py", [], False, 1, 4, []),
     ("e7", "e7_local_zeno.py", [], False, 12, 2, []),
     ("e8", "e8_symmetry_classes.py", [], True, 20, 6, []),
     ("e10", "e10_hydro_forgetting.py", [], True, 60, 6, []),
@@ -85,7 +88,7 @@ STAGES = [
     ("e13c", "e13c_kspace_check.py", [], False, 1, 1, []),
     ("e13d", "e13d_hypocoercivity.py", [], False, 1, 1, []),
     ("e13e", "e13e_weighted_l1.py", [], True, 20, 4, []),
-    ("e16", "e16_interacting_forgetting.py", [], True, 240, 8, []),
+    ("e16", "e16_interacting_forgetting.py", [], True, 240, 10, []),
     ("e16b", "e16b_classical_reduction.py", [], True, 30, 6, []),
     ("e16c", "e16c_kls_monte_carlo.py", [], True, 75, 4, []),
     ("e21", "e21_concentration_check.py", [], True, 20, 4, []),
@@ -244,6 +247,42 @@ def memory_gb():
     return m.ap / 2**30, m.apf / 2**30, m.tpf / 2**30
 
 
+def grow_commit(target_gb, timeout=180):
+    """Commit and release memory in 512 MB chunks until the free commit reaches target_gb.
+
+    The machine is shared and its commit charge sits near the limit; a system-managed page file grows only when an
+    allocation fails. Probing here makes it grow before a stage needs the memory (the first R1 attempt of E16 failed
+    on one 2.5 GB array). Returns the free commit after the release."""
+    k32 = ctypes.windll.kernel32
+    k32.VirtualAlloc.restype = ctypes.c_void_p
+    k32.VirtualAlloc.argtypes = [ctypes.c_void_p, ctypes.c_size_t, ctypes.c_ulong, ctypes.c_ulong]
+    k32.VirtualFree.argtypes = [ctypes.c_void_p, ctypes.c_size_t, ctypes.c_ulong]
+    held, chunk, t0 = [], 512 * 2**20, time.time()
+    try:
+        while memory_gb()[1] + 0.5 * len(held) < target_gb and time.time() - t0 < timeout:
+            p = k32.VirtualAlloc(None, chunk, 0x3000, 0x04)  # MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE
+            if p:
+                held.append(p)
+            else:
+                time.sleep(2)  # the page file is being extended
+    finally:
+        for p in held:
+            k32.VirtualFree(p, 0, 0x8000)  # MEM_RELEASE
+    return memory_gb()[1]
+
+
+MEMORY_ERRORS = re.compile(r"MemoryError|Unable to allocate|paging file is too small|BrokenProcessPool")
+
+
+def out_of_memory(log_path):
+    """True if a failed stage ran out of memory (worth a retry once the page file has grown)."""
+    try:
+        tail = log_path.read_text(encoding="utf-8", errors="replace")[-20000:]
+    except OSError:
+        return False
+    return bool(MEMORY_ERRORS.search(tail))
+
+
 def setup(dest):
     dest = Path(dest).resolve()
     if dest.exists():
@@ -292,6 +331,8 @@ def run_all():
         rec = state["stages"].setdefault(s, {"status": "pending"})
         if rec["status"] in ("running", "blocked"):
             rec["status"] = "pending"
+        if rec["status"] == "failed" and out_of_memory(logs / f"{s}.log") and rec.get("attempts", 1) < MAX_ATTEMPTS:
+            rec["status"] = "pending"
     state["python"] = sys.version
     driver_log = open(logs / "_driver.log", "a", encoding="utf-8")
 
@@ -313,7 +354,12 @@ def run_all():
             rec.update(status="done" if rc == 0 else "failed", returncode=rc, end=datetime.now().isoformat(
                 timespec="seconds"), minutes=round((time.time() - t0) / 60, 1))
             del running[s]
-            note(f"{rec['status']:6s} {s} ({rec['minutes']} min, exit {rc})")
+            if rc != 0 and out_of_memory(logs / f"{s}.log") and rec.get("attempts", 1) < MAX_ATTEMPTS:
+                os.replace(logs / f"{s}.log", logs / f"{s}.attempt{rec.get('attempts', 1)}.log")
+                rec.update(status="pending", attempts=rec.get("attempts", 1) + 1, not_before=time.time() + 300)
+                note(f"retry  {s} in 5 min (out of memory, {rec['minutes']} min, exit {rc})")
+            else:
+                note(f"{rec['status']:6s} {s} ({rec['minutes']} min, exit {rc})")
             save_state(state_path, state)
         status = {s: state["stages"][s]["status"] for s in st}
         for s in st:
@@ -324,12 +370,24 @@ def run_all():
                        key=lambda s: -crit[s])
         n_heavy = sum(st[s]["heavy"] for s in running)
         for s in ready:
-            v = st[s]
+            v, rec = st[s], state["stages"][s]
+            if time.time() < rec.get("not_before", 0):
+                continue
             if (v["heavy"] and n_heavy >= MAX_HEAVY) or (not v["heavy"] and len(running) - n_heavy >= MAX_LIGHT):
                 continue
-            avail, commit_free, commit_limit = memory_gb()
-            if avail < v["mem"] + 2:
+            if v["heavy"] and (any(r in EXCLUSIVE for r in running) or (s in EXCLUSIVE and n_heavy)):
                 continue
+            avail, commit_free, commit_limit = memory_gb()
+            if avail < min(v["mem"], 12) + 2:
+                continue
+            if commit_free < v["mem"] + 2:
+                commit_free = grow_commit(v["mem"] + 2)
+                avail, commit_free, commit_limit = memory_gb()
+                if commit_free < v["mem"] + 1:
+                    rec["not_before"] = time.time() + 120
+                    note(f"wait   {s}: free commit {commit_free:.1f} GB after growing the page file "
+                         f"(limit {commit_limit:.1f} GB)")
+                    continue
             cmd = [PY, "-m", "pytest", "-q", "-p", "no:cacheprovider"] if v["script"] is None else \
                 [PY, "-u", v["script"], *v["args"]]
             fh = open(logs / f"{s}.log", "w", encoding="utf-8")
