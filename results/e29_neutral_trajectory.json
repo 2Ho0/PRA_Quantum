@@ -1,0 +1,384 @@
+{
+  "route checks": {
+    "neutral propagation against the E11f sector propagator, max |difference|": 1.5543122344752192e-15,
+    "uniform z-field shift of 300 rad/s, max |difference| of the neutral classes": 1.304512053934559e-15,
+    "setting-averaged drift world against the neutral propagation (window), max |difference|": 1.887379141862766e-15,
+    "extended ansatz shares the 210 Hamiltonian terms": true
+  },
+  "step B, arm redrawn (confirmatory)": {
+    "per neutral class": {
+      "q=0  Z_i": {
+        "pooled factor": 1.2004476735883538,
+        "null 2.5%, 50%, 97.5%": [
+          0.9880686085818858,
+          1.0401347052571739,
+          1.0976886267631767
+        ],
+        "realisation bootstrap 2.5%, 97.5%": [
+          1.1272501372886778,
+          1.268155285865337
+        ],
+        "coverage of the nominal 95% interval": 0.8985294117647058,
+        "pooled factor per time block": {
+          "2.0-4.0 ms": 1.0923818956899798,
+          "4.5-7.0 ms": 1.1741661368204905,
+          "7.5-10 ms": 1.244774549356209
+        },
+        "bias rms / band rms": 0.16548618104109308,
+        "spread across realisations / band rms": 1.2015687366990515
+      },
+      "q=0  Z_iZ_j": {
+        "pooled factor": 1.1870441214105847,
+        "null 2.5%, 50%, 97.5%": [
+          1.0025673984256893,
+          1.0490677464504583,
+          1.0984530487766766
+        ],
+        "realisation bootstrap 2.5%, 97.5%": [
+          1.134014243099509,
+          1.2428883441711505
+        ],
+        "coverage of the nominal 95% interval": 0.8950299564270153,
+        "pooled factor per time block": {
+          "2.0-4.0 ms": 1.1838975905633702,
+          "4.5-7.0 ms": 1.1661514287117982,
+          "7.5-10 ms": 1.2028906233776109
+        },
+        "bias rms / band rms": 0.18345168724863287,
+        "spread across realisations / band rms": 1.185193428703847
+      },
+      "q=0  flip-flop": {
+        "pooled factor": 1.209114960252932,
+        "null 2.5%, 50%, 97.5%": [
+          0.993596670118782,
+          1.043476390754328,
+          1.0999515219411184
+        ],
+        "realisation bootstrap 2.5%, 97.5%": [
+          1.1413283942664827,
+          1.2736714257240367
+        ],
+        "coverage of the nominal 95% interval": 0.8958673747276688,
+        "pooled factor per time block": {
+          "2.0-4.0 ms": 1.1238594395720807,
+          "4.5-7.0 ms": 1.1949559177384512,
+          "7.5-10 ms": 1.2413419626451758
+        },
+        "bias rms / band rms": 0.17052219408381503,
+        "spread across realisations / band rms": 1.2096974835896745
+      }
+    },
+    "parameter level": {
+      "least squares": {
+        "coupling scale over the truth: mean, se": [
+          0.9483799590350142,
+          0.00515151746842372
+        ],
+        "J_nn relative error: mean, se": [
+          -0.05389230934736706,
+          0.0049594268274085395
+        ],
+        "currents: slope against the truth (through 0), correlation": [
+          0.5306910226537853,
+          0.49588918632848966
+        ]
+      },
+      "T": {
+        "coupling scale over the truth: mean, se": [
+          0.9976049570706286,
+          0.0015686296956331511
+        ],
+        "J_nn relative error: mean, se": [
+          -0.0025586430935420046,
+          0.0019173952904760194
+        ],
+        "currents: slope against the truth (through 0), correlation": [
+          0.7615042619377625,
+          0.8261317145823582
+        ]
+      }
+    },
+    "tau (least-squares rms, rad/s) per distance group: mean, sd": [
+      [
+        96.44397370988976,
+        19.636692864896414
+      ],
+      [
+        101.26994789875145,
+        23.776735896832818
+      ],
+      [
+        88.28243896244793,
+        10.959577393968905
+      ]
+    ],
+    "chi^2 / nu: mean, min, max": [
+      0.973167112345029,
+      0.8344885539494908,
+      1.1157692589553356
+    ],
+    "Birge factor: mean, max": [
+      1.0153261451272297,
+      1.1157692589553356
+    ],
+    "iterations: mean, max": [
+      7.208333333333333,
+      11
+    ],
+    "seconds per realisation: mean": 731.7337384571632,
+    "rule S3 per neutral class": {
+      "q=0  Z_i": true,
+      "q=0  Z_iZ_j": true,
+      "q=0  flip-flop": true
+    },
+    "rule S3 passes": true
+  },
+  "step B, arm Y15 (reported only)": {
+    "per neutral class": {
+      "q=0  Z_i": {
+        "pooled factor": 1.139342784663401,
+        "null 2.5%, 50%, 97.5%": [
+          0.9317834113820135,
+          1.0281523044672976,
+          1.1552556367723579
+        ],
+        "realisation bootstrap 2.5%, 97.5%": [
+          1.0523202395937177,
+          1.2295110945105363
+        ],
+        "coverage of the nominal 95% interval": 0.9106617647058823,
+        "pooled factor per time block": {
+          "2.0-4.0 ms": 1.031048198012032,
+          "4.5-7.0 ms": 1.1157001453698492,
+          "7.5-10 ms": 1.1898099487422344
+        },
+        "bias rms / band rms": 0.6582570154778289,
+        "spread across realisations / band rms": 0.9941541602437862
+      },
+      "q=0  Z_iZ_j": {
+        "pooled factor": 1.2580250231541956,
+        "null 2.5%, 50%, 97.5%": [
+          0.9522661240068868,
+          1.061523416021522,
+          1.1910439845254037
+        ],
+        "realisation bootstrap 2.5%, 97.5%": [
+          1.1686131250495337,
+          1.364711117854298
+        ],
+        "coverage of the nominal 95% interval": 0.8737745098039216,
+        "pooled factor per time block": {
+          "2.0-4.0 ms": 1.1772421210113315,
+          "4.5-7.0 ms": 1.2536169308965968,
+          "7.5-10 ms": 1.2897594068042142
+        },
+        "bias rms / band rms": 0.8184218736076101,
+        "spread across realisations / band rms": 1.021378673688642
+      },
+      "q=0  flip-flop": {
+        "pooled factor": 1.1992400669734073,
+        "null 2.5%, 50%, 97.5%": [
+          0.9411936418078414,
+          1.0366491611638367,
+          1.1674717867924393
+        ],
+        "realisation bootstrap 2.5%, 97.5%": [
+          1.1264019026245227,
+          1.270795804563368
+        ],
+        "coverage of the nominal 95% interval": 0.8876633986928104,
+        "pooled factor per time block": {
+          "2.0-4.0 ms": 1.125828725848414,
+          "4.5-7.0 ms": 1.2020570707713427,
+          "7.5-10 ms": 1.2211932424187444
+        },
+        "bias rms / band rms": 0.6873275451849984,
+        "spread across realisations / band rms": 1.0505821971591869
+      }
+    },
+    "parameter level": {
+      "least squares": {
+        "coupling scale over the truth: mean, se": [
+          0.9354732965227359,
+          0.014856047752040087
+        ],
+        "J_nn relative error: mean, se": [
+          -0.06608698468608176,
+          0.013094181794692834
+        ],
+        "currents: slope against the truth (through 0), correlation": [
+          0.2260960456737238,
+          0.2214151847406482
+        ]
+      },
+      "T": {
+        "coupling scale over the truth: mean, se": [
+          1.0004096731658607,
+          0.0053846830741077064
+        ],
+        "J_nn relative error: mean, se": [
+          0.0028675735141548975,
+          0.0067031084345100566
+        ],
+        "currents: slope against the truth (through 0), correlation": [
+          0.4043908055206482,
+          0.622563064485144
+        ]
+      }
+    },
+    "tau (least-squares rms, rad/s) per distance group: mean, sd": [
+      [
+        89.16122518747997,
+        17.552614408823686
+      ],
+      [
+        100.20516138367657,
+        17.57524901584365
+      ],
+      [
+        86.50629075525488,
+        9.728808637790573
+      ]
+    ],
+    "chi^2 / nu: mean, min, max": [
+      0.9974347744008462,
+      0.9210341237740197,
+      1.0656561249859309
+    ],
+    "Birge factor: mean, max": [
+      1.0229016449465744,
+      1.0656561249859309
+    ],
+    "iterations: mean, max": [
+      6.875,
+      9
+    ],
+    "seconds per realisation: mean": 467.85406681895256
+  },
+  "step A (data)": {
+    "factors of T with its band (t > 1.5 ms)": {
+      "q=0  Z_i": 1.733038685951982,
+      "q=0  Z_iZ_j": 1.454898074243554,
+      "q=0  flip-flop": 1.6016799680184053
+    },
+    "factors of S with the E25 band": {
+      "q=0  Z_i": 2.109106387067917,
+      "q=0  Z_iZ_j": 1.6525868555152505,
+      "q=0  flip-flop": 1.8633385000748308
+    },
+    "factors of S_D with the E27 band": {
+      "q=0  Z_i": 0.6852396485885949,
+      "q=0  Z_iZ_j": 1.0771090232949045,
+      "q=0  flip-flop": 0.47447762742166405
+    },
+    "null of the factor: 90%, 95%": {
+      "q=0  Z_i": [
+        1.2045670350440576,
+        1.2777655691625083
+      ],
+      "q=0  Z_iZ_j": [
+        1.1079027431723538,
+        1.1510756474055295
+      ],
+      "q=0  flip-flop": [
+        1.1247719735908894,
+        1.1762555604350087
+      ]
+    },
+    "rule B'': p-values, Holm rejections": {
+      "q=0  Z_i": [
+        0.001,
+        true
+      ],
+      "q=0  Z_iZ_j": [
+        0.0,
+        true
+      ],
+      "q=0  flip-flop": [
+        0.00025,
+        true
+      ]
+    },
+    "rule B'' passes": false,
+    "guard: late variance T / Xb15uf as learned, mean of six cells": 1.0175323888213323,
+    "guard holds": true,
+    "lambda_T = sum J_T J_LS / sum J_LS^2 (S 1.045, S_D 1.054; late data 1.069, 1.104)": 1.1271864019243811,
+    "sum J_T J_S / sum J_S^2": 1.0788153158560474,
+    "J_nn mean (rad/s): least squares, S, T": [
+      599.2025221306217,
+      626.0691010013004,
+      696.5720062504823
+    ],
+    "currents of T: rms per distance group (rad/s)": [
+      41.65083533844114,
+      35.032625511226975,
+      46.169680235183215
+    ],
+    "tau (least-squares rms, rad/s)": [
+      104.93419783891666,
+      105.3156712833693,
+      70.96391919467217
+    ],
+    "chi^2 / nu, Birge factor, iterations": [
+      2.417546610381978,
+      2.417546610381978,
+      10
+    ],
+    "uniform transverse field of the resampled fits (rad/s): mean, sd of h_x, h_y": [
+      -5.880911656108907,
+      3.2391694476064132,
+      -24.643681648050983,
+      3.0389988822952017
+    ],
+    "band rms per class (t > 1.5 ms): T": {
+      "q=0  Z_i": 0.020763419703170454,
+      "q=0  Z_iZ_j": 0.015302334640426116,
+      "q=0  flip-flop": 0.011501003961677489
+    },
+    "pooled neutral z-score per time (data, T)": {
+      "times": [
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0,
+        8.5,
+        9.0,
+        9.5,
+        10.0
+      ],
+      "z": [
+        1.763957451704557,
+        1.5945312004949739,
+        1.3573412738373019,
+        1.4697449291683713,
+        1.3516234427246085,
+        1.399636864657115,
+        1.5357860231781513,
+        1.5716150522873922,
+        1.8255753180485912,
+        1.4984980411101503,
+        1.735701853218979,
+        1.6279462781602017,
+        1.7539965538101254,
+        1.5512823071982191,
+        1.7300590274772158,
+        1.3627345860268916,
+        1.7971443986607205
+      ]
+    },
+    "data consistent with T (rule B'' and guard)": false
+  },
+  "verdict": {
+    "procedure validated (rule S3)": true,
+    "data consistent with T (rule B'' and guard)": false
+  }
+}

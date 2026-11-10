@@ -667,11 +667,15 @@ def plot(out, red):
                                                       "o"))):
             ax.plot([st[key][n] for n in NEUTRAL], np.arange(len(NEUTRAL)) + 0.15 * (u - 1), mk, color=color, ms=5,
                     label=label)
+        q95 = [st["null of the factor: 90%, 95%"][n][1] for n in NEUTRAL]
+        ax.plot(q95, np.arange(len(NEUTRAL)) + 0.15, "|", color=CAT[0], ms=12, mew=1.2, alpha=0.6,
+                label="T: 95% null (rule B'')")
         ax.axvline(1.0, color=MUTED, lw=0.6, ls=":")
         ax.set_yticks(range(len(NEUTRAL)), NEUTRAL)
         ax.invert_yaxis()
         ax.set_xlabel("calibration factor on the data, t > 1.5 ms")
-        ax.legend(fontsize=6.5, loc="lower right")
+        ax.set_xlim(0.35, 2.85)
+        ax.legend(fontsize=6.5, loc="center right")
     ax.set_title("(b) step A: data", fontsize=9)
     ax = axes[2]
     Dt = np.array([p["x_true"][45:90] for p in red]).ravel() * 1e3
