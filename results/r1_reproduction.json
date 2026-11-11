@@ -1,0 +1,1215 @@
+{
+  "reference commit": "0bc5b71",
+  "reproduced commit": "fdcc3193e845ed1d4aaf6c1a93807316591c5a98",
+  "data fetch": [
+    "ok  ReadMe.txt",
+    "ok  state1_2.zip",
+    "ok  NeelDataZ51.zip",
+    "ok  DataHLBicL51Ions.zip"
+  ],
+  "files": 59,
+  "files by status": {
+    "identical": 55,
+    "agree": 4,
+    "differ": 0
+  },
+  "verdict (boolean or string) changes": 0,
+  "R1 passes (all files agree or identical, no verdict change)": true,
+  "test suite": "66 passed in 25.38s",
+  "figures in the reference / regenerated": [
+    100,
+    100
+  ],
+  "figures not regenerated": [],
+  "stages": {
+    "pytest": {
+      "status": "done",
+      "minutes": 0.7,
+      "returncode": 0
+    },
+    "e1": {
+      "status": "done",
+      "minutes": 3.3,
+      "returncode": 0
+    },
+    "e2": {
+      "status": "done",
+      "minutes": 0.7,
+      "returncode": 0
+    },
+    "e3": {
+      "status": "done",
+      "minutes": 22.7,
+      "returncode": 0
+    },
+    "e3b": {
+      "status": "done",
+      "minutes": 25.7,
+      "returncode": 0
+    },
+    "e4": {
+      "status": "done",
+      "minutes": 0.3,
+      "returncode": 0
+    },
+    "e5": {
+      "status": "done",
+      "minutes": 4.0,
+      "returncode": 0
+    },
+    "e7": {
+      "status": "done",
+      "minutes": 56.3,
+      "returncode": 0
+    },
+    "e8": {
+      "status": "done",
+      "minutes": 43.7,
+      "returncode": 0
+    },
+    "e10": {
+      "status": "done",
+      "minutes": 130.3,
+      "returncode": 0
+    },
+    "e12": {
+      "status": "done",
+      "minutes": 93.0,
+      "returncode": 0
+    },
+    "e12b": {
+      "status": "done",
+      "minutes": 0.3,
+      "returncode": 0
+    },
+    "e13": {
+      "status": "done",
+      "minutes": 183.7,
+      "returncode": 0
+    },
+    "e13b": {
+      "status": "done",
+      "minutes": 98.0,
+      "returncode": 0
+    },
+    "e13c": {
+      "status": "done",
+      "minutes": 0.3,
+      "returncode": 0
+    },
+    "e13d": {
+      "status": "done",
+      "minutes": 4.0,
+      "returncode": 0
+    },
+    "e13e": {
+      "status": "done",
+      "minutes": 4.3,
+      "returncode": 0
+    },
+    "e16": {
+      "status": "done",
+      "minutes": 89.0,
+      "returncode": 0
+    },
+    "e16b": {
+      "status": "done",
+      "minutes": 96.0,
+      "returncode": 0
+    },
+    "e16c": {
+      "status": "done",
+      "minutes": 277.7,
+      "returncode": 0
+    },
+    "e21": {
+      "status": "done",
+      "minutes": 13.0,
+      "returncode": 0
+    },
+    "e6": {
+      "status": "done",
+      "minutes": 75.0,
+      "returncode": 0
+    },
+    "e6b": {
+      "status": "done",
+      "minutes": 43.0,
+      "returncode": 0
+    },
+    "e9": {
+      "status": "done",
+      "minutes": 23.0,
+      "returncode": 0
+    },
+    "e6c": {
+      "status": "done",
+      "minutes": 261.7,
+      "returncode": 0
+    },
+    "e11": {
+      "status": "done",
+      "minutes": 93.0,
+      "returncode": 0
+    },
+    "e11b": {
+      "status": "done",
+      "minutes": 28.0,
+      "returncode": 0
+    },
+    "e11c": {
+      "status": "done",
+      "minutes": 7.3,
+      "returncode": 0
+    },
+    "e11d": {
+      "status": "done",
+      "minutes": 13.7,
+      "returncode": 0
+    },
+    "e14": {
+      "status": "done",
+      "minutes": 22.0,
+      "returncode": 0
+    },
+    "e11e": {
+      "status": "done",
+      "minutes": 45.0,
+      "returncode": 0
+    },
+    "e15": {
+      "status": "done",
+      "minutes": 132.0,
+      "returncode": 0
+    },
+    "e17": {
+      "status": "done",
+      "minutes": 0.3,
+      "returncode": 0
+    },
+    "e11f-truths": {
+      "status": "done",
+      "minutes": 43.3,
+      "returncode": 0
+    },
+    "e11f-sbc": {
+      "status": "done",
+      "minutes": 11.3,
+      "returncode": 0
+    },
+    "e11g": {
+      "status": "done",
+      "minutes": 2.0,
+      "returncode": 0
+    },
+    "e18": {
+      "status": "done",
+      "minutes": 4.3,
+      "returncode": 0
+    },
+    "e18b": {
+      "status": "done",
+      "minutes": 0.3,
+      "returncode": 0
+    },
+    "e19": {
+      "status": "done",
+      "minutes": 0.3,
+      "returncode": 0
+    },
+    "e11h-truths": {
+      "status": "done",
+      "minutes": 12.7,
+      "returncode": 0
+    },
+    "e11h-sbc": {
+      "status": "done",
+      "minutes": 2.7,
+      "returncode": 0
+    },
+    "e20": {
+      "status": "done",
+      "minutes": 40.0,
+      "returncode": 0
+    },
+    "e22": {
+      "status": "done",
+      "minutes": 3.7,
+      "returncode": 0
+    },
+    "e22b": {
+      "status": "done",
+      "minutes": 33.7,
+      "returncode": 0
+    },
+    "e23": {
+      "status": "done",
+      "minutes": 0.7,
+      "returncode": 0
+    },
+    "e23c": {
+      "status": "done",
+      "minutes": 127.0,
+      "returncode": 0
+    },
+    "e23d": {
+      "status": "done",
+      "minutes": 1.7,
+      "returncode": 0
+    },
+    "e23k-truths": {
+      "status": "done",
+      "minutes": 0.7,
+      "returncode": 0
+    },
+    "e23k": {
+      "status": "done",
+      "minutes": 7.3,
+      "returncode": 0
+    },
+    "e23k-d": {
+      "status": "done",
+      "minutes": 0.7,
+      "returncode": 0
+    },
+    "e23s": {
+      "status": "done",
+      "minutes": 82.0,
+      "returncode": 0
+    },
+    "e23s-r": {
+      "status": "done",
+      "minutes": 27.7,
+      "returncode": 0
+    },
+    "e24": {
+      "status": "done",
+      "minutes": 29.0,
+      "returncode": 0
+    },
+    "e24b": {
+      "status": "done",
+      "minutes": 24.7,
+      "returncode": 0
+    },
+    "e25-band": {
+      "status": "done",
+      "minutes": 129.0,
+      "returncode": 0
+    },
+    "e25-syn": {
+      "status": "done",
+      "minutes": 115.7,
+      "returncode": 0
+    },
+    "e25": {
+      "status": "done",
+      "minutes": 0.3,
+      "returncode": 0
+    },
+    "e25b": {
+      "status": "done",
+      "minutes": 63.0,
+      "returncode": 0
+    },
+    "e26": {
+      "status": "done",
+      "minutes": 20.7,
+      "returncode": 0
+    },
+    "e27-data": {
+      "status": "done",
+      "minutes": 295.4,
+      "returncode": 0
+    },
+    "e27-syn": {
+      "status": "done",
+      "minutes": 219.7,
+      "returncode": 0
+    },
+    "e27-sens": {
+      "status": "done",
+      "minutes": 14.7,
+      "returncode": 0
+    },
+    "e27": {
+      "status": "done",
+      "minutes": 0.7,
+      "returncode": 0
+    },
+    "e27b": {
+      "status": "done",
+      "minutes": 8.3,
+      "returncode": 0
+    },
+    "e27c": {
+      "status": "done",
+      "minutes": 22.7,
+      "returncode": 0
+    },
+    "e28-run": {
+      "status": "done",
+      "minutes": 72.7,
+      "returncode": 0
+    },
+    "e28": {
+      "status": "done",
+      "minutes": 0.3,
+      "returncode": 0
+    },
+    "e29-syn": {
+      "status": "done",
+      "minutes": 75.0,
+      "returncode": 0
+    },
+    "e29-data": {
+      "status": "done",
+      "minutes": 29.0,
+      "returncode": 0
+    },
+    "e29": {
+      "status": "done",
+      "minutes": 0.7,
+      "returncode": 0
+    },
+    "e29b": {
+      "status": "done",
+      "minutes": 5.7,
+      "returncode": 0
+    }
+  },
+  "software": {
+    "python": "3.14.5",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2"
+  },
+  "per file": {
+    "e10_hydro_forgetting.json": {
+      "leaves": 44,
+      "counts": {
+        "identical": 42,
+        "agree": 2,
+        "differ": 0
+      },
+      "max relative difference": 2.2639854058335464e-09,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "agree"
+    },
+    "e11_model_selection.json": {
+      "leaves": 206,
+      "counts": {
+        "identical": 206,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 5.311231955026484e-14,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e11b_calibration.json": {
+      "leaves": 105,
+      "counts": {
+        "identical": 105,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 5.3982032187155185e-11,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e11c_noise_ansatz.json": {
+      "leaves": 102,
+      "counts": {
+        "identical": 102,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 3.101362930615555e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e11d_mismatch_diagnosis.json": {
+      "leaves": 169,
+      "counts": {
+        "identical": 169,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 3.6997299552815256e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e11e_noise_block_sbc.json": {
+      "leaves": 184,
+      "counts": {
+        "identical": 184,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 7.736103692001601e-14,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e11f_nonmarkov_truths.json": {
+      "leaves": 280,
+      "counts": {
+        "identical": 280,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 2.0,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e11g_time_point_influence.json": {
+      "leaves": 17,
+      "counts": {
+        "identical": 17,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.436793138896693e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e11h_transient_truths.json": {
+      "leaves": 117,
+      "counts": {
+        "identical": 117,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.090378513537494e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e12_noise_memory.json": {
+      "leaves": 252,
+      "counts": {
+        "identical": 252,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 6.0624776209322194e-05,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e12b_all_orders.json": {
+      "leaves": 73,
+      "counts": {
+        "identical": 73,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.350686122596004e-15,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e13_two_sided_bound.json": {
+      "leaves": 110,
+      "counts": {
+        "identical": 106,
+        "agree": 4,
+        "differ": 0
+      },
+      "max relative difference": 2.488965373959252e-09,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "agree"
+    },
+    "e13b_local_pairing.json": {
+      "leaves": 51,
+      "counts": {
+        "identical": 51,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.5884625375782564e-05,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e13c_kspace_check.json": {
+      "leaves": 16,
+      "counts": {
+        "identical": 16,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.2187902362001761e-08,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e13d_hypocoercivity.json": {
+      "leaves": 10,
+      "counts": {
+        "identical": 10,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.0,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e13e_weighted_l1.json": {
+      "leaves": 29,
+      "counts": {
+        "identical": 29,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.11573592935316e-11,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e14_shot_calibration.json": {
+      "leaves": 141,
+      "counts": {
+        "identical": 141,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 2.2383039800789574e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e15_coverage.json": {
+      "leaves": 166,
+      "counts": {
+        "identical": 166,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.4309148738950515e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e16_interacting_forgetting.json": {
+      "leaves": 91,
+      "counts": {
+        "identical": 91,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 6.135752788687929e-11,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e16b_classical_reduction.json": {
+      "leaves": 137,
+      "counts": {
+        "identical": 137,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.0,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e16c_kls_monte_carlo.json": {
+      "leaves": 180,
+      "counts": {
+        "identical": 180,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.0,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e17_neutral_diagnosis.json": {
+      "leaves": 236,
+      "counts": {
+        "identical": 236,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.5700201301903712e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e18_basis_sensitivity.json": {
+      "leaves": 103,
+      "counts": {
+        "identical": 103,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.5520398953671822e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e18b_familywise.json": {
+      "leaves": 26,
+      "counts": {
+        "identical": 26,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.5613186407316996e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e19_flip_rate_crosscheck.json": {
+      "leaves": 34,
+      "counts": {
+        "identical": 34,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 2.6848821946086678e-15,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e1_charge_anatomy.json": {
+      "leaves": 57,
+      "counts": {
+        "identical": 54,
+        "agree": 3,
+        "differ": 0
+      },
+      "max relative difference": 9.253114607630902e-09,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "agree"
+    },
+    "e20_flip_models.json": {
+      "leaves": 59,
+      "counts": {
+        "identical": 59,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.8202097172150922e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e21_concentration_check.json": {
+      "leaves": 61,
+      "counts": {
+        "identical": 61,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.0,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e22_central.json": {
+      "leaves": 823,
+      "counts": {
+        "identical": 823,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 2.197636161612774e-10,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e22_first_milliseconds.json": {
+      "leaves": 244,
+      "counts": {
+        "identical": 244,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.3714983742091187,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e22b_collective_flips.json": {
+      "leaves": 64,
+      "counts": {
+        "identical": 64,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.1491771268327462e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e23_correlated_process.json": {
+      "leaves": 248,
+      "counts": {
+        "identical": 248,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.668172695340867e-11,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e23c_coupling_noise.json": {
+      "leaves": 108,
+      "counts": {
+        "identical": 108,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.1653033115477701e-14,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e23d_scale_bias.json": {
+      "leaves": 234,
+      "counts": {
+        "identical": 234,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.1175608707774937e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e23k_imbalance_sources.json": {
+      "leaves": 196,
+      "counts": {
+        "identical": 196,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 6.20961879101816e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e23k_run_parameters.json": {
+      "leaves": 16,
+      "counts": {
+        "identical": 16,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 7.325757756619166e-14,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e23s_state_generators.json": {
+      "leaves": 69,
+      "counts": {
+        "identical": 69,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.0570567270882031e-14,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e24_eiv_correction.json": {
+      "leaves": 126,
+      "counts": {
+        "identical": 126,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 3.196979921991873e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e24b_simex_parts.json": {
+      "leaves": 265,
+      "counts": {
+        "identical": 265,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.4028770007269951e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e25_structured_eiv.json": {
+      "leaves": 154,
+      "counts": {
+        "identical": 154,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.1037608214996044e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e25b_bias_decomposition.json": {
+      "leaves": 175,
+      "counts": {
+        "identical": 175,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 2.9137459289797697e-08,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e26_setting_drift.json": {
+      "leaves": 73,
+      "counts": {
+        "identical": 73,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 2.7959008622181054e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e27_marginal_band.json": {
+      "leaves": 210,
+      "counts": {
+        "identical": 210,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.5,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e27b_coverage_diagnostic.json": {
+      "leaves": 55,
+      "counts": {
+        "identical": 55,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.30097087378640774,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e27c_drift_shrinkage.json": {
+      "leaves": 84,
+      "counts": {
+        "identical": 84,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 4.7795755236806126e-14,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e28_claim_checks.json": {
+      "leaves": 120,
+      "counts": {
+        "identical": 120,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.8780039931751374e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e29_neutral_trajectory.json": {
+      "leaves": 212,
+      "counts": {
+        "identical": 212,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.4088050314465409,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e29b_window_diagnostic.json": {
+      "leaves": 72,
+      "counts": {
+        "identical": 72,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 7.830529095835976e-11,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e2_forgetting.json": {
+      "leaves": 8,
+      "counts": {
+        "identical": 8,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.4173895586617586e-11,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e3_ensemble.json": {
+      "leaves": 22,
+      "counts": {
+        "identical": 22,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.2571428571428571,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e3b_expected_error_bound.json": {
+      "leaves": 13,
+      "counts": {
+        "identical": 13,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.7736405508761037e-16,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e4_cp_pathology.json": {
+      "leaves": 5,
+      "counts": {
+        "identical": 5,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.0,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e5_free_fermion.json": {
+      "leaves": 13,
+      "counts": {
+        "identical": 13,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 3.1419120207086786e-10,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e6_ion_learning.json": {
+      "leaves": 53,
+      "counts": {
+        "identical": 53,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 2.6079852639725065e-13,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e6_symmetry.json": {
+      "leaves": 26,
+      "counts": {
+        "identical": 26,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 2.2892165010694498e-14,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e6c_validation.json": {
+      "leaves": 132,
+      "counts": {
+        "identical": 132,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 4.861798185020168e-12,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e7_local_zeno.json": {
+      "leaves": 17,
+      "counts": {
+        "identical": 17,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 1.0396446629804044e-07,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e8_symmetry_classes.json": {
+      "leaves": 83,
+      "counts": {
+        "identical": 83,
+        "agree": 0,
+        "differ": 0
+      },
+      "max relative difference": 0.0,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "identical"
+    },
+    "e9_symmetry_data.json": {
+      "leaves": 225,
+      "counts": {
+        "identical": 221,
+        "agree": 4,
+        "differ": 0
+      },
+      "max relative difference": 1.1893882347204963,
+      "missing leaves": [],
+      "extra leaves": [],
+      "verdict changes": [],
+      "differing leaves": [],
+      "status": "agree"
+    }
+  }
+}
