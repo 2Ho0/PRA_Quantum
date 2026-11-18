@@ -610,3 +610,31 @@ The data were measured by Kraft et al. and are analysed here from their public d
     - In the digital circuits it comes from balanced errors fixed by the circuit. This fits Pauli-twirled gate noise that flips occupations in both directions; that interpretation was not tested.
   - The decomposition into a mean shift and a variance excess separates the two without a device model.
   - E30 does not test the Zeno suppression or the error bounds. It tests only how generally the strong-symmetry diagnostic applies.
+
+## Data check of the q² law of collective damping (E32, preregistered in 26587c0; 2026-11-18, Q56–Q57)
+
+*Data.* The dephasing-only runs of Joshi et al. (PRL 133, 010402 (2024); Zenodo 10390690) were measured by those authors and are analysed here from the public raw shots.
+- Twelve ions, with the spin-spin interaction switched off.
+- Tilted product states at 0.2π, 0.33π and 0.5π.
+- Times 0–8 ms; at each time, 300 random single-qubit unitaries with 30 shots each.
+
+*Prediction.* Collective dephasing (Lemma "collective damping"; Lemma G.0 for any classical collective noise) multiplies a charge-q coherence by a factor whose exponent is proportional to q². Independent dephasing of each ion damps a coherence according to the number of ions it involves.
+- Relative to charge 1, the decay exponents of local coherences of charge 0, 2 and 3 are therefore (0, 4, 9) for collective noise and (2, 2, 3) for independent noise.
+- These ratios hold at every time, whether the noise is white or quasi-static, provided the phases are Gaussian.
+
+*Estimator.* Classical shadows with an exact (least-squares) inverse of the measurement channel of the actual unitary set, and split-half squared moduli.
+- The textbook inverse 3u†|b⟩⟨b|u − 1 is unbiased only on average over unitary draws.
+- With one fixed set of 300 unitaries reused at every time, it mixes Bloch components of different charge. In a clean collective synthetic world it gave ratios (0.13–0.39, 3.70–3.81, 7.6–8.0) instead of (0, 4, 9).
+- The exact inverse removes this bias. Calibration over seven synthetic worlds: r_0 and r_2 are unbiased everywhere, there is no false detection in the independent world, and R4 rejects the gradient world in every run. The bootstrap SEs are conservative by a factor of 2.5–3.
+
+*Result.*
+- The ratios are r_0 = −0.06 ± 0.14, 0.06 ± 0.10, 0.05 ± 0.08; r_2 = 3.64 ± 0.38, 3.75 ± 0.25, 3.49 ± 0.25; r_3 = 8.8 ± 11.0, 8.37 ± 1.40, 8.45 ± 1.30 (tilts 0.2π, 0.33π, 0.5π). The charge-1 coherences decay to 0.45–0.50 at 8 ms.
+- All preregistered rules gave definite verdicts.
+  - R1 (r_2 > 2) and R2 (r_0 < 2) hold at all three tilts.
+  - R3 (r_3 > 3) holds at 0.33π and 0.5π.
+  - The two-component model fits: χ² = 10.6 with 8 degrees of freedom, p = 0.23.
+  - The collective share is f = 0.993 ± 0.025, so R5 is "collective-dominated".
+- *Post hoc, not tested.*
+  - The charge-1 exponent grows in time with power 1.26–1.33, between white (1) and quasi-static (2) noise.
+  - The charge-2 ratio falls from about 4 at early times to 3.1–3.8 at 8 ms, while the charge-0 ratio stays at 0. An independent component would damp charge 0 as well. A non-Gaussian distribution of the collective phase (positive fourth cumulant) leaves charge 0 exactly protected and lowers the q² exponents beyond leading order, so it fits this pattern.
+- *Reading.* This is the first data test, without a model, of the charge selectivity of collective damping on which the error bounds rest. The charge-0 coherences are protected, and the charged ones decay with exponents close to q². The data come from the same group's device as the BEQS data, but from a different run, ion number and protocol.
