@@ -1866,6 +1866,43 @@ Q33의 원고 범위를 설명하다 나온 질문이다. 새 계산은 없고, 
 
 **쉬운 말로.** E32는 PRA에 넣는 것이 맞다. 원고에는 "이 데이터로는 q² 법칙을 시험할 수 없다"고 스스로 빈칸으로 남겨 둔 문단이 있는데, E32가 바로 그 답이다. q²에서 조금 벗어나는 부분과 그 원인은 PRX에서 다룬다. 전체적으로 PRA의 주장은 모두 근거가 있다. 남은 빈 곳은 공개 데이터로는 채울 수 없는 것(잡음을 직접 넣고 바꾸는 실험, 다른 그룹의 장치)이거나 PRX에서 다룰 것이다.
 
+## Q60. Q59 권장안을 원고에 반영 (2026-11-18)
+
+**요청.** "권장안으로 반영해줘." Q59의 권장안에 따라 E32와 E30을 PRA 원고(`paper/main.tex`, `paper/main_ko.tex`)에 넣었다. 원고는 로컬에만 있고 커밋하지 않는다.
+
+**바꾼 곳 (영어판과 한국어판 모두).**
+
+| 위치 | 내용 |
+|---|---|
+| 초록 | "a trapped-ion experiment with ten ions" → "two trapped-ion experiments". E32 결과 한 문장을 더했다(전하 0 결맞음은 8 ms 동안 감쇠하지 않고, 전하 2와 3의 지수는 전하 1의 3.5–3.75배와 8.4–8.8배). |
+| 서론 셋째 기여 문단 | E30 한 문장, E32 두 문장. 수식과 절 번호 없이 썼다. |
+| 서론 마지막 문단 | 두 데이터 세트의 분석은 R1 재현에 들어 있지 않다고 밝혔다. |
+| Sec. VI 도입과 그림 8 캡션 | 데이터에 대한 모든 검정이 표 III에 있고, D 소절이 다른 두 실험의 데이터도 쓴다고 밝혔다. |
+| Sec. VI D | 새 문단 "Sector changes in a digital simulation"(E30). "A model-free test of the q² law" 문단을 바꿔 썼다: 10-ion 데이터가 부족한 이유, Mpemba 데이터와 측정량, 사전 등록 결과, 사후 분석(합친 r_2 = 3.62 ± 0.16, 시점별 비 4.1–4.5 → 3.1–3.8, 추정량 편향이 아님, 가능한 원인 두 가지). |
+| 그림 15 (새 그림) | `figures/e32_paper.pdf`, 한 단 폭. (a) 로그 감쇠, (b) 지수 비와 95% 구간. 집단 예측은 파선, 독립 예측은 회색 점선이다. |
+| Discussion | "Size of the gains"에 |q| = 2 인자가 약간 낙관적일 수 있다는 문장. "What the data add"에 보호의 재료를 직접 보였다는 문장. "Limitations"에 같은 플랫폼이라는 한계. |
+| Conclusion | E32 결과 한 문장. 이론 방향에 "non-Gaussian statistics"를 더했다. |
+| 데이터 공개, 감사의 글 | Joshi 등과 Alam 등, Zenodo 10390690과 17881394를 더했다. |
+| 부록 D | 새 문단 두 개: 디지털 시뮬레이션의 입자 수(E30 방법), 고정된 유니터리 집합의 고전 그림자(E32 방법과 합성 데이터 보정). |
+| 부록 E (표 III) | E30과 E32 행을 더했다. 캡션과 도입 문장은 "모든 검정"으로 바꿨다. E32의 χ² 판정 옆에는 사후 분석으로 보면 보수적인 오차 때문이라고 적었다. |
+| 부록 F | E30과 E32는 R1 뒤에 더한 것이라 R1에 들어 있지 않다고 밝혔다. |
+| 참고문헌 | Joshi2024, JoshiData, Alam2025, AlamData. Crossref, arXiv, Zenodo의 메타데이터와 대조했다. 저자 40명인 arXiv 논문은 "Alam et al."로 적었고, 학술지 판은 찾지 못했다. |
+
+**코드 (커밋함).** `experiments/e32_paper_figure.py`는 `results/e32_charge_dephasing.json`에서 그림만 다시 그리고, 계산은 하지 않는다. 결과는 `results/e32_paper.{pdf,png}`다. 사전 등록 스크립트는 바꾸지 않았다.
+
+**점검.**
+- 원고의 수치는 모두 결과 파일(`e32_charge_dephasing.json`, `e32_synthetic_calibration.json`, `e30_digital_sector.json`, `e30_synthetic_calibration.json`)과 Q55, Q57, Q58의 값과 대조했다.
+- 빌드 결과: 영어판 25쪽(이전 23쪽), 한국어판 23쪽(이전 21쪽). 정의되지 않은 참조와 overfull은 0건, "float is stuck" 경고는 3건이다(이전 4건).
+- 스킬 점검 스크립트에서 새로 나온 후보는 표 III의 질문 형식 두 줄뿐이다. 기존 행과 같은 형식이라 그대로 두었다.
+- 백업: `paper/backup/2026-11-18_before_Q60/`
+
+**저자가 정할 것.**
+- **초록 길이.** 260단어에서 315단어로 늘었다(LaTeX 포함). 연구실 지침은 150–250단어다. 줄인다면 "an estimator that is insensitive to collective noise attributes it to the device" 구절을 빼는 것이 후보다.
+- **초록의 결과 수.** E32 결과가 들어가면서 결과가 셋에서 넷으로 늘었다. 지침은 2–3개다.
+- **비가우스 해석 문장.** Sec. VI D의 "A non-Gaussian distribution ... or a time-dependent miscalibration ... could produce the deficit"은 사후 해석이다. 빼도 결론은 바뀌지 않는다.
+
+**쉬운 말로.** Q59에서 권한 대로, Mpemba 데이터의 q² 검정(E32)과 Quantinuum 데이터의 섹터 진단(E30)을 원고 두 판에 모두 넣었다. 원고가 "이 데이터로는 할 수 없다"고 비워 두었던 문단을 실제 결과로 채웠고, q²가 정확하지 않다는 점과 그 원인을 아직 모른다는 점도 그대로 적었다. 새 그림 하나와 참고문헌 네 개를 더했다.
+
 ## 남은 과제 (2026-11-10, E29 이후)
 
 **갱신 (Q33).** 1은 하지 않기로 했고, 7은 진행 중이다. R1이 돌고 있고, 원고는 `paper/`에서 다시 쓰고 있다.
