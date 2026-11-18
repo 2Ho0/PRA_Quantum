@@ -637,4 +637,10 @@ The data were measured by Kraft et al. and are analysed here from their public d
 - *Post hoc, not tested.*
   - The charge-1 exponent grows in time with power 1.26–1.33, between white (1) and quasi-static (2) noise.
   - The charge-2 ratio falls from about 4 at early times to 3.1–3.8 at 8 ms, while the charge-0 ratio stays at 0. An independent component would damp charge 0 as well. A non-Gaussian distribution of the collective phase (positive fourth cumulant) leaves charge 0 exactly protected and lowers the q² exponents beyond leading order, so it fits this pattern.
-- *Reading.* This is the first data test, without a model, of the charge selectivity of collective damping on which the error bounds rest. The charge-0 coherences are protected, and the charged ones decay with exponents close to q². The data come from the same group's device as the BEQS data, but from a different run, ion number and protocol.
+  - (Q58) Pooled over the three tilts, r_2 = 3.62 ± 0.16, 2.3σ below 4 even with the conservative SEs.
+  - The calibration shows the r_2 SEs exceed the actual scatter by a factor of 2.4–2.8. With that factor, the deficit is 5.6–6.6σ and the R4 χ² becomes 61–83.
+  - The R4 verdict "consistent" therefore reflects the conservative SEs, and the simple model of white collective plus independent dephasing probably does not describe the data.
+  - The corrected estimator returns r_2 = 3.99–4.03 in all four collective synthetic worlds, including quasi-static noise. The deficit is therefore neither an estimator artefact nor an effect of time correlations of Gaussian noise.
+- *Reading.* This is the first data test, without a model, of the charge selectivity of collective damping on which the error bounds rest.
+  - The protection of the charge-0 coherences follows from the symmetry alone and is decisive.
+  - The charged coherences decay with exponents close to, but probably not exactly, q². The data come from the same group's device as the BEQS data, but from a different run, ion number and protocol.
