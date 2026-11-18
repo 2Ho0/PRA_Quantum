@@ -272,7 +272,7 @@
 | 4 | 초연산자 charge에 따른 불완전함 분류와 γ_c 진단 | 정리 B6 / E8 |
 | 5 | 보호 효과의 noise 스펙트럼 의존성(white 1/Q², 준정적 1/\|Q\|) | 정리 G / E12 |
 
-**논문으로 묶으면.** 이 분할은 2026-11-10에 확정했다([research-qa.md](research-qa.md) Q34).
+**논문으로 묶으면.** 이 분할은 2026-11-10에 확정했다.
 - **PRA:** 기여 3 + 4 + 2(모델 선택). "학습된 모델의 오차 인증을 대칭과 dissipation으로 촘촘하게 하고 실데이터에 적용한다." BEQS의 자연스러운 후속작이다.
 - **PRX:** 기여 1 + 5 + 2(white noise 기각). "보존량과 기억이 있는 noise 아래의 장시간 인증."
 - 원고(`paper/`, 로컬 전용, 공개 저장소에 올리지 않음)는 11-05부터 보류했다. 11-10에 이 범위로 다시 쓰기 시작했다(Q33).
@@ -283,7 +283,7 @@
 
 ## 8. 남은 검증의 결과와 다음 단계
 
-**11-06에 수행한 검증 (자세한 내용은 [research-qa.md](research-qa.md) Q24, [results/summary.md](results/summary.md) §9.9–9.10).**
+**11-06에 수행한 검증 (자세한 내용은 [results/summary.md](results/summary.md) §9.9–9.10).**
 
 | # | 검증 | 결과 |
 |---|---|---|
@@ -295,7 +295,7 @@
 | 6 | 정리 F의 상호작용 확장 (명제 F.4, E16b) | 강한 dephasing 극한에서 대칭 KLS 과정의 포물형 추정 하나로 줄였다. SSEP에서는 증명했고, KLS는 추측이다(수치가 지지) |
 | 7 | 전체 재현 | 원고 재개 시 |
 
-**11-07에 수행한 남은 과제 (자세한 내용은 [research-qa.md](research-qa.md) Q25, [results/summary.md](results/summary.md) §9.11).**
+**11-07에 수행한 남은 과제 (자세한 내용은 [results/summary.md](results/summary.md) §9.11).**
 
 | # | 과제 | 결과 |
 |---|---|---|
@@ -307,7 +307,7 @@
 
 *E22b. (a) charge 분류별 표본 외 보정 인자. 주황(Xb15uc, 집단 flip)이 charged 분류와 전체에서 가장 좋지만, 중성 Z_iZ_j는 1.2를 넘는다. (b) 모든 쌍의 평균 ZZ(M²에 비례)의 변화. 점이 데이터다. 독립 flip 모델(파랑)은 평평하거나 줄어들고, 집단 flip 모델(주황)은 커진다. 상태 2(점선)에서는 처음부터 너무 빨리 커진다.*
 
-**11-09: 다음 후보와 실패한 부분의 재수행 (자세한 내용은 [research-qa.md](research-qa.md) Q26, [results/summary.md](results/summary.md) §9.12).**
+**11-09: 다음 후보와 실패한 부분의 재수행 (자세한 내용은 [results/summary.md](results/summary.md) §9.12).**
 
 | # | 항목 | 결과 |
 |---|---|---|
@@ -321,7 +321,7 @@
 
 *E23c. (a) 각 상태의 중성 잔차를 최소로 하는 결합 요동 σ. (b) 분류별 보정 인자. 결합 요동(주황)이 중성 분류를 1.2 근처까지 낮춘다. (c) 끝 이온 상관 ⟨Z₀Z₉⟩. 데이터(점)는 10 ms까지 크게 진동하는데, 결합 요동 모델(주황)은 진동을 뭉갠다. 인자가 좋아진 이유가 이것이다.*
 
-**11-09 (Q27): 실패의 수학적 원인 (E23d, 저장된 결과만 사용, 자세한 내용은 [research-qa.md](research-qa.md) Q27, [results/summary.md](results/summary.md) §9.13).**
+**11-09 (Q27): 실패의 수학적 원인 (E23d, 저장된 결과만 사용, 자세한 내용은 [results/summary.md](results/summary.md) §9.13).**
 
 | # | 질문 | 답 |
 |---|---|---|
@@ -335,7 +335,7 @@
 
 *E23d. (a) 2체 결합 전체에 고정 배율 λ를 곱했을 때의 표본 외 인자. 파란 띠는 학습 창만으로 정한 보정이고, 세로선은 늦은 데이터가 원하는 값이다. (b) 띠가 정확히 맞을 때 인자의 5–95% 범위(회색)와 관측값. (c) 중성 표준화 오차의 시간 변화. 학습된 그대로는 위상이 쌓여 커지고, 사전 보정이 그 증가를 대부분 없앤다.*
 
-**11-09 (Q28): 추정량 편향의 보정 (E24 사전 등록, E24b 사후, 자세한 내용은 [research-qa.md](research-qa.md) Q28, [results/summary.md](results/summary.md) §9.14).**
+**11-09 (Q28): 추정량 편향의 보정 (E24 사전 등록, E24b 사후, 자세한 내용은 [results/summary.md](results/summary.md) §9.14).**
 
 | # | 항목 | 결과 |
 |---|---|---|
@@ -349,7 +349,7 @@
 
 *E24b. (a) 분류별 표본 외 인자. 검은 별(구조화 보정)이 중성과 charged 분류를 함께 고친다. 결합의 공통 배율은 중성 분류를, 집단 rate의 보정은 charged 분류를 고친다. (b) 중성 표준화 오차의 시간 변화. 구조화 보정이 늦은 시간의 위상 누적을 가장 많이 줄인다.*
 
-**11-09 (Q29): 구조화 추정량의 사전 등록 검증과 설정 간 표류 (E25, E26 사전 등록, E25b 사후, 자세한 내용은 [research-qa.md](research-qa.md) Q29, [results/summary.md](results/summary.md) §9.15).**
+**11-09 (Q29): 구조화 추정량의 사전 등록 검증과 설정 간 표류 (E25, E26 사전 등록, E25b 사후, 자세한 내용은 [results/summary.md](results/summary.md) §9.15).**
 
 | # | 항목 | 결과 |
 |---|---|---|
@@ -368,7 +368,7 @@
 
 *E26. (a) 합성 데이터의 J_nn 상대 오차. 표류 세계(주황)에서는 어떤 SIMEX 잡음 모형도 1% 띠에 들지 못한다. (b) 설정별 평균의 흩어짐. 데이터(검정)는 표류 세계(주황)와 같은 모양이지만 더 약하다.*
 
-**11-09 (Q30): 지금까지 주장의 점검 (새 실험 없음, 자세한 내용은 [research-qa.md](research-qa.md) Q30).**
+**11-09 (Q30): 지금까지 주장의 점검 (새 실험 없음).**
 
 | # | 묶음 | 내용 |
 |---|---|---|
@@ -379,7 +379,7 @@
 
 - 보존량이 이번 편향을 보지 않는다는 것은 저장된 E25b 예측으로 확인했다. 대칭 묶음 하나를 바꾸면 mean Z의 편향은 2×10⁻¹⁶ 이하이고, 개별 Z_i는 0.002–0.024 움직인다.
 
-**11-10 (Q31): 전류 항을 넣은 띠와 표류 보정, Q30의 확인 과제 (E27, E28 사전 등록, E27b, E27c 사후, 자세한 내용은 [research-qa.md](research-qa.md) Q31, [results/summary.md](results/summary.md) §9.16).**
+**11-10 (Q31): 전류 항을 넣은 띠와 표류 보정, Q30의 확인 과제 (E27, E28 사전 등록, E27b, E27c 사후, 자세한 내용은 [results/summary.md](results/summary.md) §9.16).**
 
 | # | 항목 | 결과 |
 |---|---|---|
@@ -395,7 +395,7 @@
 
 *E28. (a) γ_c 하한에서 목표값을 뺀 값. 0보다 위면 보수적이지 않다. (b) U(1)을 깨는 항의 학습값과 참값. (c) 창에 따른 J_nn 변화. 데이터(검정)는 세 합성 세계보다 훨씬 빨리 줄어든다.*
 
-**11-10 (Q32): 연구 점검과 중성 궤적 학습 (E29 사전 등록, E29b 사후, 자세한 내용은 [research-qa.md](research-qa.md) Q32, [results/summary.md](results/summary.md) §9.17).**
+**11-10 (Q32): 연구 점검과 중성 궤적 학습 (E29 사전 등록, E29b 사후, 자세한 내용은 [results/summary.md](results/summary.md) §9.17).**
 
 | # | 항목 | 결과 |
 |---|---|---|
@@ -409,7 +409,7 @@
 
 *E29. (a) 전류를 실현마다 새로 뽑은 합성 세계 48개의 합동 인자(파랑)는 사전 규칙의 범위(초록) 안에 있지만, 띠가 정확할 때의 범위(회색)보다 크다. 빈 주황 원은 참값을 공유하는 Y15 세계다. (b) 데이터에서는 T(파랑)가 S(회색 네모)보다 작지만 규칙 B″의 95% 경계(파란 세로선)를 넘는다. (c) T는 최소제곱보다 전류를 훨씬 잘 복원한다.*
 
-**11-10 ~ 11-11 (Q33, Q34): 실험 중단, 전체 재현 R1, 원고 재개 (자세한 내용은 [research-qa.md](research-qa.md) Q33, [results/summary.md](results/summary.md) §9.18).**
+**11-10 ~ 11-11 (Q33, Q34): 실험 중단, 전체 재현 R1, 원고 재개 (자세한 내용은 [results/summary.md](results/summary.md) §9.18).**
 
 | # | 항목 | 결과 |
 |---|---|---|
@@ -423,7 +423,7 @@
 
 *R1. 재현한 값과 커밋된 값의 차이를 규칙이 허용하는 차이로 나눈 비. 점선(허용 한계)에 가장 가까운 값도 그 0.09%(JSON)와 1.2%(npz)다.*
 
-**11-18 (Q52–Q55): 독립 데이터 (자세한 내용은 [research-qa.md](research-qa.md) Q52–Q55, [results/summary.md](results/summary.md) §9.19).**
+**11-18 (Q52–Q55): 독립 데이터 (자세한 내용은 [results/summary.md](results/summary.md) §9.19).**
 
 | # | 항목 | 결과 |
 |---|---|---|
@@ -435,7 +435,7 @@
 
 *E30. (a) 두 스핀의 입자 수 분포(모든 U와 t). 이상적인 회로라면 (14, 14) 한 칸에 모두 있다. (b) 회로마다의 분산(채운 기호)과 평균 이동(빈 기호). (c) 균형 초과 B와 평균 이동 |D|.*
 
-**11-18 (Q56–Q57): q² 법칙의 데이터 확인 (자세한 내용은 [research-qa.md](research-qa.md) Q56–Q57, [results/summary.md](results/summary.md) §9.20).**
+**11-18 (Q56–Q57): q² 법칙의 데이터 확인 (자세한 내용은 [results/summary.md](results/summary.md) §9.20).**
 
 | # | 항목 | 결과 |
 |---|---|---|
@@ -498,7 +498,6 @@
 
 ## 10. 더 읽을 곳
 
-- 질문별 쉬운 설명: [research-qa.md](research-qa.md) (Q1–Q16)
 - 실험별 수치와 판정: [results/summary.md](results/summary.md)
 - 선행연구 대비 새로움: [literature/novelty-check.md](literature/novelty-check.md)
 - 정리와 증명: [theory/error-anatomy-theory.md](theory/error-anatomy-theory.md)(1–2단계), [theory/phase3-theory.md](theory/phase3-theory.md), [theory/phase4-theory.md](theory/phase4-theory.md)
