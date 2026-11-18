@@ -1921,6 +1921,7 @@ Q33의 원고 범위를 설명하다 나온 질문이다. 새 계산은 없고, 
 | 부록 D, E | 콜론 구문 두 곳 | 문장으로 나눴다 | 3.6절 |
 | 기존 문장 | 괄호 안 퍼센트 두 곳(검정 A1, "34–37%"), "not significant", "significant at 3σ" | 퍼센트를 문장 안으로 옮기고, 유의성은 "compatible with zero", "differs from zero by 3σ or more"로 바꿨다 | 12.6절, 3.3절 |
 | 참고문헌 | Ball and Cohen(arXiv) | Phys. Rev. A 110, 022417 (2024). Crossref에서 출판본을 찾았다 | 16.1절 |
+| 부록 D, 표 III (E30) | 기호 $D$, $V$, $B$. 전류 $D_{ij}$, 초연산자 $\mathcal V$, 블록 $\mathcal B_q$와 겹쳤다 | $\bar d$, $\bar v$, 균형 초과 $\bar v-\abs{\bar d}$ | 3.4절, 19장: 기호 통일 |
 
 **그대로 둔 것.**
 - 표 III의 질문 형식: 표의 설계상 질문을 쓴다.
