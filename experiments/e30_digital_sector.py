@@ -246,7 +246,7 @@ def plot(t, res, nn, joint):
     ax[1].set_xlabel(r"$Jt$")
     ax[1].set_ylabel("events per run")
     ax[1].set_title("(b) variance (filled), mean shift (open)")
-    ax[1].legend(fontsize=7, ncol=2, loc="center right")
+    ax[1].legend(fontsize=7, ncol=2, loc="center", bbox_to_anchor=(0.5, 0.315), handletextpad=0.2, columnspacing=0.8)
     # (c) pooled decomposition
     keys = sorted(res)
     x = np.arange(len(keys))
@@ -258,7 +258,8 @@ def plot(t, res, nn, joint):
     ax[2].set_xticks(x, [f"U={U}\n{s}" for U, s in keys])
     ax[2].set_ylabel("events per run")
     ax[2].set_title("(c) decomposition")
-    ax[2].legend(fontsize=7)
+    ax[2].set_ylim(0, 1.75)
+    ax[2].legend(fontsize=7, loc="upper left", ncol=1)
     save_figure(fig, "e30_digital_sector")
 
 

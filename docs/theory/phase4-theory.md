@@ -576,3 +576,37 @@ The data were measured by Kraft et al. and are analysed here from their public d
   - 2,206 of the 7,201 compared numbers are bit-identical. The cause of the rounding-level differences was not tested; summation order in multithreaded BLAS is the first candidate.
 - *Post hoc check of the figure arrays (experiments/r1_details.py, not part of the verdict).* All 5,980,616 entries of the 51 npz files lie within the same tolerance, 2,195,923 of them bit-identical. The largest difference is 1.2% of the allowed one (E9 PSD fit). For the JSON numbers the largest is 0.09%.
 - *Consequence.* Every committed result, and with it every number quoted in these notes and in the manuscript, is reproduced from the raw data without cached intermediate results. This establishes computational reproducibility only. Transcription was checked separately, and no interpretation is affected.
+
+## Data check on independent public data (E30, E31; 2026-11-18, Q52–Q55)
+
+*Survey.* The search covered Zenodo, Dryad, Harvard Dataverse, heiDATA, Figshare and the data statements of 13 papers.
+- Only the Innsbruck ion-trap simulator has public data that combine U(1)-symmetric analog dynamics, collective dephasing and multi-basis single-shot time series: Kraft et al., and Joshi et al., PRL 133, 010402 (2024).
+- The Zeno suppression by collective dephasing can therefore be tested on public data only from that device.
+- Other platforms allow the model-free strong-symmetry diagnostic of E6b.
+
+*Google analog XY simulator (E31, descriptive).* The data are those of Andersen et al., Nature 638, 79 (2025). They are pickles, opened only with a whitelist unpickler. The diagnostic cannot be applied to them, for two reasons.
+- The Z-basis data are post-selected on the excitation number: all 840 distributions hold a single excitation number.
+- The other files are X/Y single-qubit measurements.
+  - At the shortest ramp the excitation-number variance is 15.5, against 16.25 for a binomial distribution.
+  - At t = 0, half of the dimer pairs in Fig5_2 are positively correlated. This happens in X/Y but not in Z.
+
+*Digital Fermi–Hubbard circuits on a trapped-ion quantum computer (E30, preregistered in e8aa420).* The shots were measured by Phasecraft and Quantinuum collaborators (arXiv:2510.26300) and are analysed here from the public raw data.
+- *Setting.* There are 40 circuits (U = 0, 4; t = 0.1–2.0/J). They share the gate structure of four second-order Trotter steps, and every gate conserves N↑ = N↓ = 14.
+- *Estimates per spin species and circuit.*
+  - The variance of N is V = 1.25–1.33 and the mean shift is D = +0.16 to +0.20.
+  - The balanced excess is B = V − |D| = 1.06–1.13 (z = 16–24).
+  - The one-directional share is |D|/V = 0.12–0.16, with every 95% upper end at most 0.20.
+  - The variance does not grow with t: the slopes run from −0.05 to +0.07 per unit time, all compatible with zero.
+  - The two species are uncorrelated (covariance 0.002 and −0.0002).
+- *Verdicts.* All preregistered rules gave definite verdicts.
+  - S0 passed: 18.7% of shots lie in (14, 14), and the authors report 19%.
+  - R1 detected balanced breaking in 4 of 4.
+  - R2 classified 4 of 4 as balanced-dominated.
+  - R3 found growth with t in 0 of 4.
+- *Limitation.* B contains balanced readout errors. These data have no t = 0 point and cannot separate them.
+- *Reading.*
+  - The strong symmetry is broken in both devices, but differently.
+    - In the analog ion simulator (E6b) the breaking comes from a decay that accumulates in time plus balanced processes.
+    - In the digital circuits it comes from balanced errors fixed by the circuit. This fits Pauli-twirled gate noise that flips occupations in both directions; that interpretation was not tested.
+  - The decomposition into a mean shift and a variance excess separates the two without a device model.
+  - E30 does not test the Zeno suppression or the error bounds. It tests only how generally the strong-symmetry diagnostic applies.

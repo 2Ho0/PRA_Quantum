@@ -1,0 +1,129 @@
+{
+  "data": "Andersen et al., Nature 638, 79 (2025); Zenodo 10.5281/zenodo.14060446 (CC BY 4.0)",
+  "Fig2": {
+    "evolution_times_ns": [
+      6.0,
+      36.0,
+      66.0,
+      96.0,
+      126.0,
+      156.0,
+      186.0,
+      216.0,
+      246.0,
+      276.0,
+      306.0,
+      336.0,
+      366.0,
+      396.0,
+      426.0,
+      456.0,
+      486.0,
+      516.0,
+      546.0,
+      576.0,
+      606.0
+    ],
+    "sizes": [
+      {
+        "n_qubits": 12,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 139078,
+        "shots_max": 236766
+      },
+      {
+        "n_qubits": 15,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 112654,
+        "shots_max": 225915
+      },
+      {
+        "n_qubits": 16,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 109890,
+        "shots_max": 230854
+      },
+      {
+        "n_qubits": 18,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 114721,
+        "shots_max": 226295
+      },
+      {
+        "n_qubits": 20,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 102138,
+        "shots_max": 221227
+      },
+      {
+        "n_qubits": 24,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 89948,
+        "shots_max": 193932
+      },
+      {
+        "n_qubits": 25,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 94988,
+        "shots_max": 204582
+      },
+      {
+        "n_qubits": 28,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 75971,
+        "shots_max": 191782
+      },
+      {
+        "n_qubits": 30,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 74261,
+        "shots_max": 191674
+      },
+      {
+        "n_qubits": 35,
+        "distributions": 84,
+        "single_excitation_number": 84,
+        "shots_min": 59440,
+        "shots_max": 171753
+      }
+    ],
+    "all_post_selected": true
+  },
+  "Fig3_1": {
+    "shortest_ramp_ns": 10.397984184814899,
+    "shots": 50000,
+    "qubits": 65,
+    "marginal_min": 0.45896,
+    "marginal_max": 0.54182,
+    "nn_pairs": 110,
+    "nn_connected_mean": -0.06166351522545454,
+    "excitation_mean": 32.10138,
+    "excitation_var": 15.4973420956,
+    "binomial_var": 16.25
+  },
+  "Fig5_1": {
+    "qubits": 64,
+    "shots": 10000,
+    "partner_cov_negative": 64,
+    "partner_cov_positive": 0,
+    "partner_cov_abs_median": 0.21764561456145554,
+    "mutual_pairs": 64
+  },
+  "Fig5_2": {
+    "qubits": 64,
+    "shots": 10000,
+    "partner_cov_negative": 32,
+    "partner_cov_positive": 32,
+    "partner_cov_abs_median": 0.21447049204920476,
+    "mutual_pairs": 64
+  }
+}
