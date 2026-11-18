@@ -3,7 +3,7 @@ name = "qerr"
 version = "0.1.0"
 description = "Error anatomy of open quantum simulation under imperfect Hamiltonians"
 requires-python = ">=3.11"
-dependencies = ["numpy", "scipy", "matplotlib"]
+dependencies = ["numpy", "scipy", "matplotlib", "h5py"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
