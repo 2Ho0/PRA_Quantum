@@ -15,6 +15,8 @@ This repository holds theory, numerics and a manuscript draft (target: Physical 
 
 | Path | Content |
 |---|---|
+| `docs/research-guide.md` | Guide to the research and the background needed to follow it, with a glossary that maps the notes' older names to the manuscript's (Korean) |
+| `docs/research-overview.md` | Chronological overview of the work with figures (Korean) |
 | `docs/theory/error-anatomy-theory.md` | Theorems and proofs, phases 1–2 (English) |
 | `docs/theory/phase3-theory.md` | Weak/strong symmetry classes (Theorem B6), multipole forgetting (Theorem E) |
 | `docs/theory/phase4-theory.md` | Collective noise with memory (Theorem G), forgetting in both pictures (Theorem F) |
