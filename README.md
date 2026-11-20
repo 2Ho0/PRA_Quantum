@@ -67,6 +67,9 @@ python e13d_hypocoercivity.py        # about 30 s (hypocoercive estimates behind
 python e14_shot_calibration.py       # about 25 min on 8 cores; run after e11 (shot-level calibration of the memory test)
 python e15_coverage.py               # about 2.5 h on 16 cores, resumable; run after e11 (certified and statistical bands against held-out data)
 python e16_interacting_forgetting.py # about 4 h on 2 cores (memory-bound, slower next to other jobs); run any time (dephased XXZ chain, N = 10, exact)
+python e33_seed_robustness.py --part A   # seed robustness (rules in the docstring): A about 8 h, B 2 h, C 6 h at below-normal priority;
+python e33_seed_robustness.py --part B   # run at most two parts at once, then --analyse (results/e33_seed_robustness.json)
+python e33_seed_robustness.py --part C
 ```
 
 E8–E16 and E6c cache their results in `results/*.npz`; `--replot` redraws the figure from the cache. Parallel runs are memory-bound on Windows (commit limit): run the long scripts one or two at a time.
