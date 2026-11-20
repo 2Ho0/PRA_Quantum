@@ -41,3 +41,6 @@ results/e28_parts/
 results/e27c_parts/
 results/e27b_coverage_diagnostic.npz
 results/e29_parts/
+
+# Per-task outputs of the E33 seed-robustness runs; the combined result is results/e33_seed_robustness.json
+results/e33_parts/
