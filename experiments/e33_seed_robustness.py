@@ -520,6 +520,25 @@ def analyse_B():
     out["B3 (C3)"] = {key: c3[key] for key in c3 if key.startswith(("rule", "share", "data"))}
     out["B3 (C3)"]["data-matched relative change: mean, sd"] = c3["data-matched"]["relative change: mean, sd"]
     out["full E28 analysis with 32 realisations"] = o
+    out["post hoc (added after the run; no verdict depends on it): why C1 undercovers"] = posthoc_c1()
+    return out
+
+
+def posthoc_c1():
+    """Bias, spread and bias correction of E9's bound in the 32 realisations (post hoc, 2026-11-22)."""
+    z = np.load(part_dir("B", "B_e28", 0) / "e28_claim_checks.npz")
+    g, b, tgt = z["c1_gamma"] * 1e3, z["c1_boot"] * 1e3, float(z["c1_target"]) * 1e3
+    out = {}
+    for i, w in enumerate(("shot-only", "data-matched", "full drift")):
+        perc = np.percentile(b[i], 5, axis=1)
+        basic = 2 * g[i] - np.percentile(b[i], 95, axis=1)
+        out[w] = {"bias of the estimate (rad/s)": float(g[i].mean() - tgt),
+                  "sd of the estimate over the realisations (rad/s)": float(g[i].std(ddof=1)),
+                  "bootstrap sd, mean over the realisations (rad/s)": float(b[i].std(axis=1, ddof=1).mean()),
+                  "bootstrap mean minus estimate, mean (rad/s)": float((b[i].mean(axis=1) - g[i]).mean()),
+                  "basic bound is the smaller one": f"{int(np.sum(basic <= perc))} of {N_REAL_B}",
+                  "percentile bound below the target": f"{int(np.sum(perc <= tgt))} of {N_REAL_B}",
+                  "basic bound below the target": f"{int(np.sum(basic <= tgt))} of {N_REAL_B}"}
     return out
 
 

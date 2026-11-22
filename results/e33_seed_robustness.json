@@ -1553,6 +1553,35 @@
         ],
         "rule C3: data's change at [0, 5] ms within the data-matched mean +- 2 sd": false
       }
+    },
+    "post hoc (added after the run; no verdict depends on it): why C1 undercovers": {
+      "shot-only": {
+        "bias of the estimate (rad/s)": 3.238221599552187,
+        "sd of the estimate over the realisations (rad/s)": 2.0652132869420075,
+        "bootstrap sd, mean over the realisations (rad/s)": 2.495544218566036,
+        "bootstrap mean minus estimate, mean (rad/s)": 2.054454880571507,
+        "basic bound is the smaller one": "32 of 32",
+        "percentile bound below the target": "6 of 32",
+        "basic bound below the target": "27 of 32"
+      },
+      "data-matched": {
+        "bias of the estimate (rad/s)": 3.7855024220768705,
+        "sd of the estimate over the realisations (rad/s)": 5.659338866046635,
+        "bootstrap sd, mean over the realisations (rad/s)": 3.099043801183527,
+        "bootstrap mean minus estimate, mean (rad/s)": 2.2013765312466704,
+        "basic bound is the smaller one": "31 of 32",
+        "percentile bound below the target": "11 of 32",
+        "basic bound below the target": "22 of 32"
+      },
+      "full drift": {
+        "bias of the estimate (rad/s)": 3.5274682027144273,
+        "sd of the estimate over the realisations (rad/s)": 10.187775419410741,
+        "bootstrap sd, mean over the realisations (rad/s)": 3.4798720871741526,
+        "bootstrap mean minus estimate, mean (rad/s)": 2.490364495878249,
+        "basic bound is the smaller one": "32 of 32",
+        "percentile bound below the target": "17 of 32",
+        "basic bound below the target": "21 of 32"
+      }
     }
   },
   "C: data bootstraps with new seeds": {
