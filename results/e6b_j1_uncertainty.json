@@ -1,0 +1,30 @@
+{
+  "seed 0 (results/e6_ion_learning.npz)": {
+    "bootstrap re-learnings": 100,
+    "J_1, mean nearest-neighbour coupling (rad/s)": 617.2120934730953,
+    "J_1 bootstrap sd (rad/s)": 20.74091623773091,
+    "Gamma dominant eigenvalue (rad/s)": 321.5928135725981,
+    "Gamma dominant eigenvalue bootstrap sd (rad/s)": 54.03709978364031,
+    "mean off-diagonal Gamma (rad/s)": 30.478279538973588,
+    "mean off-diagonal Gamma bootstrap sd (rad/s)": 5.2089730871800635
+  },
+  "seed 1 (test E33, results/e33_parts/C/C_learn_k1/e6_ion_learning.npz)": {
+    "bootstrap re-learnings": 100,
+    "J_1, mean nearest-neighbour coupling (rad/s)": 617.2120934730951,
+    "J_1 bootstrap sd (rad/s)": 17.018822775889426,
+    "Gamma dominant eigenvalue (rad/s)": 321.5928135725992,
+    "Gamma dominant eigenvalue bootstrap sd (rad/s)": 45.75974551624557,
+    "mean off-diagonal Gamma (rad/s)": 30.478279538973716,
+    "mean off-diagonal Gamma bootstrap sd (rad/s)": 4.64291071174601
+  },
+  "seed 2 (test E33, results/e33_parts/C/C_learn_k2/e6_ion_learning.npz)": {
+    "bootstrap re-learnings": 100,
+    "J_1, mean nearest-neighbour coupling (rad/s)": 617.2120934730951,
+    "J_1 bootstrap sd (rad/s)": 18.994810311227692,
+    "Gamma dominant eigenvalue (rad/s)": 321.5928135725992,
+    "Gamma dominant eigenvalue bootstrap sd (rad/s)": 50.46171912594337,
+    "mean off-diagonal Gamma (rad/s)": 30.478279538973716,
+    "mean off-diagonal Gamma bootstrap sd (rad/s)": 5.039620398119894
+  },
+  "J_1 bootstrap sd: largest relative change from seed 0": 0.17945655915963954
+}

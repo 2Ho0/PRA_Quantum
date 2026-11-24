@@ -49,6 +49,7 @@ python e5_free_fermion.py
 python e7_local_zeno.py              # about 3 min (N up to 200)
 python e6_ion_learning.py            # about 25 min (10-qubit learning, bootstrap, validation)
 python e6_symmetry.py                # run after e6_ion_learning
+python e6b_j1_uncertainty.py         # seconds; bootstrap sd of J_1 from the stored E6a bootstrap
 python e8_symmetry_classes.py        # about 20 min (N = 6, dense superoperators)
 python e9_symmetry_data.py           # about 5 min on 12 cores; run after e6_ion_learning and e6_symmetry
 python e6c_validation.py             # several hours on 3 cores (learning windows up to 5 ms); run after e9
