@@ -4,10 +4,10 @@ This repository holds theory, numerics and a manuscript draft (target: Physical 
 
 **Core idea.** Use dissipation and symmetry to sharpen error bounds.
 - **Heisenberg forgetting.** The error is bounded by ∫‖[δH, O_u]‖du.
-- **U(1) charge anatomy.** Imperfections, Hamiltonian or dissipative, split by their superoperator charge Q. Charged ones vanish from the linear response of charge-conserving observables, and collective dephasing then suppresses them at rate 2γ_c Q². Covariant ones (for example incoherent spin flips, which break only the strong symmetry) are unprotected.
+- **U(1) charge anatomy.** Imperfections, Hamiltonian or dissipative, split by their superoperator charge Q. Charged ones vanish from the linear response of charge-conserving observables, and collective dephasing then suppresses them at rate 2γ_c Q². Symmetric ones (for example incoherent spin flips, which break only the strong symmetry) are unprotected.
 - **Size-independent commutator-form certificates.**
 - **Conserved charges.** The forgetting of an observable follows its multipole order: bounds grow as √t for densities and are time-uniform from quadrupoles on.
-- **Collective noise with memory.** The selection rule and the noise-independence of covariant errors hold for collective noise of any spectrum; the Zeno suppression of charged errors survives memory but scales as 1/|Q| for quasi-static Gaussian noise instead of 1/Q² for white noise.
+- **Collective noise with memory.** The selection rule and the noise-independence of symmetric errors hold for collective noise of any spectrum; the Zeno suppression of charged errors survives memory but scales as 1/|Q| for quasi-static Gaussian noise instead of 1/Q² for white noise.
 - **Forgetting in both pictures.** Pairing the observable's density gradients with the state's currents and gradients gives a time-uniform local bound for conserved densities, where every Heisenberg-only bound grows as √t.
 - **Application to the public BEQS trapped-ion data.** Re-learned 10-ion generator, a certified collective dephasing rate within a structured model, a charge-resolved validation, and strong-symmetry diagnostics of a 51-ion quench. Phase 4 adds model selection (a minimal U(1)-symmetric model with collective dephasing only and a growing collective rate predicts the 5–10 ms data three times better than the full fit), a simulation-based calibration of the learning method, and a calibrated rejection of white collective noise.
 
