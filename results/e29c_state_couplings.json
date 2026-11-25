@@ -1,0 +1,28 @@
+{
+  "state 1 only": {
+    "J_nn mean (rad/s)": 633.324920378786,
+    "posterior sd (rad/s)": 19.65867911503231,
+    "chi^2 / nu, Birge factor": [
+      1.7747807054883842,
+      1.7747807054883842
+    ]
+  },
+  "state 2 only": {
+    "J_nn mean (rad/s)": 730.5007855675857,
+    "posterior sd (rad/s)": 12.656941685210848,
+    "chi^2 / nu, Birge factor": [
+      2.1713180786680115,
+      2.1713180786680115
+    ]
+  },
+  "state 2 minus state 1: difference (rad/s), sd (rad/s), z, relative to the mean of the two": [
+    97.17586518879966,
+    23.38080061440659,
+    4.1562248783269915,
+    0.14250481533689585
+  ],
+  "E29b values for comparison (rad/s)": [
+    633.3249203859945,
+    730.5007855679045
+  ]
+}

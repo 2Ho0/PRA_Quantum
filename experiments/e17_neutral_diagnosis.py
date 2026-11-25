@@ -164,8 +164,14 @@ def fit_balance(regs, target, se):
     for label, cols in (("fields", [0, 1]), ("flips", [2]), ("pumping", [3]), ("fields + flips + pumping", [0, 1, 2, 3])):
         p, *_ = np.linalg.lstsq(A[:, cols] * w[:, None], y * w, rcond=None)
         chi2 = float(np.sum(((A[:, cols] @ p - y) * w) ** 2))
+        # standard errors of the weighted fit, scaled by sqrt(max(1, chi2 / dof)); added 2026-11-24 (descriptive,
+        # post hoc; the regressors share measured trajectories, so these errors are approximate)
+        Aw = A[:, cols] * w[:, None]
+        cov = np.linalg.inv(Aw.T @ Aw) * max(1.0, chi2 / (len(y) - len(cols)))
         out[label] = {"parameters": {names[c]: float(v * RAD_S) for c, v in zip(cols, p)},
-                      "chi2 / dof": [chi2, len(y) - len(cols)]}
+                      "chi2 / dof": [chi2, len(y) - len(cols)],
+                      "standard errors, scaled by sqrt(max(1, chi2 / dof))": {
+                          names[c]: float(np.sqrt(cov[j, j]) * RAD_S) for j, c in enumerate(cols)}}
     return out
 
 

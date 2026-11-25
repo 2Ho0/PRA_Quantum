@@ -278,7 +278,11 @@
         "chi2 / dof": [
           291.4449279603008,
           38
-        ]
+        ],
+        "standard errors, scaled by sqrt(max(1, chi2 / dof))": {
+          "uniform field h_x (rad/s)": 1.296326963328029,
+          "uniform field h_y (rad/s)": 3.7623879353413843
+        }
       },
       "flips": {
         "parameters": {
@@ -287,7 +291,10 @@
         "chi2 / dof": [
           319.8844470513185,
           39
-        ]
+        ],
+        "standard errors, scaled by sqrt(max(1, chi2 / dof))": {
+          "flip rate S (rad/s)": 0.5161353708756042
+        }
       },
       "pumping": {
         "parameters": {
@@ -296,7 +303,10 @@
         "chi2 / dof": [
           894.9229896078132,
           39
-        ]
+        ],
+        "standard errors, scaled by sqrt(max(1, chi2 / dof))": {
+          "pumping c (1/s)": 0.557666610673454
+        }
       },
       "fields + flips + pumping": {
         "parameters": {
@@ -308,7 +318,13 @@
         "chi2 / dof": [
           63.36529841356899,
           36
-        ]
+        ],
+        "standard errors, scaled by sqrt(max(1, chi2 / dof))": {
+          "uniform field h_x (rad/s)": 1.485667597690282,
+          "uniform field h_y (rad/s)": 3.065369649411323,
+          "flip rate S (rad/s)": 0.6535148728877752,
+          "pumping c (1/s)": 0.527998467709949
+        }
       }
     },
     "X15 fields, site mean (rad/s): h_x, h_y": [

@@ -44,8 +44,9 @@ def main() -> None:
         ax[0].plot(kk, slope * kk, ":", color=MUTED, lw=1.0)
     ax[0].set_xlim(0, 1.05 * kmax)
     ax[0].set_ylim(-0.3, 4.6)
-    ax[0].set_xlabel(r"$-\ln D_1$")
-    ax[0].set_ylabel(r"$-\ln D_q$")
+    # the manuscript writes the decay factor D_q of the analysis as W_q, since D_ij are the currents (2026-11-24)
+    ax[0].set_xlabel(r"$-\ln W_1$")
+    ax[0].set_ylabel(r"$-\ln W_q$")
     ax[0].set_title("(a)", loc="left")
     ax[0].legend(loc="upper left")
 
@@ -62,7 +63,7 @@ def main() -> None:
     ax[1].set_xticks(x, [lab for _, lab in ANGLES])
     ax[1].set_xlim(-0.5, len(ANGLES) - 0.5)
     ax[1].set_ylim(-1, 13)
-    ax[1].set_xlabel(r"tilt angle $\theta$")
+    ax[1].set_xlabel("tilt angle")  # no symbol: theta denotes the learned parameters in the manuscript
     ax[1].set_ylabel(r"exponent ratio $r_q$")
     ax[1].set_title("(b)", loc="left")
     fig.suptitle("E32: q^2 law on the Mpemba dephasing data")
